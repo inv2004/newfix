@@ -87,12 +87,11 @@ func t49*(x: Fix1): string =
 func t52*(x: Fix1): string =
   return x.buf[x.a[52]..x.b[52]]
 
-func t55*(x: Fix1): string =
-  return x.buf[x.a[55]..x.b[55]]
+func t155*(x: Fix1): string =
+  return x.buf[x.a[155]..x.b[155]]
 
-func t56*(x: Fix1): uint16 =
-  for i in x.buf[x.a[56]..x.b[56]]:
-    result = result * 10 + (i.byte - '0'.byte)
+func t56*(x: Fix1): string =
+  x.buf[x.a[56]..x.b[56]]
 
 func t57*(x: Fix1): string =
   return x.buf[x.a[57]..x.b[57]]
@@ -150,13 +149,13 @@ func t52*(x: Fix2): string =
   var pos = x.a[52]
   parseStr(x.buf, result, pos)
 
-func t55*(x: Fix2): string =
-  var pos = x.a[55]
+func t155*(x: Fix2): string =
+  var pos = x.a[155]
   parseStr(x.buf, result, pos)
 
-func t56*(x: Fix2): uint16 =
+func t56*(x: Fix2): string =
   var pos = x.a[56]
-  parseUInt16(x.buf, result, pos)
+  parseStr(x.buf, result, pos)
 
 func t57*(x: Fix2): string =
   var pos = x.a[57]
@@ -182,8 +181,8 @@ type
     t35*: char
     t49*: string
     t52*: string
-    t55*: string
-    t56*: uint16
+    t155*: string
+    t56*: string
     t57*: string
     t77*: char
     t98*: uint8
@@ -196,15 +195,15 @@ func parseFix3*(s: string): Fix3 =
   while i < l:
     parseTag(s, t, i)
     case t
-    of 8: parseStr(s, result.beginString, i)
+    of 8: parseStr(s, result.t8, i)
     of 9: parseUInt8(s, result.t9, i)
     of 10: parseStr(s, result.t10, i)
     of 34: parseUInt8(s, result.t34, i)
     of 35: result.t35 = s[i]; i += 2
     of 49: parseStr(s, result.t49, i)
     of 52: parseStr(s, result.t52, i)
-    of 55: parseStr(s, result.t55, i)   # float
-    of 56: parseUInt16(s, result.t56, i)
+    of 155: parseStr(s, result.t155, i)   # float
+    of 56: parseStr(s, result.t56, i)
     of 77: result.t77 = s[i]; i += 2
     of 57: parseStr(s, result.t57, i)
     of 98: parseUInt8(s, result.t98, i)
@@ -252,12 +251,11 @@ func t49*(x: Fix4): string =
 func t52*(x: Fix4): string =
   x[52]
 
-func t55*(x: Fix4): string =
-  x[55]
+func t155*(x: Fix4): string =
+  x[155]
 
-func t56*(x: Fix4): uint16 =
-  for i in x[56]:
-    result = result * 10 + (i.byte - '0'.byte)
+func t56*(x: Fix4): string =
+  x[56]
 
 func t57*(x: Fix4): string =
   x[57]

@@ -227,6 +227,8 @@ proc genStruct(xml: XmlNode, fields: Fields, components: Components) =
   for t, g in trailer:
     echo "    ", field(t), ": ", g
 
+  echo()
+
   for n, g in groups:
     genParseGroupHead(n, g, fields)
 
@@ -239,7 +241,7 @@ proc genStruct(xml: XmlNode, fields: Fields, components: Components) =
   genParse(generated, fields)
 
 proc main() =
-  let xml = loadXml("spec/PRIMEXM.xml")
+  let xml = loadXml("spec/MINIMAL.xml")
   let fields = genFields(xml)
   let components = genComponents(xml)
   genStruct(xml, fields, components)

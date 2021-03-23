@@ -1,6 +1,7 @@
 import unittest
 
 import newfix
+include fix44
 
 let s = readLines("tests/fix1.log",1)[0]
 
@@ -13,8 +14,8 @@ test "fix1 field":
   check 'e' == f.t35
   check "TTTTTTT6" == f.t49
   check "20140709-14:43:12.934" == f.t52
-  check "6236.83333333" == f.t55
-  check 872 == f.t56
+  check "6236.83333333" == f.t155
+  check "872" == f.t56
   check "ARCA" == f.t57
   check 'Y' == f.t77
   check 0 == f.t98
@@ -29,8 +30,8 @@ test "fix2 field":
   check 'e' == f.t35
   check "TTTTTTT6" == f.t49
   check "20140709-14:43:12.934" == f.t52
-  check "6236.83333333" == f.t55
-  check 872 == f.t56
+  check "6236.83333333" == f.t155
+  check "872" == f.t56
   check "ARCA" == f.t57
   check 'Y' == f.t77
   check 0 == f.t98
@@ -45,15 +46,13 @@ test "fix3 field":
   check 'e' == f.t35
   check "TTTTTTT6" == f.t49
   check "20140709-14:43:12.934" == f.t52
-  check "6236.83333333" == f.t55
-  check 872 == f.t56
+  check "6236.83333333" == f.t155
+  check "872" == f.t56
   check "ARCA" == f.t57
   check 'Y' == f.t77
   check 0 == f.t98
   check 60 == f.t108
   echo fromFix3(f)
-
-import tables
 
 test "fix4 field":
   let f = parseFix4(s)
@@ -64,9 +63,25 @@ test "fix4 field":
   check 'e' == f.t35
   check "TTTTTTT6" == f.t49
   check "20140709-14:43:12.934" == f.t52
-  check "6236.83333333" == f.t55
-  check 872 == f.t56
+  check "6236.83333333" == f.t155
+  check "872" == f.t56
   check "ARCA" == f.t57
   check 'Y' == f.t77
   check 0 == f.t98
   check 60 == f.t108
+
+test "fix44 minimal":
+  let f = parseFix44(s)
+  check "FIX.4.2" == f.beginString
+  check 101 == f.bodyLength
+  check "114" == f.checkSum
+  check 99 == f.msgSeqNum
+  check mtELow == f.msgType
+  check "TTTTTTT6" == f.senderCompID
+  check "20140709-14:43:12.934" == f.sendingTime
+  check 6236.83333333 == f.elowSettlCurrFxRate
+  check "872" == f.targetCompID
+  check "ARCA" == f.elowTargetSubID
+  check 'Y' == f.elowPositionEffect
+  check 0 == f.elowEncryptMethod
+  check 60 == f.elowHeartBtInt
