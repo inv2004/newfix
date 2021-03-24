@@ -1,8 +1,7 @@
 import newfix
+include fix44
 
 import criterion
-import tables
-include fix44
 
 var cfg = newDefaultConfig()
 # cfg.verbose = false
@@ -10,7 +9,7 @@ var cfg = newDefaultConfig()
 benchmark cfg:
   let s = readLines("tests/fix1.log", 1)[0]
 
-  proc fix1(): uint16 =
+  proc fix1(): int =
     let f = parseFix1(s)
     doAssert "FIX.4.2" == f.t8
     doAssert 101 == f.t9
@@ -27,10 +26,10 @@ benchmark cfg:
     doAssert 60 == f.t108
     f.t108
 
-  proc benchFix1Field() {.measure.} =
-    blackBox fix1()
+  # proc benchFix1Field() {.measure.} =
+  #   blackBox fix1()
 
-  proc fix2(): uint16 =
+  proc fix2(): int =
     let f = parseFix2(s)
     doAssert "FIX.4.2" == f.t8
     doAssert 101 == f.t9
@@ -47,10 +46,10 @@ benchmark cfg:
     doAssert 60 == f.t108
     f.t108
 
-  proc benchFix2Field() {.measure.} =
-    blackBox fix2()
+  # proc benchFix2Field() {.measure.} =
+  #   blackBox fix2()
 
-  proc fix3(): uint16 =
+  proc fix3(): int =
     let f = parseFix3(s)
     doAssert "FIX.4.2" == f.t8
     doAssert 101 == f.t9
@@ -70,7 +69,7 @@ benchmark cfg:
   proc benchFix3Field() {.measure.} =
     blackBox fix3()
 
-  proc fix4(): uint16 =
+  proc fix4(): int =
     let f = parseFix4(s)
     doAssert "FIX.4.2" == f.t8
     doAssert 101 == f.t9
@@ -87,8 +86,8 @@ benchmark cfg:
     doAssert 60 == f.t108
     f.t108
 
-  proc benchFix4Field() {.measure.} =
-    blackBox fix4()
+  # proc benchFix4Field() {.measure.} =
+  #   blackBox fix4()
 
   proc fix44(): int =
     let f = parseFix44(s)
