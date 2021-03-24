@@ -55,6 +55,25 @@ proc parseFix44(s: string): Fix44 {.noinit.} =
     of 35:
       parseStr(s, v35, pos)
       case v35
-      of "e": return parsemtELow(s, v8, v9, pos)
-    else: raise newException(ValueError, "unexpected header field: " & $t)
+      # of "e": return parsemtELow(s, v8, v9, pos)
+      of "e":
+        # result = Fix44(msgType: mtELow, beginString: v8, bodyLength: v9)
+        result.beginString = v8
+        result.bodyLength = v9
+        while pos < l:
+          parseTag(s, t, pos)
+          case t
+          of 49: parseStr(s, result.senderCompID, pos)
+          of 56: parseStr(s, result.targetCompID, pos)
+          of 34: parseUInt(s, result.msgSeqNum, pos)
+          of 52: parseStr(s, result.sendingTime, pos)
+          of 155: parseStr(s, result.elowSettlCurrFxRate, pos)
+          of 77: parseChar(s, result.elowPositionEffect, pos)
+          of 57: parseStr(s, result.elowTargetSubID, pos)
+          of 108: parseInt(s, result.elowHeartBtInt, pos)
+          of 98: parseInt(s, result.elowEncryptMethod, pos)
+          of 10: parseStr(s, result.checkSum, pos)
+          else: discard
+    # else: raise newException(ValueError, "unexpected header field: " & $t)
+    else: discard
 

@@ -98,8 +98,8 @@ func t34*(x: Fix1): uint =
   for i in x.buf[x.a[34]..x.b[34]]:
     result = result * 10 + (i.byte - '0'.byte)
 
-func t35*(x: Fix1): char =
-  x.buf[x.a[35]]
+func t35*(x: Fix1): string =
+  return x.buf[x.a[35]..x.b[35]]
 
 func t49*(x: Fix1): string =
   return x.buf[x.a[49]..x.b[49]]
@@ -158,8 +158,9 @@ func t34*(x: Fix2): uint =
   var pos = x.a[34]
   parseUInt(x.buf, result, pos)
 
-func t35*(x: Fix2): char =
-  x.buf[x.a[35]]
+func t35*(x: Fix2): string =
+  var pos = x.a[35]
+  parseStr(x.buf, result, pos)
 
 func t49*(x: Fix2): string =
   var pos = x.a[49]
@@ -196,7 +197,7 @@ type
   Fix3 = object
     t8*: string
     t9*: uint
-    t35*: char
+    t35*: string
     t49*: string
     t56*: string
     t34*: uint
@@ -217,7 +218,7 @@ func parseFix3*(s: string): Fix3 =
     case t
     of 8: parseStr(s, result.t8, i)
     of 9: parseUInt(s, result.t9, i)
-    of 35: result.t35 = s[i]; i += 2
+    of 35: parseStr(s, result.t35, i)
     of 49: parseStr(s, result.t49, i)
     of 56: parseStr(s, result.t56, i)
     of 34: parseUInt(s, result.t34, i)
@@ -262,8 +263,8 @@ func t34*(x: Fix4): uint =
   for i in x[34]:
     result = result * 10 + (i.byte - '0'.byte)
 
-func t35*(x: Fix4): char =
-  x[35][0]
+func t35*(x: Fix4): string =
+  x[35]
 
 func t49*(x: Fix4): string =
   x[49]

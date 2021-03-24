@@ -15,7 +15,7 @@ benchmark cfg:
     doAssert 101 == f.t9
     doAssert "114" == f.t10
     doAssert 99 == f.t34
-    doAssert 'e' == f.t35
+    doAssert "e" == f.t35
     doAssert "TTTTTTT6" == f.t49
     doAssert "20140709-14:43:12.934" == f.t52
     doAssert "6236.83333333" == f.t155
@@ -35,7 +35,7 @@ benchmark cfg:
     doAssert 101 == f.t9
     doAssert "114" == f.t10
     doAssert 99 == f.t34
-    doAssert 'e' == f.t35
+    doAssert "e" == f.t35
     doAssert "TTTTTTT6" == f.t49
     doAssert "20140709-14:43:12.934" == f.t52
     doAssert "6236.83333333" == f.t155
@@ -55,7 +55,7 @@ benchmark cfg:
     doAssert 101 == f.t9
     doAssert "114" == f.t10
     doAssert 99 == f.t34
-    doAssert 'e' == f.t35
+    doAssert "e" == f.t35
     doAssert "TTTTTTT6" == f.t49
     doAssert "20140709-14:43:12.934" == f.t52
     doAssert "6236.83333333" == f.t155
@@ -75,7 +75,7 @@ benchmark cfg:
     doAssert 101 == f.t9
     doAssert "114" == f.t10
     doAssert 99 == f.t34
-    doAssert 'e' == f.t35
+    doAssert "e" == f.t35
     doAssert "TTTTTTT6" == f.t49
     doAssert "20140709-14:43:12.934" == f.t52
     doAssert "6236.83333333" == f.t155
@@ -91,6 +91,8 @@ benchmark cfg:
 
   proc fix44(): int =
     let f = parseFix44(s)
+    # var pos = 21
+    # let f = parsemtELow(s, "FIX.4.2", 101, pos)
     doAssert "FIX.4.2" == f.beginString
     doAssert 101 == f.bodyLength
     doAssert "114" == f.checkSum

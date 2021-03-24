@@ -11,7 +11,7 @@ test "fix1 field":
   check 101 == f.t9
   check "114" == f.t10
   check 99 == f.t34
-  check 'e' == f.t35
+  check "e" == f.t35
   check "TTTTTTT6" == f.t49
   check "20140709-14:43:12.934" == f.t52
   check "6236.83333333" == f.t155
@@ -27,7 +27,7 @@ test "fix2 field":
   check 101 == f.t9
   check "114" == f.t10
   check 99 == f.t34
-  check 'e' == f.t35
+  check "e" == f.t35
   check "TTTTTTT6" == f.t49
   check "20140709-14:43:12.934" == f.t52
   check "6236.83333333" == f.t155
@@ -43,7 +43,7 @@ test "fix3 field":
   check 101 == f.t9
   check "114" == f.t10
   check 99 == f.t34
-  check 'e' == f.t35
+  check "e" == f.t35
   check "TTTTTTT6" == f.t49
   check "20140709-14:43:12.934" == f.t52
   check "6236.83333333" == f.t155
@@ -60,7 +60,7 @@ test "fix4 field":
   check 101 == f.t9
   check "114" == f.t10
   check 99 == f.t34
-  check 'e' == f.t35
+  check "e" == f.t35
   check "TTTTTTT6" == f.t49
   check "20140709-14:43:12.934" == f.t52
   check "6236.83333333" == f.t155
@@ -79,7 +79,7 @@ test "fix44 minimal":
   check mtELow == f.msgType
   check "TTTTTTT6" == f.senderCompID
   check "20140709-14:43:12.934" == f.sendingTime
-  check 6236.83333333 == f.elowSettlCurrFxRate
+  check "6236.83333333" == f.elowSettlCurrFxRate
   check "872" == f.targetCompID
   check "ARCA" == f.elowTargetSubID
   check 'Y' == f.elowPositionEffect
