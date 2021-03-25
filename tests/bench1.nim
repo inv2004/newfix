@@ -66,8 +66,8 @@ benchmark cfg:
     doAssert 60 == f.t108
     f.t108  
 
-  proc benchFix3Field() {.measure.} =
-    blackBox fix3()
+  # proc benchFix3Field() {.measure.} =
+  #   blackBox fix3()
 
   proc fix4(): int =
     let f = parseFix4(s)

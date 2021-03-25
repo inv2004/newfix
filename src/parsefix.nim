@@ -15,8 +15,7 @@ func parseChar(s: string, v: var char, pos: var int) =
 
 func parseStr(s: string, v: var string, pos: var int) =
   let start = pos
-  let l = s.len
-  while pos < l:
+  while true:
     if s[pos] == '|':
       break
     inc pos
@@ -25,8 +24,7 @@ func parseStr(s: string, v: var string, pos: var int) =
 
 func parseInt(s: string, t: var int, pos: var int) =
   t = 0
-  let l = s.len
-  while pos < l:
+  while true:
     if s[pos] == '|':
       break
     t = t * 10 + (s[pos].byte - '0'.byte).int
@@ -35,8 +33,7 @@ func parseInt(s: string, t: var int, pos: var int) =
 
 func parseUInt(s: string, t: var uint, pos: var int) =
   t = 0
-  let l = s.len
-  while pos < l:
+  while true:
     if s[pos] == '|':
       break
     t = t * 10 + (s[pos].byte - '0'.byte)
@@ -52,8 +49,7 @@ func parseFloat(s: string, t: var float, pos: var int) =
   pos += parseutils.parseFloat(s, t, pos)+1
 
 func skipValue(s: string, pos: var int) =
-  let l = s.len
-  while pos < l:
+  while true:
     if s[pos] == '|':
       break
     inc pos
