@@ -7,10 +7,12 @@ var cfg = newDefaultConfig()
 # cfg.verbose = false
 
 benchmark cfg:
-  let s = readLines("tests/fix1.log", 1)[0]
+  let s0 = readLines("tests/fix1.log", 3)[0]
+  let s1 = readLines("tests/fix1.log", 3)[1]
+  let s2 = readLines("tests/fix1.log", 3)[2]
 
   proc fix1(): int =
-    let f = parseFix1(s)
+    let f = parseFix1(s0)
     doAssert "FIX.4.2" == f.t8
     doAssert 101 == f.t9
     doAssert "114" == f.t10
@@ -26,11 +28,11 @@ benchmark cfg:
     doAssert 60 == f.t108
     f.t108
 
-  proc benchFix1Field() {.measure.} =
-    blackBox fix1()
+  # proc benchFix1Field() {.measure.} =
+  #   blackBox fix1()
 
   proc fix2(): int =
-    let f = parseFix2(s)
+    let f = parseFix2(s0)
     doAssert "FIX.4.2" == f.t8
     doAssert 101 == f.t9
     doAssert "114" == f.t10
@@ -46,11 +48,11 @@ benchmark cfg:
     doAssert 60 == f.t108
     f.t108
 
-  proc benchFix2Field() {.measure.} =
-    blackBox fix2()
+  # proc benchFix2Field() {.measure.} =
+  #   blackBox fix2()
 
   proc fix3(): int =
-    let f = parseFix3(s)
+    let f = parseFix3(s0)
     doAssert "FIX.4.2" == f.t8
     doAssert 101 == f.t9
     doAssert "114" == f.t10
@@ -70,7 +72,7 @@ benchmark cfg:
     blackBox fix3()
 
   proc fix4(): int =
-    let f = parseFix4(s)
+    let f = parseFix4(s0)
     doAssert "FIX.4.2" == f.t8
     doAssert 101 == f.t9
     doAssert "114" == f.t10
@@ -86,13 +88,11 @@ benchmark cfg:
     doAssert 60 == f.t108
     f.t108
 
-  proc benchFix4Field() {.measure.} =
-    blackBox fix4()
+  # proc benchFix4Field() {.measure.} =
+  #   blackBox fix4()
 
   proc fix44(): int =
-    let f = parseFix44(s)
-    # var pos = 21
-    # let f = parsemtELow(s, "FIX.4.2", 101, pos)
+    let f = parseFix44(s0)
     doAssert "FIX.4.2" == f.beginString
     doAssert 101 == f.bodyLength
     doAssert "114" == f.checkSum
@@ -111,12 +111,43 @@ benchmark cfg:
   proc benchFix44Field() {.measure.} =
     blackBox fix44()
 
-  # proc benchFromFix3() {.measure.} =
-  #   blackBox fix3f()
+  proc fix44grp(): int =
+    let f = parseFix44(s1)
+    doAssert "FIX.4.2" == f.beginString
+    doAssert 157 == f.bodyLength
+    doAssert "114" == f.checkSum
+    doAssert 58 == f.msgSeqNum
+    doAssert mtALow == f.msgType
+    doAssert "TTTTTTT6" == f.senderCompID
+    doAssert "20140709-15:01:26.209" == f.sendingTime
+    doAssert "11855.33" == f.alowUnknown1
+    doAssert "44611" == f.targetCompID
+    doAssert "ARCA" == f.alowTargetSubID
+    doAssert 'Y' == f.alowUnknown2
+    doAssert 0 == f.alowEncryptMethod
+    doAssert 60 == f.alowHeartBtInt
+    doAssert 2 == f.alowNoRelatedSym.len
+    f.elowHeartBtInt
 
-  # proc benchParseFix1() {.measure.} =
-  #   discard parseFix1(s)
+  proc benchFix44Group() {.measure.} =
+    blackBox fix44grp()
 
-  # proc benchParseFix3() {.measure.} =
-  #   discard parseFix3(s)
+  proc fix44grpgrp(): int =
+    let f = parseFix44(s2)
+    doAssert "FIX.4.2" == f.beginString
+    doAssert 272 == f.bodyLength
+    doAssert "114" == f.checkSum
+    doAssert 64 == f.msgSeqNum
+    doAssert mtALow == f.msgType
+    doAssert "TTTTTTT6" == f.senderCompID
+    doAssert "20140709-19:38:42.653" == f.sendingTime
+    doAssert "4592.00" == f.alowUnknown1
+    doAssert "63016" == f.targetCompID
+    doAssert "ARCA" == f.alowTargetSubID
+    doAssert 'Y' == f.alowUnknown2
+    doAssert 0 == f.alowEncryptMethod
+    doAssert 60 == f.alowHeartBtInt
+    doAssert 2 == f.alowNoRelatedSym.len
+    f.elowHeartBtInt
+
 

@@ -3,6 +3,7 @@ import strtabs
 import tables
 import strutils
 import sequtils
+import os
 
 type
   Components = OrderedTableRef[string, XmlNode]
@@ -18,6 +19,8 @@ proc genMsg(m: XmlNode, fields: Fields, components: Components): Gen
 
 proc genGroup(g: XmlNode, fields: Fields, components: Components) =
   let generated = genMsg(g, fields, components)
+  if generated.len == 0:
+    return
   if g.attrs["name"] in groups:
     for k, v in generated:
       groups[g.attrs["name"]][k] = v
@@ -36,6 +39,7 @@ proc normType(t: string): string =
   of "PRICE", "PERCENTAGE", "PRICEOFFSET": return "float"
   of "FLOAT", "STRING", "CURRENCY", "EXCHANGE", "COUNTRY": return "string"
   of "UTCTIMESTAMP", "DATA", "LOCALMKTDATE", "MONTHYEAR", "MULTIPLEVALUESTRING", "UTCDATEONLY", "UTCTIMEONLY", "UTCDATE": return "string"
+  of "TZTIMEONLY", "MULTIPLECHARVALUE", "MULTIPLESTRINGVALUE", "TZTIMESTAMP": return "string"
   of "CHAR": return "char"
   else: raise newException(ValueError, "Unknown type: " & t)
     # t.toLowerAscii()
@@ -45,10 +49,16 @@ proc genMsg(m: XmlNode, fields: Fields, components: Components): Gen =
   for c in m:
     case c.tag
     of "field":
-      result[c.attrs["name"]] = fields[c.attrs["name"]].`type`.normType()
+      if c.attrs["name"] in fields:
+        result[c.attrs["name"]] = fields[c.attrs["name"]].`type`.normType()
+      else:
+        discard
     of "group":
       genGroup(c, fields, components)
-      result[c.attrs["name"]] = "seq[" & $c.attrs["name"] & "]"
+      if $c.attrs["name"] in groups:
+        result[c.attrs["name"]] = "seq[" & $c.attrs["name"] & "]"
+      else:
+        discard
     of "component":
       for k, v in genMsg(components[c.attrs["name"]], fields, components):
         result[k] = v
@@ -130,7 +140,10 @@ proc genParseGroup(n: string, gen: Gen, fields: Fields) =
       sep = t
     case t"""
   for f, g in gen:
-    echo "    of ", fields[f].num, ": ", typeToParse(f, g, "v")
+    if f in fields:
+      echo "    of ", fields[f].num, ": ", typeToParse(f, g, "v")
+    else:
+      discard
   echo """
     else:
       r.add v
@@ -138,11 +151,11 @@ proc genParseGroup(n: string, gen: Gen, fields: Fields) =
       return
 """
 
-proc genParseMsgType(t: string, gen, header, trailer: Gen, fields: Fields) =
-  echo "proc parse",mt(t),"""(s: string, result: var Fix44, pos: var int) =
+proc genParseMsgType(t: string, gen: Gen, name: string, header, trailer: Gen, fields: Fields) =
+  echo "proc parse",mt(t),"(s: string, result: var ",name,""", pos: var int) =
   var
     t: uint16
-  # result = Fix44(msgType: """,mt(t),""")
+  # result = """,name,"""(msgType: """,mt(t),""")
   result.msgType = """, mt(t), """
 
   let l = s.len
@@ -152,20 +165,29 @@ proc genParseMsgType(t: string, gen, header, trailer: Gen, fields: Fields) =
   for f, t in header:
     if f in ["BeginString", "BodyLength", "MsgType"]:
       continue
-    echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
+    if f in fields:
+      echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
+    else:
+      discard
   for f, tt in gen:
     let pref =
       if t[0] in {'0'..'9'}: "t" & mt(t)[2..^1]
       else: mt(t)[2..^1].toLowerAscii()
-    echo "    of ", fields[f].num, ": ", typeToParse(field(pref & f), tt, "result")
+    if f in fields:
+      echo "    of ", fields[f].num, ": ", typeToParse(field(pref & f), tt, "result")
+    else:
+      discard
   for f, t in trailer:
-    echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
+    if f in fields:
+      echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
+    else:
+      discard
   echo """    else: skipValue(s, pos)
 """
 
-proc genParse(gen: OrderedTableRef[string, Gen], fields: Fields) =
+proc genParse(name: string, gen: OrderedTableRef[string, Gen], fields: Fields) =
   echo """
-proc parseFix44(s: string): Fix44 =
+proc parse""",name,"""(s: string): """,name,""" =
   var
     t: uint16
     v35: string
@@ -186,7 +208,7 @@ proc parseFix44(s: string): Fix44 =
 """
 
 
-proc genStruct(xml: XmlNode, fields: Fields, components: Components) =
+proc genStruct(xml: XmlNode, name: string, fields: Fields, components: Components) =
   let header = genHeader(xml, fields, components)
   let trailer = genTrailer(xml, fields, components)
   let generated = genMsgs(xml, fields, components)
@@ -205,7 +227,7 @@ proc genStruct(xml: XmlNode, fields: Fields, components: Components) =
   echo "    ", toSeq(tables.keys(generated)).map(mt).join(", ")
   echo()
 
-  echo "  Fix44 = object"
+  echo "  ", name, " = object"
 
   for t, g in header:
     if t == "MsgType":
@@ -236,14 +258,21 @@ proc genStruct(xml: XmlNode, fields: Fields, components: Components) =
     genParseGroup(n, g, fields)
 
   for t, g in generated:
-    genParseMsgType(t, g, header, trailer, fields)
+    genParseMsgType(t, g, name, header, trailer, fields)
 
-  genParse(generated, fields)
+  genParse(name, generated, fields)
 
 proc main() =
-  let xml = loadXml("spec/MINIMAL.xml")
-  let fields = genFields(xml)
-  let components = genComponents(xml)
-  genStruct(xml, fields, components)
+  if os.paramCount() == 1 and os.paramStr(1).endsWith(".xml"):
+    let xml = loadXml(os.paramStr(1))
+    let ra = xml.attrs
+    var name = ra["type"].toLowerAscii().capitalizeAscii() & ra["major"] & ra["minor"]
+    if ra["servicepack"] != "0":
+      name.add ra["servicepack"].capitalizeAscii()
+    let fields = genFields(xml)
+    let components = genComponents(xml)
+    genStruct(xml, name, fields, components)
+  else:
+    echo "Use: ./genfix [SPEC.xml]"
 
 main()
