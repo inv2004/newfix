@@ -109,6 +109,7 @@ proc typeToParse(f, t, pref: string): string =
 
 proc genParseGroupHead(n: string, gen: Gen, fields: Fields) =
   echo "proc parse", n, "(s: string, r: var seq[", n ,"], pos: var int)"
+  echo()
 
 proc genParseGroup(n: string, gen: Gen, fields: Fields) =
   echo "proc parse", n, "(s: string, r: var seq[", n ,"""], pos: var int) =
