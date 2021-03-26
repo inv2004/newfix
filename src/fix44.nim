@@ -23,13 +23,13 @@ type
     sendingTime: string
     case msgType: MsgTypeKind
     of mtELow:
-      elowUnknown1: float
+      elowUnknown1: string
       elowUnknown2: char
       elowTargetSubID: string
       elowHeartBtInt: int
       elowEncryptMethod: int
     of mtALow:
-      alowUnknown1: float
+      alowUnknown1: string
       alowUnknown2: char
       alowTargetSubID: string
       alowHeartBtInt: int
@@ -102,7 +102,7 @@ proc parsemtELow(s: string, result: var Fix44, pos: var int) =
     of 56: parseStr(s, result.targetCompID, pos)
     of 34: parseUInt(s, result.msgSeqNum, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 5555: parseFloat(s, result.elowUnknown1, pos)
+    of 5555: parseStr(s, result.elowUnknown1, pos)
     of 7777: parseChar(s, result.elowUnknown2, pos)
     of 57: parseStr(s, result.elowTargetSubID, pos)
     of 108: parseInt(s, result.elowHeartBtInt, pos)
@@ -123,7 +123,7 @@ proc parsemtALow(s: string, result: var Fix44, pos: var int) =
     of 56: parseStr(s, result.targetCompID, pos)
     of 34: parseUInt(s, result.msgSeqNum, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 5555: parseFloat(s, result.alowUnknown1, pos)
+    of 5555: parseStr(s, result.alowUnknown1, pos)
     of 7777: parseChar(s, result.alowUnknown2, pos)
     of 57: parseStr(s, result.alowTargetSubID, pos)
     of 108: parseInt(s, result.alowHeartBtInt, pos)

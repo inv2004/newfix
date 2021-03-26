@@ -4,8 +4,8 @@ import parsefix
 type
   Fix1 = object
     buf: string
-    a: array[500, int]
-    b: array[500, int]
+    a: array[10000, int]
+    b: array[10000, int]
 
 func parseFix1*(s: string): Fix1 =
   result.buf = s
@@ -41,8 +41,8 @@ func t49*(x: Fix1): string =
 func t52*(x: Fix1): string =
   return x.buf[x.a[52]..x.b[52]]
 
-func t155*(x: Fix1): string =
-  return x.buf[x.a[155]..x.b[155]]
+func t5555*(x: Fix1): string =
+  return x.buf[x.a[5555]..x.b[5555]]
 
 func t56*(x: Fix1): string =
   x.buf[x.a[56]..x.b[56]]
@@ -50,8 +50,8 @@ func t56*(x: Fix1): string =
 func t57*(x: Fix1): string =
   return x.buf[x.a[57]..x.b[57]]
 
-func t77*(x: Fix1): char =
-  x.buf[x.a[77]]
+func t7777*(x: Fix1): char =
+  x.buf[x.a[7777]]
 
 func t98*(x: Fix1): int =
   for i in x.buf[x.a[98]..x.b[98]]:
@@ -64,7 +64,7 @@ func t108*(x: Fix1): int =
 type
   Fix2 = object
     buf: string
-    a: array[500, int]
+    a: array[10000, int]
 
 func parseFix2*(s: string): Fix2 =
   result.buf = s
@@ -104,8 +104,8 @@ func t52*(x: Fix2): string =
   var pos = x.a[52]
   parseStr(x.buf, result, pos)
 
-func t155*(x: Fix2): string =
-  var pos = x.a[155]
+func t5555*(x: Fix2): string =
+  var pos = x.a[5555]
   parseStr(x.buf, result, pos)
 
 func t56*(x: Fix2): string =
@@ -116,8 +116,8 @@ func t57*(x: Fix2): string =
   var pos = x.a[57]
   parseStr(x.buf, result, pos)
 
-func t77*(x: Fix2): char =
-  x.buf[x.a[77]]
+func t7777*(x: Fix2): char =
+  x.buf[x.a[7777]]
 
 func t98*(x: Fix2): int =
   var pos = x.a[98]
@@ -136,8 +136,8 @@ type
     t56*: string
     t34*: uint
     t52*: string
-    t155*: string
-    t77*: char
+    t5555*: string
+    t7777*: char
     t57*: string
     t108*: int
     t98*: int
@@ -157,8 +157,8 @@ func parseFix3*(s: string): Fix3 =
     of 56: parseStr(s, result.t56, i)
     of 34: parseUInt(s, result.t34, i)
     of 52: parseStr(s, result.t52, i)
-    of 155: parseStr(s, result.t155, i)   # float
-    of 77: result.t77 = s[i]; i += 2
+    of 5555: parseStr(s, result.t5555, i)   # float
+    of 7777: result.t7777 = s[i]; i += 2
     of 57: parseStr(s, result.t57, i)
     of 108: parseInt(s, result.t108, i)
     of 98: parseInt(s, result.t98, i)
@@ -171,7 +171,7 @@ func fromFix3*(x: Fix3): string =
     result.add '|' & $t & "=" & $v
 
 type
-  Fix4 = array[1000, string]
+  Fix4 = array[10000, string]
 
 func parseFix4*(s: string): Fix4 =
   var t: uint16
@@ -206,8 +206,8 @@ func t49*(x: Fix4): string =
 func t52*(x: Fix4): string =
   x[52]
 
-func t155*(x: Fix4): string =
-  x[155]
+func t5555*(x: Fix4): string =
+  x[5555]
 
 func t56*(x: Fix4): string =
   x[56]
@@ -215,8 +215,8 @@ func t56*(x: Fix4): string =
 func t57*(x: Fix4): string =
   x[57]
 
-func t77*(x: Fix4): char =
-  x[77][0]
+func t7777*(x: Fix4): char =
+  x[7777][0]
 
 func t98*(x: Fix4): int =
   for i in x[98]:

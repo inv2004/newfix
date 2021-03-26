@@ -33,8 +33,8 @@ proc normType(t: string): string =
   of "BOOLEAN": return "bool"
   of "INT": return "int"
   of "QTY", "AMT", "SEQNUM", "LENGTH", "DAYOFMONTH": return "uint"
-  of "FLOAT", "PRICE", "PERCENTAGE", "PRICEOFFSET": return "float"
-  of "STRING", "CURRENCY", "EXCHANGE", "COUNTRY": return "string"
+  of "PRICE", "PERCENTAGE", "PRICEOFFSET": return "float"
+  of "FLOAT", "STRING", "CURRENCY", "EXCHANGE", "COUNTRY": return "string"
   of "UTCTIMESTAMP", "DATA", "LOCALMKTDATE", "MONTHYEAR", "MULTIPLEVALUESTRING", "UTCDATEONLY", "UTCTIMEONLY", "UTCDATE": return "string"
   of "CHAR": return "char"
   else: raise newException(ValueError, "Unknown type: " & t)
