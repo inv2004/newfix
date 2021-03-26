@@ -138,10 +138,12 @@ proc genParseGroup(n: string, gen: Gen, fields: Fields) =
 """
 
 proc genParseMsgType(t: string, gen, header, trailer: Gen, fields: Fields) =
-  echo "proc parse",mt(t),"""(s: string, pos: var int): Fix44 =
+  echo "proc parse",mt(t),"""(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  result = Fix44(msgType: """,mt(t),""")
+  # result = Fix44(msgType: """,mt(t),""")
+  result.msgType = """, mt(t), """
+
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -165,24 +167,21 @@ proc genParse(gen: OrderedTableRef[string, Gen], fields: Fields) =
 proc parseFix44(s: string): Fix44 =
   var
     t: uint16
-    v8, v35: string
-    v9: uint
+    v35: string
     pos = 0
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
     case t
-    of 8: parseStr(s, v8, pos)
-    of 9: parseUInt(s, v9, pos)
+    of 8: parseStr(s, result.beginString, pos)
+    of 9: parseUInt(s, result.bodyLength, pos)
     of 35:
       parseStr(s, v35, pos)
       case v35"""
   for t, _ in gen:
-    echo "      of \"", t, "\": result = parse", mt(t) , "(s, pos)"
+    echo "      of \"", t, "\": parse", mt(t) , "(s, result, pos)"
   echo """
     else: raise newException(ValueError, "unexpected header field: " & $t)
-  result.beginString = v8
-  result.bodyLength = v9
 """
 
 

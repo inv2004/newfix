@@ -1,1 +1,4 @@
 *.exe
+src/genfix44
+src/fix44
+perf.data
