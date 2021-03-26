@@ -38,7 +38,9 @@ type
     checkSum: string
 
 proc parseNoTestSubgroup(s: string, r: var seq[NoTestSubgroup], pos: var int)
+
 proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int)
+
 proc parseNoTestSubgroup(s: string, r: var seq[NoTestSubgroup], pos: var int) =
   var
     t, sep: uint16
