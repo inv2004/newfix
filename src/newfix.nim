@@ -2,6 +2,66 @@
 import parsefix
 
 type
+  Fix1 = object
+    buf: string
+    a: array[500, int]
+    b: array[500, int]
+
+func parseFix1*(s: string): Fix1 =
+  result.buf = s
+  var t: uint16
+  let l = s.len
+  var i = 0
+  while i < l:
+    parseTag(s, t, i)
+    result.a[t] = i
+    skipValue(s, i)
+    result.b[t] = i-2
+
+func t8*(x: Fix1): string =
+  return x.buf[x.a[8]..x.b[8]]
+
+func t9*(x: Fix1): uint =
+  for i in x.buf[x.a[9]..x.b[9]]:
+    result = result * 10 + (i.byte - '0'.byte)
+
+func t10*(x: Fix1): string =
+  return x.buf[x.a[10]..x.b[10]]
+
+func t34*(x: Fix1): uint =
+  for i in x.buf[x.a[34]..x.b[34]]:
+    result = result * 10 + (i.byte - '0'.byte)
+
+func t35*(x: Fix1): string =
+  return x.buf[x.a[35]..x.b[35]]
+
+func t49*(x: Fix1): string =
+  return x.buf[x.a[49]..x.b[49]]
+
+func t52*(x: Fix1): string =
+  return x.buf[x.a[52]..x.b[52]]
+
+func t155*(x: Fix1): string =
+  return x.buf[x.a[155]..x.b[155]]
+
+func t56*(x: Fix1): string =
+  x.buf[x.a[56]..x.b[56]]
+
+func t57*(x: Fix1): string =
+  return x.buf[x.a[57]..x.b[57]]
+
+func t77*(x: Fix1): char =
+  x.buf[x.a[77]]
+
+func t98*(x: Fix1): int =
+  for i in x.buf[x.a[98]..x.b[98]]:
+    result = result * 10 + (i.byte - '0'.byte).int
+
+func t108*(x: Fix1): int =
+  for i in x.buf[x.a[108]..x.b[108]]:
+    result = result * 10 + (i.byte - '0'.byte).int
+
+type
   Fix2 = object
     buf: string
     a: array[500, int]
