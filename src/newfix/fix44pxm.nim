@@ -43,124 +43,124 @@ type
     mt0, mt1, mt2, mt3, mt4, mt5, mt8, mtA, mtB, mtD, mtF, mtH, mtW, mtY, mtBLow, mtILow
 
   Fix44Pxm* = object
-    beginString: string
-    bodyLength: uint
-    senderCompID: string
-    targetCompID: string
-    onBehalfOfCompID: string
-    msgSeqNum: uint
-    senderSubID: string
-    onBehalfOfSubID: string
-    sendingTime: string
-    case msgType: MsgTypeKind
+    beginString*: string
+    bodyLength*: uint
+    senderCompID*: string
+    targetCompID*: string
+    onBehalfOfCompID*: string
+    msgSeqNum*: uint
+    senderSubID*: string
+    onBehalfOfSubID*: string
+    sendingTime*: string
+    case msgType*: MsgTypeKind
     of mt0:
-      t0TestReqID: string
+      t0TestReqID*: string
     of mt1:
-      t1TestReqID: string
+      t1TestReqID*: string
     of mt2:
-      t2BeginSeqNo: uint
-      t2EndSeqNo: uint
+      t2BeginSeqNo*: uint
+      t2EndSeqNo*: uint
     of mt3:
-      t3RefSeqNum: uint
-      t3RefTagID: int
-      t3RefMsgType: string
-      t3SessionRejectReason: int
-      t3Text: string
+      t3RefSeqNum*: uint
+      t3RefTagID*: int
+      t3RefMsgType*: string
+      t3SessionRejectReason*: int
+      t3Text*: string
     of mt4:
-      t4GapFillFlag: bool
-      t4NewSeqNo: uint
+      t4GapFillFlag*: bool
+      t4NewSeqNo*: uint
     of mt5:
-      t5Text: string
+      t5Text*: string
     of mt8:
-      t8OrderID: string
-      t8SecondaryClOrdID: string
-      t8SecondaryExecID: string
-      t8ClOrdID: string
-      t8ExecID: string
-      t8ExecType: char
-      t8OrdStatus: char
-      t8Account: string
-      t8SettlDate: string
-      t8Symbol: string
-      t8Issuer: string
-      t8Side: char
-      t8OrderQty: uint
-      t8OrdType: char
-      t8Price: float
-      t8Currency: string
-      t8TimeInForce: char
-      t8LastQty: uint
-      t8LastPx: float
-      t8LeavesQty: uint
-      t8CumQty: uint
-      t8AvgPx: float
-      t8TransactTime: string
-      t8MinQty: uint
-      t8Text: string
+      t8OrderID*: string
+      t8SecondaryClOrdID*: string
+      t8SecondaryExecID*: string
+      t8ClOrdID*: string
+      t8ExecID*: string
+      t8ExecType*: char
+      t8OrdStatus*: char
+      t8Account*: string
+      t8SettlDate*: string
+      t8Symbol*: string
+      t8Issuer*: string
+      t8Side*: char
+      t8OrderQty*: uint
+      t8OrdType*: char
+      t8Price*: float
+      t8Currency*: string
+      t8TimeInForce*: char
+      t8LastQty*: uint
+      t8LastPx*: float
+      t8LeavesQty*: uint
+      t8CumQty*: uint
+      t8AvgPx*: float
+      t8TransactTime*: string
+      t8MinQty*: uint
+      t8Text*: string
     of mtA:
-      aEncryptMethod: int
-      aHeartBtInt: int
-      aResetSeqNumFlag: bool
-      aNoMsgTypes: seq[NoMsgTypes]
-      aUsername: string
-      aPassword: string
+      aEncryptMethod*: int
+      aHeartBtInt*: int
+      aResetSeqNumFlag*: bool
+      aNoMsgTypes*: seq[NoMsgTypes]
+      aUsername*: string
+      aPassword*: string
     of mtB:
-      bNoRelatedSym: seq[NoRelatedSym]
-      bNoLinesOfText: seq[NoLinesOfText]
+      bNoRelatedSym*: seq[NoRelatedSym]
+      bNoLinesOfText*: seq[NoLinesOfText]
     of mtD:
-      dClOrdID: string
-      dSecondaryClOrdID: string
-      dAccount: string
-      dSettlDate: string
-      dMinQty: uint
-      dSymbol: string
-      dIssuer: string
-      dSide: char
-      dTransactTime: string
-      dOrderQty: uint
-      dOrdType: char
-      dPrice: float
-      dCurrency: string
-      dQuoteID: string
-      dTimeInForce: char
-      dText: string
+      dClOrdID*: string
+      dSecondaryClOrdID*: string
+      dAccount*: string
+      dSettlDate*: string
+      dMinQty*: uint
+      dSymbol*: string
+      dIssuer*: string
+      dSide*: char
+      dTransactTime*: string
+      dOrderQty*: uint
+      dOrdType*: char
+      dPrice*: float
+      dCurrency*: string
+      dQuoteID*: string
+      dTimeInForce*: char
+      dText*: string
     of mtF:
-      fOrderID: string
-      fClOrdID: string
-      fSecondaryClOrdID: string
-      fAccount: string
-      fSymbol: string
-      fIssuer: string
-      fSide: char
-      fTransactTime: string
-      fOrderQty: uint
-      fText: string
+      fOrderID*: string
+      fClOrdID*: string
+      fSecondaryClOrdID*: string
+      fAccount*: string
+      fSymbol*: string
+      fIssuer*: string
+      fSide*: char
+      fTransactTime*: string
+      fOrderQty*: uint
+      fText*: string
     of mtH:
-      hOrderID: string
-      hClOrdID: string
-      hSecondaryClOrdID: string
-      hAccount: string
-      hSymbol: string
-      hIssuer: string
-      hSide: char
+      hOrderID*: string
+      hClOrdID*: string
+      hSecondaryClOrdID*: string
+      hAccount*: string
+      hSymbol*: string
+      hIssuer*: string
+      hSide*: char
     of mtW:
-      wMDReqID: string
-      wSymbol: string
-      wIssuer: string
-      wNoMDEntries: seq[NoMDEntries]
+      wMDReqID*: string
+      wSymbol*: string
+      wIssuer*: string
+      wNoMDEntries*: seq[NoMDEntries]
     of mtY:
-      yMDReqID: string
-      yText: string
+      yMDReqID*: string
+      yText*: string
     of mtBLow:
-      blowQuoteID: string
-      blowAccount: string
-      blowText: string
-      blowNoQuoteSets: seq[NoQuoteSets]
+      blowQuoteID*: string
+      blowAccount*: string
+      blowText*: string
+      blowNoQuoteSets*: seq[NoQuoteSets]
     of mtILow:
-      ilowQuoteID: string
-      ilowAccount: string
-      ilowNoQuoteSets: seq[NoQuoteSets]
-    checkSum: string
+      ilowQuoteID*: string
+      ilowAccount*: string
+      ilowNoQuoteSets*: seq[NoQuoteSets]
+    checkSum*: string
 
 proc parseNoMsgTypes(s: string, r: var seq[NoMsgTypes], pos: var int)
 

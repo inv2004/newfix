@@ -1,5 +1,5 @@
-import newfix
-include fix44
+import newfix/concepts
+include newfix/fix42min
 
 import criterion
 
@@ -7,9 +7,9 @@ var cfg = newDefaultConfig()
 # cfg.verbose = false
 
 benchmark cfg:
-  let s0 = readLines("tests/fix1.log", 3)[0]
-  let s1 = readLines("tests/fix1.log", 3)[1]
-  let s2 = readLines("tests/fix1.log", 3)[2]
+  let s0 = readLines("tests/test1.fix", 3)[0]
+  let s1 = readLines("tests/test1.fix", 3)[1]
+  let s2 = readLines("tests/test1.fix", 3)[2]
 
   proc fix1(): int =
     let f = parseFix1(s0)
@@ -92,7 +92,7 @@ benchmark cfg:
   #   blackBox fix4()
 
   proc fix44(): int =
-    let f = parseFix44(s0)
+    let f = parseFix44Min(s0)
     doAssert "FIX.4.2" == f.beginString
     doAssert 101 == f.bodyLength
     doAssert "114" == f.checkSum
@@ -112,7 +112,7 @@ benchmark cfg:
     blackBox fix44()
 
   proc fix44grp(): int =
-    let f = parseFix44(s1)
+    let f = parseFix44Min(s1)
     doAssert "FIX.4.2" == f.beginString
     doAssert 157 == f.bodyLength
     doAssert "114" == f.checkSum
@@ -133,7 +133,7 @@ benchmark cfg:
     blackBox fix44grp()
 
   proc fix44grpgrp(): int =
-    let f = parseFix44(s2)
+    let f = parseFix44Min(s2)
     doAssert "FIX.4.2" == f.beginString
     doAssert 272 == f.bodyLength
     doAssert "114" == f.checkSum

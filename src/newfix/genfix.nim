@@ -214,9 +214,9 @@ proc genStruct(xml: XmlNode, name: string, fields: Fields, components: Component
   for t, g in header:
     if t == "MsgType":
       continue
-    echo "    ", field(t), ": ", g
+    echo "    ", field(t), "*: ", g
 
-  echo "    case msgType: MsgTypeKind"
+  echo "    case msgType*: MsgTypeKind"
   for t, g in generated:
     echo "    of ", mt(t), ":"
     let pref =
@@ -226,10 +226,10 @@ proc genStruct(xml: XmlNode, name: string, fields: Fields, components: Component
       echo "      discard"
       continue
     for f, t in g:
-      echo "      ", field(pref & f), ": ", t
+      echo "      ", field(pref & f), "*: ", t
 
   for t, g in trailer:
-    echo "    ", field(t), ": ", g
+    echo "    ", field(t), "*: ", g
 
   echo()
 

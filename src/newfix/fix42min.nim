@@ -15,27 +15,27 @@ type
     mtELow, mtALow
 
   Fix44Min* = object
-    beginString: string
-    bodyLength: uint
-    senderCompID: string
-    targetCompID: string
-    msgSeqNum: uint
-    sendingTime: string
-    case msgType: MsgTypeKind
+    beginString*: string
+    bodyLength*: uint
+    senderCompID*: string
+    targetCompID*: string
+    msgSeqNum*: uint
+    sendingTime*: string
+    case msgType*: MsgTypeKind
     of mtELow:
-      elowUnknown1: string
-      elowUnknown2: char
-      elowTargetSubID: string
-      elowHeartBtInt: int
-      elowEncryptMethod: int
+      elowUnknown1*: string
+      elowUnknown2*: char
+      elowTargetSubID*: string
+      elowHeartBtInt*: int
+      elowEncryptMethod*: int
     of mtALow:
-      alowUnknown1: string
-      alowUnknown2: char
-      alowTargetSubID: string
-      alowHeartBtInt: int
-      alowEncryptMethod: int
-      alowNoRelatedSym: seq[NoRelatedSym]
-    checkSum: string
+      alowUnknown1*: string
+      alowUnknown2*: char
+      alowTargetSubID*: string
+      alowHeartBtInt*: int
+      alowEncryptMethod*: int
+      alowNoRelatedSym*: seq[NoRelatedSym]
+    checkSum*: string
 
 proc parseNoTestSubgroup(s: string, r: var seq[NoTestSubgroup], pos: var int)
 

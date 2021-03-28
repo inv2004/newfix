@@ -1,9 +1,9 @@
 import unittest
 
-import newfix
-include fix44
+import newfix/concepts
+import newfix/fix42min
 
-let s = readLines("tests/fix1.log",3)
+let s = readLines("tests/test1.fix",3)
 
 test "fix1 field":
   let f = parseFix1(s[0])
@@ -71,7 +71,7 @@ test "fix4 field":
   check 60 == f.t108
 
 test "fix44 minimal":
-  let f = parseFix44(s[0])
+  let f = parseFix44Min(s[0])
   check "FIX.4.2" == f.beginString
   check 101 == f.bodyLength
   check "114" == f.checkSum
@@ -87,7 +87,7 @@ test "fix44 minimal":
   check 60 == f.elowHeartBtInt
 
 test "fix44 group":
-  let f = parseFix44(s[1])
+  let f = parseFix44Min(s[1])
   check "FIX.4.2" == f.beginString
   check 157 == f.bodyLength
   check "114" == f.checkSum
@@ -106,7 +106,7 @@ test "fix44 group":
   check NoRelatedSym(symbol: "IBM", settlDate: "56132", securityDesc: "blah2", noTestSubgroup: @[]) == f.alowNoRelatedSym[1]
 
 test "fix44 group+subgroup":
-  let f = parseFix44(s[2])
+  let f = parseFix44Min(s[2])
   check "FIX.4.2" == f.beginString
   check 272 == f.bodyLength
   check "114" == f.checkSum

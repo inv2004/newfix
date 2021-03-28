@@ -1,8 +1,8 @@
+test_logs/
 *.exe
 src/genfix44
 src/fix44
 perf.data
 tests/bench1
 tests/test1
-tests/bench1
 genfix
