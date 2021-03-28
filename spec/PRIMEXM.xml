@@ -126,6 +126,13 @@
    <component name='FinancingDetails' required='N' />
    <field name='Side' required='Y' />
   </message>
+  <message name='MarketDataRequest' msgtype='V' msgcat='app'>
+   <field name='MDReqID' required='Y' />
+   <field name='SubscriptionRequestType' required='Y' />
+   <field name='MarketDepth' required='Y' />
+   <component name='MDReqGrp' required='Y' />
+   <component name='InstrmtMDReqGrp' required='Y' />
+  </message>
   <message name='MarketDataSnapshotFullRefresh' msgtype='W' msgcat='app'>
    <field name='MDReqID' required='N' />
    <component name='Instrument' required='Y' />
@@ -989,6 +996,7 @@
    <value enum='2' description='DISABLE_PREVIOUS_SNAPSHOT_PLUS_UPDATE_REQUEST' />
   </field>
   <field number='264' name='MarketDepth' type='INT' />
+  <field number='267' name='NoMDEntryTypes' type='NUMINGROUP' />
   <field number='268' name='NoMDEntries' type='NUMINGROUP' />
   <field number='269' name='MDEntryType' type='CHAR'>
    <value enum='0' description='BID' />

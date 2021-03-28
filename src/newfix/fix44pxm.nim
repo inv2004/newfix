@@ -11,6 +11,9 @@ type
   NoLinesOfText* = object
     text*: string
 
+  NoMDEntryTypes* = object
+    mDEntryType*: char
+
   NoMDEntries* = object
     mDEntryType*: char
     mDEntryPx*: float
@@ -40,7 +43,7 @@ type
     currency*: string
 
   MsgTypeKind* = enum
-    mt0, mt1, mt2, mt3, mt4, mt5, mt8, mtA, mtB, mtD, mtF, mtH, mtW, mtY, mtBLow, mtILow
+    mt0, mt1, mt2, mt3, mt4, mt5, mt8, mtA, mtB, mtD, mtF, mtH, mtV, mtW, mtY, mtBLow, mtILow
 
   Fix44Pxm* = object
     beginString*: string
@@ -143,6 +146,12 @@ type
       hSymbol*: string
       hIssuer*: string
       hSide*: char
+    of mtV:
+      vMDReqID*: string
+      vSubscriptionRequestType*: char
+      vMarketDepth*: int
+      vNoMDEntryTypes*: seq[NoMDEntryTypes]
+      vNoRelatedSym*: seq[NoRelatedSym]
     of mtW:
       wMDReqID*: string
       wSymbol*: string
@@ -167,6 +176,8 @@ proc parseNoMsgTypes(s: string, r: var seq[NoMsgTypes], pos: var int)
 proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int)
 
 proc parseNoLinesOfText(s: string, r: var seq[NoLinesOfText], pos: var int)
+
+proc parseNoMDEntryTypes(s: string, r: var seq[NoMDEntryTypes], pos: var int)
 
 proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int)
 
@@ -236,6 +247,28 @@ proc parseNoLinesOfText(s: string, r: var seq[NoLinesOfText], pos: var int) =
       sep = t
     case t
     of 58: parseStr(s, v.text, pos)
+    else:
+      r.add v
+      pos = j
+      return
+
+proc parseNoMDEntryTypes(s: string, r: var seq[NoMDEntryTypes], pos: var int) =
+  var
+    t, sep: uint16
+    v: NoMDEntryTypes
+    j = 0
+  let l = s.len
+  while pos < l:
+    j = pos
+    parseTag(s, t, pos)
+    if sep > 0:
+      if sep == t:
+        r.add v
+        v.reset()
+    else:
+      sep = t
+    case t
+    of 269: parseChar(s, v.mDEntryType, pos)
     else:
       r.add v
       pos = j
@@ -632,6 +665,30 @@ proc parsemtH(s: string, result: var Fix44Pxm, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
+proc parsemtV(s: string, result: var Fix44Pxm, pos: var int) =
+  var
+    t: uint16
+  # result = Fix44Pxm(msgType: mtV)
+  result.msgType = mtV
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 34: parseUInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 262: parseStr(s, result.vMDReqID, pos)
+    of 263: parseChar(s, result.vSubscriptionRequestType, pos)
+    of 264: parseInt(s, result.vMarketDepth, pos)
+    of 267: skipValue(s, pos); parseNoMDEntryTypes(s, result.vNoMDEntryTypes, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.vNoRelatedSym, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
 proc parsemtW(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
@@ -747,6 +804,7 @@ proc parseFix44Pxm*(s: string): Fix44Pxm =
       of "D": parsemtD(s, result, pos)
       of "F": parsemtF(s, result, pos)
       of "H": parsemtH(s, result, pos)
+      of "V": parsemtV(s, result, pos)
       of "W": parsemtW(s, result, pos)
       of "Y": parsemtY(s, result, pos)
       of "b": parsemtBLow(s, result, pos)
