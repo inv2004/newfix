@@ -19,8 +19,6 @@ proc genMsg(m: XmlNode, fields: Fields, components: Components): Gen
 
 proc genGroup(g: XmlNode, fields: Fields, components: Components) =
   let generated = genMsg(g, fields, components)
-  if generated.len == 0:
-    return
   if g.attrs["name"] in groups:
     for k, v in generated:
       groups[g.attrs["name"]][k] = v
@@ -49,16 +47,10 @@ proc genMsg(m: XmlNode, fields: Fields, components: Components): Gen =
   for c in m:
     case c.tag
     of "field":
-      if c.attrs["name"] in fields:
-        result[c.attrs["name"]] = fields[c.attrs["name"]].`type`.normType()
-      else:
-        discard
+      result[c.attrs["name"]] = fields[c.attrs["name"]].`type`.normType()
     of "group":
       genGroup(c, fields, components)
-      if $c.attrs["name"] in groups:
-        result[c.attrs["name"]] = "seq[" & $c.attrs["name"] & "]"
-      else:
-        discard
+      result[c.attrs["name"]] = "seq[" & $c.attrs["name"] & "]"
     of "component":
       for k, v in genMsg(components[c.attrs["name"]], fields, components):
         result[k] = v
@@ -140,10 +132,7 @@ proc genParseGroup(n: string, gen: Gen, fields: Fields) =
       sep = t
     case t"""
   for f, g in gen:
-    if f in fields:
-      echo "    of ", fields[f].num, ": ", typeToParse(f, g, "v")
-    else:
-      discard
+    echo "    of ", fields[f].num, ": ", typeToParse(f, g, "v")
   echo """
     else:
       r.add v
@@ -165,23 +154,14 @@ proc genParseMsgType(t: string, gen: Gen, name: string, header, trailer: Gen, fi
   for f, t in header:
     if f in ["BeginString", "BodyLength", "MsgType"]:
       continue
-    if f in fields:
-      echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
-    else:
-      discard
+    echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
   for f, tt in gen:
     let pref =
       if t[0] in {'0'..'9'}: "t" & mt(t)[2..^1]
       else: mt(t)[2..^1].toLowerAscii()
-    if f in fields:
-      echo "    of ", fields[f].num, ": ", typeToParse(field(pref & f), tt, "result")
-    else:
-      discard
+    echo "    of ", fields[f].num, ": ", typeToParse(field(pref & f), tt, "result")
   for f, t in trailer:
-    if f in fields:
-      echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
-    else:
-      discard
+    echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
   echo """    else: skipValue(s, pos)
 """
 
@@ -212,6 +192,8 @@ proc genStruct(xml: XmlNode, name: string, fields: Fields, components: Component
   let header = genHeader(xml, fields, components)
   let trailer = genTrailer(xml, fields, components)
   let generated = genMsgs(xml, fields, components)
+
+  # return
 
   echo "include parsefix"
   echo()

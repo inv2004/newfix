@@ -515,6 +515,7 @@ proc parsemtA(s: string, result: var Fix44Pxm, pos: var int) =
     of 98: parseInt(s, result.aEncryptMethod, pos)
     of 108: parseInt(s, result.aHeartBtInt, pos)
     of 141: parseBool(s, result.aResetSeqNumFlag, pos)
+    of 384: skipValue(s, pos); parseNoMsgTypes(s, result.aNoMsgTypes, pos)
     of 553: parseStr(s, result.aUsername, pos)
     of 554: parseStr(s, result.aPassword, pos)
     of 10: parseStr(s, result.checkSum, pos)
@@ -537,6 +538,7 @@ proc parsemtB(s: string, result: var Fix44Pxm, pos: var int) =
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
     of 146: skipValue(s, pos); parseNoRelatedSym(s, result.bNoRelatedSym, pos)
+    of 33: skipValue(s, pos); parseNoLinesOfText(s, result.bNoLinesOfText, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
