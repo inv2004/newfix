@@ -167,7 +167,7 @@ proc genParseMsgType(t: string, gen: Gen, name: string, header, trailer: Gen, fi
 
 proc genParse(name: string, gen: OrderedTableRef[string, Gen], fields: Fields) =
   echo """
-proc parse""",name,"""(s: string): """,name,""" =
+proc parse""",name,"""*(s: string): """,name,""" =
   var
     t: uint16
     v35: string
@@ -200,16 +200,16 @@ proc genStruct(xml: XmlNode, name: string, fields: Fields, components: Component
   echo "type"
 
   for n, g in groups:
-    echo "  ", n, " = object"
+    echo "  ", n, "* = object"
     for f, t in g:
-      echo "    ", field(f), ": ", t
+      echo "    ", field(f), "*: ", t
     echo()
 
-  echo "  MsgTypeKind = enum"
+  echo "  MsgTypeKind* = enum"
   echo "    ", toSeq(tables.keys(generated)).map(mt).join(", ")
   echo()
 
-  echo "  ", name, " = object"
+  echo "  ", name, "* = object"
 
   for t, g in header:
     if t == "MsgType":

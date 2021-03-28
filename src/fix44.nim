@@ -1,1091 +1,1091 @@
 include parsefix
 
 type
-  NoHops = object
-    hopCompID: string
-    hopSendingTime: string
-    hopRefID: uint
+  NoHops* = object
+    hopCompID*: string
+    hopSendingTime*: string
+    hopRefID*: uint
 
-  NoIOIQualifiers = object
-    iOIQualifier: char
+  NoIOIQualifiers* = object
+    iOIQualifier*: char
 
-  NoRoutingIDs = object
-    routingType: int
-    routingID: string
+  NoRoutingIDs* = object
+    routingType*: int
+    routingID*: string
 
-  NoContraBrokers = object
-    contraBroker: string
-    contraTrader: string
-    contraTradeQty: uint
-    contraTradeTime: string
-    contraLegRefID: string
+  NoContraBrokers* = object
+    contraBroker*: string
+    contraTrader*: string
+    contraTradeQty*: uint
+    contraTradeTime*: string
+    contraLegRefID*: string
 
-  NoMsgTypes = object
-    refMsgType: string
-    msgDirection: char
+  NoMsgTypes* = object
+    refMsgType*: string
+    msgDirection*: char
 
-  NoRelatedSym = object
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    securityIDSource: string
-    noSecurityAltID: seq[NoSecurityAltID]
-    product: int
-    cFICode: string
-    securityType: string
-    securitySubType: string
-    maturityMonthYear: string
-    maturityDate: string
-    putOrCall: int
-    couponPaymentDate: string
-    issueDate: string
-    repoCollateralSecurityType: string
-    repurchaseTerm: int
-    repurchaseRate: float
-    factor: string
-    creditRating: string
-    instrRegistry: string
-    countryOfIssue: string
-    stateOrProvinceOfIssue: string
-    localeOfIssue: string
-    redemptionDate: string
-    strikePrice: float
-    strikeCurrency: string
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: float
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    pool: string
-    contractSettlMonth: string
-    cPProgram: int
-    cPRegType: string
-    noEvents: seq[NoEvents]
-    datedDate: string
-    interestAccrualDate: string
-    agreementDesc: string
-    agreementID: string
-    agreementDate: string
-    agreementCurrency: string
-    terminationType: int
-    startDate: string
-    endDate: string
-    deliveryType: int
-    marginRatio: float
-    noUnderlyings: seq[NoUnderlyings]
-    prevClosePx: float
-    quoteRequestType: int
-    quoteType: int
-    tradingSessionID: string
-    tradingSessionSubID: string
-    tradeOriginationDate: string
-    side: char
-    qtyType: int
-    orderQty: uint
-    cashOrderQty: uint
-    orderPercent: float
-    roundingDirection: char
-    roundingModulus: string
-    settlType: char
-    settlDate: string
-    settlDate2: string
-    orderQty2: uint
-    currency: string
-    noStipulations: seq[NoStipulations]
-    account: string
-    acctIDSource: int
-    accountType: int
-    noLegs: seq[NoLegs]
-    noQuoteQualifiers: seq[NoQuoteQualifiers]
-    quotePriceType: int
-    ordType: char
-    validUntilTime: string
-    expireTime: string
-    transactTime: string
-    spread: float
-    benchmarkCurveCurrency: string
-    benchmarkCurveName: string
-    benchmarkCurvePoint: string
-    benchmarkPrice: float
-    benchmarkPriceType: int
-    benchmarkSecurityID: string
-    benchmarkSecurityIDSource: string
-    priceType: int
-    price: float
-    price2: float
-    yieldType: string
-    `yield`: float
-    yieldCalcDate: string
-    yieldRedemptionDate: string
-    yieldRedemptionPrice: float
-    yieldRedemptionPriceType: int
-    noPartyIDs: seq[NoPartyIDs]
-    deliveryForm: int
-    pctAtRisk: float
-    noInstrAttrib: seq[NoInstrAttrib]
-    roundLot: uint
-    minTradeVol: uint
-    expirationCycle: int
-    text: string
-    encodedTextLen: uint
-    encodedText: string
+  NoRelatedSym* = object
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    securityIDSource*: string
+    noSecurityAltID*: seq[NoSecurityAltID]
+    product*: int
+    cFICode*: string
+    securityType*: string
+    securitySubType*: string
+    maturityMonthYear*: string
+    maturityDate*: string
+    putOrCall*: int
+    couponPaymentDate*: string
+    issueDate*: string
+    repoCollateralSecurityType*: string
+    repurchaseTerm*: int
+    repurchaseRate*: float
+    factor*: string
+    creditRating*: string
+    instrRegistry*: string
+    countryOfIssue*: string
+    stateOrProvinceOfIssue*: string
+    localeOfIssue*: string
+    redemptionDate*: string
+    strikePrice*: float
+    strikeCurrency*: string
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: float
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    pool*: string
+    contractSettlMonth*: string
+    cPProgram*: int
+    cPRegType*: string
+    noEvents*: seq[NoEvents]
+    datedDate*: string
+    interestAccrualDate*: string
+    agreementDesc*: string
+    agreementID*: string
+    agreementDate*: string
+    agreementCurrency*: string
+    terminationType*: int
+    startDate*: string
+    endDate*: string
+    deliveryType*: int
+    marginRatio*: float
+    noUnderlyings*: seq[NoUnderlyings]
+    prevClosePx*: float
+    quoteRequestType*: int
+    quoteType*: int
+    tradingSessionID*: string
+    tradingSessionSubID*: string
+    tradeOriginationDate*: string
+    side*: char
+    qtyType*: int
+    orderQty*: uint
+    cashOrderQty*: uint
+    orderPercent*: float
+    roundingDirection*: char
+    roundingModulus*: string
+    settlType*: char
+    settlDate*: string
+    settlDate2*: string
+    orderQty2*: uint
+    currency*: string
+    noStipulations*: seq[NoStipulations]
+    account*: string
+    acctIDSource*: int
+    accountType*: int
+    noLegs*: seq[NoLegs]
+    noQuoteQualifiers*: seq[NoQuoteQualifiers]
+    quotePriceType*: int
+    ordType*: char
+    validUntilTime*: string
+    expireTime*: string
+    transactTime*: string
+    spread*: float
+    benchmarkCurveCurrency*: string
+    benchmarkCurveName*: string
+    benchmarkCurvePoint*: string
+    benchmarkPrice*: float
+    benchmarkPriceType*: int
+    benchmarkSecurityID*: string
+    benchmarkSecurityIDSource*: string
+    priceType*: int
+    price*: float
+    price2*: float
+    yieldType*: string
+    `yield`*: float
+    yieldCalcDate*: string
+    yieldRedemptionDate*: string
+    yieldRedemptionPrice*: float
+    yieldRedemptionPriceType*: int
+    noPartyIDs*: seq[NoPartyIDs]
+    deliveryForm*: int
+    pctAtRisk*: float
+    noInstrAttrib*: seq[NoInstrAttrib]
+    roundLot*: uint
+    minTradeVol*: uint
+    expirationCycle*: int
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
 
-  NoLinesOfText = object
-    text: string
-    encodedTextLen: uint
-    encodedText: string
+  NoLinesOfText* = object
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
 
-  NoTradingSessions = object
-    tradingSessionID: string
-    tradingSessionSubID: string
+  NoTradingSessions* = object
+    tradingSessionID*: string
+    tradingSessionSubID*: string
 
-  NoOrders = object
-    clOrdID: string
-    secondaryClOrdID: string
-    listSeqNo: int
-    clOrdLinkID: string
-    settlInstMode: char
-    noPartyIDs: seq[NoPartyIDs]
-    tradeOriginationDate: string
-    tradeDate: string
-    account: string
-    acctIDSource: int
-    accountType: int
-    dayBookingInst: char
-    bookingUnit: char
-    allocID: string
-    preallocMethod: char
-    noAllocs: seq[NoAllocs]
-    settlType: char
-    settlDate: string
-    cashMargin: char
-    clearingFeeIndicator: string
-    handlInst: char
-    execInst: string
-    minQty: uint
-    maxFloor: uint
-    exDestination: string
-    noTradingSessions: seq[NoTradingSessions]
-    processCode: char
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    securityIDSource: string
-    noSecurityAltID: seq[NoSecurityAltID]
-    product: int
-    cFICode: string
-    securityType: string
-    securitySubType: string
-    maturityMonthYear: string
-    maturityDate: string
-    putOrCall: int
-    couponPaymentDate: string
-    issueDate: string
-    repoCollateralSecurityType: string
-    repurchaseTerm: int
-    repurchaseRate: float
-    factor: string
-    creditRating: string
-    instrRegistry: string
-    countryOfIssue: string
-    stateOrProvinceOfIssue: string
-    localeOfIssue: string
-    redemptionDate: string
-    strikePrice: float
-    strikeCurrency: string
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: float
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    pool: string
-    contractSettlMonth: string
-    cPProgram: int
-    cPRegType: string
-    noEvents: seq[NoEvents]
-    datedDate: string
-    interestAccrualDate: string
-    noUnderlyings: seq[NoUnderlyings]
-    prevClosePx: float
-    side: char
-    sideValueInd: int
-    locateReqd: bool
-    transactTime: string
-    noStipulations: seq[NoStipulations]
-    qtyType: int
-    orderQty: uint
-    cashOrderQty: uint
-    orderPercent: float
-    roundingDirection: char
-    roundingModulus: string
-    ordType: char
-    priceType: int
-    price: float
-    stopPx: float
-    spread: float
-    benchmarkCurveCurrency: string
-    benchmarkCurveName: string
-    benchmarkCurvePoint: string
-    benchmarkPrice: float
-    benchmarkPriceType: int
-    benchmarkSecurityID: string
-    benchmarkSecurityIDSource: string
-    yieldType: string
-    `yield`: float
-    yieldCalcDate: string
-    yieldRedemptionDate: string
-    yieldRedemptionPrice: float
-    yieldRedemptionPriceType: int
-    currency: string
-    complianceID: string
-    solicitedFlag: bool
-    iOIID: string
-    quoteID: string
-    timeInForce: char
-    effectiveTime: string
-    expireDate: string
-    expireTime: string
-    gTBookingInst: int
-    commission: uint
-    commType: char
-    commCurrency: string
-    fundRenewWaiv: char
-    orderCapacity: char
-    orderRestrictions: string
-    custOrderCapacity: int
-    forexReq: bool
-    settlCurrency: string
-    bookingType: int
-    text: string
-    encodedTextLen: uint
-    encodedText: string
-    settlDate2: string
-    orderQty2: uint
-    price2: float
-    positionEffect: char
-    coveredOrUncovered: int
-    maxShow: uint
-    pegOffsetValue: string
-    pegMoveType: int
-    pegOffsetType: int
-    pegLimitType: int
-    pegRoundDirection: int
-    pegScope: int
-    discretionInst: char
-    discretionOffsetValue: string
-    discretionMoveType: int
-    discretionOffsetType: int
-    discretionLimitType: int
-    discretionRoundDirection: int
-    discretionScope: int
-    targetStrategy: int
-    targetStrategyParameters: string
-    participationRate: float
-    designation: string
-    orderID: string
-    secondaryOrderID: string
-    listID: string
-    noNested2PartyIDs: seq[NoNested2PartyIDs]
-    orderAvgPx: float
-    orderBookingQty: uint
-    cumQty: uint
-    ordStatus: char
-    workingIndicator: bool
-    leavesQty: uint
-    cxlQty: uint
-    avgPx: float
-    ordRejReason: int
+  NoOrders* = object
+    clOrdID*: string
+    secondaryClOrdID*: string
+    listSeqNo*: int
+    clOrdLinkID*: string
+    settlInstMode*: char
+    noPartyIDs*: seq[NoPartyIDs]
+    tradeOriginationDate*: string
+    tradeDate*: string
+    account*: string
+    acctIDSource*: int
+    accountType*: int
+    dayBookingInst*: char
+    bookingUnit*: char
+    allocID*: string
+    preallocMethod*: char
+    noAllocs*: seq[NoAllocs]
+    settlType*: char
+    settlDate*: string
+    cashMargin*: char
+    clearingFeeIndicator*: string
+    handlInst*: char
+    execInst*: string
+    minQty*: uint
+    maxFloor*: uint
+    exDestination*: string
+    noTradingSessions*: seq[NoTradingSessions]
+    processCode*: char
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    securityIDSource*: string
+    noSecurityAltID*: seq[NoSecurityAltID]
+    product*: int
+    cFICode*: string
+    securityType*: string
+    securitySubType*: string
+    maturityMonthYear*: string
+    maturityDate*: string
+    putOrCall*: int
+    couponPaymentDate*: string
+    issueDate*: string
+    repoCollateralSecurityType*: string
+    repurchaseTerm*: int
+    repurchaseRate*: float
+    factor*: string
+    creditRating*: string
+    instrRegistry*: string
+    countryOfIssue*: string
+    stateOrProvinceOfIssue*: string
+    localeOfIssue*: string
+    redemptionDate*: string
+    strikePrice*: float
+    strikeCurrency*: string
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: float
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    pool*: string
+    contractSettlMonth*: string
+    cPProgram*: int
+    cPRegType*: string
+    noEvents*: seq[NoEvents]
+    datedDate*: string
+    interestAccrualDate*: string
+    noUnderlyings*: seq[NoUnderlyings]
+    prevClosePx*: float
+    side*: char
+    sideValueInd*: int
+    locateReqd*: bool
+    transactTime*: string
+    noStipulations*: seq[NoStipulations]
+    qtyType*: int
+    orderQty*: uint
+    cashOrderQty*: uint
+    orderPercent*: float
+    roundingDirection*: char
+    roundingModulus*: string
+    ordType*: char
+    priceType*: int
+    price*: float
+    stopPx*: float
+    spread*: float
+    benchmarkCurveCurrency*: string
+    benchmarkCurveName*: string
+    benchmarkCurvePoint*: string
+    benchmarkPrice*: float
+    benchmarkPriceType*: int
+    benchmarkSecurityID*: string
+    benchmarkSecurityIDSource*: string
+    yieldType*: string
+    `yield`*: float
+    yieldCalcDate*: string
+    yieldRedemptionDate*: string
+    yieldRedemptionPrice*: float
+    yieldRedemptionPriceType*: int
+    currency*: string
+    complianceID*: string
+    solicitedFlag*: bool
+    iOIID*: string
+    quoteID*: string
+    timeInForce*: char
+    effectiveTime*: string
+    expireDate*: string
+    expireTime*: string
+    gTBookingInst*: int
+    commission*: uint
+    commType*: char
+    commCurrency*: string
+    fundRenewWaiv*: char
+    orderCapacity*: char
+    orderRestrictions*: string
+    custOrderCapacity*: int
+    forexReq*: bool
+    settlCurrency*: string
+    bookingType*: int
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
+    settlDate2*: string
+    orderQty2*: uint
+    price2*: float
+    positionEffect*: char
+    coveredOrUncovered*: int
+    maxShow*: uint
+    pegOffsetValue*: string
+    pegMoveType*: int
+    pegOffsetType*: int
+    pegLimitType*: int
+    pegRoundDirection*: int
+    pegScope*: int
+    discretionInst*: char
+    discretionOffsetValue*: string
+    discretionMoveType*: int
+    discretionOffsetType*: int
+    discretionLimitType*: int
+    discretionRoundDirection*: int
+    discretionScope*: int
+    targetStrategy*: int
+    targetStrategyParameters*: string
+    participationRate*: float
+    designation*: string
+    orderID*: string
+    secondaryOrderID*: string
+    listID*: string
+    noNested2PartyIDs*: seq[NoNested2PartyIDs]
+    orderAvgPx*: float
+    orderBookingQty*: uint
+    cumQty*: uint
+    ordStatus*: char
+    workingIndicator*: bool
+    leavesQty*: uint
+    cxlQty*: uint
+    avgPx*: float
+    ordRejReason*: int
 
-  NoExecs = object
-    lastQty: uint
-    execID: string
-    secondaryExecID: string
-    lastPx: float
-    lastParPx: float
-    lastCapacity: char
+  NoExecs* = object
+    lastQty*: uint
+    execID*: string
+    secondaryExecID*: string
+    lastPx*: float
+    lastParPx*: float
+    lastCapacity*: char
 
-  NoSettlInst = object
-    settlInstID: string
-    settlInstTransType: char
-    settlInstRefID: string
-    noPartyIDs: seq[NoPartyIDs]
-    side: char
-    product: int
-    securityType: string
-    cFICode: string
-    effectiveTime: string
-    expireTime: string
-    lastUpdateTime: string
-    settlDeliveryType: int
-    standInstDbType: int
-    standInstDbName: string
-    standInstDbID: string
-    noDlvyInst: seq[NoDlvyInst]
-    paymentMethod: int
-    paymentRef: string
-    cardHolderName: string
-    cardNumber: string
-    cardStartDate: string
-    cardExpDate: string
-    cardIssNum: string
-    paymentDate: string
-    paymentRemitterID: string
+  NoSettlInst* = object
+    settlInstID*: string
+    settlInstTransType*: char
+    settlInstRefID*: string
+    noPartyIDs*: seq[NoPartyIDs]
+    side*: char
+    product*: int
+    securityType*: string
+    cFICode*: string
+    effectiveTime*: string
+    expireTime*: string
+    lastUpdateTime*: string
+    settlDeliveryType*: int
+    standInstDbType*: int
+    standInstDbName*: string
+    standInstDbID*: string
+    noDlvyInst*: seq[NoDlvyInst]
+    paymentMethod*: int
+    paymentRef*: string
+    cardHolderName*: string
+    cardNumber*: string
+    cardStartDate*: string
+    cardExpDate*: string
+    cardIssNum*: string
+    paymentDate*: string
+    paymentRemitterID*: string
 
-  NoMDEntryTypes = object
-    mDEntryType: char
+  NoMDEntryTypes* = object
+    mDEntryType*: char
 
-  NoMDEntries = object
-    mDEntryType: char
-    mDEntryPx: float
-    currency: string
-    mDEntrySize: uint
-    mDEntryDate: string
-    mDEntryTime: string
-    tickDirection: char
-    mDMkt: string
-    tradingSessionID: string
-    tradingSessionSubID: string
-    quoteCondition: string
-    tradeCondition: string
-    mDEntryOriginator: string
-    locationID: string
-    deskID: string
-    openCloseSettlFlag: string
-    timeInForce: char
-    expireDate: string
-    expireTime: string
-    minQty: uint
-    execInst: string
-    sellerDays: int
-    orderID: string
-    quoteEntryID: string
-    mDEntryBuyer: string
-    mDEntrySeller: string
-    numberOfOrders: int
-    mDEntryPositionNo: int
-    scope: string
-    priceDelta: string
-    text: string
-    encodedTextLen: uint
-    encodedText: string
-    mDUpdateAction: char
-    deleteReason: char
-    mDEntryID: string
-    mDEntryRefID: string
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    securityIDSource: string
-    noSecurityAltID: seq[NoSecurityAltID]
-    product: int
-    cFICode: string
-    securityType: string
-    securitySubType: string
-    maturityMonthYear: string
-    maturityDate: string
-    putOrCall: int
-    couponPaymentDate: string
-    issueDate: string
-    repoCollateralSecurityType: string
-    repurchaseTerm: int
-    repurchaseRate: float
-    factor: string
-    creditRating: string
-    instrRegistry: string
-    countryOfIssue: string
-    stateOrProvinceOfIssue: string
-    localeOfIssue: string
-    redemptionDate: string
-    strikePrice: float
-    strikeCurrency: string
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: float
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    pool: string
-    contractSettlMonth: string
-    cPProgram: int
-    cPRegType: string
-    noEvents: seq[NoEvents]
-    datedDate: string
-    interestAccrualDate: string
-    noUnderlyings: seq[NoUnderlyings]
-    noLegs: seq[NoLegs]
-    financialStatus: string
-    corporateAction: string
-    netChgPrevDay: float
+  NoMDEntries* = object
+    mDEntryType*: char
+    mDEntryPx*: float
+    currency*: string
+    mDEntrySize*: uint
+    mDEntryDate*: string
+    mDEntryTime*: string
+    tickDirection*: char
+    mDMkt*: string
+    tradingSessionID*: string
+    tradingSessionSubID*: string
+    quoteCondition*: string
+    tradeCondition*: string
+    mDEntryOriginator*: string
+    locationID*: string
+    deskID*: string
+    openCloseSettlFlag*: string
+    timeInForce*: char
+    expireDate*: string
+    expireTime*: string
+    minQty*: uint
+    execInst*: string
+    sellerDays*: int
+    orderID*: string
+    quoteEntryID*: string
+    mDEntryBuyer*: string
+    mDEntrySeller*: string
+    numberOfOrders*: int
+    mDEntryPositionNo*: int
+    scope*: string
+    priceDelta*: string
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
+    mDUpdateAction*: char
+    deleteReason*: char
+    mDEntryID*: string
+    mDEntryRefID*: string
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    securityIDSource*: string
+    noSecurityAltID*: seq[NoSecurityAltID]
+    product*: int
+    cFICode*: string
+    securityType*: string
+    securitySubType*: string
+    maturityMonthYear*: string
+    maturityDate*: string
+    putOrCall*: int
+    couponPaymentDate*: string
+    issueDate*: string
+    repoCollateralSecurityType*: string
+    repurchaseTerm*: int
+    repurchaseRate*: float
+    factor*: string
+    creditRating*: string
+    instrRegistry*: string
+    countryOfIssue*: string
+    stateOrProvinceOfIssue*: string
+    localeOfIssue*: string
+    redemptionDate*: string
+    strikePrice*: float
+    strikeCurrency*: string
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: float
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    pool*: string
+    contractSettlMonth*: string
+    cPProgram*: int
+    cPRegType*: string
+    noEvents*: seq[NoEvents]
+    datedDate*: string
+    interestAccrualDate*: string
+    noUnderlyings*: seq[NoUnderlyings]
+    noLegs*: seq[NoLegs]
+    financialStatus*: string
+    corporateAction*: string
+    netChgPrevDay*: float
 
-  NoAltMDSource = object
-    altMDSourceID: string
+  NoAltMDSource* = object
+    altMDSourceID*: string
 
-  NoQuoteSets = object
-    quoteSetID: string
-    underlyingSymbol: string
-    underlyingSymbolSfx: string
-    underlyingSecurityID: string
-    underlyingSecurityIDSource: string
-    noUnderlyingSecurityAltID: seq[NoUnderlyingSecurityAltID]
-    underlyingProduct: int
-    underlyingCFICode: string
-    underlyingSecurityType: string
-    underlyingSecuritySubType: string
-    underlyingMaturityMonthYear: string
-    underlyingMaturityDate: string
-    underlyingPutOrCall: int
-    underlyingCouponPaymentDate: string
-    underlyingIssueDate: string
-    underlyingRepoCollateralSecurityType: string
-    underlyingRepurchaseTerm: int
-    underlyingRepurchaseRate: float
-    underlyingFactor: string
-    underlyingCreditRating: string
-    underlyingInstrRegistry: string
-    underlyingCountryOfIssue: string
-    underlyingStateOrProvinceOfIssue: string
-    underlyingLocaleOfIssue: string
-    underlyingRedemptionDate: string
-    underlyingStrikePrice: float
-    underlyingStrikeCurrency: string
-    underlyingOptAttribute: char
-    underlyingContractMultiplier: string
-    underlyingCouponRate: float
-    underlyingSecurityExchange: string
-    underlyingIssuer: string
-    encodedUnderlyingIssuerLen: uint
-    encodedUnderlyingIssuer: string
-    underlyingSecurityDesc: string
-    encodedUnderlyingSecurityDescLen: uint
-    encodedUnderlyingSecurityDesc: string
-    underlyingCPProgram: string
-    underlyingCPRegType: string
-    underlyingCurrency: string
-    underlyingQty: uint
-    underlyingPx: float
-    underlyingDirtyPrice: float
-    underlyingEndPrice: float
-    underlyingStartValue: uint
-    underlyingCurrentValue: uint
-    underlyingEndValue: uint
-    noUnderlyingStips: seq[NoUnderlyingStips]
-    totNoQuoteEntries: int
-    lastFragment: bool
-    noQuoteEntries: seq[NoQuoteEntries]
-    quoteSetValidUntilTime: string
+  NoQuoteSets* = object
+    quoteSetID*: string
+    underlyingSymbol*: string
+    underlyingSymbolSfx*: string
+    underlyingSecurityID*: string
+    underlyingSecurityIDSource*: string
+    noUnderlyingSecurityAltID*: seq[NoUnderlyingSecurityAltID]
+    underlyingProduct*: int
+    underlyingCFICode*: string
+    underlyingSecurityType*: string
+    underlyingSecuritySubType*: string
+    underlyingMaturityMonthYear*: string
+    underlyingMaturityDate*: string
+    underlyingPutOrCall*: int
+    underlyingCouponPaymentDate*: string
+    underlyingIssueDate*: string
+    underlyingRepoCollateralSecurityType*: string
+    underlyingRepurchaseTerm*: int
+    underlyingRepurchaseRate*: float
+    underlyingFactor*: string
+    underlyingCreditRating*: string
+    underlyingInstrRegistry*: string
+    underlyingCountryOfIssue*: string
+    underlyingStateOrProvinceOfIssue*: string
+    underlyingLocaleOfIssue*: string
+    underlyingRedemptionDate*: string
+    underlyingStrikePrice*: float
+    underlyingStrikeCurrency*: string
+    underlyingOptAttribute*: char
+    underlyingContractMultiplier*: string
+    underlyingCouponRate*: float
+    underlyingSecurityExchange*: string
+    underlyingIssuer*: string
+    encodedUnderlyingIssuerLen*: uint
+    encodedUnderlyingIssuer*: string
+    underlyingSecurityDesc*: string
+    encodedUnderlyingSecurityDescLen*: uint
+    encodedUnderlyingSecurityDesc*: string
+    underlyingCPProgram*: string
+    underlyingCPRegType*: string
+    underlyingCurrency*: string
+    underlyingQty*: uint
+    underlyingPx*: float
+    underlyingDirtyPrice*: float
+    underlyingEndPrice*: float
+    underlyingStartValue*: uint
+    underlyingCurrentValue*: uint
+    underlyingEndValue*: uint
+    noUnderlyingStips*: seq[NoUnderlyingStips]
+    totNoQuoteEntries*: int
+    lastFragment*: bool
+    noQuoteEntries*: seq[NoQuoteEntries]
+    quoteSetValidUntilTime*: string
 
-  NoQuoteEntries = object
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    securityIDSource: string
-    noSecurityAltID: seq[NoSecurityAltID]
-    product: int
-    cFICode: string
-    securityType: string
-    securitySubType: string
-    maturityMonthYear: string
-    maturityDate: string
-    putOrCall: int
-    couponPaymentDate: string
-    issueDate: string
-    repoCollateralSecurityType: string
-    repurchaseTerm: int
-    repurchaseRate: float
-    factor: string
-    creditRating: string
-    instrRegistry: string
-    countryOfIssue: string
-    stateOrProvinceOfIssue: string
-    localeOfIssue: string
-    redemptionDate: string
-    strikePrice: float
-    strikeCurrency: string
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: float
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    pool: string
-    contractSettlMonth: string
-    cPProgram: int
-    cPRegType: string
-    noEvents: seq[NoEvents]
-    datedDate: string
-    interestAccrualDate: string
-    agreementDesc: string
-    agreementID: string
-    agreementDate: string
-    agreementCurrency: string
-    terminationType: int
-    startDate: string
-    endDate: string
-    deliveryType: int
-    marginRatio: float
-    noUnderlyings: seq[NoUnderlyings]
-    noLegs: seq[NoLegs]
-    quoteEntryID: string
-    bidPx: float
-    offerPx: float
-    bidSize: uint
-    offerSize: uint
-    validUntilTime: string
-    bidSpotRate: float
-    offerSpotRate: float
-    bidForwardPoints: float
-    offerForwardPoints: float
-    midPx: float
-    bidYield: float
-    midYield: float
-    offerYield: float
-    transactTime: string
-    tradingSessionID: string
-    tradingSessionSubID: string
-    settlDate: string
-    ordType: char
-    settlDate2: string
-    orderQty2: uint
-    bidForwardPoints2: float
-    offerForwardPoints2: float
-    currency: string
-    quoteEntryRejectReason: int
+  NoQuoteEntries* = object
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    securityIDSource*: string
+    noSecurityAltID*: seq[NoSecurityAltID]
+    product*: int
+    cFICode*: string
+    securityType*: string
+    securitySubType*: string
+    maturityMonthYear*: string
+    maturityDate*: string
+    putOrCall*: int
+    couponPaymentDate*: string
+    issueDate*: string
+    repoCollateralSecurityType*: string
+    repurchaseTerm*: int
+    repurchaseRate*: float
+    factor*: string
+    creditRating*: string
+    instrRegistry*: string
+    countryOfIssue*: string
+    stateOrProvinceOfIssue*: string
+    localeOfIssue*: string
+    redemptionDate*: string
+    strikePrice*: float
+    strikeCurrency*: string
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: float
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    pool*: string
+    contractSettlMonth*: string
+    cPProgram*: int
+    cPRegType*: string
+    noEvents*: seq[NoEvents]
+    datedDate*: string
+    interestAccrualDate*: string
+    agreementDesc*: string
+    agreementID*: string
+    agreementDate*: string
+    agreementCurrency*: string
+    terminationType*: int
+    startDate*: string
+    endDate*: string
+    deliveryType*: int
+    marginRatio*: float
+    noUnderlyings*: seq[NoUnderlyings]
+    noLegs*: seq[NoLegs]
+    quoteEntryID*: string
+    bidPx*: float
+    offerPx*: float
+    bidSize*: uint
+    offerSize*: uint
+    validUntilTime*: string
+    bidSpotRate*: float
+    offerSpotRate*: float
+    bidForwardPoints*: float
+    offerForwardPoints*: float
+    midPx*: float
+    bidYield*: float
+    midYield*: float
+    offerYield*: float
+    transactTime*: string
+    tradingSessionID*: string
+    tradingSessionSubID*: string
+    settlDate*: string
+    ordType*: char
+    settlDate2*: string
+    orderQty2*: uint
+    bidForwardPoints2*: float
+    offerForwardPoints2*: float
+    currency*: string
+    quoteEntryRejectReason*: int
 
-  NoBidDescriptors = object
-    bidDescriptorType: int
-    bidDescriptor: string
-    sideValueInd: int
-    liquidityValue: uint
-    liquidityNumSecurities: int
-    liquidityPctLow: float
-    liquidityPctHigh: float
-    eFPTrackingError: float
-    fairValue: uint
-    outsideIndexPct: float
-    valueOfFutures: uint
+  NoBidDescriptors* = object
+    bidDescriptorType*: int
+    bidDescriptor*: string
+    sideValueInd*: int
+    liquidityValue*: uint
+    liquidityNumSecurities*: int
+    liquidityPctLow*: float
+    liquidityPctHigh*: float
+    eFPTrackingError*: float
+    fairValue*: uint
+    outsideIndexPct*: float
+    valueOfFutures*: uint
 
-  NoBidComponents = object
-    listID: string
-    side: char
-    tradingSessionID: string
-    tradingSessionSubID: string
-    netGrossInd: int
-    settlType: char
-    settlDate: string
-    account: string
-    acctIDSource: int
-    commission: uint
-    commType: char
-    commCurrency: string
-    fundRenewWaiv: char
-    country: string
-    price: float
-    priceType: int
-    fairValue: uint
-    text: string
-    encodedTextLen: uint
-    encodedText: string
+  NoBidComponents* = object
+    listID*: string
+    side*: char
+    tradingSessionID*: string
+    tradingSessionSubID*: string
+    netGrossInd*: int
+    settlType*: char
+    settlDate*: string
+    account*: string
+    acctIDSource*: int
+    commission*: uint
+    commType*: char
+    commCurrency*: string
+    fundRenewWaiv*: char
+    country*: string
+    price*: float
+    priceType*: int
+    fairValue*: uint
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
 
-  NoStrikes = object
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    securityIDSource: string
-    noSecurityAltID: seq[NoSecurityAltID]
-    product: int
-    cFICode: string
-    securityType: string
-    securitySubType: string
-    maturityMonthYear: string
-    maturityDate: string
-    putOrCall: int
-    couponPaymentDate: string
-    issueDate: string
-    repoCollateralSecurityType: string
-    repurchaseTerm: int
-    repurchaseRate: float
-    factor: string
-    creditRating: string
-    instrRegistry: string
-    countryOfIssue: string
-    stateOrProvinceOfIssue: string
-    localeOfIssue: string
-    redemptionDate: string
-    strikePrice: float
-    strikeCurrency: string
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: float
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    pool: string
-    contractSettlMonth: string
-    cPProgram: int
-    cPRegType: string
-    noEvents: seq[NoEvents]
-    datedDate: string
-    interestAccrualDate: string
+  NoStrikes* = object
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    securityIDSource*: string
+    noSecurityAltID*: seq[NoSecurityAltID]
+    product*: int
+    cFICode*: string
+    securityType*: string
+    securitySubType*: string
+    maturityMonthYear*: string
+    maturityDate*: string
+    putOrCall*: int
+    couponPaymentDate*: string
+    issueDate*: string
+    repoCollateralSecurityType*: string
+    repurchaseTerm*: int
+    repurchaseRate*: float
+    factor*: string
+    creditRating*: string
+    instrRegistry*: string
+    countryOfIssue*: string
+    stateOrProvinceOfIssue*: string
+    localeOfIssue*: string
+    redemptionDate*: string
+    strikePrice*: float
+    strikeCurrency*: string
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: float
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    pool*: string
+    contractSettlMonth*: string
+    cPProgram*: int
+    cPRegType*: string
+    noEvents*: seq[NoEvents]
+    datedDate*: string
+    interestAccrualDate*: string
 
-  NoRegistDtls = object
-    registDtls: string
-    registEmail: string
-    mailingDtls: string
-    mailingInst: string
-    noNestedPartyIDs: seq[NoNestedPartyIDs]
-    ownerType: int
-    dateOfBirth: string
-    investorCountryOfResidence: string
+  NoRegistDtls* = object
+    registDtls*: string
+    registEmail*: string
+    mailingDtls*: string
+    mailingInst*: string
+    noNestedPartyIDs*: seq[NoNestedPartyIDs]
+    ownerType*: int
+    dateOfBirth*: string
+    investorCountryOfResidence*: string
 
-  NoDistribInsts = object
-    distribPaymentMethod: int
-    distribPercentage: float
-    cashDistribCurr: string
-    cashDistribAgentName: string
-    cashDistribAgentCode: string
-    cashDistribAgentAcctNumber: string
-    cashDistribPayRef: string
-    cashDistribAgentAcctName: string
+  NoDistribInsts* = object
+    distribPaymentMethod*: int
+    distribPercentage*: float
+    cashDistribCurr*: string
+    cashDistribAgentName*: string
+    cashDistribAgentCode*: string
+    cashDistribAgentAcctNumber*: string
+    cashDistribPayRef*: string
+    cashDistribAgentAcctName*: string
 
-  NoAffectedOrders = object
-    origClOrdID: string
-    affectedOrderID: string
-    affectedSecondaryOrderID: string
+  NoAffectedOrders* = object
+    origClOrdID*: string
+    affectedOrderID*: string
+    affectedSecondaryOrderID*: string
 
-  NoSides = object
-    side: char
-    clOrdID: string
-    secondaryClOrdID: string
-    clOrdLinkID: string
-    noPartyIDs: seq[NoPartyIDs]
-    tradeOriginationDate: string
-    tradeDate: string
-    account: string
-    acctIDSource: int
-    accountType: int
-    dayBookingInst: char
-    bookingUnit: char
-    preallocMethod: char
-    allocID: string
-    noAllocs: seq[NoAllocs]
-    qtyType: int
-    orderQty: uint
-    cashOrderQty: uint
-    orderPercent: float
-    roundingDirection: char
-    roundingModulus: string
-    commission: uint
-    commType: char
-    commCurrency: string
-    fundRenewWaiv: char
-    orderCapacity: char
-    orderRestrictions: string
-    custOrderCapacity: int
-    forexReq: bool
-    settlCurrency: string
-    bookingType: int
-    text: string
-    encodedTextLen: uint
-    encodedText: string
-    positionEffect: char
-    coveredOrUncovered: int
-    cashMargin: char
-    clearingFeeIndicator: string
-    solicitedFlag: bool
-    sideComplianceID: string
-    origClOrdID: string
-    origOrdModTime: string
-    complianceID: string
-    orderID: string
-    secondaryOrderID: string
-    listID: string
-    processCode: char
-    oddLot: bool
-    noClearingInstructions: seq[NoClearingInstructions]
-    tradeInputSource: string
-    tradeInputDevice: string
-    orderInputDevice: string
-    currency: string
-    ordType: char
-    execInst: string
-    transBkdTime: string
-    tradingSessionID: string
-    tradingSessionSubID: string
-    timeBracket: string
-    grossTradeAmt: uint
-    numDaysInterest: int
-    exDate: string
-    accruedInterestRate: float
-    accruedInterestAmt: uint
-    interestAtMaturity: uint
-    endAccruedInterestAmt: uint
-    startCash: uint
-    endCash: uint
-    concession: uint
-    totalTakedown: uint
-    netMoney: uint
-    settlCurrAmt: uint
-    settlCurrFxRate: string
-    settlCurrFxRateCalc: char
-    sideMultiLegReportingType: int
-    noContAmts: seq[NoContAmts]
-    noStipulations: seq[NoStipulations]
-    noMiscFees: seq[NoMiscFees]
-    exchangeRule: string
-    tradeAllocIndicator: int
+  NoSides* = object
+    side*: char
+    clOrdID*: string
+    secondaryClOrdID*: string
+    clOrdLinkID*: string
+    noPartyIDs*: seq[NoPartyIDs]
+    tradeOriginationDate*: string
+    tradeDate*: string
+    account*: string
+    acctIDSource*: int
+    accountType*: int
+    dayBookingInst*: char
+    bookingUnit*: char
+    preallocMethod*: char
+    allocID*: string
+    noAllocs*: seq[NoAllocs]
+    qtyType*: int
+    orderQty*: uint
+    cashOrderQty*: uint
+    orderPercent*: float
+    roundingDirection*: char
+    roundingModulus*: string
+    commission*: uint
+    commType*: char
+    commCurrency*: string
+    fundRenewWaiv*: char
+    orderCapacity*: char
+    orderRestrictions*: string
+    custOrderCapacity*: int
+    forexReq*: bool
+    settlCurrency*: string
+    bookingType*: int
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
+    positionEffect*: char
+    coveredOrUncovered*: int
+    cashMargin*: char
+    clearingFeeIndicator*: string
+    solicitedFlag*: bool
+    sideComplianceID*: string
+    origClOrdID*: string
+    origOrdModTime*: string
+    complianceID*: string
+    orderID*: string
+    secondaryOrderID*: string
+    listID*: string
+    processCode*: char
+    oddLot*: bool
+    noClearingInstructions*: seq[NoClearingInstructions]
+    tradeInputSource*: string
+    tradeInputDevice*: string
+    orderInputDevice*: string
+    currency*: string
+    ordType*: char
+    execInst*: string
+    transBkdTime*: string
+    tradingSessionID*: string
+    tradingSessionSubID*: string
+    timeBracket*: string
+    grossTradeAmt*: uint
+    numDaysInterest*: int
+    exDate*: string
+    accruedInterestRate*: float
+    accruedInterestAmt*: uint
+    interestAtMaturity*: uint
+    endAccruedInterestAmt*: uint
+    startCash*: uint
+    endCash*: uint
+    concession*: uint
+    totalTakedown*: uint
+    netMoney*: uint
+    settlCurrAmt*: uint
+    settlCurrFxRate*: string
+    settlCurrFxRateCalc*: char
+    sideMultiLegReportingType*: int
+    noContAmts*: seq[NoContAmts]
+    noStipulations*: seq[NoStipulations]
+    noMiscFees*: seq[NoMiscFees]
+    exchangeRule*: string
+    tradeAllocIndicator*: int
 
-  NoSecurityTypes = object
-    securityType: string
-    securitySubType: string
-    product: int
-    cFICode: string
+  NoSecurityTypes* = object
+    securityType*: string
+    securitySubType*: string
+    product*: int
+    cFICode*: string
 
-  NoInstrAttrib = object
-    instrAttribType: int
-    instrAttribValue: string
+  NoInstrAttrib* = object
+    instrAttribType*: int
+    instrAttribValue*: string
 
-  NoNested3PartySubIDs = object
-    nested3PartySubID: string
-    nested3PartySubIDType: int
+  NoNested3PartySubIDs* = object
+    nested3PartySubID*: string
+    nested3PartySubIDType*: int
 
-  NoNested3PartyIDs = object
-    nested3PartyID: string
-    nested3PartyIDSource: char
-    nested3PartyRole: int
-    noNested3PartySubIDs: seq[NoNested3PartySubIDs]
+  NoNested3PartyIDs* = object
+    nested3PartyID*: string
+    nested3PartyIDSource*: char
+    nested3PartyRole*: int
+    noNested3PartySubIDs*: seq[NoNested3PartySubIDs]
 
-  NoLegAllocs = object
-    legAllocAccount: string
-    legIndividualAllocID: string
-    noNested2PartyIDs: seq[NoNested2PartyIDs]
-    legAllocQty: uint
-    legAllocAcctIDSource: string
-    legSettlCurrency: string
+  NoLegAllocs* = object
+    legAllocAccount*: string
+    legIndividualAllocID*: string
+    noNested2PartyIDs*: seq[NoNested2PartyIDs]
+    legAllocQty*: uint
+    legAllocAcctIDSource*: string
+    legSettlCurrency*: string
 
-  NoDates = object
-    tradeDate: string
-    transactTime: string
+  NoDates* = object
+    tradeDate*: string
+    transactTime*: string
 
-  NoPosAmt = object
-    posAmtType: string
-    posAmt: uint
+  NoPosAmt* = object
+    posAmtType*: string
+    posAmt*: uint
 
-  NoTrdRegTimestamps = object
-    trdRegTimestamp: string
-    trdRegTimestampType: int
-    trdRegTimestampOrigin: string
+  NoTrdRegTimestamps* = object
+    trdRegTimestamp*: string
+    trdRegTimestampType*: int
+    trdRegTimestampOrigin*: string
 
-  NoContAmts = object
-    contAmtType: int
-    contAmtValue: string
-    contAmtCurr: string
+  NoContAmts* = object
+    contAmtType*: int
+    contAmtValue*: string
+    contAmtCurr*: string
 
-  NoAllocs = object
-    allocAccount: string
-    allocAcctIDSource: int
-    allocSettlCurrency: string
-    individualAllocID: string
-    noNestedPartyIDs: seq[NoNestedPartyIDs]
-    allocQty: uint
-    matchStatus: char
-    allocPrice: float
-    processCode: char
-    notifyBrokerOfCredit: bool
-    allocHandlInst: int
-    allocText: string
-    encodedAllocTextLen: uint
-    encodedAllocText: string
-    commission: uint
-    commType: char
-    commCurrency: string
-    fundRenewWaiv: char
-    allocAvgPx: float
-    allocNetMoney: uint
-    settlCurrAmt: uint
-    allocSettlCurrAmt: uint
-    settlCurrency: string
-    settlCurrFxRate: string
-    settlCurrFxRateCalc: char
-    allocAccruedInterestAmt: uint
-    allocInterestAtMaturity: uint
-    noMiscFees: seq[NoMiscFees]
-    noClearingInstructions: seq[NoClearingInstructions]
-    allocSettlInstType: int
-    settlDeliveryType: int
-    standInstDbType: int
-    standInstDbName: string
-    standInstDbID: string
-    noDlvyInst: seq[NoDlvyInst]
-    individualAllocRejCode: int
-    noNested3PartyIDs: seq[NoNested3PartyIDs]
-    noNested2PartyIDs: seq[NoNested2PartyIDs]
+  NoAllocs* = object
+    allocAccount*: string
+    allocAcctIDSource*: int
+    allocSettlCurrency*: string
+    individualAllocID*: string
+    noNestedPartyIDs*: seq[NoNestedPartyIDs]
+    allocQty*: uint
+    matchStatus*: char
+    allocPrice*: float
+    processCode*: char
+    notifyBrokerOfCredit*: bool
+    allocHandlInst*: int
+    allocText*: string
+    encodedAllocTextLen*: uint
+    encodedAllocText*: string
+    commission*: uint
+    commType*: char
+    commCurrency*: string
+    fundRenewWaiv*: char
+    allocAvgPx*: float
+    allocNetMoney*: uint
+    settlCurrAmt*: uint
+    allocSettlCurrAmt*: uint
+    settlCurrency*: string
+    settlCurrFxRate*: string
+    settlCurrFxRateCalc*: char
+    allocAccruedInterestAmt*: uint
+    allocInterestAtMaturity*: uint
+    noMiscFees*: seq[NoMiscFees]
+    noClearingInstructions*: seq[NoClearingInstructions]
+    allocSettlInstType*: int
+    settlDeliveryType*: int
+    standInstDbType*: int
+    standInstDbName*: string
+    standInstDbID*: string
+    noDlvyInst*: seq[NoDlvyInst]
+    individualAllocRejCode*: int
+    noNested3PartyIDs*: seq[NoNested3PartyIDs]
+    noNested2PartyIDs*: seq[NoNested2PartyIDs]
 
-  NoStipulations = object
-    stipulationType: string
-    stipulationValue: string
+  NoStipulations* = object
+    stipulationType*: string
+    stipulationValue*: string
 
-  NoQuoteQualifiers = object
-    quoteQualifier: char
+  NoQuoteQualifiers* = object
+    quoteQualifier*: char
 
-  NoPartyIDs = object
-    partyID: string
-    partyIDSource: char
-    partyRole: int
-    noPartySubIDs: seq[NoPartySubIDs]
+  NoPartyIDs* = object
+    partyID*: string
+    partyIDSource*: char
+    partyRole*: int
+    noPartySubIDs*: seq[NoPartySubIDs]
 
-  NoSecurityAltID = object
-    securityAltID: string
-    securityAltIDSource: string
+  NoSecurityAltID* = object
+    securityAltID*: string
+    securityAltIDSource*: string
 
-  NoEvents = object
-    eventType: int
-    eventDate: string
-    eventPx: float
-    eventText: string
+  NoEvents* = object
+    eventType*: int
+    eventDate*: string
+    eventPx*: float
+    eventText*: string
 
-  NoUnderlyings = object
-    underlyingSymbol: string
-    underlyingSymbolSfx: string
-    underlyingSecurityID: string
-    underlyingSecurityIDSource: string
-    noUnderlyingSecurityAltID: seq[NoUnderlyingSecurityAltID]
-    underlyingProduct: int
-    underlyingCFICode: string
-    underlyingSecurityType: string
-    underlyingSecuritySubType: string
-    underlyingMaturityMonthYear: string
-    underlyingMaturityDate: string
-    underlyingPutOrCall: int
-    underlyingCouponPaymentDate: string
-    underlyingIssueDate: string
-    underlyingRepoCollateralSecurityType: string
-    underlyingRepurchaseTerm: int
-    underlyingRepurchaseRate: float
-    underlyingFactor: string
-    underlyingCreditRating: string
-    underlyingInstrRegistry: string
-    underlyingCountryOfIssue: string
-    underlyingStateOrProvinceOfIssue: string
-    underlyingLocaleOfIssue: string
-    underlyingRedemptionDate: string
-    underlyingStrikePrice: float
-    underlyingStrikeCurrency: string
-    underlyingOptAttribute: char
-    underlyingContractMultiplier: string
-    underlyingCouponRate: float
-    underlyingSecurityExchange: string
-    underlyingIssuer: string
-    encodedUnderlyingIssuerLen: uint
-    encodedUnderlyingIssuer: string
-    underlyingSecurityDesc: string
-    encodedUnderlyingSecurityDescLen: uint
-    encodedUnderlyingSecurityDesc: string
-    underlyingCPProgram: string
-    underlyingCPRegType: string
-    underlyingCurrency: string
-    underlyingQty: uint
-    underlyingPx: float
-    underlyingDirtyPrice: float
-    underlyingEndPrice: float
-    underlyingStartValue: uint
-    underlyingCurrentValue: uint
-    underlyingEndValue: uint
-    noUnderlyingStips: seq[NoUnderlyingStips]
-    prevClosePx: float
-    clOrdID: string
-    secondaryClOrdID: string
-    side: char
-    price: float
-    currency: string
-    text: string
-    encodedTextLen: uint
-    encodedText: string
-    underlyingSettlPrice: float
-    underlyingSettlPriceType: int
-    collAction: int
+  NoUnderlyings* = object
+    underlyingSymbol*: string
+    underlyingSymbolSfx*: string
+    underlyingSecurityID*: string
+    underlyingSecurityIDSource*: string
+    noUnderlyingSecurityAltID*: seq[NoUnderlyingSecurityAltID]
+    underlyingProduct*: int
+    underlyingCFICode*: string
+    underlyingSecurityType*: string
+    underlyingSecuritySubType*: string
+    underlyingMaturityMonthYear*: string
+    underlyingMaturityDate*: string
+    underlyingPutOrCall*: int
+    underlyingCouponPaymentDate*: string
+    underlyingIssueDate*: string
+    underlyingRepoCollateralSecurityType*: string
+    underlyingRepurchaseTerm*: int
+    underlyingRepurchaseRate*: float
+    underlyingFactor*: string
+    underlyingCreditRating*: string
+    underlyingInstrRegistry*: string
+    underlyingCountryOfIssue*: string
+    underlyingStateOrProvinceOfIssue*: string
+    underlyingLocaleOfIssue*: string
+    underlyingRedemptionDate*: string
+    underlyingStrikePrice*: float
+    underlyingStrikeCurrency*: string
+    underlyingOptAttribute*: char
+    underlyingContractMultiplier*: string
+    underlyingCouponRate*: float
+    underlyingSecurityExchange*: string
+    underlyingIssuer*: string
+    encodedUnderlyingIssuerLen*: uint
+    encodedUnderlyingIssuer*: string
+    underlyingSecurityDesc*: string
+    encodedUnderlyingSecurityDescLen*: uint
+    encodedUnderlyingSecurityDesc*: string
+    underlyingCPProgram*: string
+    underlyingCPRegType*: string
+    underlyingCurrency*: string
+    underlyingQty*: uint
+    underlyingPx*: float
+    underlyingDirtyPrice*: float
+    underlyingEndPrice*: float
+    underlyingStartValue*: uint
+    underlyingCurrentValue*: uint
+    underlyingEndValue*: uint
+    noUnderlyingStips*: seq[NoUnderlyingStips]
+    prevClosePx*: float
+    clOrdID*: string
+    secondaryClOrdID*: string
+    side*: char
+    price*: float
+    currency*: string
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
+    underlyingSettlPrice*: float
+    underlyingSettlPriceType*: int
+    collAction*: int
 
-  NoLegs = object
-    legSymbol: string
-    legSymbolSfx: string
-    legSecurityID: string
-    legSecurityIDSource: string
-    noLegSecurityAltID: seq[NoLegSecurityAltID]
-    legProduct: int
-    legCFICode: string
-    legSecurityType: string
-    legSecuritySubType: string
-    legMaturityMonthYear: string
-    legMaturityDate: string
-    legCouponPaymentDate: string
-    legIssueDate: string
-    legRepoCollateralSecurityType: string
-    legRepurchaseTerm: int
-    legRepurchaseRate: float
-    legFactor: string
-    legCreditRating: string
-    legInstrRegistry: string
-    legCountryOfIssue: string
-    legStateOrProvinceOfIssue: string
-    legLocaleOfIssue: string
-    legRedemptionDate: string
-    legStrikePrice: float
-    legStrikeCurrency: string
-    legOptAttribute: char
-    legContractMultiplier: string
-    legCouponRate: float
-    legSecurityExchange: string
-    legIssuer: string
-    encodedLegIssuerLen: uint
-    encodedLegIssuer: string
-    legSecurityDesc: string
-    encodedLegSecurityDescLen: uint
-    encodedLegSecurityDesc: string
-    legRatioQty: string
-    legSide: char
-    legCurrency: string
-    legPool: string
-    legDatedDate: string
-    legContractSettlMonth: string
-    legInterestAccrualDate: string
-    legIOIQty: string
-    noLegStipulations: seq[NoLegStipulations]
-    legQty: uint
-    legSwapType: int
-    legPositionEffect: char
-    legCoveredOrUncovered: int
-    noNestedPartyIDs: seq[NoNestedPartyIDs]
-    legRefID: string
-    legPrice: float
-    legSettlType: char
-    legSettlDate: string
-    legLastPx: float
-    legBenchmarkCurveCurrency: string
-    legBenchmarkCurveName: string
-    legBenchmarkCurvePoint: string
-    legBenchmarkPrice: float
-    legBenchmarkPriceType: int
-    legPriceType: int
-    legBidPx: float
-    legOfferPx: float
-    noLegAllocs: seq[NoLegAllocs]
+  NoLegs* = object
+    legSymbol*: string
+    legSymbolSfx*: string
+    legSecurityID*: string
+    legSecurityIDSource*: string
+    noLegSecurityAltID*: seq[NoLegSecurityAltID]
+    legProduct*: int
+    legCFICode*: string
+    legSecurityType*: string
+    legSecuritySubType*: string
+    legMaturityMonthYear*: string
+    legMaturityDate*: string
+    legCouponPaymentDate*: string
+    legIssueDate*: string
+    legRepoCollateralSecurityType*: string
+    legRepurchaseTerm*: int
+    legRepurchaseRate*: float
+    legFactor*: string
+    legCreditRating*: string
+    legInstrRegistry*: string
+    legCountryOfIssue*: string
+    legStateOrProvinceOfIssue*: string
+    legLocaleOfIssue*: string
+    legRedemptionDate*: string
+    legStrikePrice*: float
+    legStrikeCurrency*: string
+    legOptAttribute*: char
+    legContractMultiplier*: string
+    legCouponRate*: float
+    legSecurityExchange*: string
+    legIssuer*: string
+    encodedLegIssuerLen*: uint
+    encodedLegIssuer*: string
+    legSecurityDesc*: string
+    encodedLegSecurityDescLen*: uint
+    encodedLegSecurityDesc*: string
+    legRatioQty*: string
+    legSide*: char
+    legCurrency*: string
+    legPool*: string
+    legDatedDate*: string
+    legContractSettlMonth*: string
+    legInterestAccrualDate*: string
+    legIOIQty*: string
+    noLegStipulations*: seq[NoLegStipulations]
+    legQty*: uint
+    legSwapType*: int
+    legPositionEffect*: char
+    legCoveredOrUncovered*: int
+    noNestedPartyIDs*: seq[NoNestedPartyIDs]
+    legRefID*: string
+    legPrice*: float
+    legSettlType*: char
+    legSettlDate*: string
+    legLastPx*: float
+    legBenchmarkCurveCurrency*: string
+    legBenchmarkCurveName*: string
+    legBenchmarkCurvePoint*: string
+    legBenchmarkPrice*: float
+    legBenchmarkPriceType*: int
+    legPriceType*: int
+    legBidPx*: float
+    legOfferPx*: float
+    noLegAllocs*: seq[NoLegAllocs]
 
-  NoCapacities = object
-    orderCapacity: char
-    orderRestrictions: string
-    orderCapacityQty: uint
+  NoCapacities* = object
+    orderCapacity*: char
+    orderRestrictions*: string
+    orderCapacityQty*: uint
 
-  NoPositions = object
-    posType: string
-    longQty: uint
-    shortQty: uint
-    posQtyStatus: int
-    noNestedPartyIDs: seq[NoNestedPartyIDs]
+  NoPositions* = object
+    posType*: string
+    longQty*: uint
+    shortQty*: uint
+    posQtyStatus*: int
+    noNestedPartyIDs*: seq[NoNestedPartyIDs]
 
-  NoLegStipulations = object
-    legStipulationType: string
-    legStipulationValue: string
+  NoLegStipulations* = object
+    legStipulationType*: string
+    legStipulationValue*: string
 
-  NoMiscFees = object
-    miscFeeAmt: uint
-    miscFeeCurr: string
-    miscFeeType: char
-    miscFeeBasis: int
+  NoMiscFees* = object
+    miscFeeAmt*: uint
+    miscFeeCurr*: string
+    miscFeeType*: char
+    miscFeeBasis*: int
 
-  NoClearingInstructions = object
-    clearingInstruction: int
+  NoClearingInstructions* = object
+    clearingInstruction*: int
 
-  NoDlvyInst = object
-    settlInstSource: char
-    dlvyInstType: char
-    noSettlPartyIDs: seq[NoSettlPartyIDs]
+  NoDlvyInst* = object
+    settlInstSource*: char
+    dlvyInstType*: char
+    noSettlPartyIDs*: seq[NoSettlPartyIDs]
 
-  NoNestedPartySubIDs = object
-    nestedPartySubID: string
-    nestedPartySubIDType: int
+  NoNestedPartySubIDs* = object
+    nestedPartySubID*: string
+    nestedPartySubIDType*: int
 
-  NoNestedPartyIDs = object
-    nestedPartyID: string
-    nestedPartyIDSource: char
-    nestedPartyRole: int
-    noNestedPartySubIDs: seq[NoNestedPartySubIDs]
+  NoNestedPartyIDs* = object
+    nestedPartyID*: string
+    nestedPartyIDSource*: char
+    nestedPartyRole*: int
+    noNestedPartySubIDs*: seq[NoNestedPartySubIDs]
 
-  NoTrades = object
-    tradeReportID: string
-    secondaryTradeReportID: string
+  NoTrades* = object
+    tradeReportID*: string
+    secondaryTradeReportID*: string
 
-  NoCollInquiryQualifier = object
-    collInquiryQualifier: int
+  NoCollInquiryQualifier* = object
+    collInquiryQualifier*: int
 
-  NoSettlPartySubIDs = object
-    settlPartySubID: string
-    settlPartySubIDType: int
+  NoSettlPartySubIDs* = object
+    settlPartySubID*: string
+    settlPartySubIDType*: int
 
-  NoSettlPartyIDs = object
-    settlPartyID: string
-    settlPartyIDSource: char
-    settlPartyRole: int
-    noSettlPartySubIDs: seq[NoSettlPartySubIDs]
+  NoSettlPartyIDs* = object
+    settlPartyID*: string
+    settlPartyIDSource*: char
+    settlPartyRole*: int
+    noSettlPartySubIDs*: seq[NoSettlPartySubIDs]
 
-  NoCompIDs = object
-    refCompID: string
-    refSubID: string
-    locationID: string
-    deskID: string
-    statusValue: int
-    statusText: string
+  NoCompIDs* = object
+    refCompID*: string
+    refSubID*: string
+    locationID*: string
+    deskID*: string
+    statusValue*: int
+    statusText*: string
 
-  NoPartySubIDs = object
-    partySubID: string
-    partySubIDType: int
+  NoPartySubIDs* = object
+    partySubID*: string
+    partySubIDType*: int
 
-  NoLegSecurityAltID = object
-    legSecurityAltID: string
-    legSecurityAltIDSource: string
+  NoLegSecurityAltID* = object
+    legSecurityAltID*: string
+    legSecurityAltIDSource*: string
 
-  NoUnderlyingSecurityAltID = object
-    underlyingSecurityAltID: string
-    underlyingSecurityAltIDSource: string
+  NoUnderlyingSecurityAltID* = object
+    underlyingSecurityAltID*: string
+    underlyingSecurityAltIDSource*: string
 
-  NoUnderlyingStips = object
-    underlyingStipType: string
-    underlyingStipValue: string
+  NoUnderlyingStips* = object
+    underlyingStipType*: string
+    underlyingStipValue*: string
 
-  NoNested2PartySubIDs = object
-    nested2PartySubID: string
-    nested2PartySubIDType: int
+  NoNested2PartySubIDs* = object
+    nested2PartySubID*: string
+    nested2PartySubIDType*: int
 
-  NoNested2PartyIDs = object
-    nested2PartyID: string
-    nested2PartyIDSource: char
-    nested2PartyRole: int
-    noNested2PartySubIDs: seq[NoNested2PartySubIDs]
+  NoNested2PartyIDs* = object
+    nested2PartyID*: string
+    nested2PartyIDSource*: char
+    nested2PartyRole*: int
+    noNested2PartySubIDs*: seq[NoNested2PartySubIDs]
 
-  MsgTypeKind = enum
+  MsgTypeKind* = enum
     mt0, mt1, mt2, mt3, mt4, mt5, mt6, mt7, mt8, mt9, mtA, mtB, mtC, mtD, mtE, mtF, mtG, mtH, mtJ, mtK, mtL, mtM, mtN, mtP, mtQ, mtR, mtS, mtT, mtV, mtW, mtX, mtY, mtZ, mtALow, mtBLow, mtCLow, mtDLow, mtELow, mtFLow, mtGLow, mtHLow, mtILow, mtJLow, mtKLow, mtLLow, mtMLow, mtNLow, mtOLow, mtPLow, mtQLow, mtRLow, mtSLow, mtTLow, mtULow, mtVLow, mtWLow, mtXLow, mtYLow, mtZLow, mtAA, mtAB, mtAC, mtAD, mtAE, mtAF, mtAG, mtAH, mtAI, mtAJ, mtAK, mtAL, mtAM, mtAN, mtAO, mtAP, mtAQ, mtAR, mtAS, mtAT, mtAU, mtAV, mtAW, mtAX, mtAY, mtAZ, mtBA, mtBB, mtBC, mtBD, mtBE, mtBF, mtBG, mtBH
 
-  FIX44 = object
+  Fix44* = object
     beginString: string
     bodyLength: uint
     senderCompID: string
@@ -8324,10 +8324,10 @@ proc parseNoNested2PartyIDs(s: string, r: var seq[NoNested2PartyIDs], pos: var i
       pos = j
       return
 
-proc parsemt0(s: string, result: var FIX44, pos: var int) =
+proc parsemt0(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt0)
+  # result = Fix44(msgType: mt0)
   result.msgType = mt0
   let l = s.len
   while pos < l:
@@ -8363,10 +8363,10 @@ proc parsemt0(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt1(s: string, result: var FIX44, pos: var int) =
+proc parsemt1(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt1)
+  # result = Fix44(msgType: mt1)
   result.msgType = mt1
   let l = s.len
   while pos < l:
@@ -8402,10 +8402,10 @@ proc parsemt1(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt2(s: string, result: var FIX44, pos: var int) =
+proc parsemt2(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt2)
+  # result = Fix44(msgType: mt2)
   result.msgType = mt2
   let l = s.len
   while pos < l:
@@ -8442,10 +8442,10 @@ proc parsemt2(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt3(s: string, result: var FIX44, pos: var int) =
+proc parsemt3(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt3)
+  # result = Fix44(msgType: mt3)
   result.msgType = mt3
   let l = s.len
   while pos < l:
@@ -8487,10 +8487,10 @@ proc parsemt3(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt4(s: string, result: var FIX44, pos: var int) =
+proc parsemt4(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt4)
+  # result = Fix44(msgType: mt4)
   result.msgType = mt4
   let l = s.len
   while pos < l:
@@ -8527,10 +8527,10 @@ proc parsemt4(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt5(s: string, result: var FIX44, pos: var int) =
+proc parsemt5(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt5)
+  # result = Fix44(msgType: mt5)
   result.msgType = mt5
   let l = s.len
   while pos < l:
@@ -8568,10 +8568,10 @@ proc parsemt5(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt6(s: string, result: var FIX44, pos: var int) =
+proc parsemt6(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt6)
+  # result = Fix44(msgType: mt6)
   result.msgType = mt6
   let l = s.len
   while pos < l:
@@ -8699,10 +8699,10 @@ proc parsemt6(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt7(s: string, result: var FIX44, pos: var int) =
+proc parsemt7(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt7)
+  # result = Fix44(msgType: mt7)
   result.msgType = mt7
   let l = s.len
   while pos < l:
@@ -8799,10 +8799,10 @@ proc parsemt7(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt8(s: string, result: var FIX44, pos: var int) =
+proc parsemt8(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt8)
+  # result = Fix44(msgType: mt8)
   result.msgType = mt8
   let l = s.len
   while pos < l:
@@ -9055,10 +9055,10 @@ proc parsemt8(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt9(s: string, result: var FIX44, pos: var int) =
+proc parsemt9(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mt9)
+  # result = Fix44(msgType: mt9)
   result.msgType = mt9
   let l = s.len
   while pos < l:
@@ -9114,10 +9114,10 @@ proc parsemt9(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtA(s: string, result: var FIX44, pos: var int) =
+proc parsemtA(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtA)
+  # result = Fix44(msgType: mtA)
   result.msgType = mtA
   let l = s.len
   while pos < l:
@@ -9163,10 +9163,10 @@ proc parsemtA(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtB(s: string, result: var FIX44, pos: var int) =
+proc parsemtB(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtB)
+  # result = Fix44(msgType: mtB)
   result.msgType = mtB
   let l = s.len
   while pos < l:
@@ -9214,10 +9214,10 @@ proc parsemtB(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtC(s: string, result: var FIX44, pos: var int) =
+proc parsemtC(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtC)
+  # result = Fix44(msgType: mtC)
   result.msgType = mtC
   let l = s.len
   while pos < l:
@@ -9267,10 +9267,10 @@ proc parsemtC(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtD(s: string, result: var FIX44, pos: var int) =
+proc parsemtD(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtD)
+  # result = Fix44(msgType: mtD)
   result.msgType = mtD
   let l = s.len
   while pos < l:
@@ -9461,10 +9461,10 @@ proc parsemtD(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtE(s: string, result: var FIX44, pos: var int) =
+proc parsemtE(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtE)
+  # result = Fix44(msgType: mtE)
   result.msgType = mtE
   let l = s.len
   while pos < l:
@@ -9518,10 +9518,10 @@ proc parsemtE(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtF(s: string, result: var FIX44, pos: var int) =
+proc parsemtF(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtF)
+  # result = Fix44(msgType: mtF)
   result.msgType = mtF
   let l = s.len
   while pos < l:
@@ -9631,10 +9631,10 @@ proc parsemtF(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtG(s: string, result: var FIX44, pos: var int) =
+proc parsemtG(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtG)
+  # result = Fix44(msgType: mtG)
   result.msgType = mtG
   let l = s.len
   while pos < l:
@@ -9824,10 +9824,10 @@ proc parsemtG(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtH(s: string, result: var FIX44, pos: var int) =
+proc parsemtH(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtH)
+  # result = Fix44(msgType: mtH)
   result.msgType = mtH
   let l = s.len
   while pos < l:
@@ -9924,10 +9924,10 @@ proc parsemtH(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtJ(s: string, result: var FIX44, pos: var int) =
+proc parsemtJ(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtJ)
+  # result = Fix44(msgType: mtJ)
   result.msgType = mtJ
   let l = s.len
   while pos < l:
@@ -10089,10 +10089,10 @@ proc parsemtJ(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtK(s: string, result: var FIX44, pos: var int) =
+proc parsemtK(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtK)
+  # result = Fix44(msgType: mtK)
   result.msgType = mtK
   let l = s.len
   while pos < l:
@@ -10134,10 +10134,10 @@ proc parsemtK(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtL(s: string, result: var FIX44, pos: var int) =
+proc parsemtL(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtL)
+  # result = Fix44(msgType: mtL)
   result.msgType = mtL
   let l = s.len
   while pos < l:
@@ -10179,10 +10179,10 @@ proc parsemtL(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtM(s: string, result: var FIX44, pos: var int) =
+proc parsemtM(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtM)
+  # result = Fix44(msgType: mtM)
   result.msgType = mtM
   let l = s.len
   while pos < l:
@@ -10221,10 +10221,10 @@ proc parsemtM(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtN(s: string, result: var FIX44, pos: var int) =
+proc parsemtN(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtN)
+  # result = Fix44(msgType: mtN)
   result.msgType = mtN
   let l = s.len
   while pos < l:
@@ -10271,10 +10271,10 @@ proc parsemtN(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtP(s: string, result: var FIX44, pos: var int) =
+proc parsemtP(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtP)
+  # result = Fix44(msgType: mtP)
   result.msgType = mtP
   let l = s.len
   while pos < l:
@@ -10325,10 +10325,10 @@ proc parsemtP(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtQ(s: string, result: var FIX44, pos: var int) =
+proc parsemtQ(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtQ)
+  # result = Fix44(msgType: mtQ)
   result.msgType = mtQ
   let l = s.len
   while pos < l:
@@ -10423,10 +10423,10 @@ proc parsemtQ(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtR(s: string, result: var FIX44, pos: var int) =
+proc parsemtR(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtR)
+  # result = Fix44(msgType: mtR)
   result.msgType = mtR
   let l = s.len
   while pos < l:
@@ -10469,10 +10469,10 @@ proc parsemtR(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtS(s: string, result: var FIX44, pos: var int) =
+proc parsemtS(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtS)
+  # result = Fix44(msgType: mtS)
   result.msgType = mtS
   let l = s.len
   while pos < l:
@@ -10632,10 +10632,10 @@ proc parsemtS(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtT(s: string, result: var FIX44, pos: var int) =
+proc parsemtT(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtT)
+  # result = Fix44(msgType: mtT)
   result.msgType = mtT
   let l = s.len
   while pos < l:
@@ -10680,10 +10680,10 @@ proc parsemtT(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtV(s: string, result: var FIX44, pos: var int) =
+proc parsemtV(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtV)
+  # result = Fix44(msgType: mtV)
   result.msgType = mtV
   let l = s.len
   while pos < l:
@@ -10731,10 +10731,10 @@ proc parsemtV(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtW(s: string, result: var FIX44, pos: var int) =
+proc parsemtW(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtW)
+  # result = Fix44(msgType: mtW)
   result.msgType = mtW
   let l = s.len
   while pos < l:
@@ -10821,10 +10821,10 @@ proc parsemtW(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtX(s: string, result: var FIX44, pos: var int) =
+proc parsemtX(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtX)
+  # result = Fix44(msgType: mtX)
   result.msgType = mtX
   let l = s.len
   while pos < l:
@@ -10863,10 +10863,10 @@ proc parsemtX(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtY(s: string, result: var FIX44, pos: var int) =
+proc parsemtY(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtY)
+  # result = Fix44(msgType: mtY)
   result.msgType = mtY
   let l = s.len
   while pos < l:
@@ -10907,10 +10907,10 @@ proc parsemtY(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtZ(s: string, result: var FIX44, pos: var int) =
+proc parsemtZ(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtZ)
+  # result = Fix44(msgType: mtZ)
   result.msgType = mtZ
   let l = s.len
   while pos < l:
@@ -10956,10 +10956,10 @@ proc parsemtZ(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtALow(s: string, result: var FIX44, pos: var int) =
+proc parsemtALow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtALow)
+  # result = Fix44(msgType: mtALow)
   result.msgType = mtALow
   let l = s.len
   while pos < l:
@@ -11057,10 +11057,10 @@ proc parsemtALow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtBLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBLow)
+  # result = Fix44(msgType: mtBLow)
   result.msgType = mtBLow
   let l = s.len
   while pos < l:
@@ -11109,10 +11109,10 @@ proc parsemtBLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtCLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtCLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtCLow)
+  # result = Fix44(msgType: mtCLow)
   result.msgType = mtCLow
   let l = s.len
   while pos < l:
@@ -11205,10 +11205,10 @@ proc parsemtCLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtDLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtDLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtDLow)
+  # result = Fix44(msgType: mtDLow)
   result.msgType = mtDLow
   let l = s.len
   while pos < l:
@@ -11303,10 +11303,10 @@ proc parsemtDLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtELow(s: string, result: var FIX44, pos: var int) =
+proc parsemtELow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtELow)
+  # result = Fix44(msgType: mtELow)
   result.msgType = mtELow
   let l = s.len
   while pos < l:
@@ -11394,10 +11394,10 @@ proc parsemtELow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtFLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtFLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtFLow)
+  # result = Fix44(msgType: mtFLow)
   result.msgType = mtFLow
   let l = s.len
   while pos < l:
@@ -11501,10 +11501,10 @@ proc parsemtFLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtGLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtGLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtGLow)
+  # result = Fix44(msgType: mtGLow)
   result.msgType = mtGLow
   let l = s.len
   while pos < l:
@@ -11545,10 +11545,10 @@ proc parsemtGLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtHLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtHLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtHLow)
+  # result = Fix44(msgType: mtHLow)
   result.msgType = mtHLow
   let l = s.len
   while pos < l:
@@ -11600,10 +11600,10 @@ proc parsemtHLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtILow(s: string, result: var FIX44, pos: var int) =
+proc parsemtILow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtILow)
+  # result = Fix44(msgType: mtILow)
   result.msgType = mtILow
   let l = s.len
   while pos < l:
@@ -11649,10 +11649,10 @@ proc parsemtILow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtJLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtJLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtJLow)
+  # result = Fix44(msgType: mtJLow)
   result.msgType = mtJLow
   let l = s.len
   while pos < l:
@@ -11694,10 +11694,10 @@ proc parsemtJLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtKLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtKLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtKLow)
+  # result = Fix44(msgType: mtKLow)
   result.msgType = mtKLow
   let l = s.len
   while pos < l:
@@ -11761,10 +11761,10 @@ proc parsemtKLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtLLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtLLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtLLow)
+  # result = Fix44(msgType: mtLLow)
   result.msgType = mtLLow
   let l = s.len
   while pos < l:
@@ -11802,10 +11802,10 @@ proc parsemtLLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtMLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtMLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtMLow)
+  # result = Fix44(msgType: mtMLow)
   result.msgType = mtMLow
   let l = s.len
   while pos < l:
@@ -11845,10 +11845,10 @@ proc parsemtMLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtNLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtNLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtNLow)
+  # result = Fix44(msgType: mtNLow)
   result.msgType = mtNLow
   let l = s.len
   while pos < l:
@@ -11883,10 +11883,10 @@ proc parsemtNLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtOLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtOLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtOLow)
+  # result = Fix44(msgType: mtOLow)
   result.msgType = mtOLow
   let l = s.len
   while pos < l:
@@ -11933,10 +11933,10 @@ proc parsemtOLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtPLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtPLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtPLow)
+  # result = Fix44(msgType: mtPLow)
   result.msgType = mtPLow
   let l = s.len
   while pos < l:
@@ -11981,10 +11981,10 @@ proc parsemtPLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtQLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtQLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtQLow)
+  # result = Fix44(msgType: mtQLow)
   result.msgType = mtQLow
   let l = s.len
   while pos < l:
@@ -12119,10 +12119,10 @@ proc parsemtQLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtRLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtRLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtRLow)
+  # result = Fix44(msgType: mtRLow)
   result.msgType = mtRLow
   let l = s.len
   while pos < l:
@@ -12263,10 +12263,10 @@ proc parsemtRLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtSLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtSLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtSLow)
+  # result = Fix44(msgType: mtSLow)
   result.msgType = mtSLow
   let l = s.len
   while pos < l:
@@ -12411,10 +12411,10 @@ proc parsemtSLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtTLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtTLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtTLow)
+  # result = Fix44(msgType: mtTLow)
   result.msgType = mtTLow
   let l = s.len
   while pos < l:
@@ -12561,10 +12561,10 @@ proc parsemtTLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtULow(s: string, result: var FIX44, pos: var int) =
+proc parsemtULow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtULow)
+  # result = Fix44(msgType: mtULow)
   result.msgType = mtULow
   let l = s.len
   while pos < l:
@@ -12651,10 +12651,10 @@ proc parsemtULow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtVLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtVLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtVLow)
+  # result = Fix44(msgType: mtVLow)
   result.msgType = mtVLow
   let l = s.len
   while pos < l:
@@ -12698,10 +12698,10 @@ proc parsemtVLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtWLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtWLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtWLow)
+  # result = Fix44(msgType: mtWLow)
   result.msgType = mtWLow
   let l = s.len
   while pos < l:
@@ -12748,10 +12748,10 @@ proc parsemtWLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtXLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtXLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtXLow)
+  # result = Fix44(msgType: mtXLow)
   result.msgType = mtXLow
   let l = s.len
   while pos < l:
@@ -12852,10 +12852,10 @@ proc parsemtXLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtYLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtYLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtYLow)
+  # result = Fix44(msgType: mtYLow)
   result.msgType = mtYLow
   let l = s.len
   while pos < l:
@@ -12896,10 +12896,10 @@ proc parsemtYLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtZLow(s: string, result: var FIX44, pos: var int) =
+proc parsemtZLow(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtZLow)
+  # result = Fix44(msgType: mtZLow)
   result.msgType = mtZLow
   let l = s.len
   while pos < l:
@@ -12991,10 +12991,10 @@ proc parsemtZLow(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAA(s: string, result: var FIX44, pos: var int) =
+proc parsemtAA(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAA)
+  # result = Fix44(msgType: mtAA)
   result.msgType = mtAA
   let l = s.len
   while pos < l:
@@ -13082,10 +13082,10 @@ proc parsemtAA(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAB(s: string, result: var FIX44, pos: var int) =
+proc parsemtAB(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAB)
+  # result = Fix44(msgType: mtAB)
   result.msgType = mtAB
   let l = s.len
   while pos < l:
@@ -13251,10 +13251,10 @@ proc parsemtAB(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAC(s: string, result: var FIX44, pos: var int) =
+proc parsemtAC(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAC)
+  # result = Fix44(msgType: mtAC)
   result.msgType = mtAC
   let l = s.len
   while pos < l:
@@ -13423,10 +13423,10 @@ proc parsemtAC(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAD(s: string, result: var FIX44, pos: var int) =
+proc parsemtAD(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAD)
+  # result = Fix44(msgType: mtAD)
   result.msgType = mtAD
   let l = s.len
   while pos < l:
@@ -13549,10 +13549,10 @@ proc parsemtAD(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAE(s: string, result: var FIX44, pos: var int) =
+proc parsemtAE(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAE)
+  # result = Fix44(msgType: mtAE)
   result.msgType = mtAE
   let l = s.len
   while pos < l:
@@ -13710,10 +13710,10 @@ proc parsemtAE(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAF(s: string, result: var FIX44, pos: var int) =
+proc parsemtAF(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAF)
+  # result = Fix44(msgType: mtAF)
   result.msgType = mtAF
   let l = s.len
   while pos < l:
@@ -13846,10 +13846,10 @@ proc parsemtAF(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAG(s: string, result: var FIX44, pos: var int) =
+proc parsemtAG(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAG)
+  # result = Fix44(msgType: mtAG)
   result.msgType = mtAG
   let l = s.len
   while pos < l:
@@ -13891,10 +13891,10 @@ proc parsemtAG(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAH(s: string, result: var FIX44, pos: var int) =
+proc parsemtAH(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAH)
+  # result = Fix44(msgType: mtAH)
   result.msgType = mtAH
   let l = s.len
   while pos < l:
@@ -13932,10 +13932,10 @@ proc parsemtAH(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAI(s: string, result: var FIX44, pos: var int) =
+proc parsemtAI(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAI)
+  # result = Fix44(msgType: mtAI)
   result.msgType = mtAI
   let l = s.len
   while pos < l:
@@ -14097,10 +14097,10 @@ proc parsemtAI(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAJ(s: string, result: var FIX44, pos: var int) =
+proc parsemtAJ(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAJ)
+  # result = Fix44(msgType: mtAJ)
   result.msgType = mtAJ
   let l = s.len
   while pos < l:
@@ -14262,10 +14262,10 @@ proc parsemtAJ(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAK(s: string, result: var FIX44, pos: var int) =
+proc parsemtAK(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAK)
+  # result = Fix44(msgType: mtAK)
   result.msgType = mtAK
   let l = s.len
   while pos < l:
@@ -14436,10 +14436,10 @@ proc parsemtAK(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAL(s: string, result: var FIX44, pos: var int) =
+proc parsemtAL(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAL)
+  # result = Fix44(msgType: mtAL)
   result.msgType = mtAL
   let l = s.len
   while pos < l:
@@ -14542,10 +14542,10 @@ proc parsemtAL(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAM(s: string, result: var FIX44, pos: var int) =
+proc parsemtAM(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAM)
+  # result = Fix44(msgType: mtAM)
   result.msgType = mtAM
   let l = s.len
   while pos < l:
@@ -14649,10 +14649,10 @@ proc parsemtAM(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAN(s: string, result: var FIX44, pos: var int) =
+proc parsemtAN(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAN)
+  # result = Fix44(msgType: mtAN)
   result.msgType = mtAN
   let l = s.len
   while pos < l:
@@ -14751,10 +14751,10 @@ proc parsemtAN(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAO(s: string, result: var FIX44, pos: var int) =
+proc parsemtAO(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAO)
+  # result = Fix44(msgType: mtAO)
   result.msgType = mtAO
   let l = s.len
   while pos < l:
@@ -14850,10 +14850,10 @@ proc parsemtAO(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAP(s: string, result: var FIX44, pos: var int) =
+proc parsemtAP(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAP)
+  # result = Fix44(msgType: mtAP)
   result.msgType = mtAP
   let l = s.len
   while pos < l:
@@ -14958,10 +14958,10 @@ proc parsemtAP(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAQ(s: string, result: var FIX44, pos: var int) =
+proc parsemtAQ(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAQ)
+  # result = Fix44(msgType: mtAQ)
   result.msgType = mtAQ
   let l = s.len
   while pos < l:
@@ -15053,10 +15053,10 @@ proc parsemtAQ(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAR(s: string, result: var FIX44, pos: var int) =
+proc parsemtAR(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAR)
+  # result = Fix44(msgType: mtAR)
   result.msgType = mtAR
   let l = s.len
   while pos < l:
@@ -15170,10 +15170,10 @@ proc parsemtAR(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAS(s: string, result: var FIX44, pos: var int) =
+proc parsemtAS(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAS)
+  # result = Fix44(msgType: mtAS)
   result.msgType = mtAS
   let l = s.len
   while pos < l:
@@ -15339,10 +15339,10 @@ proc parsemtAS(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAT(s: string, result: var FIX44, pos: var int) =
+proc parsemtAT(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAT)
+  # result = Fix44(msgType: mtAT)
   result.msgType = mtAT
   let l = s.len
   while pos < l:
@@ -15394,10 +15394,10 @@ proc parsemtAT(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAU(s: string, result: var FIX44, pos: var int) =
+proc parsemtAU(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAU)
+  # result = Fix44(msgType: mtAU)
   result.msgType = mtAU
   let l = s.len
   while pos < l:
@@ -15441,10 +15441,10 @@ proc parsemtAU(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAV(s: string, result: var FIX44, pos: var int) =
+proc parsemtAV(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAV)
+  # result = Fix44(msgType: mtAV)
   result.msgType = mtAV
   let l = s.len
   while pos < l:
@@ -15494,10 +15494,10 @@ proc parsemtAV(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAW(s: string, result: var FIX44, pos: var int) =
+proc parsemtAW(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAW)
+  # result = Fix44(msgType: mtAW)
   result.msgType = mtAW
   let l = s.len
   while pos < l:
@@ -15601,10 +15601,10 @@ proc parsemtAW(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAX(s: string, result: var FIX44, pos: var int) =
+proc parsemtAX(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAX)
+  # result = Fix44(msgType: mtAX)
   result.msgType = mtAX
   let l = s.len
   while pos < l:
@@ -15739,10 +15739,10 @@ proc parsemtAX(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAY(s: string, result: var FIX44, pos: var int) =
+proc parsemtAY(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAY)
+  # result = Fix44(msgType: mtAY)
   result.msgType = mtAY
   let l = s.len
   while pos < l:
@@ -15885,10 +15885,10 @@ proc parsemtAY(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtAZ(s: string, result: var FIX44, pos: var int) =
+proc parsemtAZ(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtAZ)
+  # result = Fix44(msgType: mtAZ)
   result.msgType = mtAZ
   let l = s.len
   while pos < l:
@@ -16022,10 +16022,10 @@ proc parsemtAZ(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBA(s: string, result: var FIX44, pos: var int) =
+proc parsemtBA(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBA)
+  # result = Fix44(msgType: mtBA)
   result.msgType = mtBA
   let l = s.len
   while pos < l:
@@ -16166,10 +16166,10 @@ proc parsemtBA(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBB(s: string, result: var FIX44, pos: var int) =
+proc parsemtBB(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBB)
+  # result = Fix44(msgType: mtBB)
   result.msgType = mtBB
   let l = s.len
   while pos < l:
@@ -16309,10 +16309,10 @@ proc parsemtBB(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBC(s: string, result: var FIX44, pos: var int) =
+proc parsemtBC(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBC)
+  # result = Fix44(msgType: mtBC)
   result.msgType = mtBC
   let l = s.len
   while pos < l:
@@ -16350,10 +16350,10 @@ proc parsemtBC(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBD(s: string, result: var FIX44, pos: var int) =
+proc parsemtBD(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBD)
+  # result = Fix44(msgType: mtBD)
   result.msgType = mtBD
   let l = s.len
   while pos < l:
@@ -16393,10 +16393,10 @@ proc parsemtBD(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBE(s: string, result: var FIX44, pos: var int) =
+proc parsemtBE(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBE)
+  # result = Fix44(msgType: mtBE)
   result.msgType = mtBE
   let l = s.len
   while pos < l:
@@ -16438,10 +16438,10 @@ proc parsemtBE(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBF(s: string, result: var FIX44, pos: var int) =
+proc parsemtBF(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBF)
+  # result = Fix44(msgType: mtBF)
   result.msgType = mtBF
   let l = s.len
   while pos < l:
@@ -16480,10 +16480,10 @@ proc parsemtBF(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBG(s: string, result: var FIX44, pos: var int) =
+proc parsemtBG(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBG)
+  # result = Fix44(msgType: mtBG)
   result.msgType = mtBG
   let l = s.len
   while pos < l:
@@ -16600,10 +16600,10 @@ proc parsemtBG(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBH(s: string, result: var FIX44, pos: var int) =
+proc parsemtBH(s: string, result: var Fix44, pos: var int) =
   var
     t: uint16
-  # result = FIX44(msgType: mtBH)
+  # result = Fix44(msgType: mtBH)
   result.msgType = mtBH
   let l = s.len
   while pos < l:
@@ -16651,7 +16651,7 @@ proc parsemtBH(s: string, result: var FIX44, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parseFIX44(s: string): FIX44 =
+proc parseFix44*(s: string): Fix44 =
   var
     t: uint16
     v35: string

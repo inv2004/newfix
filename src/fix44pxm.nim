@@ -1,48 +1,48 @@
 include parsefix
 
 type
-  NoMsgTypes = object
-    refMsgType: string
+  NoMsgTypes* = object
+    refMsgType*: string
 
-  NoRelatedSym = object
-    symbol: string
-    issuer: string
+  NoRelatedSym* = object
+    symbol*: string
+    issuer*: string
 
-  NoLinesOfText = object
-    text: string
+  NoLinesOfText* = object
+    text*: string
 
-  NoMDEntries = object
-    mDEntryType: char
-    mDEntryPx: float
-    currency: string
-    mDEntrySize: uint
-    timeInForce: char
-    minQty: uint
-    orderID: string
-    quoteEntryID: string
-    text: string
+  NoMDEntries* = object
+    mDEntryType*: char
+    mDEntryPx*: float
+    currency*: string
+    mDEntrySize*: uint
+    timeInForce*: char
+    minQty*: uint
+    orderID*: string
+    quoteEntryID*: string
+    text*: string
 
-  NoQuoteSets = object
-    quoteSetID: string
-    noQuoteEntries: seq[NoQuoteEntries]
+  NoQuoteSets* = object
+    quoteSetID*: string
+    noQuoteEntries*: seq[NoQuoteEntries]
 
-  NoQuoteEntries = object
-    quoteEntryID: string
-    symbol: string
-    issuer: string
-    bidSize: uint
-    offerSize: uint
-    bidSpotRate: float
-    offerSpotRate: float
-    transactTime: string
-    settlDate: string
-    ordType: char
-    currency: string
+  NoQuoteEntries* = object
+    quoteEntryID*: string
+    symbol*: string
+    issuer*: string
+    bidSize*: uint
+    offerSize*: uint
+    bidSpotRate*: float
+    offerSpotRate*: float
+    transactTime*: string
+    settlDate*: string
+    ordType*: char
+    currency*: string
 
-  MsgTypeKind = enum
+  MsgTypeKind* = enum
     mt0, mt1, mt2, mt3, mt4, mt5, mt8, mtA, mtB, mtD, mtF, mtH, mtW, mtY, mtBLow, mtILow
 
-  Fix44Pxm = object
+  Fix44Pxm* = object
     beginString: string
     bodyLength: uint
     senderCompID: string
@@ -721,7 +721,7 @@ proc parsemtILow(s: string, result: var Fix44Pxm, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parseFix44Pxm(s: string): Fix44Pxm =
+proc parseFix44Pxm*(s: string): Fix44Pxm =
   var
     t: uint16
     v35: string

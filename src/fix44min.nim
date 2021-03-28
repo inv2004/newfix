@@ -1,20 +1,20 @@
 include parsefix
 
 type
-  NoTestSubgroup = object
-    testTag1: string
-    testTag2: string
+  NoTestSubgroup* = object
+    testTag1*: string
+    testTag2*: string
 
-  NoRelatedSym = object
-    symbol: string
-    settlDate: string
-    securityDesc: string
-    noTestSubgroup: seq[NoTestSubgroup]
+  NoRelatedSym* = object
+    symbol*: string
+    settlDate*: string
+    securityDesc*: string
+    noTestSubgroup*: seq[NoTestSubgroup]
 
-  MsgTypeKind = enum
+  MsgTypeKind* = enum
     mtELow, mtALow
 
-  FIX44Min = object
+  Fix44Min* = object
     beginString: string
     bodyLength: uint
     senderCompID: string
@@ -89,10 +89,10 @@ proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
       pos = j
       return
 
-proc parsemtELow(s: string, result: var FIX44Min, pos: var int) =
+proc parsemtELow(s: string, result: var Fix44Min, pos: var int) =
   var
     t: uint16
-  # result = FIX44Min(msgType: mtELow)
+  # result = Fix44Min(msgType: mtELow)
   result.msgType = mtELow
   let l = s.len
   while pos < l:
@@ -110,10 +110,10 @@ proc parsemtELow(s: string, result: var FIX44Min, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtALow(s: string, result: var FIX44Min, pos: var int) =
+proc parsemtALow(s: string, result: var Fix44Min, pos: var int) =
   var
     t: uint16
-  # result = FIX44Min(msgType: mtALow)
+  # result = Fix44Min(msgType: mtALow)
   result.msgType = mtALow
   let l = s.len
   while pos < l:
@@ -132,7 +132,7 @@ proc parsemtALow(s: string, result: var FIX44Min, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parseFIX44Min(s: string): FIX44Min =
+proc parseFix44Min*(s: string): Fix44Min =
   var
     t: uint16
     v35: string

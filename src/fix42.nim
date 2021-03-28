@@ -1,398 +1,398 @@
 include parsefix
 
 type
-  NoIOIQualifiers = object
-    iOIQualifier: char
+  NoIOIQualifiers* = object
+    iOIQualifier*: char
 
-  NoRoutingIDs = object
-    routingType: int
-    routingID: string
+  NoRoutingIDs* = object
+    routingType*: int
+    routingID*: string
 
-  NoContraBrokers = object
-    contraBroker: string
-    contraTrader: string
-    contraTradeQty: uint
-    contraTradeTime: string
+  NoContraBrokers* = object
+    contraBroker*: string
+    contraTrader*: string
+    contraTradeQty*: uint
+    contraTradeTime*: string
 
-  NoMsgTypes = object
-    refMsgType: string
-    msgDirection: char
+  NoMsgTypes* = object
+    refMsgType*: string
+    msgDirection*: char
 
-  NoRelatedSym = object
-    relatdSym: string
-    symbolSfx: string
-    securityID: string
-    iDSource: string
-    securityType: string
-    maturityMonthYear: string
-    maturityDay: uint
-    putOrCall: int
-    strikePrice: float
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: string
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    symbol: string
-    prevClosePx: float
-    quoteRequestType: int
-    tradingSessionID: string
-    side: char
-    orderQty: uint
-    futSettDate: string
-    ordType: char
-    futSettDate2: string
-    orderQty2: uint
-    expireTime: string
-    transactTime: string
-    currency: string
-    underlyingSymbol: string
-    underlyingSymbolSfx: string
-    underlyingSecurityID: string
-    underlyingIDSource: string
-    underlyingSecurityType: string
-    underlyingMaturityMonthYear: string
-    underlyingMaturityDay: uint
-    underlyingPutOrCall: int
-    underlyingStrikePrice: float
-    underlyingOptAttribute: char
-    underlyingContractMultiplier: string
-    underlyingCouponRate: string
-    underlyingSecurityExchange: string
-    underlyingIssuer: string
-    encodedUnderlyingIssuerLen: uint
-    encodedUnderlyingIssuer: string
-    underlyingSecurityDesc: string
-    encodedUnderlyingSecurityDescLen: uint
-    encodedUnderlyingSecurityDesc: string
-    ratioQty: uint
-    underlyingCurrency: string
+  NoRelatedSym* = object
+    relatdSym*: string
+    symbolSfx*: string
+    securityID*: string
+    iDSource*: string
+    securityType*: string
+    maturityMonthYear*: string
+    maturityDay*: uint
+    putOrCall*: int
+    strikePrice*: float
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: string
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    symbol*: string
+    prevClosePx*: float
+    quoteRequestType*: int
+    tradingSessionID*: string
+    side*: char
+    orderQty*: uint
+    futSettDate*: string
+    ordType*: char
+    futSettDate2*: string
+    orderQty2*: uint
+    expireTime*: string
+    transactTime*: string
+    currency*: string
+    underlyingSymbol*: string
+    underlyingSymbolSfx*: string
+    underlyingSecurityID*: string
+    underlyingIDSource*: string
+    underlyingSecurityType*: string
+    underlyingMaturityMonthYear*: string
+    underlyingMaturityDay*: uint
+    underlyingPutOrCall*: int
+    underlyingStrikePrice*: float
+    underlyingOptAttribute*: char
+    underlyingContractMultiplier*: string
+    underlyingCouponRate*: string
+    underlyingSecurityExchange*: string
+    underlyingIssuer*: string
+    encodedUnderlyingIssuerLen*: uint
+    encodedUnderlyingIssuer*: string
+    underlyingSecurityDesc*: string
+    encodedUnderlyingSecurityDescLen*: uint
+    encodedUnderlyingSecurityDesc*: string
+    ratioQty*: uint
+    underlyingCurrency*: string
 
-  LinesOfText = object
-    text: string
-    encodedTextLen: uint
-    encodedText: string
+  LinesOfText* = object
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
 
-  NoAllocs = object
-    allocAccount: string
-    allocShares: uint
-    allocPrice: float
-    processCode: char
-    brokerOfCredit: string
-    notifyBrokerOfCredit: bool
-    allocHandlInst: int
-    allocText: string
-    encodedAllocTextLen: uint
-    encodedAllocText: string
-    execBroker: string
-    clientID: string
-    commission: uint
-    commType: char
-    allocAvgPx: float
-    allocNetMoney: uint
-    settlCurrAmt: uint
-    settlCurrency: string
-    settlCurrFxRate: string
-    settlCurrFxRateCalc: char
-    accruedInterestAmt: uint
-    settlInstMode: char
-    noMiscFees: seq[NoMiscFees]
+  NoAllocs* = object
+    allocAccount*: string
+    allocShares*: uint
+    allocPrice*: float
+    processCode*: char
+    brokerOfCredit*: string
+    notifyBrokerOfCredit*: bool
+    allocHandlInst*: int
+    allocText*: string
+    encodedAllocTextLen*: uint
+    encodedAllocText*: string
+    execBroker*: string
+    clientID*: string
+    commission*: uint
+    commType*: char
+    allocAvgPx*: float
+    allocNetMoney*: uint
+    settlCurrAmt*: uint
+    settlCurrency*: string
+    settlCurrFxRate*: string
+    settlCurrFxRateCalc*: char
+    accruedInterestAmt*: uint
+    settlInstMode*: char
+    noMiscFees*: seq[NoMiscFees]
 
-  NoTradingSessions = object
-    tradingSessionID: string
+  NoTradingSessions* = object
+    tradingSessionID*: string
 
-  NoOrders = object
-    clOrdID: string
-    listSeqNo: int
-    settlInstMode: char
-    clientID: string
-    execBroker: string
-    account: string
-    noAllocs: seq[NoAllocs]
-    settlmntTyp: char
-    futSettDate: string
-    handlInst: char
-    execInst: string
-    minQty: uint
-    maxFloor: uint
-    exDestination: string
-    noTradingSessions: seq[NoTradingSessions]
-    processCode: char
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    iDSource: string
-    securityType: string
-    maturityMonthYear: string
-    maturityDay: uint
-    putOrCall: int
-    strikePrice: float
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: string
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    prevClosePx: float
-    side: char
-    sideValueInd: int
-    locateReqd: bool
-    transactTime: string
-    orderQty: uint
-    cashOrderQty: uint
-    ordType: char
-    price: float
-    stopPx: float
-    currency: string
-    complianceID: string
-    solicitedFlag: bool
-    iOIid: string
-    quoteID: string
-    timeInForce: char
-    effectiveTime: string
-    expireDate: string
-    expireTime: string
-    gTBookingInst: int
-    commission: uint
-    commType: char
-    rule80A: char
-    forexReq: bool
-    settlCurrency: string
-    text: string
-    encodedTextLen: uint
-    encodedText: string
-    futSettDate2: string
-    orderQty2: uint
-    openClose: char
-    coveredOrUncovered: int
-    customerOrFirm: int
-    maxShow: uint
-    pegDifference: float
-    discretionInst: char
-    discretionOffset: float
-    clearingFirm: string
-    clearingAccount: string
-    orderID: string
-    secondaryOrderID: string
-    listID: string
-    waveNo: string
-    cumQty: uint
-    ordStatus: char
-    leavesQty: uint
-    cxlQty: uint
-    avgPx: float
-    ordRejReason: int
+  NoOrders* = object
+    clOrdID*: string
+    listSeqNo*: int
+    settlInstMode*: char
+    clientID*: string
+    execBroker*: string
+    account*: string
+    noAllocs*: seq[NoAllocs]
+    settlmntTyp*: char
+    futSettDate*: string
+    handlInst*: char
+    execInst*: string
+    minQty*: uint
+    maxFloor*: uint
+    exDestination*: string
+    noTradingSessions*: seq[NoTradingSessions]
+    processCode*: char
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    iDSource*: string
+    securityType*: string
+    maturityMonthYear*: string
+    maturityDay*: uint
+    putOrCall*: int
+    strikePrice*: float
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: string
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    prevClosePx*: float
+    side*: char
+    sideValueInd*: int
+    locateReqd*: bool
+    transactTime*: string
+    orderQty*: uint
+    cashOrderQty*: uint
+    ordType*: char
+    price*: float
+    stopPx*: float
+    currency*: string
+    complianceID*: string
+    solicitedFlag*: bool
+    iOIid*: string
+    quoteID*: string
+    timeInForce*: char
+    effectiveTime*: string
+    expireDate*: string
+    expireTime*: string
+    gTBookingInst*: int
+    commission*: uint
+    commType*: char
+    rule80A*: char
+    forexReq*: bool
+    settlCurrency*: string
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
+    futSettDate2*: string
+    orderQty2*: uint
+    openClose*: char
+    coveredOrUncovered*: int
+    customerOrFirm*: int
+    maxShow*: uint
+    pegDifference*: float
+    discretionInst*: char
+    discretionOffset*: float
+    clearingFirm*: string
+    clearingAccount*: string
+    orderID*: string
+    secondaryOrderID*: string
+    listID*: string
+    waveNo*: string
+    cumQty*: uint
+    ordStatus*: char
+    leavesQty*: uint
+    cxlQty*: uint
+    avgPx*: float
+    ordRejReason*: int
 
-  NoExecs = object
-    lastShares: uint
-    execID: string
-    lastPx: float
-    lastCapacity: char
+  NoExecs* = object
+    lastShares*: uint
+    execID*: string
+    lastPx*: float
+    lastCapacity*: char
 
-  NoMiscFees = object
-    miscFeeAmt: uint
-    miscFeeCurr: string
-    miscFeeType: char
+  NoMiscFees* = object
+    miscFeeAmt*: uint
+    miscFeeCurr*: string
+    miscFeeType*: char
 
-  NoMDEntryTypes = object
-    mDEntryType: char
+  NoMDEntryTypes* = object
+    mDEntryType*: char
 
-  NoMDEntries = object
-    mDEntryType: char
-    mDEntryPx: float
-    currency: string
-    mDEntrySize: uint
-    mDEntryDate: string
-    mDEntryTime: string
-    tickDirection: char
-    mDMkt: string
-    tradingSessionID: string
-    quoteCondition: string
-    tradeCondition: string
-    mDEntryOriginator: string
-    locationID: string
-    deskID: string
-    openCloseSettleFlag: char
-    timeInForce: char
-    expireDate: string
-    expireTime: string
-    minQty: uint
-    execInst: string
-    sellerDays: int
-    orderID: string
-    quoteEntryID: string
-    mDEntryBuyer: string
-    mDEntrySeller: string
-    numberOfOrders: int
-    mDEntryPositionNo: int
-    text: string
-    encodedTextLen: uint
-    encodedText: string
-    mDUpdateAction: char
-    deleteReason: char
-    mDEntryID: string
-    mDEntryRefID: string
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    iDSource: string
-    securityType: string
-    maturityMonthYear: string
-    maturityDay: uint
-    putOrCall: int
-    strikePrice: float
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: string
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    financialStatus: char
-    corporateAction: char
-    totalVolumeTraded: uint
+  NoMDEntries* = object
+    mDEntryType*: char
+    mDEntryPx*: float
+    currency*: string
+    mDEntrySize*: uint
+    mDEntryDate*: string
+    mDEntryTime*: string
+    tickDirection*: char
+    mDMkt*: string
+    tradingSessionID*: string
+    quoteCondition*: string
+    tradeCondition*: string
+    mDEntryOriginator*: string
+    locationID*: string
+    deskID*: string
+    openCloseSettleFlag*: char
+    timeInForce*: char
+    expireDate*: string
+    expireTime*: string
+    minQty*: uint
+    execInst*: string
+    sellerDays*: int
+    orderID*: string
+    quoteEntryID*: string
+    mDEntryBuyer*: string
+    mDEntrySeller*: string
+    numberOfOrders*: int
+    mDEntryPositionNo*: int
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
+    mDUpdateAction*: char
+    deleteReason*: char
+    mDEntryID*: string
+    mDEntryRefID*: string
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    iDSource*: string
+    securityType*: string
+    maturityMonthYear*: string
+    maturityDay*: uint
+    putOrCall*: int
+    strikePrice*: float
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: string
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    financialStatus*: char
+    corporateAction*: char
+    totalVolumeTraded*: uint
 
-  NoQuoteSets = object
-    quoteSetID: string
-    underlyingSymbol: string
-    underlyingSymbolSfx: string
-    underlyingSecurityID: string
-    underlyingIDSource: string
-    underlyingSecurityType: string
-    underlyingMaturityMonthYear: string
-    underlyingMaturityDay: uint
-    underlyingPutOrCall: int
-    underlyingStrikePrice: float
-    underlyingOptAttribute: char
-    underlyingContractMultiplier: string
-    underlyingCouponRate: string
-    underlyingSecurityExchange: string
-    underlyingIssuer: string
-    encodedUnderlyingIssuerLen: uint
-    encodedUnderlyingIssuer: string
-    underlyingSecurityDesc: string
-    encodedUnderlyingSecurityDescLen: uint
-    encodedUnderlyingSecurityDesc: string
-    totQuoteEntries: int
-    noQuoteEntries: seq[NoQuoteEntries]
-    quoteSetValidUntilTime: string
+  NoQuoteSets* = object
+    quoteSetID*: string
+    underlyingSymbol*: string
+    underlyingSymbolSfx*: string
+    underlyingSecurityID*: string
+    underlyingIDSource*: string
+    underlyingSecurityType*: string
+    underlyingMaturityMonthYear*: string
+    underlyingMaturityDay*: uint
+    underlyingPutOrCall*: int
+    underlyingStrikePrice*: float
+    underlyingOptAttribute*: char
+    underlyingContractMultiplier*: string
+    underlyingCouponRate*: string
+    underlyingSecurityExchange*: string
+    underlyingIssuer*: string
+    encodedUnderlyingIssuerLen*: uint
+    encodedUnderlyingIssuer*: string
+    underlyingSecurityDesc*: string
+    encodedUnderlyingSecurityDescLen*: uint
+    encodedUnderlyingSecurityDesc*: string
+    totQuoteEntries*: int
+    noQuoteEntries*: seq[NoQuoteEntries]
+    quoteSetValidUntilTime*: string
 
-  NoQuoteEntries = object
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    iDSource: string
-    securityType: string
-    maturityMonthYear: string
-    maturityDay: uint
-    putOrCall: int
-    strikePrice: float
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: string
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    underlyingSymbol: string
-    quoteEntryID: string
-    quoteEntryRejectReason: int
-    bidPx: float
-    offerPx: float
-    bidSize: uint
-    offerSize: uint
-    validUntilTime: string
-    bidSpotRate: float
-    offerSpotRate: float
-    bidForwardPoints: float
-    offerForwardPoints: float
-    transactTime: string
-    tradingSessionID: string
-    futSettDate: string
-    ordType: char
-    futSettDate2: string
-    orderQty2: uint
-    currency: string
+  NoQuoteEntries* = object
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    iDSource*: string
+    securityType*: string
+    maturityMonthYear*: string
+    maturityDay*: uint
+    putOrCall*: int
+    strikePrice*: float
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: string
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    underlyingSymbol*: string
+    quoteEntryID*: string
+    quoteEntryRejectReason*: int
+    bidPx*: float
+    offerPx*: float
+    bidSize*: uint
+    offerSize*: uint
+    validUntilTime*: string
+    bidSpotRate*: float
+    offerSpotRate*: float
+    bidForwardPoints*: float
+    offerForwardPoints*: float
+    transactTime*: string
+    tradingSessionID*: string
+    futSettDate*: string
+    ordType*: char
+    futSettDate2*: string
+    orderQty2*: uint
+    currency*: string
 
-  NoBidDescriptors = object
-    bidDescriptorType: int
-    bidDescriptor: string
-    sideValueInd: int
-    liquidityValue: uint
-    liquidityNumSecurities: int
-    liquidityPctLow: string
-    liquidityPctHigh: string
-    eFPTrackingError: string
-    fairValue: uint
-    outsideIndexPct: string
-    valueOfFutures: uint
+  NoBidDescriptors* = object
+    bidDescriptorType*: int
+    bidDescriptor*: string
+    sideValueInd*: int
+    liquidityValue*: uint
+    liquidityNumSecurities*: int
+    liquidityPctLow*: string
+    liquidityPctHigh*: string
+    eFPTrackingError*: string
+    fairValue*: uint
+    outsideIndexPct*: string
+    valueOfFutures*: uint
 
-  NoBidComponents = object
-    listID: string
-    side: char
-    tradingSessionID: string
-    netGrossInd: int
-    settlmntTyp: char
-    futSettDate: string
-    account: string
-    commission: uint
-    commType: char
-    country: string
-    price: float
-    priceType: int
-    fairValue: uint
-    text: string
-    encodedTextLen: uint
-    encodedText: string
+  NoBidComponents* = object
+    listID*: string
+    side*: char
+    tradingSessionID*: string
+    netGrossInd*: int
+    settlmntTyp*: char
+    futSettDate*: string
+    account*: string
+    commission*: uint
+    commType*: char
+    country*: string
+    price*: float
+    priceType*: int
+    fairValue*: uint
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
 
-  NoStrikes = object
-    symbol: string
-    symbolSfx: string
-    securityID: string
-    iDSource: string
-    securityType: string
-    maturityMonthYear: string
-    maturityDay: uint
-    putOrCall: int
-    strikePrice: float
-    optAttribute: char
-    contractMultiplier: string
-    couponRate: string
-    securityExchange: string
-    issuer: string
-    encodedIssuerLen: uint
-    encodedIssuer: string
-    securityDesc: string
-    encodedSecurityDescLen: uint
-    encodedSecurityDesc: string
-    prevClosePx: float
-    clOrdID: string
-    side: char
-    price: float
-    currency: string
-    text: string
-    encodedTextLen: uint
-    encodedText: string
+  NoStrikes* = object
+    symbol*: string
+    symbolSfx*: string
+    securityID*: string
+    iDSource*: string
+    securityType*: string
+    maturityMonthYear*: string
+    maturityDay*: uint
+    putOrCall*: int
+    strikePrice*: float
+    optAttribute*: char
+    contractMultiplier*: string
+    couponRate*: string
+    securityExchange*: string
+    issuer*: string
+    encodedIssuerLen*: uint
+    encodedIssuer*: string
+    securityDesc*: string
+    encodedSecurityDescLen*: uint
+    encodedSecurityDesc*: string
+    prevClosePx*: float
+    clOrdID*: string
+    side*: char
+    price*: float
+    currency*: string
+    text*: string
+    encodedTextLen*: uint
+    encodedText*: string
 
-  MsgTypeKind = enum
+  MsgTypeKind* = enum
     mt0, mt1, mt2, mt3, mt4, mt5, mt6, mt7, mt8, mt9, mtA, mtB, mtC, mtD, mtE, mtF, mtG, mtH, mtJ, mtK, mtL, mtM, mtN, mtP, mtQ, mtR, mtS, mtT, mtV, mtW, mtX, mtY, mtZ, mtALow, mtBLow, mtCLow, mtDLow, mtELow, mtFLow, mtGLow, mtHLow, mtILow, mtJLow, mtKLow, mtLLow, mtMLow
 
-  FIX42 = object
+  Fix42* = object
     beginString: string
     bodyLength: int
     senderCompID: string
@@ -2121,10 +2121,10 @@ proc parseNoStrikes(s: string, r: var seq[NoStrikes], pos: var int) =
       pos = j
       return
 
-proc parsemt0(s: string, result: var FIX42, pos: var int) =
+proc parsemt0(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt0)
+  # result = Fix42(msgType: mt0)
   result.msgType = mt0
   let l = s.len
   while pos < l:
@@ -2160,10 +2160,10 @@ proc parsemt0(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt1(s: string, result: var FIX42, pos: var int) =
+proc parsemt1(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt1)
+  # result = Fix42(msgType: mt1)
   result.msgType = mt1
   let l = s.len
   while pos < l:
@@ -2199,10 +2199,10 @@ proc parsemt1(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt2(s: string, result: var FIX42, pos: var int) =
+proc parsemt2(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt2)
+  # result = Fix42(msgType: mt2)
   result.msgType = mt2
   let l = s.len
   while pos < l:
@@ -2239,10 +2239,10 @@ proc parsemt2(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt3(s: string, result: var FIX42, pos: var int) =
+proc parsemt3(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt3)
+  # result = Fix42(msgType: mt3)
   result.msgType = mt3
   let l = s.len
   while pos < l:
@@ -2284,10 +2284,10 @@ proc parsemt3(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt4(s: string, result: var FIX42, pos: var int) =
+proc parsemt4(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt4)
+  # result = Fix42(msgType: mt4)
   result.msgType = mt4
   let l = s.len
   while pos < l:
@@ -2324,10 +2324,10 @@ proc parsemt4(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt5(s: string, result: var FIX42, pos: var int) =
+proc parsemt5(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt5)
+  # result = Fix42(msgType: mt5)
   result.msgType = mt5
   let l = s.len
   while pos < l:
@@ -2365,10 +2365,10 @@ proc parsemt5(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt6(s: string, result: var FIX42, pos: var int) =
+proc parsemt6(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt6)
+  # result = Fix42(msgType: mt6)
   result.msgType = mt6
   let l = s.len
   while pos < l:
@@ -2441,10 +2441,10 @@ proc parsemt6(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt7(s: string, result: var FIX42, pos: var int) =
+proc parsemt7(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt7)
+  # result = Fix42(msgType: mt7)
   result.msgType = mt7
   let l = s.len
   while pos < l:
@@ -2513,10 +2513,10 @@ proc parsemt7(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt8(s: string, result: var FIX42, pos: var int) =
+proc parsemt8(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt8)
+  # result = Fix42(msgType: mt8)
   result.msgType = mt8
   let l = s.len
   while pos < l:
@@ -2643,10 +2643,10 @@ proc parsemt8(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt9(s: string, result: var FIX42, pos: var int) =
+proc parsemt9(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mt9)
+  # result = Fix42(msgType: mt9)
   result.msgType = mt9
   let l = s.len
   while pos < l:
@@ -2696,10 +2696,10 @@ proc parsemt9(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtA(s: string, result: var FIX42, pos: var int) =
+proc parsemtA(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtA)
+  # result = Fix42(msgType: mtA)
   result.msgType = mtA
   let l = s.len
   while pos < l:
@@ -2741,10 +2741,10 @@ proc parsemtA(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtB(s: string, result: var FIX42, pos: var int) =
+proc parsemtB(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtB)
+  # result = Fix42(msgType: mtB)
   result.msgType = mtB
   let l = s.len
   while pos < l:
@@ -2790,10 +2790,10 @@ proc parsemtB(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtC(s: string, result: var FIX42, pos: var int) =
+proc parsemtC(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtC)
+  # result = Fix42(msgType: mtC)
   result.msgType = mtC
   let l = s.len
   while pos < l:
@@ -2841,10 +2841,10 @@ proc parsemtC(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtD(s: string, result: var FIX42, pos: var int) =
+proc parsemtD(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtD)
+  # result = Fix42(msgType: mtD)
   result.msgType = mtD
   let l = s.len
   while pos < l:
@@ -2950,10 +2950,10 @@ proc parsemtD(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtE(s: string, result: var FIX42, pos: var int) =
+proc parsemtE(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtE)
+  # result = Fix42(msgType: mtE)
   result.msgType = mtE
   let l = s.len
   while pos < l:
@@ -3000,10 +3000,10 @@ proc parsemtE(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtF(s: string, result: var FIX42, pos: var int) =
+proc parsemtF(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtF)
+  # result = Fix42(msgType: mtF)
   result.msgType = mtF
   let l = s.len
   while pos < l:
@@ -3073,10 +3073,10 @@ proc parsemtF(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtG(s: string, result: var FIX42, pos: var int) =
+proc parsemtG(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtG)
+  # result = Fix42(msgType: mtG)
   result.msgType = mtG
   let l = s.len
   while pos < l:
@@ -3181,10 +3181,10 @@ proc parsemtG(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtH(s: string, result: var FIX42, pos: var int) =
+proc parsemtH(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtH)
+  # result = Fix42(msgType: mtH)
   result.msgType = mtH
   let l = s.len
   while pos < l:
@@ -3244,10 +3244,10 @@ proc parsemtH(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtJ(s: string, result: var FIX42, pos: var int) =
+proc parsemtJ(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtJ)
+  # result = Fix42(msgType: mtJ)
   result.msgType = mtJ
   let l = s.len
   while pos < l:
@@ -3328,10 +3328,10 @@ proc parsemtJ(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtK(s: string, result: var FIX42, pos: var int) =
+proc parsemtK(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtK)
+  # result = Fix42(msgType: mtK)
   result.msgType = mtK
   let l = s.len
   while pos < l:
@@ -3371,10 +3371,10 @@ proc parsemtK(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtL(s: string, result: var FIX42, pos: var int) =
+proc parsemtL(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtL)
+  # result = Fix42(msgType: mtL)
   result.msgType = mtL
   let l = s.len
   while pos < l:
@@ -3416,10 +3416,10 @@ proc parsemtL(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtM(s: string, result: var FIX42, pos: var int) =
+proc parsemtM(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtM)
+  # result = Fix42(msgType: mtM)
   result.msgType = mtM
   let l = s.len
   while pos < l:
@@ -3458,10 +3458,10 @@ proc parsemtM(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtN(s: string, result: var FIX42, pos: var int) =
+proc parsemtN(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtN)
+  # result = Fix42(msgType: mtN)
   result.msgType = mtN
   let l = s.len
   while pos < l:
@@ -3507,10 +3507,10 @@ proc parsemtN(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtP(s: string, result: var FIX42, pos: var int) =
+proc parsemtP(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtP)
+  # result = Fix42(msgType: mtP)
   result.msgType = mtP
   let l = s.len
   while pos < l:
@@ -3555,10 +3555,10 @@ proc parsemtP(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtQ(s: string, result: var FIX42, pos: var int) =
+proc parsemtQ(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtQ)
+  # result = Fix42(msgType: mtQ)
   result.msgType = mtQ
   let l = s.len
   while pos < l:
@@ -3623,10 +3623,10 @@ proc parsemtQ(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtR(s: string, result: var FIX42, pos: var int) =
+proc parsemtR(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtR)
+  # result = Fix42(msgType: mtR)
   result.msgType = mtR
   let l = s.len
   while pos < l:
@@ -3663,10 +3663,10 @@ proc parsemtR(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtS(s: string, result: var FIX42, pos: var int) =
+proc parsemtS(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtS)
+  # result = Fix42(msgType: mtS)
   result.msgType = mtS
   let l = s.len
   while pos < l:
@@ -3739,10 +3739,10 @@ proc parsemtS(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtT(s: string, result: var FIX42, pos: var int) =
+proc parsemtT(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtT)
+  # result = Fix42(msgType: mtT)
   result.msgType = mtT
   let l = s.len
   while pos < l:
@@ -3813,10 +3813,10 @@ proc parsemtT(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtV(s: string, result: var FIX42, pos: var int) =
+proc parsemtV(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtV)
+  # result = Fix42(msgType: mtV)
   result.msgType = mtV
   let l = s.len
   while pos < l:
@@ -3858,10 +3858,10 @@ proc parsemtV(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtW(s: string, result: var FIX42, pos: var int) =
+proc parsemtW(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtW)
+  # result = Fix42(msgType: mtW)
   result.msgType = mtW
   let l = s.len
   while pos < l:
@@ -3920,10 +3920,10 @@ proc parsemtW(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtX(s: string, result: var FIX42, pos: var int) =
+proc parsemtX(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtX)
+  # result = Fix42(msgType: mtX)
   result.msgType = mtX
   let l = s.len
   while pos < l:
@@ -3960,10 +3960,10 @@ proc parsemtX(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtY(s: string, result: var FIX42, pos: var int) =
+proc parsemtY(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtY)
+  # result = Fix42(msgType: mtY)
   result.msgType = mtY
   let l = s.len
   while pos < l:
@@ -4003,10 +4003,10 @@ proc parsemtY(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtZ(s: string, result: var FIX42, pos: var int) =
+proc parsemtZ(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtZ)
+  # result = Fix42(msgType: mtZ)
   result.msgType = mtZ
   let l = s.len
   while pos < l:
@@ -4047,10 +4047,10 @@ proc parsemtZ(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtALow(s: string, result: var FIX42, pos: var int) =
+proc parsemtALow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtALow)
+  # result = Fix42(msgType: mtALow)
   result.msgType = mtALow
   let l = s.len
   while pos < l:
@@ -4107,10 +4107,10 @@ proc parsemtALow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtBLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtBLow)
+  # result = Fix42(msgType: mtBLow)
   result.msgType = mtBLow
   let l = s.len
   while pos < l:
@@ -4153,10 +4153,10 @@ proc parsemtBLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtCLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtCLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtCLow)
+  # result = Fix42(msgType: mtCLow)
   result.msgType = mtCLow
   let l = s.len
   while pos < l:
@@ -4218,10 +4218,10 @@ proc parsemtCLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtDLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtDLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtDLow)
+  # result = Fix42(msgType: mtDLow)
   result.msgType = mtDLow
   let l = s.len
   while pos < l:
@@ -4285,10 +4285,10 @@ proc parsemtDLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtELow(s: string, result: var FIX42, pos: var int) =
+proc parsemtELow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtELow)
+  # result = Fix42(msgType: mtELow)
   result.msgType = mtELow
   let l = s.len
   while pos < l:
@@ -4346,10 +4346,10 @@ proc parsemtELow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtFLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtFLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtFLow)
+  # result = Fix42(msgType: mtFLow)
   result.msgType = mtFLow
   let l = s.len
   while pos < l:
@@ -4420,10 +4420,10 @@ proc parsemtFLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtGLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtGLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtGLow)
+  # result = Fix42(msgType: mtGLow)
   result.msgType = mtGLow
   let l = s.len
   while pos < l:
@@ -4463,10 +4463,10 @@ proc parsemtGLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtHLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtHLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtHLow)
+  # result = Fix42(msgType: mtHLow)
   result.msgType = mtHLow
   let l = s.len
   while pos < l:
@@ -4516,10 +4516,10 @@ proc parsemtHLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtILow(s: string, result: var FIX42, pos: var int) =
+proc parsemtILow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtILow)
+  # result = Fix42(msgType: mtILow)
   result.msgType = mtILow
   let l = s.len
   while pos < l:
@@ -4560,10 +4560,10 @@ proc parsemtILow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtJLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtJLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtJLow)
+  # result = Fix42(msgType: mtJLow)
   result.msgType = mtJLow
   let l = s.len
   while pos < l:
@@ -4605,10 +4605,10 @@ proc parsemtJLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtKLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtKLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtKLow)
+  # result = Fix42(msgType: mtKLow)
   result.msgType = mtKLow
   let l = s.len
   while pos < l:
@@ -4672,10 +4672,10 @@ proc parsemtKLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtLLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtLLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtLLow)
+  # result = Fix42(msgType: mtLLow)
   result.msgType = mtLLow
   let l = s.len
   while pos < l:
@@ -4713,10 +4713,10 @@ proc parsemtLLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtMLow(s: string, result: var FIX42, pos: var int) =
+proc parsemtMLow(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = FIX42(msgType: mtMLow)
+  # result = Fix42(msgType: mtMLow)
   result.msgType = mtMLow
   let l = s.len
   while pos < l:
@@ -4754,7 +4754,7 @@ proc parsemtMLow(s: string, result: var FIX42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parseFIX42(s: string): FIX42 =
+proc parseFix42*(s: string): Fix42 =
   var
     t: uint16
     v35: string
