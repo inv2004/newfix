@@ -34,7 +34,7 @@ The examples of the CoralFIX is quite minimal. Please find much heavier benchmar
 
 ## Optimization:
 
-To optimize parsing speed it is better to remove unused fields from full specification like it have beed done for ``spec/MINIMAL.xml' and PrimeXM specification in 'scpe/FIX44PXM.xml' already
+To optimize parsing speed it is better to remove unused fields from full specification like it have been done for ``spec/MINIMAL.xml' and PrimeXM specification in 'scpe/FIX44PXM.xml' already
 
 ```bash
 $ nim c src/newfix/genfix.nim
@@ -42,4 +42,8 @@ $ src/newfix/genfix spec/FIX44MY.xml > fix44my.xml
 ```
 
 Structure name from the top tags attributes: ``<fix type='FIX' major='4' minor='4' servicepack='min'>`` => ``Fix44Min``
+
+If you know that you can optimize some types: for example hex or int instead of string - it possible to optimize separate fields manually in the generated module.
+
+
 
