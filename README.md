@@ -29,8 +29,8 @@ My hw: i5-7500 (not overclocked / win10)
 
 
 The examples of the CoralFIX is quite minimal. Please find much heavier benchmarks on MassQuote messages:
-314-byte msg with 8 subgroup updates: 1570.5 ns
-1010-byte msg with 30 subgroup updates: 6616 ns
+- 314-byte msg with 8 subgroup updates: 1570.5 ns
+- 1010-byte msg with 30 subgroup updates: 6616 ns
 
 ## Optimization:
 
