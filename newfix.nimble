@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.2.1"
 author        = "inv2004"
 description   = "FIX Protocol parser"
 license       = "Apache-2.0"
