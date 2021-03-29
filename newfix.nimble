@@ -2,7 +2,7 @@
 
 version       = "0.2.1"
 author        = "inv2004"
-description   = "FIX Protocol parser"
+description   = "FIX Protocol optimized parser (Financial Information eXchange)"
 license       = "Apache-2.0"
 srcDir        = "src"
 installExt    = @["nim"]
