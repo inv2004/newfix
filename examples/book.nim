@@ -29,7 +29,7 @@ var ch: array[100, array[50, Channel]]
 var counter = 0
 var rep = newSeq[Report]()
 
-proc genRep(m: Fix44Pxm, t302: uint) =
+proc genRep(m: Fix44Pxm, t302: int) =
   var bestbid = 0.0
   var bestask = Inf
   for v in ch[t302]:
@@ -47,16 +47,17 @@ proc genRep(m: Fix44Pxm, t302: uint) =
   rep.add Report(time: time, sym: s[t302], bestbid: bestbid, mid: mid, bestask: bestask)
 
 proc processIClean(m: Fix44Pxm) =
-  discard
-  # for q in m.qRecs:
-  #   if s[q.t302].len == 0:
-  #     break
-  #   for i in q.iRecs:
-  #     ch[q.t302][i.t299].reset()
+  for q in m.mqNoQuoteSets:
+    let symRef = q.quoteSetID.parseHexInt()
+    if s[symRef].len == 0:
+      break
+    for i in q.noQuoteEntries:
+      let chRef = i.quoteEntryID.parseHexInt()
+      ch[symRef][chRef].reset()
 
 proc processI(m: Fix44Pxm, sym: string) =
   for q in m.mqNoQuoteSets:
-    let symRef = q.quoteSetID.parseHexInt().uint
+    let symRef = q.quoteSetID.parseHexInt()
     if s[symRef].len == 0:
       break
     if sym.len > 0 and s[symRef] != sym:
