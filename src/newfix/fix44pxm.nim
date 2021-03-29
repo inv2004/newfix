@@ -18,9 +18,9 @@ type
     mDEntryType*: char
     mDEntryPx*: float
     currency*: string
-    mDEntrySize*: uint
+    mDEntrySize*: int
     timeInForce*: char
-    minQty*: uint
+    minQty*: int
     orderID*: string
     quoteEntryID*: string
     text*: string
@@ -33,8 +33,8 @@ type
     quoteEntryID*: string
     symbol*: string
     issuer*: string
-    bidSize*: uint
-    offerSize*: uint
+    bidSize*: int
+    offerSize*: int
     bidSpotRate*: float
     offerSpotRate*: float
     transactTime*: string
@@ -43,7 +43,23 @@ type
     currency*: string
 
   MsgTypeKind* = enum
-    mt0, mt1, mt2, mt3, mt4, mt5, mt8, mtA, mtB, mtD, mtF, mtH, mtV, mtW, mtY, mtBLow, mtILow
+    Heartbeat = "0"
+    TestRequest = "1"
+    ResendRequest = "2"
+    Reject = "3"
+    SequenceReset = "4"
+    Logout = "5"
+    ExecutionReport = "8"
+    Logon = "A"
+    News = "B"
+    NewOrderSingle = "D"
+    OrderCancelRequest = "F"
+    OrderStatusRequest = "H"
+    MarketDataRequest = "V"
+    MarketDataSnapshotFullRefresh = "W"
+    MarketDataRequestReject = "Y"
+    MassQuoteAcknowledgement = "b"
+    MassQuote = "i"
 
   Fix44Pxm* = object
     beginString*: string
@@ -56,119 +72,119 @@ type
     onBehalfOfSubID*: string
     sendingTime*: string
     case msgType*: MsgTypeKind
-    of mt0:
-      t0TestReqID*: string
-    of mt1:
-      t1TestReqID*: string
-    of mt2:
-      t2BeginSeqNo*: uint
-      t2EndSeqNo*: uint
-    of mt3:
-      t3RefSeqNum*: uint
-      t3RefTagID*: int
-      t3RefMsgType*: string
-      t3SessionRejectReason*: int
-      t3Text*: string
-    of mt4:
-      t4GapFillFlag*: bool
-      t4NewSeqNo*: uint
-    of mt5:
-      t5Text*: string
-    of mt8:
-      t8OrderID*: string
-      t8SecondaryClOrdID*: string
-      t8SecondaryExecID*: string
-      t8ClOrdID*: string
-      t8ExecID*: string
-      t8ExecType*: char
-      t8OrdStatus*: char
-      t8Account*: string
-      t8SettlDate*: string
-      t8Symbol*: string
-      t8Issuer*: string
-      t8Side*: char
-      t8OrderQty*: uint
-      t8OrdType*: char
-      t8Price*: float
-      t8Currency*: string
-      t8TimeInForce*: char
-      t8LastQty*: uint
-      t8LastPx*: float
-      t8LeavesQty*: uint
-      t8CumQty*: uint
-      t8AvgPx*: float
-      t8TransactTime*: string
-      t8MinQty*: uint
-      t8Text*: string
-    of mtA:
-      aEncryptMethod*: int
-      aHeartBtInt*: int
-      aResetSeqNumFlag*: bool
-      aNoMsgTypes*: seq[NoMsgTypes]
-      aUsername*: string
-      aPassword*: string
-    of mtB:
-      bNoRelatedSym*: seq[NoRelatedSym]
-      bNoLinesOfText*: seq[NoLinesOfText]
-    of mtD:
-      dClOrdID*: string
-      dSecondaryClOrdID*: string
-      dAccount*: string
-      dSettlDate*: string
-      dMinQty*: uint
-      dSymbol*: string
-      dIssuer*: string
-      dSide*: char
-      dTransactTime*: string
-      dOrderQty*: uint
-      dOrdType*: char
-      dPrice*: float
-      dCurrency*: string
-      dQuoteID*: string
-      dTimeInForce*: char
-      dText*: string
-    of mtF:
-      fOrderID*: string
-      fClOrdID*: string
-      fSecondaryClOrdID*: string
-      fAccount*: string
-      fSymbol*: string
-      fIssuer*: string
-      fSide*: char
-      fTransactTime*: string
-      fOrderQty*: uint
-      fText*: string
-    of mtH:
-      hOrderID*: string
-      hClOrdID*: string
-      hSecondaryClOrdID*: string
-      hAccount*: string
-      hSymbol*: string
-      hIssuer*: string
-      hSide*: char
-    of mtV:
-      vMDReqID*: string
-      vSubscriptionRequestType*: char
-      vMarketDepth*: int
-      vNoMDEntryTypes*: seq[NoMDEntryTypes]
-      vNoRelatedSym*: seq[NoRelatedSym]
-    of mtW:
-      wMDReqID*: string
-      wSymbol*: string
-      wIssuer*: string
-      wNoMDEntries*: seq[NoMDEntries]
-    of mtY:
-      yMDReqID*: string
-      yText*: string
-    of mtBLow:
-      blowQuoteID*: string
-      blowAccount*: string
-      blowText*: string
-      blowNoQuoteSets*: seq[NoQuoteSets]
-    of mtILow:
-      ilowQuoteID*: string
-      ilowAccount*: string
-      ilowNoQuoteSets*: seq[NoQuoteSets]
+    of Heartbeat:
+      hTestReqID*: string
+    of TestRequest:
+      trTestReqID*: string
+    of ResendRequest:
+      rrBeginSeqNo*: uint
+      rrEndSeqNo*: uint
+    of Reject:
+      rRefSeqNum*: uint
+      rRefTagID*: int
+      rRefMsgType*: string
+      rSessionRejectReason*: int
+      rText*: string
+    of SequenceReset:
+      srGapFillFlag*: bool
+      srNewSeqNo*: uint
+    of Logout:
+      lText*: string
+    of ExecutionReport:
+      erOrderID*: string
+      erSecondaryClOrdID*: string
+      erSecondaryExecID*: string
+      erClOrdID*: string
+      erExecID*: string
+      erExecType*: char
+      erOrdStatus*: char
+      erAccount*: string
+      erSettlDate*: string
+      erSymbol*: string
+      erIssuer*: string
+      erSide*: char
+      erOrderQty*: int
+      erOrdType*: char
+      erPrice*: float
+      erCurrency*: string
+      erTimeInForce*: char
+      erLastQty*: int
+      erLastPx*: float
+      erLeavesQty*: int
+      erCumQty*: int
+      erAvgPx*: float
+      erTransactTime*: string
+      erMinQty*: int
+      erText*: string
+    of Logon:
+      lEncryptMethod*: int
+      lHeartBtInt*: int
+      lResetSeqNumFlag*: bool
+      lNoMsgTypes*: seq[NoMsgTypes]
+      lUsername*: string
+      lPassword*: string
+    of News:
+      nNoRelatedSym*: seq[NoRelatedSym]
+      nNoLinesOfText*: seq[NoLinesOfText]
+    of NewOrderSingle:
+      nosClOrdID*: string
+      nosSecondaryClOrdID*: string
+      nosAccount*: string
+      nosSettlDate*: string
+      nosMinQty*: int
+      nosSymbol*: string
+      nosIssuer*: string
+      nosSide*: char
+      nosTransactTime*: string
+      nosOrderQty*: int
+      nosOrdType*: char
+      nosPrice*: float
+      nosCurrency*: string
+      nosQuoteID*: string
+      nosTimeInForce*: char
+      nosText*: string
+    of OrderCancelRequest:
+      ocrOrderID*: string
+      ocrClOrdID*: string
+      ocrSecondaryClOrdID*: string
+      ocrAccount*: string
+      ocrSymbol*: string
+      ocrIssuer*: string
+      ocrSide*: char
+      ocrTransactTime*: string
+      ocrOrderQty*: int
+      ocrText*: string
+    of OrderStatusRequest:
+      osrOrderID*: string
+      osrClOrdID*: string
+      osrSecondaryClOrdID*: string
+      osrAccount*: string
+      osrSymbol*: string
+      osrIssuer*: string
+      osrSide*: char
+    of MarketDataRequest:
+      mdrMDReqID*: string
+      mdrSubscriptionRequestType*: char
+      mdrMarketDepth*: int
+      mdrNoMDEntryTypes*: seq[NoMDEntryTypes]
+      mdrNoRelatedSym*: seq[NoRelatedSym]
+    of MarketDataSnapshotFullRefresh:
+      mdsfrMDReqID*: string
+      mdsfrSymbol*: string
+      mdsfrIssuer*: string
+      mdsfrNoMDEntries*: seq[NoMDEntries]
+    of MarketDataRequestReject:
+      mdrrMDReqID*: string
+      mdrrText*: string
+    of MassQuoteAcknowledgement:
+      mqaQuoteID*: string
+      mqaAccount*: string
+      mqaText*: string
+      mqaNoQuoteSets*: seq[NoQuoteSets]
+    of MassQuote:
+      mqQuoteID*: string
+      mqAccount*: string
+      mqNoQuoteSets*: seq[NoQuoteSets]
     checkSum*: string
 
 proc parseNoMsgTypes(s: string, r: var seq[NoMsgTypes], pos: var int)
@@ -293,9 +309,9 @@ proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int) =
     of 269: parseChar(s, v.mDEntryType, pos)
     of 270: parseFloat(s, v.mDEntryPx, pos)
     of 15: parseStr(s, v.currency, pos)
-    of 271: parseUInt(s, v.mDEntrySize, pos)
+    of 271: parseInt(s, v.mDEntrySize, pos)
     of 59: parseChar(s, v.timeInForce, pos)
-    of 110: parseUInt(s, v.minQty, pos)
+    of 110: parseInt(s, v.minQty, pos)
     of 37: parseStr(s, v.orderID, pos)
     of 299: parseStr(s, v.quoteEntryID, pos)
     of 58: parseStr(s, v.text, pos)
@@ -346,8 +362,8 @@ proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int) =
     of 299: parseStr(s, v.quoteEntryID, pos)
     of 55: parseStr(s, v.symbol, pos)
     of 106: parseStr(s, v.issuer, pos)
-    of 134: parseUInt(s, v.bidSize, pos)
-    of 135: parseUInt(s, v.offerSize, pos)
+    of 134: parseInt(s, v.bidSize, pos)
+    of 135: parseInt(s, v.offerSize, pos)
     of 188: parseFloat(s, v.bidSpotRate, pos)
     of 190: parseFloat(s, v.offerSpotRate, pos)
     of 60: parseStr(s, v.transactTime, pos)
@@ -359,11 +375,11 @@ proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int) =
       pos = j
       return
 
-proc parsemt0(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseHeartbeat(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mt0)
-  result.msgType = mt0
+  # result = Fix44Pxm(msgType: ("0", "Heartbeat"))
+  result.msgType = Heartbeat
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -375,15 +391,15 @@ proc parsemt0(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 112: parseStr(s, result.t0TestReqID, pos)
+    of 112: parseStr(s, result.hTestReqID, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt1(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseTestRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mt1)
-  result.msgType = mt1
+  # result = Fix44Pxm(msgType: ("1", "TestRequest"))
+  result.msgType = TestRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -395,15 +411,15 @@ proc parsemt1(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 112: parseStr(s, result.t1TestReqID, pos)
+    of 112: parseStr(s, result.trTestReqID, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt2(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseResendRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mt2)
-  result.msgType = mt2
+  # result = Fix44Pxm(msgType: ("2", "ResendRequest"))
+  result.msgType = ResendRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -415,16 +431,16 @@ proc parsemt2(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 7: parseUInt(s, result.t2BeginSeqNo, pos)
-    of 16: parseUInt(s, result.t2EndSeqNo, pos)
+    of 7: parseUInt(s, result.rrBeginSeqNo, pos)
+    of 16: parseUInt(s, result.rrEndSeqNo, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt3(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseReject(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mt3)
-  result.msgType = mt3
+  # result = Fix44Pxm(msgType: ("3", "Reject"))
+  result.msgType = Reject
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -436,19 +452,19 @@ proc parsemt3(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 45: parseUInt(s, result.t3RefSeqNum, pos)
-    of 371: parseInt(s, result.t3RefTagID, pos)
-    of 372: parseStr(s, result.t3RefMsgType, pos)
-    of 373: parseInt(s, result.t3SessionRejectReason, pos)
-    of 58: parseStr(s, result.t3Text, pos)
+    of 45: parseUInt(s, result.rRefSeqNum, pos)
+    of 371: parseInt(s, result.rRefTagID, pos)
+    of 372: parseStr(s, result.rRefMsgType, pos)
+    of 373: parseInt(s, result.rSessionRejectReason, pos)
+    of 58: parseStr(s, result.rText, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt4(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseSequenceReset(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mt4)
-  result.msgType = mt4
+  # result = Fix44Pxm(msgType: ("4", "SequenceReset"))
+  result.msgType = SequenceReset
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -460,16 +476,16 @@ proc parsemt4(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 123: parseBool(s, result.t4GapFillFlag, pos)
-    of 36: parseUInt(s, result.t4NewSeqNo, pos)
+    of 123: parseBool(s, result.srGapFillFlag, pos)
+    of 36: parseUInt(s, result.srNewSeqNo, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt5(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseLogout(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mt5)
-  result.msgType = mt5
+  # result = Fix44Pxm(msgType: ("5", "Logout"))
+  result.msgType = Logout
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -481,15 +497,15 @@ proc parsemt5(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 58: parseStr(s, result.t5Text, pos)
+    of 58: parseStr(s, result.lText, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt8(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseExecutionReport(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mt8)
-  result.msgType = mt8
+  # result = Fix44Pxm(msgType: ("8", "ExecutionReport"))
+  result.msgType = ExecutionReport
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -501,39 +517,39 @@ proc parsemt8(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 37: parseStr(s, result.t8OrderID, pos)
-    of 526: parseStr(s, result.t8SecondaryClOrdID, pos)
-    of 527: parseStr(s, result.t8SecondaryExecID, pos)
-    of 11: parseStr(s, result.t8ClOrdID, pos)
-    of 17: parseStr(s, result.t8ExecID, pos)
-    of 150: parseChar(s, result.t8ExecType, pos)
-    of 39: parseChar(s, result.t8OrdStatus, pos)
-    of 1: parseStr(s, result.t8Account, pos)
-    of 64: parseStr(s, result.t8SettlDate, pos)
-    of 55: parseStr(s, result.t8Symbol, pos)
-    of 106: parseStr(s, result.t8Issuer, pos)
-    of 54: parseChar(s, result.t8Side, pos)
-    of 38: parseUInt(s, result.t8OrderQty, pos)
-    of 40: parseChar(s, result.t8OrdType, pos)
-    of 44: parseFloat(s, result.t8Price, pos)
-    of 15: parseStr(s, result.t8Currency, pos)
-    of 59: parseChar(s, result.t8TimeInForce, pos)
-    of 32: parseUInt(s, result.t8LastQty, pos)
-    of 31: parseFloat(s, result.t8LastPx, pos)
-    of 151: parseUInt(s, result.t8LeavesQty, pos)
-    of 14: parseUInt(s, result.t8CumQty, pos)
-    of 6: parseFloat(s, result.t8AvgPx, pos)
-    of 60: parseStr(s, result.t8TransactTime, pos)
-    of 110: parseUInt(s, result.t8MinQty, pos)
-    of 58: parseStr(s, result.t8Text, pos)
+    of 37: parseStr(s, result.erOrderID, pos)
+    of 526: parseStr(s, result.erSecondaryClOrdID, pos)
+    of 527: parseStr(s, result.erSecondaryExecID, pos)
+    of 11: parseStr(s, result.erClOrdID, pos)
+    of 17: parseStr(s, result.erExecID, pos)
+    of 150: parseChar(s, result.erExecType, pos)
+    of 39: parseChar(s, result.erOrdStatus, pos)
+    of 1: parseStr(s, result.erAccount, pos)
+    of 64: parseStr(s, result.erSettlDate, pos)
+    of 55: parseStr(s, result.erSymbol, pos)
+    of 106: parseStr(s, result.erIssuer, pos)
+    of 54: parseChar(s, result.erSide, pos)
+    of 38: parseInt(s, result.erOrderQty, pos)
+    of 40: parseChar(s, result.erOrdType, pos)
+    of 44: parseFloat(s, result.erPrice, pos)
+    of 15: parseStr(s, result.erCurrency, pos)
+    of 59: parseChar(s, result.erTimeInForce, pos)
+    of 32: parseInt(s, result.erLastQty, pos)
+    of 31: parseFloat(s, result.erLastPx, pos)
+    of 151: parseInt(s, result.erLeavesQty, pos)
+    of 14: parseInt(s, result.erCumQty, pos)
+    of 6: parseFloat(s, result.erAvgPx, pos)
+    of 60: parseStr(s, result.erTransactTime, pos)
+    of 110: parseInt(s, result.erMinQty, pos)
+    of 58: parseStr(s, result.erText, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtA(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseLogon(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtA)
-  result.msgType = mtA
+  # result = Fix44Pxm(msgType: ("A", "Logon"))
+  result.msgType = Logon
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -545,20 +561,20 @@ proc parsemtA(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 98: parseInt(s, result.aEncryptMethod, pos)
-    of 108: parseInt(s, result.aHeartBtInt, pos)
-    of 141: parseBool(s, result.aResetSeqNumFlag, pos)
-    of 384: skipValue(s, pos); parseNoMsgTypes(s, result.aNoMsgTypes, pos)
-    of 553: parseStr(s, result.aUsername, pos)
-    of 554: parseStr(s, result.aPassword, pos)
+    of 98: parseInt(s, result.lEncryptMethod, pos)
+    of 108: parseInt(s, result.lHeartBtInt, pos)
+    of 141: parseBool(s, result.lResetSeqNumFlag, pos)
+    of 384: skipValue(s, pos); parseNoMsgTypes(s, result.lNoMsgTypes, pos)
+    of 553: parseStr(s, result.lUsername, pos)
+    of 554: parseStr(s, result.lPassword, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtB(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseNews(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtB)
-  result.msgType = mtB
+  # result = Fix44Pxm(msgType: ("B", "News"))
+  result.msgType = News
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -570,16 +586,16 @@ proc parsemtB(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.bNoRelatedSym, pos)
-    of 33: skipValue(s, pos); parseNoLinesOfText(s, result.bNoLinesOfText, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.nNoRelatedSym, pos)
+    of 33: skipValue(s, pos); parseNoLinesOfText(s, result.nNoLinesOfText, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtD(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseNewOrderSingle(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtD)
-  result.msgType = mtD
+  # result = Fix44Pxm(msgType: ("D", "NewOrderSingle"))
+  result.msgType = NewOrderSingle
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -591,30 +607,30 @@ proc parsemtD(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 11: parseStr(s, result.dClOrdID, pos)
-    of 526: parseStr(s, result.dSecondaryClOrdID, pos)
-    of 1: parseStr(s, result.dAccount, pos)
-    of 64: parseStr(s, result.dSettlDate, pos)
-    of 110: parseUInt(s, result.dMinQty, pos)
-    of 55: parseStr(s, result.dSymbol, pos)
-    of 106: parseStr(s, result.dIssuer, pos)
-    of 54: parseChar(s, result.dSide, pos)
-    of 60: parseStr(s, result.dTransactTime, pos)
-    of 38: parseUInt(s, result.dOrderQty, pos)
-    of 40: parseChar(s, result.dOrdType, pos)
-    of 44: parseFloat(s, result.dPrice, pos)
-    of 15: parseStr(s, result.dCurrency, pos)
-    of 117: parseStr(s, result.dQuoteID, pos)
-    of 59: parseChar(s, result.dTimeInForce, pos)
-    of 58: parseStr(s, result.dText, pos)
+    of 11: parseStr(s, result.nosClOrdID, pos)
+    of 526: parseStr(s, result.nosSecondaryClOrdID, pos)
+    of 1: parseStr(s, result.nosAccount, pos)
+    of 64: parseStr(s, result.nosSettlDate, pos)
+    of 110: parseInt(s, result.nosMinQty, pos)
+    of 55: parseStr(s, result.nosSymbol, pos)
+    of 106: parseStr(s, result.nosIssuer, pos)
+    of 54: parseChar(s, result.nosSide, pos)
+    of 60: parseStr(s, result.nosTransactTime, pos)
+    of 38: parseInt(s, result.nosOrderQty, pos)
+    of 40: parseChar(s, result.nosOrdType, pos)
+    of 44: parseFloat(s, result.nosPrice, pos)
+    of 15: parseStr(s, result.nosCurrency, pos)
+    of 117: parseStr(s, result.nosQuoteID, pos)
+    of 59: parseChar(s, result.nosTimeInForce, pos)
+    of 58: parseStr(s, result.nosText, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtF(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseOrderCancelRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtF)
-  result.msgType = mtF
+  # result = Fix44Pxm(msgType: ("F", "OrderCancelRequest"))
+  result.msgType = OrderCancelRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -626,24 +642,24 @@ proc parsemtF(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 37: parseStr(s, result.fOrderID, pos)
-    of 11: parseStr(s, result.fClOrdID, pos)
-    of 526: parseStr(s, result.fSecondaryClOrdID, pos)
-    of 1: parseStr(s, result.fAccount, pos)
-    of 55: parseStr(s, result.fSymbol, pos)
-    of 106: parseStr(s, result.fIssuer, pos)
-    of 54: parseChar(s, result.fSide, pos)
-    of 60: parseStr(s, result.fTransactTime, pos)
-    of 38: parseUInt(s, result.fOrderQty, pos)
-    of 58: parseStr(s, result.fText, pos)
+    of 37: parseStr(s, result.ocrOrderID, pos)
+    of 11: parseStr(s, result.ocrClOrdID, pos)
+    of 526: parseStr(s, result.ocrSecondaryClOrdID, pos)
+    of 1: parseStr(s, result.ocrAccount, pos)
+    of 55: parseStr(s, result.ocrSymbol, pos)
+    of 106: parseStr(s, result.ocrIssuer, pos)
+    of 54: parseChar(s, result.ocrSide, pos)
+    of 60: parseStr(s, result.ocrTransactTime, pos)
+    of 38: parseInt(s, result.ocrOrderQty, pos)
+    of 58: parseStr(s, result.ocrText, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtH(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseOrderStatusRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtH)
-  result.msgType = mtH
+  # result = Fix44Pxm(msgType: ("H", "OrderStatusRequest"))
+  result.msgType = OrderStatusRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -655,21 +671,21 @@ proc parsemtH(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 37: parseStr(s, result.hOrderID, pos)
-    of 11: parseStr(s, result.hClOrdID, pos)
-    of 526: parseStr(s, result.hSecondaryClOrdID, pos)
-    of 1: parseStr(s, result.hAccount, pos)
-    of 55: parseStr(s, result.hSymbol, pos)
-    of 106: parseStr(s, result.hIssuer, pos)
-    of 54: parseChar(s, result.hSide, pos)
+    of 37: parseStr(s, result.osrOrderID, pos)
+    of 11: parseStr(s, result.osrClOrdID, pos)
+    of 526: parseStr(s, result.osrSecondaryClOrdID, pos)
+    of 1: parseStr(s, result.osrAccount, pos)
+    of 55: parseStr(s, result.osrSymbol, pos)
+    of 106: parseStr(s, result.osrIssuer, pos)
+    of 54: parseChar(s, result.osrSide, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtV(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseMarketDataRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtV)
-  result.msgType = mtV
+  # result = Fix44Pxm(msgType: ("V", "MarketDataRequest"))
+  result.msgType = MarketDataRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -681,19 +697,19 @@ proc parsemtV(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 262: parseStr(s, result.vMDReqID, pos)
-    of 263: parseChar(s, result.vSubscriptionRequestType, pos)
-    of 264: parseInt(s, result.vMarketDepth, pos)
-    of 267: skipValue(s, pos); parseNoMDEntryTypes(s, result.vNoMDEntryTypes, pos)
-    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.vNoRelatedSym, pos)
+    of 262: parseStr(s, result.mdrMDReqID, pos)
+    of 263: parseChar(s, result.mdrSubscriptionRequestType, pos)
+    of 264: parseInt(s, result.mdrMarketDepth, pos)
+    of 267: skipValue(s, pos); parseNoMDEntryTypes(s, result.mdrNoMDEntryTypes, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.mdrNoRelatedSym, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtW(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseMarketDataSnapshotFullRefresh(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtW)
-  result.msgType = mtW
+  # result = Fix44Pxm(msgType: ("W", "MarketDataSnapshotFullRefresh"))
+  result.msgType = MarketDataSnapshotFullRefresh
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -705,18 +721,18 @@ proc parsemtW(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 262: parseStr(s, result.wMDReqID, pos)
-    of 55: parseStr(s, result.wSymbol, pos)
-    of 106: parseStr(s, result.wIssuer, pos)
-    of 268: skipValue(s, pos); parseNoMDEntries(s, result.wNoMDEntries, pos)
+    of 262: parseStr(s, result.mdsfrMDReqID, pos)
+    of 55: parseStr(s, result.mdsfrSymbol, pos)
+    of 106: parseStr(s, result.mdsfrIssuer, pos)
+    of 268: skipValue(s, pos); parseNoMDEntries(s, result.mdsfrNoMDEntries, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtY(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseMarketDataRequestReject(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtY)
-  result.msgType = mtY
+  # result = Fix44Pxm(msgType: ("Y", "MarketDataRequestReject"))
+  result.msgType = MarketDataRequestReject
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -728,16 +744,16 @@ proc parsemtY(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 262: parseStr(s, result.yMDReqID, pos)
-    of 58: parseStr(s, result.yText, pos)
+    of 262: parseStr(s, result.mdrrMDReqID, pos)
+    of 58: parseStr(s, result.mdrrText, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBLow(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseMassQuoteAcknowledgement(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtBLow)
-  result.msgType = mtBLow
+  # result = Fix44Pxm(msgType: ("b", "MassQuoteAcknowledgement"))
+  result.msgType = MassQuoteAcknowledgement
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -749,18 +765,18 @@ proc parsemtBLow(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 117: parseStr(s, result.blowQuoteID, pos)
-    of 1: parseStr(s, result.blowAccount, pos)
-    of 58: parseStr(s, result.blowText, pos)
-    of 296: skipValue(s, pos); parseNoQuoteSets(s, result.blowNoQuoteSets, pos)
+    of 117: parseStr(s, result.mqaQuoteID, pos)
+    of 1: parseStr(s, result.mqaAccount, pos)
+    of 58: parseStr(s, result.mqaText, pos)
+    of 296: skipValue(s, pos); parseNoQuoteSets(s, result.mqaNoQuoteSets, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtILow(s: string, result: var Fix44Pxm, pos: var int) =
+proc parseMassQuote(s: string, result: var Fix44Pxm, pos: var int) =
   var
     t: uint16
-  # result = Fix44Pxm(msgType: mtILow)
-  result.msgType = mtILow
+  # result = Fix44Pxm(msgType: ("i", "MassQuote"))
+  result.msgType = MassQuote
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -772,9 +788,9 @@ proc parsemtILow(s: string, result: var Fix44Pxm, pos: var int) =
     of 50: parseStr(s, result.senderSubID, pos)
     of 116: parseStr(s, result.onBehalfOfSubID, pos)
     of 52: parseStr(s, result.sendingTime, pos)
-    of 117: parseStr(s, result.ilowQuoteID, pos)
-    of 1: parseStr(s, result.ilowAccount, pos)
-    of 296: skipValue(s, pos); parseNoQuoteSets(s, result.ilowNoQuoteSets, pos)
+    of 117: parseStr(s, result.mqQuoteID, pos)
+    of 1: parseStr(s, result.mqAccount, pos)
+    of 296: skipValue(s, pos); parseNoQuoteSets(s, result.mqNoQuoteSets, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
@@ -792,22 +808,22 @@ proc parseFix44Pxm*(s: string): Fix44Pxm =
     of 35:
       parseStr(s, v35, pos)
       case v35
-      of "0": parsemt0(s, result, pos)
-      of "1": parsemt1(s, result, pos)
-      of "2": parsemt2(s, result, pos)
-      of "3": parsemt3(s, result, pos)
-      of "4": parsemt4(s, result, pos)
-      of "5": parsemt5(s, result, pos)
-      of "8": parsemt8(s, result, pos)
-      of "A": parsemtA(s, result, pos)
-      of "B": parsemtB(s, result, pos)
-      of "D": parsemtD(s, result, pos)
-      of "F": parsemtF(s, result, pos)
-      of "H": parsemtH(s, result, pos)
-      of "V": parsemtV(s, result, pos)
-      of "W": parsemtW(s, result, pos)
-      of "Y": parsemtY(s, result, pos)
-      of "b": parsemtBLow(s, result, pos)
-      of "i": parsemtILow(s, result, pos)
+      of "0": parseHeartbeat(s, result, pos)
+      of "1": parseTestRequest(s, result, pos)
+      of "2": parseResendRequest(s, result, pos)
+      of "3": parseReject(s, result, pos)
+      of "4": parseSequenceReset(s, result, pos)
+      of "5": parseLogout(s, result, pos)
+      of "8": parseExecutionReport(s, result, pos)
+      of "A": parseLogon(s, result, pos)
+      of "B": parseNews(s, result, pos)
+      of "D": parseNewOrderSingle(s, result, pos)
+      of "F": parseOrderCancelRequest(s, result, pos)
+      of "H": parseOrderStatusRequest(s, result, pos)
+      of "V": parseMarketDataRequest(s, result, pos)
+      of "W": parseMarketDataSnapshotFullRefresh(s, result, pos)
+      of "Y": parseMarketDataRequestReject(s, result, pos)
+      of "b": parseMassQuoteAcknowledgement(s, result, pos)
+      of "i": parseMassQuote(s, result, pos)
     else: raise newException(ValueError, "unexpected header field: " & $t)
 

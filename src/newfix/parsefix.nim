@@ -1,5 +1,7 @@
 from parseutils import parseFloat
 
+const DELIMITER = '\x01'
+
 func parseTag*(s: string, t: var uint16, pos: var int) =
   t = 0
   while true:
@@ -16,25 +18,29 @@ func parseChar*(s: string, v: var char, pos: var int) =
 func parseStr*(s: string, v: var string, pos: var int) =
   let start = pos
   while true:
-    if s[pos] == '|':
+    if s[pos] == DELIMITER:
       break
     inc pos
   v = s[start..<pos]
   inc pos
 
 func parseInt*(s: string, t: var int, pos: var int) =
+  let sign =
+    if s[pos] == '-': inc pos; -1
+    else: 1
   t = 0
   while true:
-    if s[pos] == '|':
+    if s[pos] == DELIMITER:
       break
     t = t * 10 + (s[pos].byte - '0'.byte).int
     inc pos
   inc pos
+  t *= sign
 
 func parseUInt*(s: string, t: var uint, pos: var int) =
   t = 0
   while true:
-    if s[pos] == '|':
+    if s[pos] == DELIMITER:
       break
     t = t * 10 + (s[pos].byte - '0'.byte)
     inc pos
@@ -50,7 +56,7 @@ func parseFloat*(s: string, t: var float, pos: var int) =
 
 func skipValue*(s: string, pos: var int) =
   while true:
-    if s[pos] == '|':
+    if s[pos] == DELIMITER:
       break
     inc pos
   inc pos

@@ -32,8 +32,8 @@ proc genGroup(g: XmlNode, fields: Fields, components: Components) =
 proc normType(t: string): string =
   case t
   of "BOOLEAN": return "bool"
-  of "INT": return "int"
-  of "QTY", "AMT", "SEQNUM", "LENGTH", "DAYOFMONTH": return "uint"
+  of "INT", "QTY": return "int"
+  of "AMT", "SEQNUM", "LENGTH", "DAYOFMONTH": return "uint"
   of "PRICE", "PERCENTAGE", "PRICEOFFSET": return "float"
   of "FLOAT", "STRING", "CURRENCY", "EXCHANGE", "COUNTRY": return "string"
   of "UTCTIMESTAMP", "DATA", "LOCALMKTDATE", "MONTHYEAR", "MULTIPLEVALUESTRING", "UTCDATEONLY", "UTCTIMEONLY", "UTCDATE": return "string"
@@ -60,11 +60,12 @@ proc genMsg(m: XmlNode, fields: Fields, components: Components): Gen =
   #   echo "InstrmtLegExecGrp"
   #   echo result
 
-proc genMsgs(xml: XmlNode, fields: Fields, components: Components): OrderedTableRef[string, Gen] =
-  result = newOrderedTable[string, Gen]()
+proc genMsgs(xml: XmlNode, fields: Fields, components: Components): OrderedTableRef[(string, string), Gen] =
+  result = newOrderedTable[(string, string), Gen]()
   for m in xml.child("messages"):
     let msgT = m.attrs["msgtype"]
-    result[msgT] = genMsg(m, fields, components)
+    let msgN = m.attrs["name"]
+    result[(msgT, msgN)] = genMsg(m, fields, components)
 
 proc genHeader(xml: XmlNode, fields: Fields, components: Components): Gen =
   genMsg(xml.child("header"), fields, components)
@@ -87,8 +88,11 @@ proc uncapitalizeAscii(s: string): string =
   else: result = toLowerAscii(s[0]) & substr(s, 1)
 
 proc mt(t: string): string =
-  if t.len == 1 and t[0].isLowerAscii: "mt" & t.toUpperAscii() & "Low"
-  else: "mt" & t.toUpperAscii()
+  for x in t:
+    if x in {'A'..'Z'}:
+      result.add x.toLowerAscii
+  # if t.len == 1 and t[0].isLowerAscii: "mt" & t.toUpperAscii() & "Low"
+  # else: "mt" & t.toUpperAscii()
 
 proc field(f: string): string =
   let a = f.uncapitalizeAscii()
@@ -140,12 +144,12 @@ proc genParseGroup(n: string, gen: Gen, fields: Fields) =
       return
 """
 
-proc genParseMsgType(t: string, gen: Gen, name: string, header, trailer: Gen, fields: Fields) =
-  echo "proc parse",mt(t),"(s: string, result: var ",name,""", pos: var int) =
+proc genParseMsgType(t: (string, string), gen: Gen, name: string, header, trailer: Gen, fields: Fields) =
+  echo "proc parse",t[1],"(s: string, result: var ",name,""", pos: var int) =
   var
     t: uint16
-  # result = """,name,"""(msgType: """,mt(t),""")
-  result.msgType = """, mt(t), """
+  # result = """,name,"""(msgType: """, $t ,""")
+  result.msgType = """, t[1], """
 
   let l = s.len
   while pos < l:
@@ -156,16 +160,14 @@ proc genParseMsgType(t: string, gen: Gen, name: string, header, trailer: Gen, fi
       continue
     echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
   for f, tt in gen:
-    let pref =
-      if t[0] in {'0'..'9'}: "t" & mt(t)[2..^1]
-      else: mt(t)[2..^1].toLowerAscii()
+    let pref = mt(t[1])
     echo "    of ", fields[f].num, ": ", typeToParse(field(pref & f), tt, "result")
   for f, t in trailer:
     echo "    of ", fields[f].num, ": ", typeToParse(f, t, "result")
   echo """    else: skipValue(s, pos)
 """
 
-proc genParse(name: string, gen: OrderedTableRef[string, Gen], fields: Fields) =
+proc genParse(name: string, gen: OrderedTableRef[(string, string), Gen], fields: Fields) =
   echo """
 proc parse""",name,"""*(s: string): """,name,""" =
   var
@@ -182,7 +184,7 @@ proc parse""",name,"""*(s: string): """,name,""" =
       parseStr(s, v35, pos)
       case v35"""
   for t, _ in gen:
-    echo "      of \"", t, "\": parse", mt(t) , "(s, result, pos)"
+    echo "      of \"", t[0], "\": parse", t[1] , "(s, result, pos)"
   echo """
     else: raise newException(ValueError, "unexpected header field: " & $t)
 """
@@ -206,7 +208,7 @@ proc genStruct(xml: XmlNode, name: string, fields: Fields, components: Component
     echo()
 
   echo "  MsgTypeKind* = enum"
-  echo "    ", toSeq(tables.keys(generated)).map(mt).join(", ")
+  echo "    ", toSeq(tables.keys(generated)).mapIt(it[1] & " = \"" & it[0] & "\"").join("\n    ")
   echo()
 
   echo "  ", name, "* = object"
@@ -218,10 +220,8 @@ proc genStruct(xml: XmlNode, name: string, fields: Fields, components: Component
 
   echo "    case msgType*: MsgTypeKind"
   for t, g in generated:
-    echo "    of ", mt(t), ":"
-    let pref =
-      if t[0] in {'0'..'9'}: "t" & mt(t)[2..^1]
-      else: mt(t)[2..^1].toLowerAscii()
+    echo "    of ", t[1], ":"
+    let pref = mt(t[1])
     if g.len == 0:
       echo "      discard"
       continue

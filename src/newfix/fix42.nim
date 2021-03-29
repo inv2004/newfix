@@ -11,7 +11,7 @@ type
   NoContraBrokers* = object
     contraBroker*: string
     contraTrader*: string
-    contraTradeQty*: uint
+    contraTradeQty*: int
     contraTradeTime*: string
 
   NoMsgTypes* = object
@@ -43,11 +43,11 @@ type
     quoteRequestType*: int
     tradingSessionID*: string
     side*: char
-    orderQty*: uint
+    orderQty*: int
     futSettDate*: string
     ordType*: char
     futSettDate2*: string
-    orderQty2*: uint
+    orderQty2*: int
     expireTime*: string
     transactTime*: string
     currency*: string
@@ -70,7 +70,7 @@ type
     underlyingSecurityDesc*: string
     encodedUnderlyingSecurityDescLen*: uint
     encodedUnderlyingSecurityDesc*: string
-    ratioQty*: uint
+    ratioQty*: int
     underlyingCurrency*: string
 
   LinesOfText* = object
@@ -80,7 +80,7 @@ type
 
   NoAllocs* = object
     allocAccount*: string
-    allocShares*: uint
+    allocShares*: int
     allocPrice*: float
     processCode*: char
     brokerOfCredit*: string
@@ -118,8 +118,8 @@ type
     futSettDate*: string
     handlInst*: char
     execInst*: string
-    minQty*: uint
-    maxFloor*: uint
+    minQty*: int
+    maxFloor*: int
     exDestination*: string
     noTradingSessions*: seq[NoTradingSessions]
     processCode*: char
@@ -147,8 +147,8 @@ type
     sideValueInd*: int
     locateReqd*: bool
     transactTime*: string
-    orderQty*: uint
-    cashOrderQty*: uint
+    orderQty*: int
+    cashOrderQty*: int
     ordType*: char
     price*: float
     stopPx*: float
@@ -171,11 +171,11 @@ type
     encodedTextLen*: uint
     encodedText*: string
     futSettDate2*: string
-    orderQty2*: uint
+    orderQty2*: int
     openClose*: char
     coveredOrUncovered*: int
     customerOrFirm*: int
-    maxShow*: uint
+    maxShow*: int
     pegDifference*: float
     discretionInst*: char
     discretionOffset*: float
@@ -185,15 +185,15 @@ type
     secondaryOrderID*: string
     listID*: string
     waveNo*: string
-    cumQty*: uint
+    cumQty*: int
     ordStatus*: char
-    leavesQty*: uint
-    cxlQty*: uint
+    leavesQty*: int
+    cxlQty*: int
     avgPx*: float
     ordRejReason*: int
 
   NoExecs* = object
-    lastShares*: uint
+    lastShares*: int
     execID*: string
     lastPx*: float
     lastCapacity*: char
@@ -210,7 +210,7 @@ type
     mDEntryType*: char
     mDEntryPx*: float
     currency*: string
-    mDEntrySize*: uint
+    mDEntrySize*: int
     mDEntryDate*: string
     mDEntryTime*: string
     tickDirection*: char
@@ -225,7 +225,7 @@ type
     timeInForce*: char
     expireDate*: string
     expireTime*: string
-    minQty*: uint
+    minQty*: int
     execInst*: string
     sellerDays*: int
     orderID*: string
@@ -262,7 +262,7 @@ type
     encodedSecurityDesc*: string
     financialStatus*: char
     corporateAction*: char
-    totalVolumeTraded*: uint
+    totalVolumeTraded*: int
 
   NoQuoteSets* = object
     quoteSetID*: string
@@ -314,8 +314,8 @@ type
     quoteEntryRejectReason*: int
     bidPx*: float
     offerPx*: float
-    bidSize*: uint
-    offerSize*: uint
+    bidSize*: int
+    offerSize*: int
     validUntilTime*: string
     bidSpotRate*: float
     offerSpotRate*: float
@@ -326,7 +326,7 @@ type
     futSettDate*: string
     ordType*: char
     futSettDate2*: string
-    orderQty2*: uint
+    orderQty2*: int
     currency*: string
 
   NoBidDescriptors* = object
@@ -390,7 +390,52 @@ type
     encodedText*: string
 
   MsgTypeKind* = enum
-    mt0, mt1, mt2, mt3, mt4, mt5, mt6, mt7, mt8, mt9, mtA, mtB, mtC, mtD, mtE, mtF, mtG, mtH, mtJ, mtK, mtL, mtM, mtN, mtP, mtQ, mtR, mtS, mtT, mtV, mtW, mtX, mtY, mtZ, mtALow, mtBLow, mtCLow, mtDLow, mtELow, mtFLow, mtGLow, mtHLow, mtILow, mtJLow, mtKLow, mtLLow, mtMLow
+    Heartbeat = "0"
+    TestRequest = "1"
+    ResendRequest = "2"
+    Reject = "3"
+    SequenceReset = "4"
+    Logout = "5"
+    IOI = "6"
+    Advertisement = "7"
+    ExecutionReport = "8"
+    OrderCancelReject = "9"
+    Logon = "A"
+    News = "B"
+    Email = "C"
+    NewOrderSingle = "D"
+    NewOrderList = "E"
+    OrderCancelRequest = "F"
+    OrderCancelReplaceRequest = "G"
+    OrderStatusRequest = "H"
+    Allocation = "J"
+    ListCancelRequest = "K"
+    ListExecute = "L"
+    ListStatusRequest = "M"
+    ListStatus = "N"
+    AllocationInstructionAck = "P"
+    DontKnowTrade = "Q"
+    QuoteRequest = "R"
+    Quote = "S"
+    SettlementInstructions = "T"
+    MarketDataRequest = "V"
+    MarketDataSnapshotFullRefresh = "W"
+    MarketDataIncrementalRefresh = "X"
+    MarketDataRequestReject = "Y"
+    QuoteCancel = "Z"
+    QuoteStatusRequest = "a"
+    QuoteAcknowledgement = "b"
+    SecurityDefinitionRequest = "c"
+    SecurityDefinition = "d"
+    SecurityStatusRequest = "e"
+    SecurityStatus = "f"
+    TradingSessionStatusRequest = "g"
+    TradingSessionStatus = "h"
+    MassQuote = "i"
+    BusinessMessageReject = "j"
+    BidRequest = "k"
+    BidResponse = "l"
+    ListStrikePrice = "m"
 
   Fix42* = object
     beginString*: string
@@ -420,556 +465,591 @@ type
     lastMsgSeqNumProcessed*: int
     onBehalfOfSendingTime*: string
     case msgType*: MsgTypeKind
-    of mt0:
-      t0TestReqID*: string
-    of mt1:
-      t1TestReqID*: string
-    of mt2:
-      t2BeginSeqNo*: int
-      t2EndSeqNo*: int
-    of mt3:
-      t3RefSeqNum*: int
-      t3RefTagID*: int
-      t3RefMsgType*: string
-      t3SessionRejectReason*: int
-      t3Text*: string
-      t3EncodedTextLen*: uint
-      t3EncodedText*: string
-    of mt4:
-      t4GapFillFlag*: bool
-      t4NewSeqNo*: int
-    of mt5:
-      t5Text*: string
-      t5EncodedTextLen*: uint
-      t5EncodedText*: string
-    of mt6:
-      t6IOIid*: string
-      t6IOITransType*: char
-      t6IOIRefID*: string
-      t6Symbol*: string
-      t6SymbolSfx*: string
-      t6SecurityID*: string
-      t6IDSource*: string
-      t6SecurityType*: string
-      t6MaturityMonthYear*: string
-      t6MaturityDay*: uint
-      t6PutOrCall*: int
-      t6StrikePrice*: float
-      t6OptAttribute*: char
-      t6ContractMultiplier*: string
-      t6CouponRate*: string
-      t6SecurityExchange*: string
-      t6Issuer*: string
-      t6EncodedIssuerLen*: uint
-      t6EncodedIssuer*: string
-      t6SecurityDesc*: string
-      t6EncodedSecurityDescLen*: uint
-      t6EncodedSecurityDesc*: string
-      t6Side*: char
-      t6IOIShares*: string
-      t6Price*: float
-      t6Currency*: string
-      t6ValidUntilTime*: string
-      t6IOIQltyInd*: char
-      t6IOINaturalFlag*: bool
-      t6NoIOIQualifiers*: seq[NoIOIQualifiers]
-      t6Text*: string
-      t6EncodedTextLen*: uint
-      t6EncodedText*: string
-      t6TransactTime*: string
-      t6URLLink*: string
-      t6NoRoutingIDs*: seq[NoRoutingIDs]
-      t6SpreadToBenchmark*: float
-      t6Benchmark*: char
-    of mt7:
-      t7AdvId*: string
-      t7AdvTransType*: string
-      t7AdvRefID*: string
-      t7Symbol*: string
-      t7SymbolSfx*: string
-      t7SecurityID*: string
-      t7IDSource*: string
-      t7SecurityType*: string
-      t7MaturityMonthYear*: string
-      t7MaturityDay*: uint
-      t7PutOrCall*: int
-      t7StrikePrice*: float
-      t7OptAttribute*: char
-      t7ContractMultiplier*: string
-      t7CouponRate*: string
-      t7SecurityExchange*: string
-      t7Issuer*: string
-      t7EncodedIssuerLen*: uint
-      t7EncodedIssuer*: string
-      t7SecurityDesc*: string
-      t7EncodedSecurityDescLen*: uint
-      t7EncodedSecurityDesc*: string
-      t7AdvSide*: char
-      t7Shares*: uint
-      t7Price*: float
-      t7Currency*: string
-      t7TradeDate*: string
-      t7TransactTime*: string
-      t7Text*: string
-      t7EncodedTextLen*: uint
-      t7EncodedText*: string
-      t7URLLink*: string
-      t7LastMkt*: string
-      t7TradingSessionID*: string
-    of mt8:
-      t8OrderID*: string
-      t8SecondaryOrderID*: string
-      t8ClOrdID*: string
-      t8OrigClOrdID*: string
-      t8ClientID*: string
-      t8ExecBroker*: string
-      t8NoContraBrokers*: seq[NoContraBrokers]
-      t8ListID*: string
-      t8ExecID*: string
-      t8ExecTransType*: char
-      t8ExecRefID*: string
-      t8ExecType*: char
-      t8OrdStatus*: char
-      t8OrdRejReason*: int
-      t8ExecRestatementReason*: int
-      t8Account*: string
-      t8SettlmntTyp*: char
-      t8FutSettDate*: string
-      t8Symbol*: string
-      t8SymbolSfx*: string
-      t8SecurityID*: string
-      t8IDSource*: string
-      t8SecurityType*: string
-      t8MaturityMonthYear*: string
-      t8MaturityDay*: uint
-      t8PutOrCall*: int
-      t8StrikePrice*: float
-      t8OptAttribute*: char
-      t8ContractMultiplier*: string
-      t8CouponRate*: string
-      t8SecurityExchange*: string
-      t8Issuer*: string
-      t8EncodedIssuerLen*: uint
-      t8EncodedIssuer*: string
-      t8SecurityDesc*: string
-      t8EncodedSecurityDescLen*: uint
-      t8EncodedSecurityDesc*: string
-      t8Side*: char
-      t8OrderQty*: uint
-      t8CashOrderQty*: uint
-      t8OrdType*: char
-      t8Price*: float
-      t8StopPx*: float
-      t8PegDifference*: float
-      t8DiscretionInst*: char
-      t8DiscretionOffset*: float
-      t8Currency*: string
-      t8ComplianceID*: string
-      t8SolicitedFlag*: bool
-      t8TimeInForce*: char
-      t8EffectiveTime*: string
-      t8ExpireDate*: string
-      t8ExpireTime*: string
-      t8ExecInst*: string
-      t8Rule80A*: char
-      t8LastShares*: uint
-      t8LastPx*: float
-      t8LastSpotRate*: float
-      t8LastForwardPoints*: float
-      t8LastMkt*: string
-      t8TradingSessionID*: string
-      t8LastCapacity*: char
-      t8LeavesQty*: uint
-      t8CumQty*: uint
-      t8AvgPx*: float
-      t8DayOrderQty*: uint
-      t8DayCumQty*: uint
-      t8DayAvgPx*: float
-      t8GTBookingInst*: int
-      t8TradeDate*: string
-      t8TransactTime*: string
-      t8ReportToExch*: bool
-      t8Commission*: uint
-      t8CommType*: char
-      t8GrossTradeAmt*: uint
-      t8SettlCurrAmt*: uint
-      t8SettlCurrency*: string
-      t8SettlCurrFxRate*: string
-      t8SettlCurrFxRateCalc*: char
-      t8HandlInst*: char
-      t8MinQty*: uint
-      t8MaxFloor*: uint
-      t8OpenClose*: char
-      t8MaxShow*: uint
-      t8Text*: string
-      t8EncodedTextLen*: uint
-      t8EncodedText*: string
-      t8FutSettDate2*: string
-      t8OrderQty2*: uint
-      t8ClearingFirm*: string
-      t8ClearingAccount*: string
-      t8MultiLegReportingType*: char
-    of mt9:
-      t9OrderID*: string
-      t9SecondaryOrderID*: string
-      t9ClOrdID*: string
-      t9OrigClOrdID*: string
-      t9OrdStatus*: char
-      t9ClientID*: string
-      t9ExecBroker*: string
-      t9ListID*: string
-      t9Account*: string
-      t9TransactTime*: string
-      t9CxlRejResponseTo*: char
-      t9CxlRejReason*: int
-      t9Text*: string
-      t9EncodedTextLen*: uint
-      t9EncodedText*: string
-    of mtA:
-      aEncryptMethod*: int
-      aHeartBtInt*: int
-      aRawDataLength*: uint
-      aRawData*: string
-      aResetSeqNumFlag*: bool
-      aMaxMessageSize*: int
-      aNoMsgTypes*: seq[NoMsgTypes]
-    of mtB:
-      bOrigTime*: string
-      bUrgency*: char
-      bHeadline*: string
-      bEncodedHeadlineLen*: uint
-      bEncodedHeadline*: string
-      bNoRoutingIDs*: seq[NoRoutingIDs]
-      bNoRelatedSym*: seq[NoRelatedSym]
-      bLinesOfText*: seq[LinesOfText]
-      bURLLink*: string
-      bRawDataLength*: uint
-      bRawData*: string
-    of mtC:
-      cEmailThreadID*: string
-      cEmailType*: char
-      cOrigTime*: string
-      cSubject*: string
-      cEncodedSubjectLen*: uint
-      cEncodedSubject*: string
-      cNoRoutingIDs*: seq[NoRoutingIDs]
-      cNoRelatedSym*: seq[NoRelatedSym]
-      cOrderID*: string
-      cClOrdID*: string
-      cLinesOfText*: seq[LinesOfText]
-      cRawDataLength*: uint
-      cRawData*: string
-    of mtD:
-      dClOrdID*: string
-      dClientID*: string
-      dExecBroker*: string
-      dAccount*: string
-      dNoAllocs*: seq[NoAllocs]
-      dSettlmntTyp*: char
-      dFutSettDate*: string
-      dHandlInst*: char
-      dExecInst*: string
-      dMinQty*: uint
-      dMaxFloor*: uint
-      dExDestination*: string
-      dNoTradingSessions*: seq[NoTradingSessions]
-      dProcessCode*: char
-      dSymbol*: string
-      dSymbolSfx*: string
-      dSecurityID*: string
-      dIDSource*: string
-      dSecurityType*: string
-      dMaturityMonthYear*: string
-      dMaturityDay*: uint
-      dPutOrCall*: int
-      dStrikePrice*: float
-      dOptAttribute*: char
-      dContractMultiplier*: string
-      dCouponRate*: string
-      dSecurityExchange*: string
-      dIssuer*: string
-      dEncodedIssuerLen*: uint
-      dEncodedIssuer*: string
-      dSecurityDesc*: string
-      dEncodedSecurityDescLen*: uint
-      dEncodedSecurityDesc*: string
-      dPrevClosePx*: float
-      dSide*: char
-      dLocateReqd*: bool
-      dTransactTime*: string
-      dOrderQty*: uint
-      dCashOrderQty*: uint
-      dOrdType*: char
-      dPrice*: float
-      dStopPx*: float
-      dCurrency*: string
-      dComplianceID*: string
-      dSolicitedFlag*: bool
-      dIOIid*: string
-      dQuoteID*: string
-      dTimeInForce*: char
-      dEffectiveTime*: string
-      dExpireDate*: string
-      dExpireTime*: string
-      dGTBookingInst*: int
-      dCommission*: uint
-      dCommType*: char
-      dRule80A*: char
-      dForexReq*: bool
-      dSettlCurrency*: string
-      dText*: string
-      dEncodedTextLen*: uint
-      dEncodedText*: string
-      dFutSettDate2*: string
-      dOrderQty2*: uint
-      dOpenClose*: char
-      dCoveredOrUncovered*: int
-      dCustomerOrFirm*: int
-      dMaxShow*: uint
-      dPegDifference*: float
-      dDiscretionInst*: char
-      dDiscretionOffset*: float
-      dClearingFirm*: string
-      dClearingAccount*: string
-    of mtE:
-      eListID*: string
-      eBidID*: string
-      eClientBidID*: string
-      eProgRptReqs*: int
-      eBidType*: int
-      eProgPeriodInterval*: int
-      eListExecInstType*: char
-      eListExecInst*: string
-      eEncodedListExecInstLen*: uint
-      eEncodedListExecInst*: string
-      eTotNoOrders*: int
-      eNoOrders*: seq[NoOrders]
-    of mtF:
-      fOrigClOrdID*: string
-      fOrderID*: string
-      fClOrdID*: string
-      fListID*: string
-      fAccount*: string
-      fClientID*: string
-      fExecBroker*: string
-      fSymbol*: string
-      fSymbolSfx*: string
-      fSecurityID*: string
-      fIDSource*: string
-      fSecurityType*: string
-      fMaturityMonthYear*: string
-      fMaturityDay*: uint
-      fPutOrCall*: int
-      fStrikePrice*: float
-      fOptAttribute*: char
-      fContractMultiplier*: string
-      fCouponRate*: string
-      fSecurityExchange*: string
-      fIssuer*: string
-      fEncodedIssuerLen*: uint
-      fEncodedIssuer*: string
-      fSecurityDesc*: string
-      fEncodedSecurityDescLen*: uint
-      fEncodedSecurityDesc*: string
-      fSide*: char
-      fTransactTime*: string
-      fOrderQty*: uint
-      fCashOrderQty*: uint
-      fComplianceID*: string
-      fSolicitedFlag*: bool
-      fText*: string
-      fEncodedTextLen*: uint
-      fEncodedText*: string
-    of mtG:
-      gOrderID*: string
-      gClientID*: string
-      gExecBroker*: string
-      gOrigClOrdID*: string
-      gClOrdID*: string
-      gListID*: string
-      gAccount*: string
-      gNoAllocs*: seq[NoAllocs]
-      gSettlmntTyp*: char
-      gFutSettDate*: string
-      gHandlInst*: char
-      gExecInst*: string
-      gMinQty*: uint
-      gMaxFloor*: uint
-      gExDestination*: string
-      gNoTradingSessions*: seq[NoTradingSessions]
-      gSymbol*: string
-      gSymbolSfx*: string
-      gSecurityID*: string
-      gIDSource*: string
-      gSecurityType*: string
-      gMaturityMonthYear*: string
-      gMaturityDay*: uint
-      gPutOrCall*: int
-      gStrikePrice*: float
-      gOptAttribute*: char
-      gContractMultiplier*: string
-      gCouponRate*: string
-      gSecurityExchange*: string
-      gIssuer*: string
-      gEncodedIssuerLen*: uint
-      gEncodedIssuer*: string
-      gSecurityDesc*: string
-      gEncodedSecurityDescLen*: uint
-      gEncodedSecurityDesc*: string
-      gSide*: char
-      gTransactTime*: string
-      gOrderQty*: uint
-      gCashOrderQty*: uint
-      gOrdType*: char
-      gPrice*: float
-      gStopPx*: float
-      gPegDifference*: float
-      gDiscretionInst*: char
-      gDiscretionOffset*: float
-      gComplianceID*: string
-      gSolicitedFlag*: bool
-      gCurrency*: string
-      gTimeInForce*: char
-      gEffectiveTime*: string
-      gExpireDate*: string
-      gExpireTime*: string
-      gGTBookingInst*: int
-      gCommission*: uint
-      gCommType*: char
-      gRule80A*: char
-      gForexReq*: bool
-      gSettlCurrency*: string
-      gText*: string
-      gEncodedTextLen*: uint
-      gEncodedText*: string
-      gFutSettDate2*: string
-      gOrderQty2*: uint
-      gOpenClose*: char
-      gCoveredOrUncovered*: int
-      gCustomerOrFirm*: int
-      gMaxShow*: uint
-      gLocateReqd*: bool
-      gClearingFirm*: string
-      gClearingAccount*: string
-    of mtH:
-      hOrderID*: string
-      hClOrdID*: string
-      hClientID*: string
-      hAccount*: string
-      hExecBroker*: string
-      hSymbol*: string
-      hSymbolSfx*: string
-      hSecurityID*: string
-      hIDSource*: string
-      hSecurityType*: string
-      hMaturityMonthYear*: string
-      hMaturityDay*: uint
-      hPutOrCall*: int
-      hStrikePrice*: float
-      hOptAttribute*: char
-      hContractMultiplier*: string
-      hCouponRate*: string
-      hSecurityExchange*: string
-      hIssuer*: string
-      hEncodedIssuerLen*: uint
-      hEncodedIssuer*: string
-      hSecurityDesc*: string
-      hEncodedSecurityDescLen*: uint
-      hEncodedSecurityDesc*: string
-      hSide*: char
-    of mtJ:
-      jAllocID*: string
-      jAllocTransType*: char
-      jRefAllocID*: string
-      jAllocLinkID*: string
-      jAllocLinkType*: int
-      jNoOrders*: seq[NoOrders]
-      jNoExecs*: seq[NoExecs]
-      jSide*: char
-      jSymbol*: string
-      jSymbolSfx*: string
-      jSecurityID*: string
-      jIDSource*: string
-      jSecurityType*: string
-      jMaturityMonthYear*: string
-      jMaturityDay*: uint
-      jPutOrCall*: int
-      jStrikePrice*: float
-      jOptAttribute*: char
-      jContractMultiplier*: string
-      jCouponRate*: string
-      jSecurityExchange*: string
-      jIssuer*: string
-      jEncodedIssuerLen*: uint
-      jEncodedIssuer*: string
-      jSecurityDesc*: string
-      jEncodedSecurityDescLen*: uint
-      jEncodedSecurityDesc*: string
-      jShares*: uint
-      jLastMkt*: string
-      jTradingSessionID*: string
-      jAvgPx*: float
-      jCurrency*: string
-      jAvgPrxPrecision*: int
-      jTradeDate*: string
-      jTransactTime*: string
-      jSettlmntTyp*: char
-      jFutSettDate*: string
-      jGrossTradeAmt*: uint
-      jNetMoney*: uint
-      jOpenClose*: char
-      jText*: string
-      jEncodedTextLen*: uint
-      jEncodedText*: string
-      jNumDaysInterest*: int
-      jAccruedInterestRate*: string
-      jNoAllocs*: seq[NoAllocs]
-    of mtK:
-      kListID*: string
-      kTransactTime*: string
-      kText*: string
-      kEncodedTextLen*: uint
-      kEncodedText*: string
-    of mtL:
-      lListID*: string
-      lClientBidID*: string
-      lBidID*: string
-      lTransactTime*: string
+    of Heartbeat:
+      hTestReqID*: string
+    of TestRequest:
+      trTestReqID*: string
+    of ResendRequest:
+      rrBeginSeqNo*: int
+      rrEndSeqNo*: int
+    of Reject:
+      rRefSeqNum*: int
+      rRefTagID*: int
+      rRefMsgType*: string
+      rSessionRejectReason*: int
+      rText*: string
+      rEncodedTextLen*: uint
+      rEncodedText*: string
+    of SequenceReset:
+      srGapFillFlag*: bool
+      srNewSeqNo*: int
+    of Logout:
       lText*: string
       lEncodedTextLen*: uint
       lEncodedText*: string
-    of mtM:
-      mListID*: string
-      mText*: string
-      mEncodedTextLen*: uint
-      mEncodedText*: string
-    of mtN:
-      nListID*: string
-      nListStatusType*: int
-      nNoRpts*: int
-      nListOrderStatus*: int
-      nRptSeq*: int
-      nListStatusText*: string
-      nEncodedListStatusTextLen*: uint
-      nEncodedListStatusText*: string
-      nTransactTime*: string
-      nTotNoOrders*: int
-      nNoOrders*: seq[NoOrders]
-    of mtP:
-      pClientID*: string
-      pExecBroker*: string
-      pAllocID*: string
-      pTradeDate*: string
-      pTransactTime*: string
-      pAllocStatus*: int
-      pAllocRejCode*: int
-      pText*: string
-      pEncodedTextLen*: uint
-      pEncodedText*: string
-    of mtQ:
-      qOrderID*: string
-      qExecID*: string
-      qDKReason*: char
+    of IOI:
+      ioiIOIid*: string
+      ioiIOITransType*: char
+      ioiIOIRefID*: string
+      ioiSymbol*: string
+      ioiSymbolSfx*: string
+      ioiSecurityID*: string
+      ioiIDSource*: string
+      ioiSecurityType*: string
+      ioiMaturityMonthYear*: string
+      ioiMaturityDay*: uint
+      ioiPutOrCall*: int
+      ioiStrikePrice*: float
+      ioiOptAttribute*: char
+      ioiContractMultiplier*: string
+      ioiCouponRate*: string
+      ioiSecurityExchange*: string
+      ioiIssuer*: string
+      ioiEncodedIssuerLen*: uint
+      ioiEncodedIssuer*: string
+      ioiSecurityDesc*: string
+      ioiEncodedSecurityDescLen*: uint
+      ioiEncodedSecurityDesc*: string
+      ioiSide*: char
+      ioiIOIShares*: string
+      ioiPrice*: float
+      ioiCurrency*: string
+      ioiValidUntilTime*: string
+      ioiIOIQltyInd*: char
+      ioiIOINaturalFlag*: bool
+      ioiNoIOIQualifiers*: seq[NoIOIQualifiers]
+      ioiText*: string
+      ioiEncodedTextLen*: uint
+      ioiEncodedText*: string
+      ioiTransactTime*: string
+      ioiURLLink*: string
+      ioiNoRoutingIDs*: seq[NoRoutingIDs]
+      ioiSpreadToBenchmark*: float
+      ioiBenchmark*: char
+    of Advertisement:
+      aAdvId*: string
+      aAdvTransType*: string
+      aAdvRefID*: string
+      aSymbol*: string
+      aSymbolSfx*: string
+      aSecurityID*: string
+      aIDSource*: string
+      aSecurityType*: string
+      aMaturityMonthYear*: string
+      aMaturityDay*: uint
+      aPutOrCall*: int
+      aStrikePrice*: float
+      aOptAttribute*: char
+      aContractMultiplier*: string
+      aCouponRate*: string
+      aSecurityExchange*: string
+      aIssuer*: string
+      aEncodedIssuerLen*: uint
+      aEncodedIssuer*: string
+      aSecurityDesc*: string
+      aEncodedSecurityDescLen*: uint
+      aEncodedSecurityDesc*: string
+      aAdvSide*: char
+      aShares*: int
+      aPrice*: float
+      aCurrency*: string
+      aTradeDate*: string
+      aTransactTime*: string
+      aText*: string
+      aEncodedTextLen*: uint
+      aEncodedText*: string
+      aURLLink*: string
+      aLastMkt*: string
+      aTradingSessionID*: string
+    of ExecutionReport:
+      erOrderID*: string
+      erSecondaryOrderID*: string
+      erClOrdID*: string
+      erOrigClOrdID*: string
+      erClientID*: string
+      erExecBroker*: string
+      erNoContraBrokers*: seq[NoContraBrokers]
+      erListID*: string
+      erExecID*: string
+      erExecTransType*: char
+      erExecRefID*: string
+      erExecType*: char
+      erOrdStatus*: char
+      erOrdRejReason*: int
+      erExecRestatementReason*: int
+      erAccount*: string
+      erSettlmntTyp*: char
+      erFutSettDate*: string
+      erSymbol*: string
+      erSymbolSfx*: string
+      erSecurityID*: string
+      erIDSource*: string
+      erSecurityType*: string
+      erMaturityMonthYear*: string
+      erMaturityDay*: uint
+      erPutOrCall*: int
+      erStrikePrice*: float
+      erOptAttribute*: char
+      erContractMultiplier*: string
+      erCouponRate*: string
+      erSecurityExchange*: string
+      erIssuer*: string
+      erEncodedIssuerLen*: uint
+      erEncodedIssuer*: string
+      erSecurityDesc*: string
+      erEncodedSecurityDescLen*: uint
+      erEncodedSecurityDesc*: string
+      erSide*: char
+      erOrderQty*: int
+      erCashOrderQty*: int
+      erOrdType*: char
+      erPrice*: float
+      erStopPx*: float
+      erPegDifference*: float
+      erDiscretionInst*: char
+      erDiscretionOffset*: float
+      erCurrency*: string
+      erComplianceID*: string
+      erSolicitedFlag*: bool
+      erTimeInForce*: char
+      erEffectiveTime*: string
+      erExpireDate*: string
+      erExpireTime*: string
+      erExecInst*: string
+      erRule80A*: char
+      erLastShares*: int
+      erLastPx*: float
+      erLastSpotRate*: float
+      erLastForwardPoints*: float
+      erLastMkt*: string
+      erTradingSessionID*: string
+      erLastCapacity*: char
+      erLeavesQty*: int
+      erCumQty*: int
+      erAvgPx*: float
+      erDayOrderQty*: int
+      erDayCumQty*: int
+      erDayAvgPx*: float
+      erGTBookingInst*: int
+      erTradeDate*: string
+      erTransactTime*: string
+      erReportToExch*: bool
+      erCommission*: uint
+      erCommType*: char
+      erGrossTradeAmt*: uint
+      erSettlCurrAmt*: uint
+      erSettlCurrency*: string
+      erSettlCurrFxRate*: string
+      erSettlCurrFxRateCalc*: char
+      erHandlInst*: char
+      erMinQty*: int
+      erMaxFloor*: int
+      erOpenClose*: char
+      erMaxShow*: int
+      erText*: string
+      erEncodedTextLen*: uint
+      erEncodedText*: string
+      erFutSettDate2*: string
+      erOrderQty2*: int
+      erClearingFirm*: string
+      erClearingAccount*: string
+      erMultiLegReportingType*: char
+    of OrderCancelReject:
+      ocrOrderID*: string
+      ocrSecondaryOrderID*: string
+      ocrClOrdID*: string
+      ocrOrigClOrdID*: string
+      ocrOrdStatus*: char
+      ocrClientID*: string
+      ocrExecBroker*: string
+      ocrListID*: string
+      ocrAccount*: string
+      ocrTransactTime*: string
+      ocrCxlRejResponseTo*: char
+      ocrCxlRejReason*: int
+      ocrText*: string
+      ocrEncodedTextLen*: uint
+      ocrEncodedText*: string
+    of Logon:
+      lEncryptMethod*: int
+      lHeartBtInt*: int
+      lRawDataLength*: uint
+      lRawData*: string
+      lResetSeqNumFlag*: bool
+      lMaxMessageSize*: int
+      lNoMsgTypes*: seq[NoMsgTypes]
+    of News:
+      nOrigTime*: string
+      nUrgency*: char
+      nHeadline*: string
+      nEncodedHeadlineLen*: uint
+      nEncodedHeadline*: string
+      nNoRoutingIDs*: seq[NoRoutingIDs]
+      nNoRelatedSym*: seq[NoRelatedSym]
+      nLinesOfText*: seq[LinesOfText]
+      nURLLink*: string
+      nRawDataLength*: uint
+      nRawData*: string
+    of Email:
+      eEmailThreadID*: string
+      eEmailType*: char
+      eOrigTime*: string
+      eSubject*: string
+      eEncodedSubjectLen*: uint
+      eEncodedSubject*: string
+      eNoRoutingIDs*: seq[NoRoutingIDs]
+      eNoRelatedSym*: seq[NoRelatedSym]
+      eOrderID*: string
+      eClOrdID*: string
+      eLinesOfText*: seq[LinesOfText]
+      eRawDataLength*: uint
+      eRawData*: string
+    of NewOrderSingle:
+      nosClOrdID*: string
+      nosClientID*: string
+      nosExecBroker*: string
+      nosAccount*: string
+      nosNoAllocs*: seq[NoAllocs]
+      nosSettlmntTyp*: char
+      nosFutSettDate*: string
+      nosHandlInst*: char
+      nosExecInst*: string
+      nosMinQty*: int
+      nosMaxFloor*: int
+      nosExDestination*: string
+      nosNoTradingSessions*: seq[NoTradingSessions]
+      nosProcessCode*: char
+      nosSymbol*: string
+      nosSymbolSfx*: string
+      nosSecurityID*: string
+      nosIDSource*: string
+      nosSecurityType*: string
+      nosMaturityMonthYear*: string
+      nosMaturityDay*: uint
+      nosPutOrCall*: int
+      nosStrikePrice*: float
+      nosOptAttribute*: char
+      nosContractMultiplier*: string
+      nosCouponRate*: string
+      nosSecurityExchange*: string
+      nosIssuer*: string
+      nosEncodedIssuerLen*: uint
+      nosEncodedIssuer*: string
+      nosSecurityDesc*: string
+      nosEncodedSecurityDescLen*: uint
+      nosEncodedSecurityDesc*: string
+      nosPrevClosePx*: float
+      nosSide*: char
+      nosLocateReqd*: bool
+      nosTransactTime*: string
+      nosOrderQty*: int
+      nosCashOrderQty*: int
+      nosOrdType*: char
+      nosPrice*: float
+      nosStopPx*: float
+      nosCurrency*: string
+      nosComplianceID*: string
+      nosSolicitedFlag*: bool
+      nosIOIid*: string
+      nosQuoteID*: string
+      nosTimeInForce*: char
+      nosEffectiveTime*: string
+      nosExpireDate*: string
+      nosExpireTime*: string
+      nosGTBookingInst*: int
+      nosCommission*: uint
+      nosCommType*: char
+      nosRule80A*: char
+      nosForexReq*: bool
+      nosSettlCurrency*: string
+      nosText*: string
+      nosEncodedTextLen*: uint
+      nosEncodedText*: string
+      nosFutSettDate2*: string
+      nosOrderQty2*: int
+      nosOpenClose*: char
+      nosCoveredOrUncovered*: int
+      nosCustomerOrFirm*: int
+      nosMaxShow*: int
+      nosPegDifference*: float
+      nosDiscretionInst*: char
+      nosDiscretionOffset*: float
+      nosClearingFirm*: string
+      nosClearingAccount*: string
+    of NewOrderList:
+      nolListID*: string
+      nolBidID*: string
+      nolClientBidID*: string
+      nolProgRptReqs*: int
+      nolBidType*: int
+      nolProgPeriodInterval*: int
+      nolListExecInstType*: char
+      nolListExecInst*: string
+      nolEncodedListExecInstLen*: uint
+      nolEncodedListExecInst*: string
+      nolTotNoOrders*: int
+      nolNoOrders*: seq[NoOrders]
+    of OrderCancelRequest:
+      ocrOrigClOrdID*: string
+      ocrOrderID*: string
+      ocrClOrdID*: string
+      ocrListID*: string
+      ocrAccount*: string
+      ocrClientID*: string
+      ocrExecBroker*: string
+      ocrSymbol*: string
+      ocrSymbolSfx*: string
+      ocrSecurityID*: string
+      ocrIDSource*: string
+      ocrSecurityType*: string
+      ocrMaturityMonthYear*: string
+      ocrMaturityDay*: uint
+      ocrPutOrCall*: int
+      ocrStrikePrice*: float
+      ocrOptAttribute*: char
+      ocrContractMultiplier*: string
+      ocrCouponRate*: string
+      ocrSecurityExchange*: string
+      ocrIssuer*: string
+      ocrEncodedIssuerLen*: uint
+      ocrEncodedIssuer*: string
+      ocrSecurityDesc*: string
+      ocrEncodedSecurityDescLen*: uint
+      ocrEncodedSecurityDesc*: string
+      ocrSide*: char
+      ocrTransactTime*: string
+      ocrOrderQty*: int
+      ocrCashOrderQty*: int
+      ocrComplianceID*: string
+      ocrSolicitedFlag*: bool
+      ocrText*: string
+      ocrEncodedTextLen*: uint
+      ocrEncodedText*: string
+    of OrderCancelReplaceRequest:
+      ocrrOrderID*: string
+      ocrrClientID*: string
+      ocrrExecBroker*: string
+      ocrrOrigClOrdID*: string
+      ocrrClOrdID*: string
+      ocrrListID*: string
+      ocrrAccount*: string
+      ocrrNoAllocs*: seq[NoAllocs]
+      ocrrSettlmntTyp*: char
+      ocrrFutSettDate*: string
+      ocrrHandlInst*: char
+      ocrrExecInst*: string
+      ocrrMinQty*: int
+      ocrrMaxFloor*: int
+      ocrrExDestination*: string
+      ocrrNoTradingSessions*: seq[NoTradingSessions]
+      ocrrSymbol*: string
+      ocrrSymbolSfx*: string
+      ocrrSecurityID*: string
+      ocrrIDSource*: string
+      ocrrSecurityType*: string
+      ocrrMaturityMonthYear*: string
+      ocrrMaturityDay*: uint
+      ocrrPutOrCall*: int
+      ocrrStrikePrice*: float
+      ocrrOptAttribute*: char
+      ocrrContractMultiplier*: string
+      ocrrCouponRate*: string
+      ocrrSecurityExchange*: string
+      ocrrIssuer*: string
+      ocrrEncodedIssuerLen*: uint
+      ocrrEncodedIssuer*: string
+      ocrrSecurityDesc*: string
+      ocrrEncodedSecurityDescLen*: uint
+      ocrrEncodedSecurityDesc*: string
+      ocrrSide*: char
+      ocrrTransactTime*: string
+      ocrrOrderQty*: int
+      ocrrCashOrderQty*: int
+      ocrrOrdType*: char
+      ocrrPrice*: float
+      ocrrStopPx*: float
+      ocrrPegDifference*: float
+      ocrrDiscretionInst*: char
+      ocrrDiscretionOffset*: float
+      ocrrComplianceID*: string
+      ocrrSolicitedFlag*: bool
+      ocrrCurrency*: string
+      ocrrTimeInForce*: char
+      ocrrEffectiveTime*: string
+      ocrrExpireDate*: string
+      ocrrExpireTime*: string
+      ocrrGTBookingInst*: int
+      ocrrCommission*: uint
+      ocrrCommType*: char
+      ocrrRule80A*: char
+      ocrrForexReq*: bool
+      ocrrSettlCurrency*: string
+      ocrrText*: string
+      ocrrEncodedTextLen*: uint
+      ocrrEncodedText*: string
+      ocrrFutSettDate2*: string
+      ocrrOrderQty2*: int
+      ocrrOpenClose*: char
+      ocrrCoveredOrUncovered*: int
+      ocrrCustomerOrFirm*: int
+      ocrrMaxShow*: int
+      ocrrLocateReqd*: bool
+      ocrrClearingFirm*: string
+      ocrrClearingAccount*: string
+    of OrderStatusRequest:
+      osrOrderID*: string
+      osrClOrdID*: string
+      osrClientID*: string
+      osrAccount*: string
+      osrExecBroker*: string
+      osrSymbol*: string
+      osrSymbolSfx*: string
+      osrSecurityID*: string
+      osrIDSource*: string
+      osrSecurityType*: string
+      osrMaturityMonthYear*: string
+      osrMaturityDay*: uint
+      osrPutOrCall*: int
+      osrStrikePrice*: float
+      osrOptAttribute*: char
+      osrContractMultiplier*: string
+      osrCouponRate*: string
+      osrSecurityExchange*: string
+      osrIssuer*: string
+      osrEncodedIssuerLen*: uint
+      osrEncodedIssuer*: string
+      osrSecurityDesc*: string
+      osrEncodedSecurityDescLen*: uint
+      osrEncodedSecurityDesc*: string
+      osrSide*: char
+    of Allocation:
+      aAllocID*: string
+      aAllocTransType*: char
+      aRefAllocID*: string
+      aAllocLinkID*: string
+      aAllocLinkType*: int
+      aNoOrders*: seq[NoOrders]
+      aNoExecs*: seq[NoExecs]
+      aSide*: char
+      aSymbol*: string
+      aSymbolSfx*: string
+      aSecurityID*: string
+      aIDSource*: string
+      aSecurityType*: string
+      aMaturityMonthYear*: string
+      aMaturityDay*: uint
+      aPutOrCall*: int
+      aStrikePrice*: float
+      aOptAttribute*: char
+      aContractMultiplier*: string
+      aCouponRate*: string
+      aSecurityExchange*: string
+      aIssuer*: string
+      aEncodedIssuerLen*: uint
+      aEncodedIssuer*: string
+      aSecurityDesc*: string
+      aEncodedSecurityDescLen*: uint
+      aEncodedSecurityDesc*: string
+      aShares*: int
+      aLastMkt*: string
+      aTradingSessionID*: string
+      aAvgPx*: float
+      aCurrency*: string
+      aAvgPrxPrecision*: int
+      aTradeDate*: string
+      aTransactTime*: string
+      aSettlmntTyp*: char
+      aFutSettDate*: string
+      aGrossTradeAmt*: uint
+      aNetMoney*: uint
+      aOpenClose*: char
+      aText*: string
+      aEncodedTextLen*: uint
+      aEncodedText*: string
+      aNumDaysInterest*: int
+      aAccruedInterestRate*: string
+      aNoAllocs*: seq[NoAllocs]
+    of ListCancelRequest:
+      lcrListID*: string
+      lcrTransactTime*: string
+      lcrText*: string
+      lcrEncodedTextLen*: uint
+      lcrEncodedText*: string
+    of ListExecute:
+      leListID*: string
+      leClientBidID*: string
+      leBidID*: string
+      leTransactTime*: string
+      leText*: string
+      leEncodedTextLen*: uint
+      leEncodedText*: string
+    of ListStatusRequest:
+      lsrListID*: string
+      lsrText*: string
+      lsrEncodedTextLen*: uint
+      lsrEncodedText*: string
+    of ListStatus:
+      lsListID*: string
+      lsListStatusType*: int
+      lsNoRpts*: int
+      lsListOrderStatus*: int
+      lsRptSeq*: int
+      lsListStatusText*: string
+      lsEncodedListStatusTextLen*: uint
+      lsEncodedListStatusText*: string
+      lsTransactTime*: string
+      lsTotNoOrders*: int
+      lsNoOrders*: seq[NoOrders]
+    of AllocationInstructionAck:
+      aiaClientID*: string
+      aiaExecBroker*: string
+      aiaAllocID*: string
+      aiaTradeDate*: string
+      aiaTransactTime*: string
+      aiaAllocStatus*: int
+      aiaAllocRejCode*: int
+      aiaText*: string
+      aiaEncodedTextLen*: uint
+      aiaEncodedText*: string
+    of DontKnowTrade:
+      dktOrderID*: string
+      dktExecID*: string
+      dktDKReason*: char
+      dktSymbol*: string
+      dktSymbolSfx*: string
+      dktSecurityID*: string
+      dktIDSource*: string
+      dktSecurityType*: string
+      dktMaturityMonthYear*: string
+      dktMaturityDay*: uint
+      dktPutOrCall*: int
+      dktStrikePrice*: float
+      dktOptAttribute*: char
+      dktContractMultiplier*: string
+      dktCouponRate*: string
+      dktSecurityExchange*: string
+      dktIssuer*: string
+      dktEncodedIssuerLen*: uint
+      dktEncodedIssuer*: string
+      dktSecurityDesc*: string
+      dktEncodedSecurityDescLen*: uint
+      dktEncodedSecurityDesc*: string
+      dktSide*: char
+      dktOrderQty*: int
+      dktCashOrderQty*: int
+      dktLastShares*: int
+      dktLastPx*: float
+      dktText*: string
+      dktEncodedTextLen*: uint
+      dktEncodedText*: string
+    of QuoteRequest:
+      qrQuoteReqID*: string
+      qrNoRelatedSym*: seq[NoRelatedSym]
+    of Quote:
+      qQuoteReqID*: string
+      qQuoteID*: string
+      qQuoteResponseLevel*: int
+      qTradingSessionID*: string
       qSymbol*: string
       qSymbolSfx*: string
       qSecurityID*: string
@@ -989,368 +1069,333 @@ type
       qSecurityDesc*: string
       qEncodedSecurityDescLen*: uint
       qEncodedSecurityDesc*: string
-      qSide*: char
-      qOrderQty*: uint
-      qCashOrderQty*: uint
-      qLastShares*: uint
-      qLastPx*: float
-      qText*: string
-      qEncodedTextLen*: uint
-      qEncodedText*: string
-    of mtR:
-      rQuoteReqID*: string
-      rNoRelatedSym*: seq[NoRelatedSym]
-    of mtS:
-      sQuoteReqID*: string
-      sQuoteID*: string
-      sQuoteResponseLevel*: int
-      sTradingSessionID*: string
-      sSymbol*: string
-      sSymbolSfx*: string
-      sSecurityID*: string
-      sIDSource*: string
-      sSecurityType*: string
-      sMaturityMonthYear*: string
-      sMaturityDay*: uint
-      sPutOrCall*: int
-      sStrikePrice*: float
-      sOptAttribute*: char
-      sContractMultiplier*: string
-      sCouponRate*: string
-      sSecurityExchange*: string
-      sIssuer*: string
-      sEncodedIssuerLen*: uint
-      sEncodedIssuer*: string
-      sSecurityDesc*: string
-      sEncodedSecurityDescLen*: uint
-      sEncodedSecurityDesc*: string
-      sBidPx*: float
-      sOfferPx*: float
-      sBidSize*: uint
-      sOfferSize*: uint
-      sValidUntilTime*: string
-      sBidSpotRate*: float
-      sOfferSpotRate*: float
-      sBidForwardPoints*: float
-      sOfferForwardPoints*: float
-      sTransactTime*: string
-      sFutSettDate*: string
-      sOrdType*: char
-      sFutSettDate2*: string
-      sOrderQty2*: uint
-      sCurrency*: string
-    of mtT:
-      tSettlInstID*: string
-      tSettlInstTransType*: char
-      tSettlInstRefID*: string
-      tSettlInstMode*: char
-      tSettlInstSource*: char
-      tAllocAccount*: string
-      tSettlLocation*: string
-      tTradeDate*: string
-      tAllocID*: string
-      tLastMkt*: string
-      tTradingSessionID*: string
-      tSide*: char
-      tSecurityType*: string
-      tEffectiveTime*: string
-      tTransactTime*: string
-      tClientID*: string
-      tExecBroker*: string
-      tStandInstDbType*: int
-      tStandInstDbName*: string
-      tStandInstDbID*: string
-      tSettlDeliveryType*: int
-      tSettlDepositoryCode*: string
-      tSettlBrkrCode*: string
-      tSettlInstCode*: string
-      tSecuritySettlAgentName*: string
-      tSecuritySettlAgentCode*: string
-      tSecuritySettlAgentAcctNum*: string
-      tSecuritySettlAgentAcctName*: string
-      tSecuritySettlAgentContactName*: string
-      tSecuritySettlAgentContactPhone*: string
-      tCashSettlAgentName*: string
-      tCashSettlAgentCode*: string
-      tCashSettlAgentAcctNum*: string
-      tCashSettlAgentAcctName*: string
-      tCashSettlAgentContactName*: string
-      tCashSettlAgentContactPhone*: string
-    of mtV:
-      vMDReqID*: string
-      vSubscriptionRequestType*: char
-      vMarketDepth*: int
-      vMDUpdateType*: int
-      vAggregatedBook*: bool
-      vNoMDEntryTypes*: seq[NoMDEntryTypes]
-      vNoRelatedSym*: seq[NoRelatedSym]
-    of mtW:
-      wMDReqID*: string
-      wSymbol*: string
-      wSymbolSfx*: string
-      wSecurityID*: string
-      wIDSource*: string
-      wSecurityType*: string
-      wMaturityMonthYear*: string
-      wMaturityDay*: uint
-      wPutOrCall*: int
-      wStrikePrice*: float
-      wOptAttribute*: char
-      wContractMultiplier*: string
-      wCouponRate*: string
-      wSecurityExchange*: string
-      wIssuer*: string
-      wEncodedIssuerLen*: uint
-      wEncodedIssuer*: string
-      wSecurityDesc*: string
-      wEncodedSecurityDescLen*: uint
-      wEncodedSecurityDesc*: string
-      wFinancialStatus*: char
-      wCorporateAction*: char
-      wTotalVolumeTraded*: uint
-      wNoMDEntries*: seq[NoMDEntries]
-    of mtX:
-      xMDReqID*: string
-      xNoMDEntries*: seq[NoMDEntries]
-    of mtY:
-      yMDReqID*: string
-      yMDReqRejReason*: char
-      yText*: string
-      yEncodedTextLen*: uint
-      yEncodedText*: string
-    of mtZ:
-      zQuoteReqID*: string
-      zQuoteID*: string
-      zQuoteCancelType*: int
-      zQuoteResponseLevel*: int
-      zTradingSessionID*: string
-      zNoQuoteEntries*: seq[NoQuoteEntries]
-    of mtALow:
-      alowQuoteID*: string
-      alowSymbol*: string
-      alowSymbolSfx*: string
-      alowSecurityID*: string
-      alowIDSource*: string
-      alowSecurityType*: string
-      alowMaturityMonthYear*: string
-      alowMaturityDay*: uint
-      alowPutOrCall*: int
-      alowStrikePrice*: float
-      alowOptAttribute*: char
-      alowContractMultiplier*: string
-      alowCouponRate*: string
-      alowSecurityExchange*: string
-      alowIssuer*: string
-      alowEncodedIssuerLen*: uint
-      alowEncodedIssuer*: string
-      alowSecurityDesc*: string
-      alowEncodedSecurityDescLen*: uint
-      alowEncodedSecurityDesc*: string
-      alowSide*: char
-      alowTradingSessionID*: string
-    of mtBLow:
-      blowQuoteReqID*: string
-      blowQuoteID*: string
-      blowQuoteAckStatus*: int
-      blowQuoteRejectReason*: int
-      blowQuoteResponseLevel*: int
-      blowTradingSessionID*: string
-      blowText*: string
-      blowNoQuoteSets*: seq[NoQuoteSets]
-    of mtCLow:
-      clowSecurityReqID*: string
-      clowSecurityRequestType*: int
-      clowSymbol*: string
-      clowSymbolSfx*: string
-      clowSecurityID*: string
-      clowIDSource*: string
-      clowSecurityType*: string
-      clowMaturityMonthYear*: string
-      clowMaturityDay*: uint
-      clowPutOrCall*: int
-      clowStrikePrice*: float
-      clowOptAttribute*: char
-      clowContractMultiplier*: string
-      clowCouponRate*: string
-      clowSecurityExchange*: string
-      clowIssuer*: string
-      clowEncodedIssuerLen*: uint
-      clowEncodedIssuer*: string
-      clowSecurityDesc*: string
-      clowEncodedSecurityDescLen*: uint
-      clowEncodedSecurityDesc*: string
-      clowCurrency*: string
-      clowText*: string
-      clowEncodedTextLen*: uint
-      clowEncodedText*: string
-      clowTradingSessionID*: string
-      clowNoRelatedSym*: seq[NoRelatedSym]
-    of mtDLow:
-      dlowSecurityReqID*: string
-      dlowSecurityResponseID*: string
-      dlowSecurityResponseType*: int
-      dlowTotalNumSecurities*: int
-      dlowSymbol*: string
-      dlowSymbolSfx*: string
-      dlowSecurityID*: string
-      dlowIDSource*: string
-      dlowSecurityType*: string
-      dlowMaturityMonthYear*: string
-      dlowMaturityDay*: uint
-      dlowPutOrCall*: int
-      dlowStrikePrice*: float
-      dlowOptAttribute*: char
-      dlowContractMultiplier*: string
-      dlowCouponRate*: string
-      dlowSecurityExchange*: string
-      dlowIssuer*: string
-      dlowEncodedIssuerLen*: uint
-      dlowEncodedIssuer*: string
-      dlowSecurityDesc*: string
-      dlowEncodedSecurityDescLen*: uint
-      dlowEncodedSecurityDesc*: string
-      dlowCurrency*: string
-      dlowTradingSessionID*: string
-      dlowText*: string
-      dlowEncodedTextLen*: uint
-      dlowEncodedText*: string
-      dlowNoRelatedSym*: seq[NoRelatedSym]
-    of mtELow:
-      elowSecurityStatusReqID*: string
-      elowSymbol*: string
-      elowSymbolSfx*: string
-      elowSecurityID*: string
-      elowIDSource*: string
-      elowSecurityType*: string
-      elowMaturityMonthYear*: string
-      elowMaturityDay*: uint
-      elowPutOrCall*: int
-      elowStrikePrice*: float
-      elowOptAttribute*: char
-      elowContractMultiplier*: string
-      elowCouponRate*: string
-      elowSecurityExchange*: string
-      elowIssuer*: string
-      elowEncodedIssuerLen*: uint
-      elowEncodedIssuer*: string
-      elowSecurityDesc*: string
-      elowEncodedSecurityDescLen*: uint
-      elowEncodedSecurityDesc*: string
-      elowCurrency*: string
-      elowSubscriptionRequestType*: char
-      elowTradingSessionID*: string
-    of mtFLow:
-      flowSecurityStatusReqID*: string
-      flowSymbol*: string
-      flowSymbolSfx*: string
-      flowSecurityID*: string
-      flowIDSource*: string
-      flowSecurityType*: string
-      flowMaturityMonthYear*: string
-      flowMaturityDay*: uint
-      flowPutOrCall*: int
-      flowStrikePrice*: float
-      flowOptAttribute*: char
-      flowContractMultiplier*: string
-      flowCouponRate*: string
-      flowSecurityExchange*: string
-      flowIssuer*: string
-      flowEncodedIssuerLen*: uint
-      flowEncodedIssuer*: string
-      flowSecurityDesc*: string
-      flowEncodedSecurityDescLen*: uint
-      flowEncodedSecurityDesc*: string
-      flowCurrency*: string
-      flowTradingSessionID*: string
-      flowUnsolicitedIndicator*: bool
-      flowSecurityTradingStatus*: int
-      flowFinancialStatus*: char
-      flowCorporateAction*: char
-      flowHaltReasonChar*: char
-      flowInViewOfCommon*: bool
-      flowDueToRelated*: bool
-      flowBuyVolume*: uint
-      flowSellVolume*: uint
-      flowHighPx*: float
-      flowLowPx*: float
-      flowLastPx*: float
-      flowTransactTime*: string
-      flowAdjustment*: int
-    of mtGLow:
-      glowTradSesReqID*: string
-      glowTradingSessionID*: string
-      glowTradSesMethod*: int
-      glowTradSesMode*: int
-      glowSubscriptionRequestType*: char
-    of mtHLow:
-      hlowTradSesReqID*: string
-      hlowTradingSessionID*: string
-      hlowTradSesMethod*: int
-      hlowTradSesMode*: int
-      hlowUnsolicitedIndicator*: bool
-      hlowTradSesStatus*: int
-      hlowTradSesStartTime*: string
-      hlowTradSesOpenTime*: string
-      hlowTradSesPreCloseTime*: string
-      hlowTradSesCloseTime*: string
-      hlowTradSesEndTime*: string
-      hlowTotalVolumeTraded*: uint
-      hlowText*: string
-      hlowEncodedTextLen*: uint
-      hlowEncodedText*: string
-    of mtILow:
-      ilowQuoteReqID*: string
-      ilowQuoteID*: string
-      ilowQuoteResponseLevel*: int
-      ilowDefBidSize*: uint
-      ilowDefOfferSize*: uint
-      ilowNoQuoteSets*: seq[NoQuoteSets]
-    of mtJLow:
-      jlowRefSeqNum*: int
-      jlowRefMsgType*: string
-      jlowBusinessRejectRefID*: string
-      jlowBusinessRejectReason*: int
-      jlowText*: string
-      jlowEncodedTextLen*: uint
-      jlowEncodedText*: string
-    of mtKLow:
-      klowBidID*: string
-      klowClientBidID*: string
-      klowBidRequestTransType*: char
-      klowListName*: string
-      klowTotalNumSecurities*: int
-      klowBidType*: int
-      klowNumTickets*: int
-      klowCurrency*: string
-      klowSideValue1*: uint
-      klowSideValue2*: uint
-      klowNoBidDescriptors*: seq[NoBidDescriptors]
-      klowNoBidComponents*: seq[NoBidComponents]
-      klowLiquidityIndType*: int
-      klowWtAverageLiquidity*: string
-      klowExchangeForPhysical*: bool
-      klowOutMainCntryUIndex*: uint
-      klowCrossPercent*: string
-      klowProgRptReqs*: int
-      klowProgPeriodInterval*: int
-      klowIncTaxInd*: int
-      klowForexReq*: bool
-      klowNumBidders*: int
-      klowTradeDate*: string
-      klowTradeType*: char
-      klowBasisPxType*: char
-      klowStrikeTime*: string
-      klowText*: string
-      klowEncodedTextLen*: uint
-      klowEncodedText*: string
-    of mtLLow:
-      llowBidID*: string
-      llowClientBidID*: string
-      llowNoBidComponents*: seq[NoBidComponents]
-    of mtMLow:
-      mlowListID*: string
-      mlowTotNoStrikes*: int
-      mlowNoStrikes*: seq[NoStrikes]
+      qBidPx*: float
+      qOfferPx*: float
+      qBidSize*: int
+      qOfferSize*: int
+      qValidUntilTime*: string
+      qBidSpotRate*: float
+      qOfferSpotRate*: float
+      qBidForwardPoints*: float
+      qOfferForwardPoints*: float
+      qTransactTime*: string
+      qFutSettDate*: string
+      qOrdType*: char
+      qFutSettDate2*: string
+      qOrderQty2*: int
+      qCurrency*: string
+    of SettlementInstructions:
+      siSettlInstID*: string
+      siSettlInstTransType*: char
+      siSettlInstRefID*: string
+      siSettlInstMode*: char
+      siSettlInstSource*: char
+      siAllocAccount*: string
+      siSettlLocation*: string
+      siTradeDate*: string
+      siAllocID*: string
+      siLastMkt*: string
+      siTradingSessionID*: string
+      siSide*: char
+      siSecurityType*: string
+      siEffectiveTime*: string
+      siTransactTime*: string
+      siClientID*: string
+      siExecBroker*: string
+      siStandInstDbType*: int
+      siStandInstDbName*: string
+      siStandInstDbID*: string
+      siSettlDeliveryType*: int
+      siSettlDepositoryCode*: string
+      siSettlBrkrCode*: string
+      siSettlInstCode*: string
+      siSecuritySettlAgentName*: string
+      siSecuritySettlAgentCode*: string
+      siSecuritySettlAgentAcctNum*: string
+      siSecuritySettlAgentAcctName*: string
+      siSecuritySettlAgentContactName*: string
+      siSecuritySettlAgentContactPhone*: string
+      siCashSettlAgentName*: string
+      siCashSettlAgentCode*: string
+      siCashSettlAgentAcctNum*: string
+      siCashSettlAgentAcctName*: string
+      siCashSettlAgentContactName*: string
+      siCashSettlAgentContactPhone*: string
+    of MarketDataRequest:
+      mdrMDReqID*: string
+      mdrSubscriptionRequestType*: char
+      mdrMarketDepth*: int
+      mdrMDUpdateType*: int
+      mdrAggregatedBook*: bool
+      mdrNoMDEntryTypes*: seq[NoMDEntryTypes]
+      mdrNoRelatedSym*: seq[NoRelatedSym]
+    of MarketDataSnapshotFullRefresh:
+      mdsfrMDReqID*: string
+      mdsfrSymbol*: string
+      mdsfrSymbolSfx*: string
+      mdsfrSecurityID*: string
+      mdsfrIDSource*: string
+      mdsfrSecurityType*: string
+      mdsfrMaturityMonthYear*: string
+      mdsfrMaturityDay*: uint
+      mdsfrPutOrCall*: int
+      mdsfrStrikePrice*: float
+      mdsfrOptAttribute*: char
+      mdsfrContractMultiplier*: string
+      mdsfrCouponRate*: string
+      mdsfrSecurityExchange*: string
+      mdsfrIssuer*: string
+      mdsfrEncodedIssuerLen*: uint
+      mdsfrEncodedIssuer*: string
+      mdsfrSecurityDesc*: string
+      mdsfrEncodedSecurityDescLen*: uint
+      mdsfrEncodedSecurityDesc*: string
+      mdsfrFinancialStatus*: char
+      mdsfrCorporateAction*: char
+      mdsfrTotalVolumeTraded*: int
+      mdsfrNoMDEntries*: seq[NoMDEntries]
+    of MarketDataIncrementalRefresh:
+      mdirMDReqID*: string
+      mdirNoMDEntries*: seq[NoMDEntries]
+    of MarketDataRequestReject:
+      mdrrMDReqID*: string
+      mdrrMDReqRejReason*: char
+      mdrrText*: string
+      mdrrEncodedTextLen*: uint
+      mdrrEncodedText*: string
+    of QuoteCancel:
+      qcQuoteReqID*: string
+      qcQuoteID*: string
+      qcQuoteCancelType*: int
+      qcQuoteResponseLevel*: int
+      qcTradingSessionID*: string
+      qcNoQuoteEntries*: seq[NoQuoteEntries]
+    of QuoteStatusRequest:
+      qsrQuoteID*: string
+      qsrSymbol*: string
+      qsrSymbolSfx*: string
+      qsrSecurityID*: string
+      qsrIDSource*: string
+      qsrSecurityType*: string
+      qsrMaturityMonthYear*: string
+      qsrMaturityDay*: uint
+      qsrPutOrCall*: int
+      qsrStrikePrice*: float
+      qsrOptAttribute*: char
+      qsrContractMultiplier*: string
+      qsrCouponRate*: string
+      qsrSecurityExchange*: string
+      qsrIssuer*: string
+      qsrEncodedIssuerLen*: uint
+      qsrEncodedIssuer*: string
+      qsrSecurityDesc*: string
+      qsrEncodedSecurityDescLen*: uint
+      qsrEncodedSecurityDesc*: string
+      qsrSide*: char
+      qsrTradingSessionID*: string
+    of QuoteAcknowledgement:
+      qaQuoteReqID*: string
+      qaQuoteID*: string
+      qaQuoteAckStatus*: int
+      qaQuoteRejectReason*: int
+      qaQuoteResponseLevel*: int
+      qaTradingSessionID*: string
+      qaText*: string
+      qaNoQuoteSets*: seq[NoQuoteSets]
+    of SecurityDefinitionRequest:
+      sdrSecurityReqID*: string
+      sdrSecurityRequestType*: int
+      sdrSymbol*: string
+      sdrSymbolSfx*: string
+      sdrSecurityID*: string
+      sdrIDSource*: string
+      sdrSecurityType*: string
+      sdrMaturityMonthYear*: string
+      sdrMaturityDay*: uint
+      sdrPutOrCall*: int
+      sdrStrikePrice*: float
+      sdrOptAttribute*: char
+      sdrContractMultiplier*: string
+      sdrCouponRate*: string
+      sdrSecurityExchange*: string
+      sdrIssuer*: string
+      sdrEncodedIssuerLen*: uint
+      sdrEncodedIssuer*: string
+      sdrSecurityDesc*: string
+      sdrEncodedSecurityDescLen*: uint
+      sdrEncodedSecurityDesc*: string
+      sdrCurrency*: string
+      sdrText*: string
+      sdrEncodedTextLen*: uint
+      sdrEncodedText*: string
+      sdrTradingSessionID*: string
+      sdrNoRelatedSym*: seq[NoRelatedSym]
+    of SecurityDefinition:
+      sdSecurityReqID*: string
+      sdSecurityResponseID*: string
+      sdSecurityResponseType*: int
+      sdTotalNumSecurities*: int
+      sdSymbol*: string
+      sdSymbolSfx*: string
+      sdSecurityID*: string
+      sdIDSource*: string
+      sdSecurityType*: string
+      sdMaturityMonthYear*: string
+      sdMaturityDay*: uint
+      sdPutOrCall*: int
+      sdStrikePrice*: float
+      sdOptAttribute*: char
+      sdContractMultiplier*: string
+      sdCouponRate*: string
+      sdSecurityExchange*: string
+      sdIssuer*: string
+      sdEncodedIssuerLen*: uint
+      sdEncodedIssuer*: string
+      sdSecurityDesc*: string
+      sdEncodedSecurityDescLen*: uint
+      sdEncodedSecurityDesc*: string
+      sdCurrency*: string
+      sdTradingSessionID*: string
+      sdText*: string
+      sdEncodedTextLen*: uint
+      sdEncodedText*: string
+      sdNoRelatedSym*: seq[NoRelatedSym]
+    of SecurityStatusRequest:
+      ssrSecurityStatusReqID*: string
+      ssrSymbol*: string
+      ssrSymbolSfx*: string
+      ssrSecurityID*: string
+      ssrIDSource*: string
+      ssrSecurityType*: string
+      ssrMaturityMonthYear*: string
+      ssrMaturityDay*: uint
+      ssrPutOrCall*: int
+      ssrStrikePrice*: float
+      ssrOptAttribute*: char
+      ssrContractMultiplier*: string
+      ssrCouponRate*: string
+      ssrSecurityExchange*: string
+      ssrIssuer*: string
+      ssrEncodedIssuerLen*: uint
+      ssrEncodedIssuer*: string
+      ssrSecurityDesc*: string
+      ssrEncodedSecurityDescLen*: uint
+      ssrEncodedSecurityDesc*: string
+      ssrCurrency*: string
+      ssrSubscriptionRequestType*: char
+      ssrTradingSessionID*: string
+    of SecurityStatus:
+      ssSecurityStatusReqID*: string
+      ssSymbol*: string
+      ssSymbolSfx*: string
+      ssSecurityID*: string
+      ssIDSource*: string
+      ssSecurityType*: string
+      ssMaturityMonthYear*: string
+      ssMaturityDay*: uint
+      ssPutOrCall*: int
+      ssStrikePrice*: float
+      ssOptAttribute*: char
+      ssContractMultiplier*: string
+      ssCouponRate*: string
+      ssSecurityExchange*: string
+      ssIssuer*: string
+      ssEncodedIssuerLen*: uint
+      ssEncodedIssuer*: string
+      ssSecurityDesc*: string
+      ssEncodedSecurityDescLen*: uint
+      ssEncodedSecurityDesc*: string
+      ssCurrency*: string
+      ssTradingSessionID*: string
+      ssUnsolicitedIndicator*: bool
+      ssSecurityTradingStatus*: int
+      ssFinancialStatus*: char
+      ssCorporateAction*: char
+      ssHaltReasonChar*: char
+      ssInViewOfCommon*: bool
+      ssDueToRelated*: bool
+      ssBuyVolume*: int
+      ssSellVolume*: int
+      ssHighPx*: float
+      ssLowPx*: float
+      ssLastPx*: float
+      ssTransactTime*: string
+      ssAdjustment*: int
+    of TradingSessionStatusRequest:
+      tssrTradSesReqID*: string
+      tssrTradingSessionID*: string
+      tssrTradSesMethod*: int
+      tssrTradSesMode*: int
+      tssrSubscriptionRequestType*: char
+    of TradingSessionStatus:
+      tssTradSesReqID*: string
+      tssTradingSessionID*: string
+      tssTradSesMethod*: int
+      tssTradSesMode*: int
+      tssUnsolicitedIndicator*: bool
+      tssTradSesStatus*: int
+      tssTradSesStartTime*: string
+      tssTradSesOpenTime*: string
+      tssTradSesPreCloseTime*: string
+      tssTradSesCloseTime*: string
+      tssTradSesEndTime*: string
+      tssTotalVolumeTraded*: int
+      tssText*: string
+      tssEncodedTextLen*: uint
+      tssEncodedText*: string
+    of MassQuote:
+      mqQuoteReqID*: string
+      mqQuoteID*: string
+      mqQuoteResponseLevel*: int
+      mqDefBidSize*: int
+      mqDefOfferSize*: int
+      mqNoQuoteSets*: seq[NoQuoteSets]
+    of BusinessMessageReject:
+      bmrRefSeqNum*: int
+      bmrRefMsgType*: string
+      bmrBusinessRejectRefID*: string
+      bmrBusinessRejectReason*: int
+      bmrText*: string
+      bmrEncodedTextLen*: uint
+      bmrEncodedText*: string
+    of BidRequest:
+      brBidID*: string
+      brClientBidID*: string
+      brBidRequestTransType*: char
+      brListName*: string
+      brTotalNumSecurities*: int
+      brBidType*: int
+      brNumTickets*: int
+      brCurrency*: string
+      brSideValue1*: uint
+      brSideValue2*: uint
+      brNoBidDescriptors*: seq[NoBidDescriptors]
+      brNoBidComponents*: seq[NoBidComponents]
+      brLiquidityIndType*: int
+      brWtAverageLiquidity*: string
+      brExchangeForPhysical*: bool
+      brOutMainCntryUIndex*: uint
+      brCrossPercent*: string
+      brProgRptReqs*: int
+      brProgPeriodInterval*: int
+      brIncTaxInd*: int
+      brForexReq*: bool
+      brNumBidders*: int
+      brTradeDate*: string
+      brTradeType*: char
+      brBasisPxType*: char
+      brStrikeTime*: string
+      brText*: string
+      brEncodedTextLen*: uint
+      brEncodedText*: string
+    of BidResponse:
+      brBidID*: string
+      brClientBidID*: string
+      brNoBidComponents*: seq[NoBidComponents]
+    of ListStrikePrice:
+      lspListID*: string
+      lspTotNoStrikes*: int
+      lspNoStrikes*: seq[NoStrikes]
     signatureLength*: uint
     signature*: string
     checkSum*: string
@@ -1454,7 +1499,7 @@ proc parseNoContraBrokers(s: string, r: var seq[NoContraBrokers], pos: var int) 
     case t
     of 375: parseStr(s, v.contraBroker, pos)
     of 337: parseStr(s, v.contraTrader, pos)
-    of 437: parseUInt(s, v.contraTradeQty, pos)
+    of 437: parseInt(s, v.contraTradeQty, pos)
     of 438: parseStr(s, v.contraTradeTime, pos)
     else:
       r.add v
@@ -1524,11 +1569,11 @@ proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
     of 303: parseInt(s, v.quoteRequestType, pos)
     of 336: parseStr(s, v.tradingSessionID, pos)
     of 54: parseChar(s, v.side, pos)
-    of 38: parseUInt(s, v.orderQty, pos)
+    of 38: parseInt(s, v.orderQty, pos)
     of 64: parseStr(s, v.futSettDate, pos)
     of 40: parseChar(s, v.ordType, pos)
     of 193: parseStr(s, v.futSettDate2, pos)
-    of 192: parseUInt(s, v.orderQty2, pos)
+    of 192: parseInt(s, v.orderQty2, pos)
     of 126: parseStr(s, v.expireTime, pos)
     of 60: parseStr(s, v.transactTime, pos)
     of 15: parseStr(s, v.currency, pos)
@@ -1551,7 +1596,7 @@ proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
     of 307: parseStr(s, v.underlyingSecurityDesc, pos)
     of 364: parseUInt(s, v.encodedUnderlyingSecurityDescLen, pos)
     of 365: parseStr(s, v.encodedUnderlyingSecurityDesc, pos)
-    of 319: parseUInt(s, v.ratioQty, pos)
+    of 319: parseInt(s, v.ratioQty, pos)
     of 318: parseStr(s, v.underlyingCurrency, pos)
     else:
       r.add v
@@ -1599,7 +1644,7 @@ proc parseNoAllocs(s: string, r: var seq[NoAllocs], pos: var int) =
       sep = t
     case t
     of 79: parseStr(s, v.allocAccount, pos)
-    of 80: parseUInt(s, v.allocShares, pos)
+    of 80: parseInt(s, v.allocShares, pos)
     of 366: parseFloat(s, v.allocPrice, pos)
     of 81: parseChar(s, v.processCode, pos)
     of 92: parseStr(s, v.brokerOfCredit, pos)
@@ -1675,8 +1720,8 @@ proc parseNoOrders(s: string, r: var seq[NoOrders], pos: var int) =
     of 64: parseStr(s, v.futSettDate, pos)
     of 21: parseChar(s, v.handlInst, pos)
     of 18: parseStr(s, v.execInst, pos)
-    of 110: parseUInt(s, v.minQty, pos)
-    of 111: parseUInt(s, v.maxFloor, pos)
+    of 110: parseInt(s, v.minQty, pos)
+    of 111: parseInt(s, v.maxFloor, pos)
     of 100: parseStr(s, v.exDestination, pos)
     of 386: skipValue(s, pos); parseNoTradingSessions(s, v.noTradingSessions, pos)
     of 81: parseChar(s, v.processCode, pos)
@@ -1704,8 +1749,8 @@ proc parseNoOrders(s: string, r: var seq[NoOrders], pos: var int) =
     of 401: parseInt(s, v.sideValueInd, pos)
     of 114: parseBool(s, v.locateReqd, pos)
     of 60: parseStr(s, v.transactTime, pos)
-    of 38: parseUInt(s, v.orderQty, pos)
-    of 152: parseUInt(s, v.cashOrderQty, pos)
+    of 38: parseInt(s, v.orderQty, pos)
+    of 152: parseInt(s, v.cashOrderQty, pos)
     of 40: parseChar(s, v.ordType, pos)
     of 44: parseFloat(s, v.price, pos)
     of 99: parseFloat(s, v.stopPx, pos)
@@ -1728,11 +1773,11 @@ proc parseNoOrders(s: string, r: var seq[NoOrders], pos: var int) =
     of 354: parseUInt(s, v.encodedTextLen, pos)
     of 355: parseStr(s, v.encodedText, pos)
     of 193: parseStr(s, v.futSettDate2, pos)
-    of 192: parseUInt(s, v.orderQty2, pos)
+    of 192: parseInt(s, v.orderQty2, pos)
     of 77: parseChar(s, v.openClose, pos)
     of 203: parseInt(s, v.coveredOrUncovered, pos)
     of 204: parseInt(s, v.customerOrFirm, pos)
-    of 210: parseUInt(s, v.maxShow, pos)
+    of 210: parseInt(s, v.maxShow, pos)
     of 211: parseFloat(s, v.pegDifference, pos)
     of 388: parseChar(s, v.discretionInst, pos)
     of 389: parseFloat(s, v.discretionOffset, pos)
@@ -1742,10 +1787,10 @@ proc parseNoOrders(s: string, r: var seq[NoOrders], pos: var int) =
     of 198: parseStr(s, v.secondaryOrderID, pos)
     of 66: parseStr(s, v.listID, pos)
     of 105: parseStr(s, v.waveNo, pos)
-    of 14: parseUInt(s, v.cumQty, pos)
+    of 14: parseInt(s, v.cumQty, pos)
     of 39: parseChar(s, v.ordStatus, pos)
-    of 151: parseUInt(s, v.leavesQty, pos)
-    of 84: parseUInt(s, v.cxlQty, pos)
+    of 151: parseInt(s, v.leavesQty, pos)
+    of 84: parseInt(s, v.cxlQty, pos)
     of 6: parseFloat(s, v.avgPx, pos)
     of 103: parseInt(s, v.ordRejReason, pos)
     else:
@@ -1769,7 +1814,7 @@ proc parseNoExecs(s: string, r: var seq[NoExecs], pos: var int) =
     else:
       sep = t
     case t
-    of 32: parseUInt(s, v.lastShares, pos)
+    of 32: parseInt(s, v.lastShares, pos)
     of 17: parseStr(s, v.execID, pos)
     of 31: parseFloat(s, v.lastPx, pos)
     of 29: parseChar(s, v.lastCapacity, pos)
@@ -1843,7 +1888,7 @@ proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int) =
     of 269: parseChar(s, v.mDEntryType, pos)
     of 270: parseFloat(s, v.mDEntryPx, pos)
     of 15: parseStr(s, v.currency, pos)
-    of 271: parseUInt(s, v.mDEntrySize, pos)
+    of 271: parseInt(s, v.mDEntrySize, pos)
     of 272: parseStr(s, v.mDEntryDate, pos)
     of 273: parseStr(s, v.mDEntryTime, pos)
     of 274: parseChar(s, v.tickDirection, pos)
@@ -1858,7 +1903,7 @@ proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int) =
     of 59: parseChar(s, v.timeInForce, pos)
     of 432: parseStr(s, v.expireDate, pos)
     of 126: parseStr(s, v.expireTime, pos)
-    of 110: parseUInt(s, v.minQty, pos)
+    of 110: parseInt(s, v.minQty, pos)
     of 18: parseStr(s, v.execInst, pos)
     of 287: parseInt(s, v.sellerDays, pos)
     of 37: parseStr(s, v.orderID, pos)
@@ -1895,7 +1940,7 @@ proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int) =
     of 351: parseStr(s, v.encodedSecurityDesc, pos)
     of 291: parseChar(s, v.financialStatus, pos)
     of 292: parseChar(s, v.corporateAction, pos)
-    of 387: parseUInt(s, v.totalVolumeTraded, pos)
+    of 387: parseInt(s, v.totalVolumeTraded, pos)
     else:
       r.add v
       pos = j
@@ -1985,8 +2030,8 @@ proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int) =
     of 368: parseInt(s, v.quoteEntryRejectReason, pos)
     of 132: parseFloat(s, v.bidPx, pos)
     of 133: parseFloat(s, v.offerPx, pos)
-    of 134: parseUInt(s, v.bidSize, pos)
-    of 135: parseUInt(s, v.offerSize, pos)
+    of 134: parseInt(s, v.bidSize, pos)
+    of 135: parseInt(s, v.offerSize, pos)
     of 62: parseStr(s, v.validUntilTime, pos)
     of 188: parseFloat(s, v.bidSpotRate, pos)
     of 190: parseFloat(s, v.offerSpotRate, pos)
@@ -1997,7 +2042,7 @@ proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int) =
     of 64: parseStr(s, v.futSettDate, pos)
     of 40: parseChar(s, v.ordType, pos)
     of 193: parseStr(s, v.futSettDate2, pos)
-    of 192: parseUInt(s, v.orderQty2, pos)
+    of 192: parseInt(s, v.orderQty2, pos)
     of 15: parseStr(s, v.currency, pos)
     else:
       r.add v
@@ -2121,11 +2166,11 @@ proc parseNoStrikes(s: string, r: var seq[NoStrikes], pos: var int) =
       pos = j
       return
 
-proc parsemt0(s: string, result: var Fix42, pos: var int) =
+proc parseHeartbeat(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mt0)
-  result.msgType = mt0
+  # result = Fix42(msgType: ("0", "Heartbeat"))
+  result.msgType = Heartbeat
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -2154,17 +2199,17 @@ proc parsemt0(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 112: parseStr(s, result.t0TestReqID, pos)
+    of 112: parseStr(s, result.hTestReqID, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt1(s: string, result: var Fix42, pos: var int) =
+proc parseTestRequest(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mt1)
-  result.msgType = mt1
+  # result = Fix42(msgType: ("1", "TestRequest"))
+  result.msgType = TestRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -2193,17 +2238,17 @@ proc parsemt1(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 112: parseStr(s, result.t1TestReqID, pos)
+    of 112: parseStr(s, result.trTestReqID, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt2(s: string, result: var Fix42, pos: var int) =
+proc parseResendRequest(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mt2)
-  result.msgType = mt2
+  # result = Fix42(msgType: ("2", "ResendRequest"))
+  result.msgType = ResendRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -2232,18 +2277,18 @@ proc parsemt2(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 7: parseInt(s, result.t2BeginSeqNo, pos)
-    of 16: parseInt(s, result.t2EndSeqNo, pos)
+    of 7: parseInt(s, result.rrBeginSeqNo, pos)
+    of 16: parseInt(s, result.rrEndSeqNo, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt3(s: string, result: var Fix42, pos: var int) =
+proc parseReject(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mt3)
-  result.msgType = mt3
+  # result = Fix42(msgType: ("3", "Reject"))
+  result.msgType = Reject
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -2272,23 +2317,23 @@ proc parsemt3(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 45: parseInt(s, result.t3RefSeqNum, pos)
-    of 371: parseInt(s, result.t3RefTagID, pos)
-    of 372: parseStr(s, result.t3RefMsgType, pos)
-    of 373: parseInt(s, result.t3SessionRejectReason, pos)
-    of 58: parseStr(s, result.t3Text, pos)
-    of 354: parseUInt(s, result.t3EncodedTextLen, pos)
-    of 355: parseStr(s, result.t3EncodedText, pos)
+    of 45: parseInt(s, result.rRefSeqNum, pos)
+    of 371: parseInt(s, result.rRefTagID, pos)
+    of 372: parseStr(s, result.rRefMsgType, pos)
+    of 373: parseInt(s, result.rSessionRejectReason, pos)
+    of 58: parseStr(s, result.rText, pos)
+    of 354: parseUInt(s, result.rEncodedTextLen, pos)
+    of 355: parseStr(s, result.rEncodedText, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt4(s: string, result: var Fix42, pos: var int) =
+proc parseSequenceReset(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mt4)
-  result.msgType = mt4
+  # result = Fix42(msgType: ("4", "SequenceReset"))
+  result.msgType = SequenceReset
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -2317,18 +2362,18 @@ proc parsemt4(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 123: parseBool(s, result.t4GapFillFlag, pos)
-    of 36: parseInt(s, result.t4NewSeqNo, pos)
+    of 123: parseBool(s, result.srGapFillFlag, pos)
+    of 36: parseInt(s, result.srNewSeqNo, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemt5(s: string, result: var Fix42, pos: var int) =
+proc parseLogout(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mt5)
-  result.msgType = mt5
+  # result = Fix42(msgType: ("5", "Logout"))
+  result.msgType = Logout
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -2357,1057 +2402,6 @@ proc parsemt5(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 58: parseStr(s, result.t5Text, pos)
-    of 354: parseUInt(s, result.t5EncodedTextLen, pos)
-    of 355: parseStr(s, result.t5EncodedText, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemt6(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mt6)
-  result.msgType = mt6
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 23: parseStr(s, result.t6IOIid, pos)
-    of 28: parseChar(s, result.t6IOITransType, pos)
-    of 26: parseStr(s, result.t6IOIRefID, pos)
-    of 55: parseStr(s, result.t6Symbol, pos)
-    of 65: parseStr(s, result.t6SymbolSfx, pos)
-    of 48: parseStr(s, result.t6SecurityID, pos)
-    of 22: parseStr(s, result.t6IDSource, pos)
-    of 167: parseStr(s, result.t6SecurityType, pos)
-    of 200: parseStr(s, result.t6MaturityMonthYear, pos)
-    of 205: parseUInt(s, result.t6MaturityDay, pos)
-    of 201: parseInt(s, result.t6PutOrCall, pos)
-    of 202: parseFloat(s, result.t6StrikePrice, pos)
-    of 206: parseChar(s, result.t6OptAttribute, pos)
-    of 231: parseStr(s, result.t6ContractMultiplier, pos)
-    of 223: parseStr(s, result.t6CouponRate, pos)
-    of 207: parseStr(s, result.t6SecurityExchange, pos)
-    of 106: parseStr(s, result.t6Issuer, pos)
-    of 348: parseUInt(s, result.t6EncodedIssuerLen, pos)
-    of 349: parseStr(s, result.t6EncodedIssuer, pos)
-    of 107: parseStr(s, result.t6SecurityDesc, pos)
-    of 350: parseUInt(s, result.t6EncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.t6EncodedSecurityDesc, pos)
-    of 54: parseChar(s, result.t6Side, pos)
-    of 27: parseStr(s, result.t6IOIShares, pos)
-    of 44: parseFloat(s, result.t6Price, pos)
-    of 15: parseStr(s, result.t6Currency, pos)
-    of 62: parseStr(s, result.t6ValidUntilTime, pos)
-    of 25: parseChar(s, result.t6IOIQltyInd, pos)
-    of 130: parseBool(s, result.t6IOINaturalFlag, pos)
-    of 199: skipValue(s, pos); parseNoIOIQualifiers(s, result.t6NoIOIQualifiers, pos)
-    of 58: parseStr(s, result.t6Text, pos)
-    of 354: parseUInt(s, result.t6EncodedTextLen, pos)
-    of 355: parseStr(s, result.t6EncodedText, pos)
-    of 60: parseStr(s, result.t6TransactTime, pos)
-    of 149: parseStr(s, result.t6URLLink, pos)
-    of 215: skipValue(s, pos); parseNoRoutingIDs(s, result.t6NoRoutingIDs, pos)
-    of 218: parseFloat(s, result.t6SpreadToBenchmark, pos)
-    of 219: parseChar(s, result.t6Benchmark, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemt7(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mt7)
-  result.msgType = mt7
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 2: parseStr(s, result.t7AdvId, pos)
-    of 5: parseStr(s, result.t7AdvTransType, pos)
-    of 3: parseStr(s, result.t7AdvRefID, pos)
-    of 55: parseStr(s, result.t7Symbol, pos)
-    of 65: parseStr(s, result.t7SymbolSfx, pos)
-    of 48: parseStr(s, result.t7SecurityID, pos)
-    of 22: parseStr(s, result.t7IDSource, pos)
-    of 167: parseStr(s, result.t7SecurityType, pos)
-    of 200: parseStr(s, result.t7MaturityMonthYear, pos)
-    of 205: parseUInt(s, result.t7MaturityDay, pos)
-    of 201: parseInt(s, result.t7PutOrCall, pos)
-    of 202: parseFloat(s, result.t7StrikePrice, pos)
-    of 206: parseChar(s, result.t7OptAttribute, pos)
-    of 231: parseStr(s, result.t7ContractMultiplier, pos)
-    of 223: parseStr(s, result.t7CouponRate, pos)
-    of 207: parseStr(s, result.t7SecurityExchange, pos)
-    of 106: parseStr(s, result.t7Issuer, pos)
-    of 348: parseUInt(s, result.t7EncodedIssuerLen, pos)
-    of 349: parseStr(s, result.t7EncodedIssuer, pos)
-    of 107: parseStr(s, result.t7SecurityDesc, pos)
-    of 350: parseUInt(s, result.t7EncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.t7EncodedSecurityDesc, pos)
-    of 4: parseChar(s, result.t7AdvSide, pos)
-    of 53: parseUInt(s, result.t7Shares, pos)
-    of 44: parseFloat(s, result.t7Price, pos)
-    of 15: parseStr(s, result.t7Currency, pos)
-    of 75: parseStr(s, result.t7TradeDate, pos)
-    of 60: parseStr(s, result.t7TransactTime, pos)
-    of 58: parseStr(s, result.t7Text, pos)
-    of 354: parseUInt(s, result.t7EncodedTextLen, pos)
-    of 355: parseStr(s, result.t7EncodedText, pos)
-    of 149: parseStr(s, result.t7URLLink, pos)
-    of 30: parseStr(s, result.t7LastMkt, pos)
-    of 336: parseStr(s, result.t7TradingSessionID, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemt8(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mt8)
-  result.msgType = mt8
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 37: parseStr(s, result.t8OrderID, pos)
-    of 198: parseStr(s, result.t8SecondaryOrderID, pos)
-    of 11: parseStr(s, result.t8ClOrdID, pos)
-    of 41: parseStr(s, result.t8OrigClOrdID, pos)
-    of 109: parseStr(s, result.t8ClientID, pos)
-    of 76: parseStr(s, result.t8ExecBroker, pos)
-    of 382: skipValue(s, pos); parseNoContraBrokers(s, result.t8NoContraBrokers, pos)
-    of 66: parseStr(s, result.t8ListID, pos)
-    of 17: parseStr(s, result.t8ExecID, pos)
-    of 20: parseChar(s, result.t8ExecTransType, pos)
-    of 19: parseStr(s, result.t8ExecRefID, pos)
-    of 150: parseChar(s, result.t8ExecType, pos)
-    of 39: parseChar(s, result.t8OrdStatus, pos)
-    of 103: parseInt(s, result.t8OrdRejReason, pos)
-    of 378: parseInt(s, result.t8ExecRestatementReason, pos)
-    of 1: parseStr(s, result.t8Account, pos)
-    of 63: parseChar(s, result.t8SettlmntTyp, pos)
-    of 64: parseStr(s, result.t8FutSettDate, pos)
-    of 55: parseStr(s, result.t8Symbol, pos)
-    of 65: parseStr(s, result.t8SymbolSfx, pos)
-    of 48: parseStr(s, result.t8SecurityID, pos)
-    of 22: parseStr(s, result.t8IDSource, pos)
-    of 167: parseStr(s, result.t8SecurityType, pos)
-    of 200: parseStr(s, result.t8MaturityMonthYear, pos)
-    of 205: parseUInt(s, result.t8MaturityDay, pos)
-    of 201: parseInt(s, result.t8PutOrCall, pos)
-    of 202: parseFloat(s, result.t8StrikePrice, pos)
-    of 206: parseChar(s, result.t8OptAttribute, pos)
-    of 231: parseStr(s, result.t8ContractMultiplier, pos)
-    of 223: parseStr(s, result.t8CouponRate, pos)
-    of 207: parseStr(s, result.t8SecurityExchange, pos)
-    of 106: parseStr(s, result.t8Issuer, pos)
-    of 348: parseUInt(s, result.t8EncodedIssuerLen, pos)
-    of 349: parseStr(s, result.t8EncodedIssuer, pos)
-    of 107: parseStr(s, result.t8SecurityDesc, pos)
-    of 350: parseUInt(s, result.t8EncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.t8EncodedSecurityDesc, pos)
-    of 54: parseChar(s, result.t8Side, pos)
-    of 38: parseUInt(s, result.t8OrderQty, pos)
-    of 152: parseUInt(s, result.t8CashOrderQty, pos)
-    of 40: parseChar(s, result.t8OrdType, pos)
-    of 44: parseFloat(s, result.t8Price, pos)
-    of 99: parseFloat(s, result.t8StopPx, pos)
-    of 211: parseFloat(s, result.t8PegDifference, pos)
-    of 388: parseChar(s, result.t8DiscretionInst, pos)
-    of 389: parseFloat(s, result.t8DiscretionOffset, pos)
-    of 15: parseStr(s, result.t8Currency, pos)
-    of 376: parseStr(s, result.t8ComplianceID, pos)
-    of 377: parseBool(s, result.t8SolicitedFlag, pos)
-    of 59: parseChar(s, result.t8TimeInForce, pos)
-    of 168: parseStr(s, result.t8EffectiveTime, pos)
-    of 432: parseStr(s, result.t8ExpireDate, pos)
-    of 126: parseStr(s, result.t8ExpireTime, pos)
-    of 18: parseStr(s, result.t8ExecInst, pos)
-    of 47: parseChar(s, result.t8Rule80A, pos)
-    of 32: parseUInt(s, result.t8LastShares, pos)
-    of 31: parseFloat(s, result.t8LastPx, pos)
-    of 194: parseFloat(s, result.t8LastSpotRate, pos)
-    of 195: parseFloat(s, result.t8LastForwardPoints, pos)
-    of 30: parseStr(s, result.t8LastMkt, pos)
-    of 336: parseStr(s, result.t8TradingSessionID, pos)
-    of 29: parseChar(s, result.t8LastCapacity, pos)
-    of 151: parseUInt(s, result.t8LeavesQty, pos)
-    of 14: parseUInt(s, result.t8CumQty, pos)
-    of 6: parseFloat(s, result.t8AvgPx, pos)
-    of 424: parseUInt(s, result.t8DayOrderQty, pos)
-    of 425: parseUInt(s, result.t8DayCumQty, pos)
-    of 426: parseFloat(s, result.t8DayAvgPx, pos)
-    of 427: parseInt(s, result.t8GTBookingInst, pos)
-    of 75: parseStr(s, result.t8TradeDate, pos)
-    of 60: parseStr(s, result.t8TransactTime, pos)
-    of 113: parseBool(s, result.t8ReportToExch, pos)
-    of 12: parseUInt(s, result.t8Commission, pos)
-    of 13: parseChar(s, result.t8CommType, pos)
-    of 381: parseUInt(s, result.t8GrossTradeAmt, pos)
-    of 119: parseUInt(s, result.t8SettlCurrAmt, pos)
-    of 120: parseStr(s, result.t8SettlCurrency, pos)
-    of 155: parseStr(s, result.t8SettlCurrFxRate, pos)
-    of 156: parseChar(s, result.t8SettlCurrFxRateCalc, pos)
-    of 21: parseChar(s, result.t8HandlInst, pos)
-    of 110: parseUInt(s, result.t8MinQty, pos)
-    of 111: parseUInt(s, result.t8MaxFloor, pos)
-    of 77: parseChar(s, result.t8OpenClose, pos)
-    of 210: parseUInt(s, result.t8MaxShow, pos)
-    of 58: parseStr(s, result.t8Text, pos)
-    of 354: parseUInt(s, result.t8EncodedTextLen, pos)
-    of 355: parseStr(s, result.t8EncodedText, pos)
-    of 193: parseStr(s, result.t8FutSettDate2, pos)
-    of 192: parseUInt(s, result.t8OrderQty2, pos)
-    of 439: parseStr(s, result.t8ClearingFirm, pos)
-    of 440: parseStr(s, result.t8ClearingAccount, pos)
-    of 442: parseChar(s, result.t8MultiLegReportingType, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemt9(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mt9)
-  result.msgType = mt9
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 37: parseStr(s, result.t9OrderID, pos)
-    of 198: parseStr(s, result.t9SecondaryOrderID, pos)
-    of 11: parseStr(s, result.t9ClOrdID, pos)
-    of 41: parseStr(s, result.t9OrigClOrdID, pos)
-    of 39: parseChar(s, result.t9OrdStatus, pos)
-    of 109: parseStr(s, result.t9ClientID, pos)
-    of 76: parseStr(s, result.t9ExecBroker, pos)
-    of 66: parseStr(s, result.t9ListID, pos)
-    of 1: parseStr(s, result.t9Account, pos)
-    of 60: parseStr(s, result.t9TransactTime, pos)
-    of 434: parseChar(s, result.t9CxlRejResponseTo, pos)
-    of 102: parseInt(s, result.t9CxlRejReason, pos)
-    of 58: parseStr(s, result.t9Text, pos)
-    of 354: parseUInt(s, result.t9EncodedTextLen, pos)
-    of 355: parseStr(s, result.t9EncodedText, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtA(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtA)
-  result.msgType = mtA
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 98: parseInt(s, result.aEncryptMethod, pos)
-    of 108: parseInt(s, result.aHeartBtInt, pos)
-    of 95: parseUInt(s, result.aRawDataLength, pos)
-    of 96: parseStr(s, result.aRawData, pos)
-    of 141: parseBool(s, result.aResetSeqNumFlag, pos)
-    of 383: parseInt(s, result.aMaxMessageSize, pos)
-    of 384: skipValue(s, pos); parseNoMsgTypes(s, result.aNoMsgTypes, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtB(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtB)
-  result.msgType = mtB
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 42: parseStr(s, result.bOrigTime, pos)
-    of 61: parseChar(s, result.bUrgency, pos)
-    of 148: parseStr(s, result.bHeadline, pos)
-    of 358: parseUInt(s, result.bEncodedHeadlineLen, pos)
-    of 359: parseStr(s, result.bEncodedHeadline, pos)
-    of 215: skipValue(s, pos); parseNoRoutingIDs(s, result.bNoRoutingIDs, pos)
-    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.bNoRelatedSym, pos)
-    of 33: skipValue(s, pos); parseLinesOfText(s, result.bLinesOfText, pos)
-    of 149: parseStr(s, result.bURLLink, pos)
-    of 95: parseUInt(s, result.bRawDataLength, pos)
-    of 96: parseStr(s, result.bRawData, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtC(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtC)
-  result.msgType = mtC
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 164: parseStr(s, result.cEmailThreadID, pos)
-    of 94: parseChar(s, result.cEmailType, pos)
-    of 42: parseStr(s, result.cOrigTime, pos)
-    of 147: parseStr(s, result.cSubject, pos)
-    of 356: parseUInt(s, result.cEncodedSubjectLen, pos)
-    of 357: parseStr(s, result.cEncodedSubject, pos)
-    of 215: skipValue(s, pos); parseNoRoutingIDs(s, result.cNoRoutingIDs, pos)
-    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.cNoRelatedSym, pos)
-    of 37: parseStr(s, result.cOrderID, pos)
-    of 11: parseStr(s, result.cClOrdID, pos)
-    of 33: skipValue(s, pos); parseLinesOfText(s, result.cLinesOfText, pos)
-    of 95: parseUInt(s, result.cRawDataLength, pos)
-    of 96: parseStr(s, result.cRawData, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtD(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtD)
-  result.msgType = mtD
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 11: parseStr(s, result.dClOrdID, pos)
-    of 109: parseStr(s, result.dClientID, pos)
-    of 76: parseStr(s, result.dExecBroker, pos)
-    of 1: parseStr(s, result.dAccount, pos)
-    of 78: skipValue(s, pos); parseNoAllocs(s, result.dNoAllocs, pos)
-    of 63: parseChar(s, result.dSettlmntTyp, pos)
-    of 64: parseStr(s, result.dFutSettDate, pos)
-    of 21: parseChar(s, result.dHandlInst, pos)
-    of 18: parseStr(s, result.dExecInst, pos)
-    of 110: parseUInt(s, result.dMinQty, pos)
-    of 111: parseUInt(s, result.dMaxFloor, pos)
-    of 100: parseStr(s, result.dExDestination, pos)
-    of 386: skipValue(s, pos); parseNoTradingSessions(s, result.dNoTradingSessions, pos)
-    of 81: parseChar(s, result.dProcessCode, pos)
-    of 55: parseStr(s, result.dSymbol, pos)
-    of 65: parseStr(s, result.dSymbolSfx, pos)
-    of 48: parseStr(s, result.dSecurityID, pos)
-    of 22: parseStr(s, result.dIDSource, pos)
-    of 167: parseStr(s, result.dSecurityType, pos)
-    of 200: parseStr(s, result.dMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.dMaturityDay, pos)
-    of 201: parseInt(s, result.dPutOrCall, pos)
-    of 202: parseFloat(s, result.dStrikePrice, pos)
-    of 206: parseChar(s, result.dOptAttribute, pos)
-    of 231: parseStr(s, result.dContractMultiplier, pos)
-    of 223: parseStr(s, result.dCouponRate, pos)
-    of 207: parseStr(s, result.dSecurityExchange, pos)
-    of 106: parseStr(s, result.dIssuer, pos)
-    of 348: parseUInt(s, result.dEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.dEncodedIssuer, pos)
-    of 107: parseStr(s, result.dSecurityDesc, pos)
-    of 350: parseUInt(s, result.dEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.dEncodedSecurityDesc, pos)
-    of 140: parseFloat(s, result.dPrevClosePx, pos)
-    of 54: parseChar(s, result.dSide, pos)
-    of 114: parseBool(s, result.dLocateReqd, pos)
-    of 60: parseStr(s, result.dTransactTime, pos)
-    of 38: parseUInt(s, result.dOrderQty, pos)
-    of 152: parseUInt(s, result.dCashOrderQty, pos)
-    of 40: parseChar(s, result.dOrdType, pos)
-    of 44: parseFloat(s, result.dPrice, pos)
-    of 99: parseFloat(s, result.dStopPx, pos)
-    of 15: parseStr(s, result.dCurrency, pos)
-    of 376: parseStr(s, result.dComplianceID, pos)
-    of 377: parseBool(s, result.dSolicitedFlag, pos)
-    of 23: parseStr(s, result.dIOIid, pos)
-    of 117: parseStr(s, result.dQuoteID, pos)
-    of 59: parseChar(s, result.dTimeInForce, pos)
-    of 168: parseStr(s, result.dEffectiveTime, pos)
-    of 432: parseStr(s, result.dExpireDate, pos)
-    of 126: parseStr(s, result.dExpireTime, pos)
-    of 427: parseInt(s, result.dGTBookingInst, pos)
-    of 12: parseUInt(s, result.dCommission, pos)
-    of 13: parseChar(s, result.dCommType, pos)
-    of 47: parseChar(s, result.dRule80A, pos)
-    of 121: parseBool(s, result.dForexReq, pos)
-    of 120: parseStr(s, result.dSettlCurrency, pos)
-    of 58: parseStr(s, result.dText, pos)
-    of 354: parseUInt(s, result.dEncodedTextLen, pos)
-    of 355: parseStr(s, result.dEncodedText, pos)
-    of 193: parseStr(s, result.dFutSettDate2, pos)
-    of 192: parseUInt(s, result.dOrderQty2, pos)
-    of 77: parseChar(s, result.dOpenClose, pos)
-    of 203: parseInt(s, result.dCoveredOrUncovered, pos)
-    of 204: parseInt(s, result.dCustomerOrFirm, pos)
-    of 210: parseUInt(s, result.dMaxShow, pos)
-    of 211: parseFloat(s, result.dPegDifference, pos)
-    of 388: parseChar(s, result.dDiscretionInst, pos)
-    of 389: parseFloat(s, result.dDiscretionOffset, pos)
-    of 439: parseStr(s, result.dClearingFirm, pos)
-    of 440: parseStr(s, result.dClearingAccount, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtE(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtE)
-  result.msgType = mtE
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 66: parseStr(s, result.eListID, pos)
-    of 390: parseStr(s, result.eBidID, pos)
-    of 391: parseStr(s, result.eClientBidID, pos)
-    of 414: parseInt(s, result.eProgRptReqs, pos)
-    of 394: parseInt(s, result.eBidType, pos)
-    of 415: parseInt(s, result.eProgPeriodInterval, pos)
-    of 433: parseChar(s, result.eListExecInstType, pos)
-    of 69: parseStr(s, result.eListExecInst, pos)
-    of 352: parseUInt(s, result.eEncodedListExecInstLen, pos)
-    of 353: parseStr(s, result.eEncodedListExecInst, pos)
-    of 68: parseInt(s, result.eTotNoOrders, pos)
-    of 73: skipValue(s, pos); parseNoOrders(s, result.eNoOrders, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtF(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtF)
-  result.msgType = mtF
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 41: parseStr(s, result.fOrigClOrdID, pos)
-    of 37: parseStr(s, result.fOrderID, pos)
-    of 11: parseStr(s, result.fClOrdID, pos)
-    of 66: parseStr(s, result.fListID, pos)
-    of 1: parseStr(s, result.fAccount, pos)
-    of 109: parseStr(s, result.fClientID, pos)
-    of 76: parseStr(s, result.fExecBroker, pos)
-    of 55: parseStr(s, result.fSymbol, pos)
-    of 65: parseStr(s, result.fSymbolSfx, pos)
-    of 48: parseStr(s, result.fSecurityID, pos)
-    of 22: parseStr(s, result.fIDSource, pos)
-    of 167: parseStr(s, result.fSecurityType, pos)
-    of 200: parseStr(s, result.fMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.fMaturityDay, pos)
-    of 201: parseInt(s, result.fPutOrCall, pos)
-    of 202: parseFloat(s, result.fStrikePrice, pos)
-    of 206: parseChar(s, result.fOptAttribute, pos)
-    of 231: parseStr(s, result.fContractMultiplier, pos)
-    of 223: parseStr(s, result.fCouponRate, pos)
-    of 207: parseStr(s, result.fSecurityExchange, pos)
-    of 106: parseStr(s, result.fIssuer, pos)
-    of 348: parseUInt(s, result.fEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.fEncodedIssuer, pos)
-    of 107: parseStr(s, result.fSecurityDesc, pos)
-    of 350: parseUInt(s, result.fEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.fEncodedSecurityDesc, pos)
-    of 54: parseChar(s, result.fSide, pos)
-    of 60: parseStr(s, result.fTransactTime, pos)
-    of 38: parseUInt(s, result.fOrderQty, pos)
-    of 152: parseUInt(s, result.fCashOrderQty, pos)
-    of 376: parseStr(s, result.fComplianceID, pos)
-    of 377: parseBool(s, result.fSolicitedFlag, pos)
-    of 58: parseStr(s, result.fText, pos)
-    of 354: parseUInt(s, result.fEncodedTextLen, pos)
-    of 355: parseStr(s, result.fEncodedText, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtG(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtG)
-  result.msgType = mtG
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 37: parseStr(s, result.gOrderID, pos)
-    of 109: parseStr(s, result.gClientID, pos)
-    of 76: parseStr(s, result.gExecBroker, pos)
-    of 41: parseStr(s, result.gOrigClOrdID, pos)
-    of 11: parseStr(s, result.gClOrdID, pos)
-    of 66: parseStr(s, result.gListID, pos)
-    of 1: parseStr(s, result.gAccount, pos)
-    of 78: skipValue(s, pos); parseNoAllocs(s, result.gNoAllocs, pos)
-    of 63: parseChar(s, result.gSettlmntTyp, pos)
-    of 64: parseStr(s, result.gFutSettDate, pos)
-    of 21: parseChar(s, result.gHandlInst, pos)
-    of 18: parseStr(s, result.gExecInst, pos)
-    of 110: parseUInt(s, result.gMinQty, pos)
-    of 111: parseUInt(s, result.gMaxFloor, pos)
-    of 100: parseStr(s, result.gExDestination, pos)
-    of 386: skipValue(s, pos); parseNoTradingSessions(s, result.gNoTradingSessions, pos)
-    of 55: parseStr(s, result.gSymbol, pos)
-    of 65: parseStr(s, result.gSymbolSfx, pos)
-    of 48: parseStr(s, result.gSecurityID, pos)
-    of 22: parseStr(s, result.gIDSource, pos)
-    of 167: parseStr(s, result.gSecurityType, pos)
-    of 200: parseStr(s, result.gMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.gMaturityDay, pos)
-    of 201: parseInt(s, result.gPutOrCall, pos)
-    of 202: parseFloat(s, result.gStrikePrice, pos)
-    of 206: parseChar(s, result.gOptAttribute, pos)
-    of 231: parseStr(s, result.gContractMultiplier, pos)
-    of 223: parseStr(s, result.gCouponRate, pos)
-    of 207: parseStr(s, result.gSecurityExchange, pos)
-    of 106: parseStr(s, result.gIssuer, pos)
-    of 348: parseUInt(s, result.gEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.gEncodedIssuer, pos)
-    of 107: parseStr(s, result.gSecurityDesc, pos)
-    of 350: parseUInt(s, result.gEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.gEncodedSecurityDesc, pos)
-    of 54: parseChar(s, result.gSide, pos)
-    of 60: parseStr(s, result.gTransactTime, pos)
-    of 38: parseUInt(s, result.gOrderQty, pos)
-    of 152: parseUInt(s, result.gCashOrderQty, pos)
-    of 40: parseChar(s, result.gOrdType, pos)
-    of 44: parseFloat(s, result.gPrice, pos)
-    of 99: parseFloat(s, result.gStopPx, pos)
-    of 211: parseFloat(s, result.gPegDifference, pos)
-    of 388: parseChar(s, result.gDiscretionInst, pos)
-    of 389: parseFloat(s, result.gDiscretionOffset, pos)
-    of 376: parseStr(s, result.gComplianceID, pos)
-    of 377: parseBool(s, result.gSolicitedFlag, pos)
-    of 15: parseStr(s, result.gCurrency, pos)
-    of 59: parseChar(s, result.gTimeInForce, pos)
-    of 168: parseStr(s, result.gEffectiveTime, pos)
-    of 432: parseStr(s, result.gExpireDate, pos)
-    of 126: parseStr(s, result.gExpireTime, pos)
-    of 427: parseInt(s, result.gGTBookingInst, pos)
-    of 12: parseUInt(s, result.gCommission, pos)
-    of 13: parseChar(s, result.gCommType, pos)
-    of 47: parseChar(s, result.gRule80A, pos)
-    of 121: parseBool(s, result.gForexReq, pos)
-    of 120: parseStr(s, result.gSettlCurrency, pos)
-    of 58: parseStr(s, result.gText, pos)
-    of 354: parseUInt(s, result.gEncodedTextLen, pos)
-    of 355: parseStr(s, result.gEncodedText, pos)
-    of 193: parseStr(s, result.gFutSettDate2, pos)
-    of 192: parseUInt(s, result.gOrderQty2, pos)
-    of 77: parseChar(s, result.gOpenClose, pos)
-    of 203: parseInt(s, result.gCoveredOrUncovered, pos)
-    of 204: parseInt(s, result.gCustomerOrFirm, pos)
-    of 210: parseUInt(s, result.gMaxShow, pos)
-    of 114: parseBool(s, result.gLocateReqd, pos)
-    of 439: parseStr(s, result.gClearingFirm, pos)
-    of 440: parseStr(s, result.gClearingAccount, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtH(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtH)
-  result.msgType = mtH
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 37: parseStr(s, result.hOrderID, pos)
-    of 11: parseStr(s, result.hClOrdID, pos)
-    of 109: parseStr(s, result.hClientID, pos)
-    of 1: parseStr(s, result.hAccount, pos)
-    of 76: parseStr(s, result.hExecBroker, pos)
-    of 55: parseStr(s, result.hSymbol, pos)
-    of 65: parseStr(s, result.hSymbolSfx, pos)
-    of 48: parseStr(s, result.hSecurityID, pos)
-    of 22: parseStr(s, result.hIDSource, pos)
-    of 167: parseStr(s, result.hSecurityType, pos)
-    of 200: parseStr(s, result.hMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.hMaturityDay, pos)
-    of 201: parseInt(s, result.hPutOrCall, pos)
-    of 202: parseFloat(s, result.hStrikePrice, pos)
-    of 206: parseChar(s, result.hOptAttribute, pos)
-    of 231: parseStr(s, result.hContractMultiplier, pos)
-    of 223: parseStr(s, result.hCouponRate, pos)
-    of 207: parseStr(s, result.hSecurityExchange, pos)
-    of 106: parseStr(s, result.hIssuer, pos)
-    of 348: parseUInt(s, result.hEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.hEncodedIssuer, pos)
-    of 107: parseStr(s, result.hSecurityDesc, pos)
-    of 350: parseUInt(s, result.hEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.hEncodedSecurityDesc, pos)
-    of 54: parseChar(s, result.hSide, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtJ(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtJ)
-  result.msgType = mtJ
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 70: parseStr(s, result.jAllocID, pos)
-    of 71: parseChar(s, result.jAllocTransType, pos)
-    of 72: parseStr(s, result.jRefAllocID, pos)
-    of 196: parseStr(s, result.jAllocLinkID, pos)
-    of 197: parseInt(s, result.jAllocLinkType, pos)
-    of 73: skipValue(s, pos); parseNoOrders(s, result.jNoOrders, pos)
-    of 124: skipValue(s, pos); parseNoExecs(s, result.jNoExecs, pos)
-    of 54: parseChar(s, result.jSide, pos)
-    of 55: parseStr(s, result.jSymbol, pos)
-    of 65: parseStr(s, result.jSymbolSfx, pos)
-    of 48: parseStr(s, result.jSecurityID, pos)
-    of 22: parseStr(s, result.jIDSource, pos)
-    of 167: parseStr(s, result.jSecurityType, pos)
-    of 200: parseStr(s, result.jMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.jMaturityDay, pos)
-    of 201: parseInt(s, result.jPutOrCall, pos)
-    of 202: parseFloat(s, result.jStrikePrice, pos)
-    of 206: parseChar(s, result.jOptAttribute, pos)
-    of 231: parseStr(s, result.jContractMultiplier, pos)
-    of 223: parseStr(s, result.jCouponRate, pos)
-    of 207: parseStr(s, result.jSecurityExchange, pos)
-    of 106: parseStr(s, result.jIssuer, pos)
-    of 348: parseUInt(s, result.jEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.jEncodedIssuer, pos)
-    of 107: parseStr(s, result.jSecurityDesc, pos)
-    of 350: parseUInt(s, result.jEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.jEncodedSecurityDesc, pos)
-    of 53: parseUInt(s, result.jShares, pos)
-    of 30: parseStr(s, result.jLastMkt, pos)
-    of 336: parseStr(s, result.jTradingSessionID, pos)
-    of 6: parseFloat(s, result.jAvgPx, pos)
-    of 15: parseStr(s, result.jCurrency, pos)
-    of 74: parseInt(s, result.jAvgPrxPrecision, pos)
-    of 75: parseStr(s, result.jTradeDate, pos)
-    of 60: parseStr(s, result.jTransactTime, pos)
-    of 63: parseChar(s, result.jSettlmntTyp, pos)
-    of 64: parseStr(s, result.jFutSettDate, pos)
-    of 381: parseUInt(s, result.jGrossTradeAmt, pos)
-    of 118: parseUInt(s, result.jNetMoney, pos)
-    of 77: parseChar(s, result.jOpenClose, pos)
-    of 58: parseStr(s, result.jText, pos)
-    of 354: parseUInt(s, result.jEncodedTextLen, pos)
-    of 355: parseStr(s, result.jEncodedText, pos)
-    of 157: parseInt(s, result.jNumDaysInterest, pos)
-    of 158: parseStr(s, result.jAccruedInterestRate, pos)
-    of 78: skipValue(s, pos); parseNoAllocs(s, result.jNoAllocs, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtK(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtK)
-  result.msgType = mtK
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 66: parseStr(s, result.kListID, pos)
-    of 60: parseStr(s, result.kTransactTime, pos)
-    of 58: parseStr(s, result.kText, pos)
-    of 354: parseUInt(s, result.kEncodedTextLen, pos)
-    of 355: parseStr(s, result.kEncodedText, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtL(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtL)
-  result.msgType = mtL
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 66: parseStr(s, result.lListID, pos)
-    of 391: parseStr(s, result.lClientBidID, pos)
-    of 390: parseStr(s, result.lBidID, pos)
-    of 60: parseStr(s, result.lTransactTime, pos)
     of 58: parseStr(s, result.lText, pos)
     of 354: parseUInt(s, result.lEncodedTextLen, pos)
     of 355: parseStr(s, result.lEncodedText, pos)
@@ -3416,11 +2410,11 @@ proc parsemtL(s: string, result: var Fix42, pos: var int) =
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtM(s: string, result: var Fix42, pos: var int) =
+proc parseIOI(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtM)
-  result.msgType = mtM
+  # result = Fix42(msgType: ("6", "IOI"))
+  result.msgType = IOI
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3449,20 +2443,54 @@ proc parsemtM(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 66: parseStr(s, result.mListID, pos)
-    of 58: parseStr(s, result.mText, pos)
-    of 354: parseUInt(s, result.mEncodedTextLen, pos)
-    of 355: parseStr(s, result.mEncodedText, pos)
+    of 23: parseStr(s, result.ioiIOIid, pos)
+    of 28: parseChar(s, result.ioiIOITransType, pos)
+    of 26: parseStr(s, result.ioiIOIRefID, pos)
+    of 55: parseStr(s, result.ioiSymbol, pos)
+    of 65: parseStr(s, result.ioiSymbolSfx, pos)
+    of 48: parseStr(s, result.ioiSecurityID, pos)
+    of 22: parseStr(s, result.ioiIDSource, pos)
+    of 167: parseStr(s, result.ioiSecurityType, pos)
+    of 200: parseStr(s, result.ioiMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.ioiMaturityDay, pos)
+    of 201: parseInt(s, result.ioiPutOrCall, pos)
+    of 202: parseFloat(s, result.ioiStrikePrice, pos)
+    of 206: parseChar(s, result.ioiOptAttribute, pos)
+    of 231: parseStr(s, result.ioiContractMultiplier, pos)
+    of 223: parseStr(s, result.ioiCouponRate, pos)
+    of 207: parseStr(s, result.ioiSecurityExchange, pos)
+    of 106: parseStr(s, result.ioiIssuer, pos)
+    of 348: parseUInt(s, result.ioiEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.ioiEncodedIssuer, pos)
+    of 107: parseStr(s, result.ioiSecurityDesc, pos)
+    of 350: parseUInt(s, result.ioiEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.ioiEncodedSecurityDesc, pos)
+    of 54: parseChar(s, result.ioiSide, pos)
+    of 27: parseStr(s, result.ioiIOIShares, pos)
+    of 44: parseFloat(s, result.ioiPrice, pos)
+    of 15: parseStr(s, result.ioiCurrency, pos)
+    of 62: parseStr(s, result.ioiValidUntilTime, pos)
+    of 25: parseChar(s, result.ioiIOIQltyInd, pos)
+    of 130: parseBool(s, result.ioiIOINaturalFlag, pos)
+    of 199: skipValue(s, pos); parseNoIOIQualifiers(s, result.ioiNoIOIQualifiers, pos)
+    of 58: parseStr(s, result.ioiText, pos)
+    of 354: parseUInt(s, result.ioiEncodedTextLen, pos)
+    of 355: parseStr(s, result.ioiEncodedText, pos)
+    of 60: parseStr(s, result.ioiTransactTime, pos)
+    of 149: parseStr(s, result.ioiURLLink, pos)
+    of 215: skipValue(s, pos); parseNoRoutingIDs(s, result.ioiNoRoutingIDs, pos)
+    of 218: parseFloat(s, result.ioiSpreadToBenchmark, pos)
+    of 219: parseChar(s, result.ioiBenchmark, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtN(s: string, result: var Fix42, pos: var int) =
+proc parseAdvertisement(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtN)
-  result.msgType = mtN
+  # result = Fix42(msgType: ("7", "Advertisement"))
+  result.msgType = Advertisement
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3491,27 +2519,50 @@ proc parsemtN(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 66: parseStr(s, result.nListID, pos)
-    of 429: parseInt(s, result.nListStatusType, pos)
-    of 82: parseInt(s, result.nNoRpts, pos)
-    of 431: parseInt(s, result.nListOrderStatus, pos)
-    of 83: parseInt(s, result.nRptSeq, pos)
-    of 444: parseStr(s, result.nListStatusText, pos)
-    of 445: parseUInt(s, result.nEncodedListStatusTextLen, pos)
-    of 446: parseStr(s, result.nEncodedListStatusText, pos)
-    of 60: parseStr(s, result.nTransactTime, pos)
-    of 68: parseInt(s, result.nTotNoOrders, pos)
-    of 73: skipValue(s, pos); parseNoOrders(s, result.nNoOrders, pos)
+    of 2: parseStr(s, result.aAdvId, pos)
+    of 5: parseStr(s, result.aAdvTransType, pos)
+    of 3: parseStr(s, result.aAdvRefID, pos)
+    of 55: parseStr(s, result.aSymbol, pos)
+    of 65: parseStr(s, result.aSymbolSfx, pos)
+    of 48: parseStr(s, result.aSecurityID, pos)
+    of 22: parseStr(s, result.aIDSource, pos)
+    of 167: parseStr(s, result.aSecurityType, pos)
+    of 200: parseStr(s, result.aMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.aMaturityDay, pos)
+    of 201: parseInt(s, result.aPutOrCall, pos)
+    of 202: parseFloat(s, result.aStrikePrice, pos)
+    of 206: parseChar(s, result.aOptAttribute, pos)
+    of 231: parseStr(s, result.aContractMultiplier, pos)
+    of 223: parseStr(s, result.aCouponRate, pos)
+    of 207: parseStr(s, result.aSecurityExchange, pos)
+    of 106: parseStr(s, result.aIssuer, pos)
+    of 348: parseUInt(s, result.aEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.aEncodedIssuer, pos)
+    of 107: parseStr(s, result.aSecurityDesc, pos)
+    of 350: parseUInt(s, result.aEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.aEncodedSecurityDesc, pos)
+    of 4: parseChar(s, result.aAdvSide, pos)
+    of 53: parseInt(s, result.aShares, pos)
+    of 44: parseFloat(s, result.aPrice, pos)
+    of 15: parseStr(s, result.aCurrency, pos)
+    of 75: parseStr(s, result.aTradeDate, pos)
+    of 60: parseStr(s, result.aTransactTime, pos)
+    of 58: parseStr(s, result.aText, pos)
+    of 354: parseUInt(s, result.aEncodedTextLen, pos)
+    of 355: parseStr(s, result.aEncodedText, pos)
+    of 149: parseStr(s, result.aURLLink, pos)
+    of 30: parseStr(s, result.aLastMkt, pos)
+    of 336: parseStr(s, result.aTradingSessionID, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtP(s: string, result: var Fix42, pos: var int) =
+proc parseExecutionReport(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtP)
-  result.msgType = mtP
+  # result = Fix42(msgType: ("8", "ExecutionReport"))
+  result.msgType = ExecutionReport
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3540,26 +2591,108 @@ proc parsemtP(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 109: parseStr(s, result.pClientID, pos)
-    of 76: parseStr(s, result.pExecBroker, pos)
-    of 70: parseStr(s, result.pAllocID, pos)
-    of 75: parseStr(s, result.pTradeDate, pos)
-    of 60: parseStr(s, result.pTransactTime, pos)
-    of 87: parseInt(s, result.pAllocStatus, pos)
-    of 88: parseInt(s, result.pAllocRejCode, pos)
-    of 58: parseStr(s, result.pText, pos)
-    of 354: parseUInt(s, result.pEncodedTextLen, pos)
-    of 355: parseStr(s, result.pEncodedText, pos)
+    of 37: parseStr(s, result.erOrderID, pos)
+    of 198: parseStr(s, result.erSecondaryOrderID, pos)
+    of 11: parseStr(s, result.erClOrdID, pos)
+    of 41: parseStr(s, result.erOrigClOrdID, pos)
+    of 109: parseStr(s, result.erClientID, pos)
+    of 76: parseStr(s, result.erExecBroker, pos)
+    of 382: skipValue(s, pos); parseNoContraBrokers(s, result.erNoContraBrokers, pos)
+    of 66: parseStr(s, result.erListID, pos)
+    of 17: parseStr(s, result.erExecID, pos)
+    of 20: parseChar(s, result.erExecTransType, pos)
+    of 19: parseStr(s, result.erExecRefID, pos)
+    of 150: parseChar(s, result.erExecType, pos)
+    of 39: parseChar(s, result.erOrdStatus, pos)
+    of 103: parseInt(s, result.erOrdRejReason, pos)
+    of 378: parseInt(s, result.erExecRestatementReason, pos)
+    of 1: parseStr(s, result.erAccount, pos)
+    of 63: parseChar(s, result.erSettlmntTyp, pos)
+    of 64: parseStr(s, result.erFutSettDate, pos)
+    of 55: parseStr(s, result.erSymbol, pos)
+    of 65: parseStr(s, result.erSymbolSfx, pos)
+    of 48: parseStr(s, result.erSecurityID, pos)
+    of 22: parseStr(s, result.erIDSource, pos)
+    of 167: parseStr(s, result.erSecurityType, pos)
+    of 200: parseStr(s, result.erMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.erMaturityDay, pos)
+    of 201: parseInt(s, result.erPutOrCall, pos)
+    of 202: parseFloat(s, result.erStrikePrice, pos)
+    of 206: parseChar(s, result.erOptAttribute, pos)
+    of 231: parseStr(s, result.erContractMultiplier, pos)
+    of 223: parseStr(s, result.erCouponRate, pos)
+    of 207: parseStr(s, result.erSecurityExchange, pos)
+    of 106: parseStr(s, result.erIssuer, pos)
+    of 348: parseUInt(s, result.erEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.erEncodedIssuer, pos)
+    of 107: parseStr(s, result.erSecurityDesc, pos)
+    of 350: parseUInt(s, result.erEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.erEncodedSecurityDesc, pos)
+    of 54: parseChar(s, result.erSide, pos)
+    of 38: parseInt(s, result.erOrderQty, pos)
+    of 152: parseInt(s, result.erCashOrderQty, pos)
+    of 40: parseChar(s, result.erOrdType, pos)
+    of 44: parseFloat(s, result.erPrice, pos)
+    of 99: parseFloat(s, result.erStopPx, pos)
+    of 211: parseFloat(s, result.erPegDifference, pos)
+    of 388: parseChar(s, result.erDiscretionInst, pos)
+    of 389: parseFloat(s, result.erDiscretionOffset, pos)
+    of 15: parseStr(s, result.erCurrency, pos)
+    of 376: parseStr(s, result.erComplianceID, pos)
+    of 377: parseBool(s, result.erSolicitedFlag, pos)
+    of 59: parseChar(s, result.erTimeInForce, pos)
+    of 168: parseStr(s, result.erEffectiveTime, pos)
+    of 432: parseStr(s, result.erExpireDate, pos)
+    of 126: parseStr(s, result.erExpireTime, pos)
+    of 18: parseStr(s, result.erExecInst, pos)
+    of 47: parseChar(s, result.erRule80A, pos)
+    of 32: parseInt(s, result.erLastShares, pos)
+    of 31: parseFloat(s, result.erLastPx, pos)
+    of 194: parseFloat(s, result.erLastSpotRate, pos)
+    of 195: parseFloat(s, result.erLastForwardPoints, pos)
+    of 30: parseStr(s, result.erLastMkt, pos)
+    of 336: parseStr(s, result.erTradingSessionID, pos)
+    of 29: parseChar(s, result.erLastCapacity, pos)
+    of 151: parseInt(s, result.erLeavesQty, pos)
+    of 14: parseInt(s, result.erCumQty, pos)
+    of 6: parseFloat(s, result.erAvgPx, pos)
+    of 424: parseInt(s, result.erDayOrderQty, pos)
+    of 425: parseInt(s, result.erDayCumQty, pos)
+    of 426: parseFloat(s, result.erDayAvgPx, pos)
+    of 427: parseInt(s, result.erGTBookingInst, pos)
+    of 75: parseStr(s, result.erTradeDate, pos)
+    of 60: parseStr(s, result.erTransactTime, pos)
+    of 113: parseBool(s, result.erReportToExch, pos)
+    of 12: parseUInt(s, result.erCommission, pos)
+    of 13: parseChar(s, result.erCommType, pos)
+    of 381: parseUInt(s, result.erGrossTradeAmt, pos)
+    of 119: parseUInt(s, result.erSettlCurrAmt, pos)
+    of 120: parseStr(s, result.erSettlCurrency, pos)
+    of 155: parseStr(s, result.erSettlCurrFxRate, pos)
+    of 156: parseChar(s, result.erSettlCurrFxRateCalc, pos)
+    of 21: parseChar(s, result.erHandlInst, pos)
+    of 110: parseInt(s, result.erMinQty, pos)
+    of 111: parseInt(s, result.erMaxFloor, pos)
+    of 77: parseChar(s, result.erOpenClose, pos)
+    of 210: parseInt(s, result.erMaxShow, pos)
+    of 58: parseStr(s, result.erText, pos)
+    of 354: parseUInt(s, result.erEncodedTextLen, pos)
+    of 355: parseStr(s, result.erEncodedText, pos)
+    of 193: parseStr(s, result.erFutSettDate2, pos)
+    of 192: parseInt(s, result.erOrderQty2, pos)
+    of 439: parseStr(s, result.erClearingFirm, pos)
+    of 440: parseStr(s, result.erClearingAccount, pos)
+    of 442: parseChar(s, result.erMultiLegReportingType, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtQ(s: string, result: var Fix42, pos: var int) =
+proc parseOrderCancelReject(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtQ)
-  result.msgType = mtQ
+  # result = Fix42(msgType: ("9", "OrderCancelReject"))
+  result.msgType = OrderCancelReject
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3588,9 +2721,1030 @@ proc parsemtQ(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 37: parseStr(s, result.qOrderID, pos)
-    of 17: parseStr(s, result.qExecID, pos)
-    of 127: parseChar(s, result.qDKReason, pos)
+    of 37: parseStr(s, result.ocrOrderID, pos)
+    of 198: parseStr(s, result.ocrSecondaryOrderID, pos)
+    of 11: parseStr(s, result.ocrClOrdID, pos)
+    of 41: parseStr(s, result.ocrOrigClOrdID, pos)
+    of 39: parseChar(s, result.ocrOrdStatus, pos)
+    of 109: parseStr(s, result.ocrClientID, pos)
+    of 76: parseStr(s, result.ocrExecBroker, pos)
+    of 66: parseStr(s, result.ocrListID, pos)
+    of 1: parseStr(s, result.ocrAccount, pos)
+    of 60: parseStr(s, result.ocrTransactTime, pos)
+    of 434: parseChar(s, result.ocrCxlRejResponseTo, pos)
+    of 102: parseInt(s, result.ocrCxlRejReason, pos)
+    of 58: parseStr(s, result.ocrText, pos)
+    of 354: parseUInt(s, result.ocrEncodedTextLen, pos)
+    of 355: parseStr(s, result.ocrEncodedText, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseLogon(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("A", "Logon"))
+  result.msgType = Logon
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 98: parseInt(s, result.lEncryptMethod, pos)
+    of 108: parseInt(s, result.lHeartBtInt, pos)
+    of 95: parseUInt(s, result.lRawDataLength, pos)
+    of 96: parseStr(s, result.lRawData, pos)
+    of 141: parseBool(s, result.lResetSeqNumFlag, pos)
+    of 383: parseInt(s, result.lMaxMessageSize, pos)
+    of 384: skipValue(s, pos); parseNoMsgTypes(s, result.lNoMsgTypes, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseNews(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("B", "News"))
+  result.msgType = News
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 42: parseStr(s, result.nOrigTime, pos)
+    of 61: parseChar(s, result.nUrgency, pos)
+    of 148: parseStr(s, result.nHeadline, pos)
+    of 358: parseUInt(s, result.nEncodedHeadlineLen, pos)
+    of 359: parseStr(s, result.nEncodedHeadline, pos)
+    of 215: skipValue(s, pos); parseNoRoutingIDs(s, result.nNoRoutingIDs, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.nNoRelatedSym, pos)
+    of 33: skipValue(s, pos); parseLinesOfText(s, result.nLinesOfText, pos)
+    of 149: parseStr(s, result.nURLLink, pos)
+    of 95: parseUInt(s, result.nRawDataLength, pos)
+    of 96: parseStr(s, result.nRawData, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseEmail(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("C", "Email"))
+  result.msgType = Email
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 164: parseStr(s, result.eEmailThreadID, pos)
+    of 94: parseChar(s, result.eEmailType, pos)
+    of 42: parseStr(s, result.eOrigTime, pos)
+    of 147: parseStr(s, result.eSubject, pos)
+    of 356: parseUInt(s, result.eEncodedSubjectLen, pos)
+    of 357: parseStr(s, result.eEncodedSubject, pos)
+    of 215: skipValue(s, pos); parseNoRoutingIDs(s, result.eNoRoutingIDs, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.eNoRelatedSym, pos)
+    of 37: parseStr(s, result.eOrderID, pos)
+    of 11: parseStr(s, result.eClOrdID, pos)
+    of 33: skipValue(s, pos); parseLinesOfText(s, result.eLinesOfText, pos)
+    of 95: parseUInt(s, result.eRawDataLength, pos)
+    of 96: parseStr(s, result.eRawData, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseNewOrderSingle(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("D", "NewOrderSingle"))
+  result.msgType = NewOrderSingle
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 11: parseStr(s, result.nosClOrdID, pos)
+    of 109: parseStr(s, result.nosClientID, pos)
+    of 76: parseStr(s, result.nosExecBroker, pos)
+    of 1: parseStr(s, result.nosAccount, pos)
+    of 78: skipValue(s, pos); parseNoAllocs(s, result.nosNoAllocs, pos)
+    of 63: parseChar(s, result.nosSettlmntTyp, pos)
+    of 64: parseStr(s, result.nosFutSettDate, pos)
+    of 21: parseChar(s, result.nosHandlInst, pos)
+    of 18: parseStr(s, result.nosExecInst, pos)
+    of 110: parseInt(s, result.nosMinQty, pos)
+    of 111: parseInt(s, result.nosMaxFloor, pos)
+    of 100: parseStr(s, result.nosExDestination, pos)
+    of 386: skipValue(s, pos); parseNoTradingSessions(s, result.nosNoTradingSessions, pos)
+    of 81: parseChar(s, result.nosProcessCode, pos)
+    of 55: parseStr(s, result.nosSymbol, pos)
+    of 65: parseStr(s, result.nosSymbolSfx, pos)
+    of 48: parseStr(s, result.nosSecurityID, pos)
+    of 22: parseStr(s, result.nosIDSource, pos)
+    of 167: parseStr(s, result.nosSecurityType, pos)
+    of 200: parseStr(s, result.nosMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.nosMaturityDay, pos)
+    of 201: parseInt(s, result.nosPutOrCall, pos)
+    of 202: parseFloat(s, result.nosStrikePrice, pos)
+    of 206: parseChar(s, result.nosOptAttribute, pos)
+    of 231: parseStr(s, result.nosContractMultiplier, pos)
+    of 223: parseStr(s, result.nosCouponRate, pos)
+    of 207: parseStr(s, result.nosSecurityExchange, pos)
+    of 106: parseStr(s, result.nosIssuer, pos)
+    of 348: parseUInt(s, result.nosEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.nosEncodedIssuer, pos)
+    of 107: parseStr(s, result.nosSecurityDesc, pos)
+    of 350: parseUInt(s, result.nosEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.nosEncodedSecurityDesc, pos)
+    of 140: parseFloat(s, result.nosPrevClosePx, pos)
+    of 54: parseChar(s, result.nosSide, pos)
+    of 114: parseBool(s, result.nosLocateReqd, pos)
+    of 60: parseStr(s, result.nosTransactTime, pos)
+    of 38: parseInt(s, result.nosOrderQty, pos)
+    of 152: parseInt(s, result.nosCashOrderQty, pos)
+    of 40: parseChar(s, result.nosOrdType, pos)
+    of 44: parseFloat(s, result.nosPrice, pos)
+    of 99: parseFloat(s, result.nosStopPx, pos)
+    of 15: parseStr(s, result.nosCurrency, pos)
+    of 376: parseStr(s, result.nosComplianceID, pos)
+    of 377: parseBool(s, result.nosSolicitedFlag, pos)
+    of 23: parseStr(s, result.nosIOIid, pos)
+    of 117: parseStr(s, result.nosQuoteID, pos)
+    of 59: parseChar(s, result.nosTimeInForce, pos)
+    of 168: parseStr(s, result.nosEffectiveTime, pos)
+    of 432: parseStr(s, result.nosExpireDate, pos)
+    of 126: parseStr(s, result.nosExpireTime, pos)
+    of 427: parseInt(s, result.nosGTBookingInst, pos)
+    of 12: parseUInt(s, result.nosCommission, pos)
+    of 13: parseChar(s, result.nosCommType, pos)
+    of 47: parseChar(s, result.nosRule80A, pos)
+    of 121: parseBool(s, result.nosForexReq, pos)
+    of 120: parseStr(s, result.nosSettlCurrency, pos)
+    of 58: parseStr(s, result.nosText, pos)
+    of 354: parseUInt(s, result.nosEncodedTextLen, pos)
+    of 355: parseStr(s, result.nosEncodedText, pos)
+    of 193: parseStr(s, result.nosFutSettDate2, pos)
+    of 192: parseInt(s, result.nosOrderQty2, pos)
+    of 77: parseChar(s, result.nosOpenClose, pos)
+    of 203: parseInt(s, result.nosCoveredOrUncovered, pos)
+    of 204: parseInt(s, result.nosCustomerOrFirm, pos)
+    of 210: parseInt(s, result.nosMaxShow, pos)
+    of 211: parseFloat(s, result.nosPegDifference, pos)
+    of 388: parseChar(s, result.nosDiscretionInst, pos)
+    of 389: parseFloat(s, result.nosDiscretionOffset, pos)
+    of 439: parseStr(s, result.nosClearingFirm, pos)
+    of 440: parseStr(s, result.nosClearingAccount, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseNewOrderList(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("E", "NewOrderList"))
+  result.msgType = NewOrderList
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 66: parseStr(s, result.nolListID, pos)
+    of 390: parseStr(s, result.nolBidID, pos)
+    of 391: parseStr(s, result.nolClientBidID, pos)
+    of 414: parseInt(s, result.nolProgRptReqs, pos)
+    of 394: parseInt(s, result.nolBidType, pos)
+    of 415: parseInt(s, result.nolProgPeriodInterval, pos)
+    of 433: parseChar(s, result.nolListExecInstType, pos)
+    of 69: parseStr(s, result.nolListExecInst, pos)
+    of 352: parseUInt(s, result.nolEncodedListExecInstLen, pos)
+    of 353: parseStr(s, result.nolEncodedListExecInst, pos)
+    of 68: parseInt(s, result.nolTotNoOrders, pos)
+    of 73: skipValue(s, pos); parseNoOrders(s, result.nolNoOrders, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseOrderCancelRequest(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("F", "OrderCancelRequest"))
+  result.msgType = OrderCancelRequest
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 41: parseStr(s, result.ocrOrigClOrdID, pos)
+    of 37: parseStr(s, result.ocrOrderID, pos)
+    of 11: parseStr(s, result.ocrClOrdID, pos)
+    of 66: parseStr(s, result.ocrListID, pos)
+    of 1: parseStr(s, result.ocrAccount, pos)
+    of 109: parseStr(s, result.ocrClientID, pos)
+    of 76: parseStr(s, result.ocrExecBroker, pos)
+    of 55: parseStr(s, result.ocrSymbol, pos)
+    of 65: parseStr(s, result.ocrSymbolSfx, pos)
+    of 48: parseStr(s, result.ocrSecurityID, pos)
+    of 22: parseStr(s, result.ocrIDSource, pos)
+    of 167: parseStr(s, result.ocrSecurityType, pos)
+    of 200: parseStr(s, result.ocrMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.ocrMaturityDay, pos)
+    of 201: parseInt(s, result.ocrPutOrCall, pos)
+    of 202: parseFloat(s, result.ocrStrikePrice, pos)
+    of 206: parseChar(s, result.ocrOptAttribute, pos)
+    of 231: parseStr(s, result.ocrContractMultiplier, pos)
+    of 223: parseStr(s, result.ocrCouponRate, pos)
+    of 207: parseStr(s, result.ocrSecurityExchange, pos)
+    of 106: parseStr(s, result.ocrIssuer, pos)
+    of 348: parseUInt(s, result.ocrEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.ocrEncodedIssuer, pos)
+    of 107: parseStr(s, result.ocrSecurityDesc, pos)
+    of 350: parseUInt(s, result.ocrEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.ocrEncodedSecurityDesc, pos)
+    of 54: parseChar(s, result.ocrSide, pos)
+    of 60: parseStr(s, result.ocrTransactTime, pos)
+    of 38: parseInt(s, result.ocrOrderQty, pos)
+    of 152: parseInt(s, result.ocrCashOrderQty, pos)
+    of 376: parseStr(s, result.ocrComplianceID, pos)
+    of 377: parseBool(s, result.ocrSolicitedFlag, pos)
+    of 58: parseStr(s, result.ocrText, pos)
+    of 354: parseUInt(s, result.ocrEncodedTextLen, pos)
+    of 355: parseStr(s, result.ocrEncodedText, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseOrderCancelReplaceRequest(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("G", "OrderCancelReplaceRequest"))
+  result.msgType = OrderCancelReplaceRequest
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 37: parseStr(s, result.ocrrOrderID, pos)
+    of 109: parseStr(s, result.ocrrClientID, pos)
+    of 76: parseStr(s, result.ocrrExecBroker, pos)
+    of 41: parseStr(s, result.ocrrOrigClOrdID, pos)
+    of 11: parseStr(s, result.ocrrClOrdID, pos)
+    of 66: parseStr(s, result.ocrrListID, pos)
+    of 1: parseStr(s, result.ocrrAccount, pos)
+    of 78: skipValue(s, pos); parseNoAllocs(s, result.ocrrNoAllocs, pos)
+    of 63: parseChar(s, result.ocrrSettlmntTyp, pos)
+    of 64: parseStr(s, result.ocrrFutSettDate, pos)
+    of 21: parseChar(s, result.ocrrHandlInst, pos)
+    of 18: parseStr(s, result.ocrrExecInst, pos)
+    of 110: parseInt(s, result.ocrrMinQty, pos)
+    of 111: parseInt(s, result.ocrrMaxFloor, pos)
+    of 100: parseStr(s, result.ocrrExDestination, pos)
+    of 386: skipValue(s, pos); parseNoTradingSessions(s, result.ocrrNoTradingSessions, pos)
+    of 55: parseStr(s, result.ocrrSymbol, pos)
+    of 65: parseStr(s, result.ocrrSymbolSfx, pos)
+    of 48: parseStr(s, result.ocrrSecurityID, pos)
+    of 22: parseStr(s, result.ocrrIDSource, pos)
+    of 167: parseStr(s, result.ocrrSecurityType, pos)
+    of 200: parseStr(s, result.ocrrMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.ocrrMaturityDay, pos)
+    of 201: parseInt(s, result.ocrrPutOrCall, pos)
+    of 202: parseFloat(s, result.ocrrStrikePrice, pos)
+    of 206: parseChar(s, result.ocrrOptAttribute, pos)
+    of 231: parseStr(s, result.ocrrContractMultiplier, pos)
+    of 223: parseStr(s, result.ocrrCouponRate, pos)
+    of 207: parseStr(s, result.ocrrSecurityExchange, pos)
+    of 106: parseStr(s, result.ocrrIssuer, pos)
+    of 348: parseUInt(s, result.ocrrEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.ocrrEncodedIssuer, pos)
+    of 107: parseStr(s, result.ocrrSecurityDesc, pos)
+    of 350: parseUInt(s, result.ocrrEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.ocrrEncodedSecurityDesc, pos)
+    of 54: parseChar(s, result.ocrrSide, pos)
+    of 60: parseStr(s, result.ocrrTransactTime, pos)
+    of 38: parseInt(s, result.ocrrOrderQty, pos)
+    of 152: parseInt(s, result.ocrrCashOrderQty, pos)
+    of 40: parseChar(s, result.ocrrOrdType, pos)
+    of 44: parseFloat(s, result.ocrrPrice, pos)
+    of 99: parseFloat(s, result.ocrrStopPx, pos)
+    of 211: parseFloat(s, result.ocrrPegDifference, pos)
+    of 388: parseChar(s, result.ocrrDiscretionInst, pos)
+    of 389: parseFloat(s, result.ocrrDiscretionOffset, pos)
+    of 376: parseStr(s, result.ocrrComplianceID, pos)
+    of 377: parseBool(s, result.ocrrSolicitedFlag, pos)
+    of 15: parseStr(s, result.ocrrCurrency, pos)
+    of 59: parseChar(s, result.ocrrTimeInForce, pos)
+    of 168: parseStr(s, result.ocrrEffectiveTime, pos)
+    of 432: parseStr(s, result.ocrrExpireDate, pos)
+    of 126: parseStr(s, result.ocrrExpireTime, pos)
+    of 427: parseInt(s, result.ocrrGTBookingInst, pos)
+    of 12: parseUInt(s, result.ocrrCommission, pos)
+    of 13: parseChar(s, result.ocrrCommType, pos)
+    of 47: parseChar(s, result.ocrrRule80A, pos)
+    of 121: parseBool(s, result.ocrrForexReq, pos)
+    of 120: parseStr(s, result.ocrrSettlCurrency, pos)
+    of 58: parseStr(s, result.ocrrText, pos)
+    of 354: parseUInt(s, result.ocrrEncodedTextLen, pos)
+    of 355: parseStr(s, result.ocrrEncodedText, pos)
+    of 193: parseStr(s, result.ocrrFutSettDate2, pos)
+    of 192: parseInt(s, result.ocrrOrderQty2, pos)
+    of 77: parseChar(s, result.ocrrOpenClose, pos)
+    of 203: parseInt(s, result.ocrrCoveredOrUncovered, pos)
+    of 204: parseInt(s, result.ocrrCustomerOrFirm, pos)
+    of 210: parseInt(s, result.ocrrMaxShow, pos)
+    of 114: parseBool(s, result.ocrrLocateReqd, pos)
+    of 439: parseStr(s, result.ocrrClearingFirm, pos)
+    of 440: parseStr(s, result.ocrrClearingAccount, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseOrderStatusRequest(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("H", "OrderStatusRequest"))
+  result.msgType = OrderStatusRequest
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 37: parseStr(s, result.osrOrderID, pos)
+    of 11: parseStr(s, result.osrClOrdID, pos)
+    of 109: parseStr(s, result.osrClientID, pos)
+    of 1: parseStr(s, result.osrAccount, pos)
+    of 76: parseStr(s, result.osrExecBroker, pos)
+    of 55: parseStr(s, result.osrSymbol, pos)
+    of 65: parseStr(s, result.osrSymbolSfx, pos)
+    of 48: parseStr(s, result.osrSecurityID, pos)
+    of 22: parseStr(s, result.osrIDSource, pos)
+    of 167: parseStr(s, result.osrSecurityType, pos)
+    of 200: parseStr(s, result.osrMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.osrMaturityDay, pos)
+    of 201: parseInt(s, result.osrPutOrCall, pos)
+    of 202: parseFloat(s, result.osrStrikePrice, pos)
+    of 206: parseChar(s, result.osrOptAttribute, pos)
+    of 231: parseStr(s, result.osrContractMultiplier, pos)
+    of 223: parseStr(s, result.osrCouponRate, pos)
+    of 207: parseStr(s, result.osrSecurityExchange, pos)
+    of 106: parseStr(s, result.osrIssuer, pos)
+    of 348: parseUInt(s, result.osrEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.osrEncodedIssuer, pos)
+    of 107: parseStr(s, result.osrSecurityDesc, pos)
+    of 350: parseUInt(s, result.osrEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.osrEncodedSecurityDesc, pos)
+    of 54: parseChar(s, result.osrSide, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseAllocation(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("J", "Allocation"))
+  result.msgType = Allocation
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 70: parseStr(s, result.aAllocID, pos)
+    of 71: parseChar(s, result.aAllocTransType, pos)
+    of 72: parseStr(s, result.aRefAllocID, pos)
+    of 196: parseStr(s, result.aAllocLinkID, pos)
+    of 197: parseInt(s, result.aAllocLinkType, pos)
+    of 73: skipValue(s, pos); parseNoOrders(s, result.aNoOrders, pos)
+    of 124: skipValue(s, pos); parseNoExecs(s, result.aNoExecs, pos)
+    of 54: parseChar(s, result.aSide, pos)
+    of 55: parseStr(s, result.aSymbol, pos)
+    of 65: parseStr(s, result.aSymbolSfx, pos)
+    of 48: parseStr(s, result.aSecurityID, pos)
+    of 22: parseStr(s, result.aIDSource, pos)
+    of 167: parseStr(s, result.aSecurityType, pos)
+    of 200: parseStr(s, result.aMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.aMaturityDay, pos)
+    of 201: parseInt(s, result.aPutOrCall, pos)
+    of 202: parseFloat(s, result.aStrikePrice, pos)
+    of 206: parseChar(s, result.aOptAttribute, pos)
+    of 231: parseStr(s, result.aContractMultiplier, pos)
+    of 223: parseStr(s, result.aCouponRate, pos)
+    of 207: parseStr(s, result.aSecurityExchange, pos)
+    of 106: parseStr(s, result.aIssuer, pos)
+    of 348: parseUInt(s, result.aEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.aEncodedIssuer, pos)
+    of 107: parseStr(s, result.aSecurityDesc, pos)
+    of 350: parseUInt(s, result.aEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.aEncodedSecurityDesc, pos)
+    of 53: parseInt(s, result.aShares, pos)
+    of 30: parseStr(s, result.aLastMkt, pos)
+    of 336: parseStr(s, result.aTradingSessionID, pos)
+    of 6: parseFloat(s, result.aAvgPx, pos)
+    of 15: parseStr(s, result.aCurrency, pos)
+    of 74: parseInt(s, result.aAvgPrxPrecision, pos)
+    of 75: parseStr(s, result.aTradeDate, pos)
+    of 60: parseStr(s, result.aTransactTime, pos)
+    of 63: parseChar(s, result.aSettlmntTyp, pos)
+    of 64: parseStr(s, result.aFutSettDate, pos)
+    of 381: parseUInt(s, result.aGrossTradeAmt, pos)
+    of 118: parseUInt(s, result.aNetMoney, pos)
+    of 77: parseChar(s, result.aOpenClose, pos)
+    of 58: parseStr(s, result.aText, pos)
+    of 354: parseUInt(s, result.aEncodedTextLen, pos)
+    of 355: parseStr(s, result.aEncodedText, pos)
+    of 157: parseInt(s, result.aNumDaysInterest, pos)
+    of 158: parseStr(s, result.aAccruedInterestRate, pos)
+    of 78: skipValue(s, pos); parseNoAllocs(s, result.aNoAllocs, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseListCancelRequest(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("K", "ListCancelRequest"))
+  result.msgType = ListCancelRequest
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 66: parseStr(s, result.lcrListID, pos)
+    of 60: parseStr(s, result.lcrTransactTime, pos)
+    of 58: parseStr(s, result.lcrText, pos)
+    of 354: parseUInt(s, result.lcrEncodedTextLen, pos)
+    of 355: parseStr(s, result.lcrEncodedText, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseListExecute(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("L", "ListExecute"))
+  result.msgType = ListExecute
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 66: parseStr(s, result.leListID, pos)
+    of 391: parseStr(s, result.leClientBidID, pos)
+    of 390: parseStr(s, result.leBidID, pos)
+    of 60: parseStr(s, result.leTransactTime, pos)
+    of 58: parseStr(s, result.leText, pos)
+    of 354: parseUInt(s, result.leEncodedTextLen, pos)
+    of 355: parseStr(s, result.leEncodedText, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseListStatusRequest(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("M", "ListStatusRequest"))
+  result.msgType = ListStatusRequest
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 66: parseStr(s, result.lsrListID, pos)
+    of 58: parseStr(s, result.lsrText, pos)
+    of 354: parseUInt(s, result.lsrEncodedTextLen, pos)
+    of 355: parseStr(s, result.lsrEncodedText, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseListStatus(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("N", "ListStatus"))
+  result.msgType = ListStatus
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 66: parseStr(s, result.lsListID, pos)
+    of 429: parseInt(s, result.lsListStatusType, pos)
+    of 82: parseInt(s, result.lsNoRpts, pos)
+    of 431: parseInt(s, result.lsListOrderStatus, pos)
+    of 83: parseInt(s, result.lsRptSeq, pos)
+    of 444: parseStr(s, result.lsListStatusText, pos)
+    of 445: parseUInt(s, result.lsEncodedListStatusTextLen, pos)
+    of 446: parseStr(s, result.lsEncodedListStatusText, pos)
+    of 60: parseStr(s, result.lsTransactTime, pos)
+    of 68: parseInt(s, result.lsTotNoOrders, pos)
+    of 73: skipValue(s, pos); parseNoOrders(s, result.lsNoOrders, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseAllocationInstructionAck(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("P", "AllocationInstructionAck"))
+  result.msgType = AllocationInstructionAck
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 109: parseStr(s, result.aiaClientID, pos)
+    of 76: parseStr(s, result.aiaExecBroker, pos)
+    of 70: parseStr(s, result.aiaAllocID, pos)
+    of 75: parseStr(s, result.aiaTradeDate, pos)
+    of 60: parseStr(s, result.aiaTransactTime, pos)
+    of 87: parseInt(s, result.aiaAllocStatus, pos)
+    of 88: parseInt(s, result.aiaAllocRejCode, pos)
+    of 58: parseStr(s, result.aiaText, pos)
+    of 354: parseUInt(s, result.aiaEncodedTextLen, pos)
+    of 355: parseStr(s, result.aiaEncodedText, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseDontKnowTrade(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("Q", "DontKnowTrade"))
+  result.msgType = DontKnowTrade
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 37: parseStr(s, result.dktOrderID, pos)
+    of 17: parseStr(s, result.dktExecID, pos)
+    of 127: parseChar(s, result.dktDKReason, pos)
+    of 55: parseStr(s, result.dktSymbol, pos)
+    of 65: parseStr(s, result.dktSymbolSfx, pos)
+    of 48: parseStr(s, result.dktSecurityID, pos)
+    of 22: parseStr(s, result.dktIDSource, pos)
+    of 167: parseStr(s, result.dktSecurityType, pos)
+    of 200: parseStr(s, result.dktMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.dktMaturityDay, pos)
+    of 201: parseInt(s, result.dktPutOrCall, pos)
+    of 202: parseFloat(s, result.dktStrikePrice, pos)
+    of 206: parseChar(s, result.dktOptAttribute, pos)
+    of 231: parseStr(s, result.dktContractMultiplier, pos)
+    of 223: parseStr(s, result.dktCouponRate, pos)
+    of 207: parseStr(s, result.dktSecurityExchange, pos)
+    of 106: parseStr(s, result.dktIssuer, pos)
+    of 348: parseUInt(s, result.dktEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.dktEncodedIssuer, pos)
+    of 107: parseStr(s, result.dktSecurityDesc, pos)
+    of 350: parseUInt(s, result.dktEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.dktEncodedSecurityDesc, pos)
+    of 54: parseChar(s, result.dktSide, pos)
+    of 38: parseInt(s, result.dktOrderQty, pos)
+    of 152: parseInt(s, result.dktCashOrderQty, pos)
+    of 32: parseInt(s, result.dktLastShares, pos)
+    of 31: parseFloat(s, result.dktLastPx, pos)
+    of 58: parseStr(s, result.dktText, pos)
+    of 354: parseUInt(s, result.dktEncodedTextLen, pos)
+    of 355: parseStr(s, result.dktEncodedText, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseQuoteRequest(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("R", "QuoteRequest"))
+  result.msgType = QuoteRequest
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 131: parseStr(s, result.qrQuoteReqID, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.qrNoRelatedSym, pos)
+    of 93: parseUInt(s, result.signatureLength, pos)
+    of 89: parseStr(s, result.signature, pos)
+    of 10: parseStr(s, result.checkSum, pos)
+    else: skipValue(s, pos)
+
+proc parseQuote(s: string, result: var Fix42, pos: var int) =
+  var
+    t: uint16
+  # result = Fix42(msgType: ("S", "Quote"))
+  result.msgType = Quote
+  let l = s.len
+  while pos < l:
+    parseTag(s, t, pos)
+    case t
+    of 49: parseStr(s, result.senderCompID, pos)
+    of 56: parseStr(s, result.targetCompID, pos)
+    of 115: parseStr(s, result.onBehalfOfCompID, pos)
+    of 128: parseStr(s, result.deliverToCompID, pos)
+    of 90: parseUInt(s, result.secureDataLen, pos)
+    of 91: parseStr(s, result.secureData, pos)
+    of 34: parseInt(s, result.msgSeqNum, pos)
+    of 50: parseStr(s, result.senderSubID, pos)
+    of 142: parseStr(s, result.senderLocationID, pos)
+    of 57: parseStr(s, result.targetSubID, pos)
+    of 143: parseStr(s, result.targetLocationID, pos)
+    of 116: parseStr(s, result.onBehalfOfSubID, pos)
+    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
+    of 129: parseStr(s, result.deliverToSubID, pos)
+    of 145: parseStr(s, result.deliverToLocationID, pos)
+    of 43: parseBool(s, result.possDupFlag, pos)
+    of 97: parseBool(s, result.possResend, pos)
+    of 52: parseStr(s, result.sendingTime, pos)
+    of 122: parseStr(s, result.origSendingTime, pos)
+    of 212: parseUInt(s, result.xmlDataLen, pos)
+    of 213: parseStr(s, result.xmlData, pos)
+    of 347: parseStr(s, result.messageEncoding, pos)
+    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
+    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
+    of 131: parseStr(s, result.qQuoteReqID, pos)
+    of 117: parseStr(s, result.qQuoteID, pos)
+    of 301: parseInt(s, result.qQuoteResponseLevel, pos)
+    of 336: parseStr(s, result.qTradingSessionID, pos)
     of 55: parseStr(s, result.qSymbol, pos)
     of 65: parseStr(s, result.qSymbolSfx, pos)
     of 48: parseStr(s, result.qSecurityID, pos)
@@ -3610,24 +3764,31 @@ proc parsemtQ(s: string, result: var Fix42, pos: var int) =
     of 107: parseStr(s, result.qSecurityDesc, pos)
     of 350: parseUInt(s, result.qEncodedSecurityDescLen, pos)
     of 351: parseStr(s, result.qEncodedSecurityDesc, pos)
-    of 54: parseChar(s, result.qSide, pos)
-    of 38: parseUInt(s, result.qOrderQty, pos)
-    of 152: parseUInt(s, result.qCashOrderQty, pos)
-    of 32: parseUInt(s, result.qLastShares, pos)
-    of 31: parseFloat(s, result.qLastPx, pos)
-    of 58: parseStr(s, result.qText, pos)
-    of 354: parseUInt(s, result.qEncodedTextLen, pos)
-    of 355: parseStr(s, result.qEncodedText, pos)
+    of 132: parseFloat(s, result.qBidPx, pos)
+    of 133: parseFloat(s, result.qOfferPx, pos)
+    of 134: parseInt(s, result.qBidSize, pos)
+    of 135: parseInt(s, result.qOfferSize, pos)
+    of 62: parseStr(s, result.qValidUntilTime, pos)
+    of 188: parseFloat(s, result.qBidSpotRate, pos)
+    of 190: parseFloat(s, result.qOfferSpotRate, pos)
+    of 189: parseFloat(s, result.qBidForwardPoints, pos)
+    of 191: parseFloat(s, result.qOfferForwardPoints, pos)
+    of 60: parseStr(s, result.qTransactTime, pos)
+    of 64: parseStr(s, result.qFutSettDate, pos)
+    of 40: parseChar(s, result.qOrdType, pos)
+    of 193: parseStr(s, result.qFutSettDate2, pos)
+    of 192: parseInt(s, result.qOrderQty2, pos)
+    of 15: parseStr(s, result.qCurrency, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtR(s: string, result: var Fix42, pos: var int) =
+proc parseSettlementInstructions(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtR)
-  result.msgType = mtR
+  # result = Fix42(msgType: ("T", "SettlementInstructions"))
+  result.msgType = SettlementInstructions
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3656,18 +3817,52 @@ proc parsemtR(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 131: parseStr(s, result.rQuoteReqID, pos)
-    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.rNoRelatedSym, pos)
+    of 162: parseStr(s, result.siSettlInstID, pos)
+    of 163: parseChar(s, result.siSettlInstTransType, pos)
+    of 214: parseStr(s, result.siSettlInstRefID, pos)
+    of 160: parseChar(s, result.siSettlInstMode, pos)
+    of 165: parseChar(s, result.siSettlInstSource, pos)
+    of 79: parseStr(s, result.siAllocAccount, pos)
+    of 166: parseStr(s, result.siSettlLocation, pos)
+    of 75: parseStr(s, result.siTradeDate, pos)
+    of 70: parseStr(s, result.siAllocID, pos)
+    of 30: parseStr(s, result.siLastMkt, pos)
+    of 336: parseStr(s, result.siTradingSessionID, pos)
+    of 54: parseChar(s, result.siSide, pos)
+    of 167: parseStr(s, result.siSecurityType, pos)
+    of 168: parseStr(s, result.siEffectiveTime, pos)
+    of 60: parseStr(s, result.siTransactTime, pos)
+    of 109: parseStr(s, result.siClientID, pos)
+    of 76: parseStr(s, result.siExecBroker, pos)
+    of 169: parseInt(s, result.siStandInstDbType, pos)
+    of 170: parseStr(s, result.siStandInstDbName, pos)
+    of 171: parseStr(s, result.siStandInstDbID, pos)
+    of 172: parseInt(s, result.siSettlDeliveryType, pos)
+    of 173: parseStr(s, result.siSettlDepositoryCode, pos)
+    of 174: parseStr(s, result.siSettlBrkrCode, pos)
+    of 175: parseStr(s, result.siSettlInstCode, pos)
+    of 176: parseStr(s, result.siSecuritySettlAgentName, pos)
+    of 177: parseStr(s, result.siSecuritySettlAgentCode, pos)
+    of 178: parseStr(s, result.siSecuritySettlAgentAcctNum, pos)
+    of 179: parseStr(s, result.siSecuritySettlAgentAcctName, pos)
+    of 180: parseStr(s, result.siSecuritySettlAgentContactName, pos)
+    of 181: parseStr(s, result.siSecuritySettlAgentContactPhone, pos)
+    of 182: parseStr(s, result.siCashSettlAgentName, pos)
+    of 183: parseStr(s, result.siCashSettlAgentCode, pos)
+    of 184: parseStr(s, result.siCashSettlAgentAcctNum, pos)
+    of 185: parseStr(s, result.siCashSettlAgentAcctName, pos)
+    of 186: parseStr(s, result.siCashSettlAgentContactName, pos)
+    of 187: parseStr(s, result.siCashSettlAgentContactPhone, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtS(s: string, result: var Fix42, pos: var int) =
+proc parseMarketDataRequest(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtS)
-  result.msgType = mtS
+  # result = Fix42(msgType: ("V", "MarketDataRequest"))
+  result.msgType = MarketDataRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3696,54 +3891,23 @@ proc parsemtS(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 131: parseStr(s, result.sQuoteReqID, pos)
-    of 117: parseStr(s, result.sQuoteID, pos)
-    of 301: parseInt(s, result.sQuoteResponseLevel, pos)
-    of 336: parseStr(s, result.sTradingSessionID, pos)
-    of 55: parseStr(s, result.sSymbol, pos)
-    of 65: parseStr(s, result.sSymbolSfx, pos)
-    of 48: parseStr(s, result.sSecurityID, pos)
-    of 22: parseStr(s, result.sIDSource, pos)
-    of 167: parseStr(s, result.sSecurityType, pos)
-    of 200: parseStr(s, result.sMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.sMaturityDay, pos)
-    of 201: parseInt(s, result.sPutOrCall, pos)
-    of 202: parseFloat(s, result.sStrikePrice, pos)
-    of 206: parseChar(s, result.sOptAttribute, pos)
-    of 231: parseStr(s, result.sContractMultiplier, pos)
-    of 223: parseStr(s, result.sCouponRate, pos)
-    of 207: parseStr(s, result.sSecurityExchange, pos)
-    of 106: parseStr(s, result.sIssuer, pos)
-    of 348: parseUInt(s, result.sEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.sEncodedIssuer, pos)
-    of 107: parseStr(s, result.sSecurityDesc, pos)
-    of 350: parseUInt(s, result.sEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.sEncodedSecurityDesc, pos)
-    of 132: parseFloat(s, result.sBidPx, pos)
-    of 133: parseFloat(s, result.sOfferPx, pos)
-    of 134: parseUInt(s, result.sBidSize, pos)
-    of 135: parseUInt(s, result.sOfferSize, pos)
-    of 62: parseStr(s, result.sValidUntilTime, pos)
-    of 188: parseFloat(s, result.sBidSpotRate, pos)
-    of 190: parseFloat(s, result.sOfferSpotRate, pos)
-    of 189: parseFloat(s, result.sBidForwardPoints, pos)
-    of 191: parseFloat(s, result.sOfferForwardPoints, pos)
-    of 60: parseStr(s, result.sTransactTime, pos)
-    of 64: parseStr(s, result.sFutSettDate, pos)
-    of 40: parseChar(s, result.sOrdType, pos)
-    of 193: parseStr(s, result.sFutSettDate2, pos)
-    of 192: parseUInt(s, result.sOrderQty2, pos)
-    of 15: parseStr(s, result.sCurrency, pos)
+    of 262: parseStr(s, result.mdrMDReqID, pos)
+    of 263: parseChar(s, result.mdrSubscriptionRequestType, pos)
+    of 264: parseInt(s, result.mdrMarketDepth, pos)
+    of 265: parseInt(s, result.mdrMDUpdateType, pos)
+    of 266: parseBool(s, result.mdrAggregatedBook, pos)
+    of 267: skipValue(s, pos); parseNoMDEntryTypes(s, result.mdrNoMDEntryTypes, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.mdrNoRelatedSym, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtT(s: string, result: var Fix42, pos: var int) =
+proc parseMarketDataSnapshotFullRefresh(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtT)
-  result.msgType = mtT
+  # result = Fix42(msgType: ("W", "MarketDataSnapshotFullRefresh"))
+  result.msgType = MarketDataSnapshotFullRefresh
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3772,52 +3936,40 @@ proc parsemtT(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 162: parseStr(s, result.tSettlInstID, pos)
-    of 163: parseChar(s, result.tSettlInstTransType, pos)
-    of 214: parseStr(s, result.tSettlInstRefID, pos)
-    of 160: parseChar(s, result.tSettlInstMode, pos)
-    of 165: parseChar(s, result.tSettlInstSource, pos)
-    of 79: parseStr(s, result.tAllocAccount, pos)
-    of 166: parseStr(s, result.tSettlLocation, pos)
-    of 75: parseStr(s, result.tTradeDate, pos)
-    of 70: parseStr(s, result.tAllocID, pos)
-    of 30: parseStr(s, result.tLastMkt, pos)
-    of 336: parseStr(s, result.tTradingSessionID, pos)
-    of 54: parseChar(s, result.tSide, pos)
-    of 167: parseStr(s, result.tSecurityType, pos)
-    of 168: parseStr(s, result.tEffectiveTime, pos)
-    of 60: parseStr(s, result.tTransactTime, pos)
-    of 109: parseStr(s, result.tClientID, pos)
-    of 76: parseStr(s, result.tExecBroker, pos)
-    of 169: parseInt(s, result.tStandInstDbType, pos)
-    of 170: parseStr(s, result.tStandInstDbName, pos)
-    of 171: parseStr(s, result.tStandInstDbID, pos)
-    of 172: parseInt(s, result.tSettlDeliveryType, pos)
-    of 173: parseStr(s, result.tSettlDepositoryCode, pos)
-    of 174: parseStr(s, result.tSettlBrkrCode, pos)
-    of 175: parseStr(s, result.tSettlInstCode, pos)
-    of 176: parseStr(s, result.tSecuritySettlAgentName, pos)
-    of 177: parseStr(s, result.tSecuritySettlAgentCode, pos)
-    of 178: parseStr(s, result.tSecuritySettlAgentAcctNum, pos)
-    of 179: parseStr(s, result.tSecuritySettlAgentAcctName, pos)
-    of 180: parseStr(s, result.tSecuritySettlAgentContactName, pos)
-    of 181: parseStr(s, result.tSecuritySettlAgentContactPhone, pos)
-    of 182: parseStr(s, result.tCashSettlAgentName, pos)
-    of 183: parseStr(s, result.tCashSettlAgentCode, pos)
-    of 184: parseStr(s, result.tCashSettlAgentAcctNum, pos)
-    of 185: parseStr(s, result.tCashSettlAgentAcctName, pos)
-    of 186: parseStr(s, result.tCashSettlAgentContactName, pos)
-    of 187: parseStr(s, result.tCashSettlAgentContactPhone, pos)
+    of 262: parseStr(s, result.mdsfrMDReqID, pos)
+    of 55: parseStr(s, result.mdsfrSymbol, pos)
+    of 65: parseStr(s, result.mdsfrSymbolSfx, pos)
+    of 48: parseStr(s, result.mdsfrSecurityID, pos)
+    of 22: parseStr(s, result.mdsfrIDSource, pos)
+    of 167: parseStr(s, result.mdsfrSecurityType, pos)
+    of 200: parseStr(s, result.mdsfrMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.mdsfrMaturityDay, pos)
+    of 201: parseInt(s, result.mdsfrPutOrCall, pos)
+    of 202: parseFloat(s, result.mdsfrStrikePrice, pos)
+    of 206: parseChar(s, result.mdsfrOptAttribute, pos)
+    of 231: parseStr(s, result.mdsfrContractMultiplier, pos)
+    of 223: parseStr(s, result.mdsfrCouponRate, pos)
+    of 207: parseStr(s, result.mdsfrSecurityExchange, pos)
+    of 106: parseStr(s, result.mdsfrIssuer, pos)
+    of 348: parseUInt(s, result.mdsfrEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.mdsfrEncodedIssuer, pos)
+    of 107: parseStr(s, result.mdsfrSecurityDesc, pos)
+    of 350: parseUInt(s, result.mdsfrEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.mdsfrEncodedSecurityDesc, pos)
+    of 291: parseChar(s, result.mdsfrFinancialStatus, pos)
+    of 292: parseChar(s, result.mdsfrCorporateAction, pos)
+    of 387: parseInt(s, result.mdsfrTotalVolumeTraded, pos)
+    of 268: skipValue(s, pos); parseNoMDEntries(s, result.mdsfrNoMDEntries, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtV(s: string, result: var Fix42, pos: var int) =
+proc parseMarketDataIncrementalRefresh(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtV)
-  result.msgType = mtV
+  # result = Fix42(msgType: ("X", "MarketDataIncrementalRefresh"))
+  result.msgType = MarketDataIncrementalRefresh
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3846,23 +3998,18 @@ proc parsemtV(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 262: parseStr(s, result.vMDReqID, pos)
-    of 263: parseChar(s, result.vSubscriptionRequestType, pos)
-    of 264: parseInt(s, result.vMarketDepth, pos)
-    of 265: parseInt(s, result.vMDUpdateType, pos)
-    of 266: parseBool(s, result.vAggregatedBook, pos)
-    of 267: skipValue(s, pos); parseNoMDEntryTypes(s, result.vNoMDEntryTypes, pos)
-    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.vNoRelatedSym, pos)
+    of 262: parseStr(s, result.mdirMDReqID, pos)
+    of 268: skipValue(s, pos); parseNoMDEntries(s, result.mdirNoMDEntries, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtW(s: string, result: var Fix42, pos: var int) =
+proc parseMarketDataRequestReject(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtW)
-  result.msgType = mtW
+  # result = Fix42(msgType: ("Y", "MarketDataRequestReject"))
+  result.msgType = MarketDataRequestReject
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3891,40 +4038,21 @@ proc parsemtW(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 262: parseStr(s, result.wMDReqID, pos)
-    of 55: parseStr(s, result.wSymbol, pos)
-    of 65: parseStr(s, result.wSymbolSfx, pos)
-    of 48: parseStr(s, result.wSecurityID, pos)
-    of 22: parseStr(s, result.wIDSource, pos)
-    of 167: parseStr(s, result.wSecurityType, pos)
-    of 200: parseStr(s, result.wMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.wMaturityDay, pos)
-    of 201: parseInt(s, result.wPutOrCall, pos)
-    of 202: parseFloat(s, result.wStrikePrice, pos)
-    of 206: parseChar(s, result.wOptAttribute, pos)
-    of 231: parseStr(s, result.wContractMultiplier, pos)
-    of 223: parseStr(s, result.wCouponRate, pos)
-    of 207: parseStr(s, result.wSecurityExchange, pos)
-    of 106: parseStr(s, result.wIssuer, pos)
-    of 348: parseUInt(s, result.wEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.wEncodedIssuer, pos)
-    of 107: parseStr(s, result.wSecurityDesc, pos)
-    of 350: parseUInt(s, result.wEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.wEncodedSecurityDesc, pos)
-    of 291: parseChar(s, result.wFinancialStatus, pos)
-    of 292: parseChar(s, result.wCorporateAction, pos)
-    of 387: parseUInt(s, result.wTotalVolumeTraded, pos)
-    of 268: skipValue(s, pos); parseNoMDEntries(s, result.wNoMDEntries, pos)
+    of 262: parseStr(s, result.mdrrMDReqID, pos)
+    of 281: parseChar(s, result.mdrrMDReqRejReason, pos)
+    of 58: parseStr(s, result.mdrrText, pos)
+    of 354: parseUInt(s, result.mdrrEncodedTextLen, pos)
+    of 355: parseStr(s, result.mdrrEncodedText, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtX(s: string, result: var Fix42, pos: var int) =
+proc parseQuoteCancel(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtX)
-  result.msgType = mtX
+  # result = Fix42(msgType: ("Z", "QuoteCancel"))
+  result.msgType = QuoteCancel
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3953,18 +4081,22 @@ proc parsemtX(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 262: parseStr(s, result.xMDReqID, pos)
-    of 268: skipValue(s, pos); parseNoMDEntries(s, result.xNoMDEntries, pos)
+    of 131: parseStr(s, result.qcQuoteReqID, pos)
+    of 117: parseStr(s, result.qcQuoteID, pos)
+    of 298: parseInt(s, result.qcQuoteCancelType, pos)
+    of 301: parseInt(s, result.qcQuoteResponseLevel, pos)
+    of 336: parseStr(s, result.qcTradingSessionID, pos)
+    of 295: skipValue(s, pos); parseNoQuoteEntries(s, result.qcNoQuoteEntries, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtY(s: string, result: var Fix42, pos: var int) =
+proc parseQuoteStatusRequest(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtY)
-  result.msgType = mtY
+  # result = Fix42(msgType: ("a", "QuoteStatusRequest"))
+  result.msgType = QuoteStatusRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -3993,21 +4125,38 @@ proc parsemtY(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 262: parseStr(s, result.yMDReqID, pos)
-    of 281: parseChar(s, result.yMDReqRejReason, pos)
-    of 58: parseStr(s, result.yText, pos)
-    of 354: parseUInt(s, result.yEncodedTextLen, pos)
-    of 355: parseStr(s, result.yEncodedText, pos)
+    of 117: parseStr(s, result.qsrQuoteID, pos)
+    of 55: parseStr(s, result.qsrSymbol, pos)
+    of 65: parseStr(s, result.qsrSymbolSfx, pos)
+    of 48: parseStr(s, result.qsrSecurityID, pos)
+    of 22: parseStr(s, result.qsrIDSource, pos)
+    of 167: parseStr(s, result.qsrSecurityType, pos)
+    of 200: parseStr(s, result.qsrMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.qsrMaturityDay, pos)
+    of 201: parseInt(s, result.qsrPutOrCall, pos)
+    of 202: parseFloat(s, result.qsrStrikePrice, pos)
+    of 206: parseChar(s, result.qsrOptAttribute, pos)
+    of 231: parseStr(s, result.qsrContractMultiplier, pos)
+    of 223: parseStr(s, result.qsrCouponRate, pos)
+    of 207: parseStr(s, result.qsrSecurityExchange, pos)
+    of 106: parseStr(s, result.qsrIssuer, pos)
+    of 348: parseUInt(s, result.qsrEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.qsrEncodedIssuer, pos)
+    of 107: parseStr(s, result.qsrSecurityDesc, pos)
+    of 350: parseUInt(s, result.qsrEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.qsrEncodedSecurityDesc, pos)
+    of 54: parseChar(s, result.qsrSide, pos)
+    of 336: parseStr(s, result.qsrTradingSessionID, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtZ(s: string, result: var Fix42, pos: var int) =
+proc parseQuoteAcknowledgement(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtZ)
-  result.msgType = mtZ
+  # result = Fix42(msgType: ("b", "QuoteAcknowledgement"))
+  result.msgType = QuoteAcknowledgement
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4036,22 +4185,24 @@ proc parsemtZ(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 131: parseStr(s, result.zQuoteReqID, pos)
-    of 117: parseStr(s, result.zQuoteID, pos)
-    of 298: parseInt(s, result.zQuoteCancelType, pos)
-    of 301: parseInt(s, result.zQuoteResponseLevel, pos)
-    of 336: parseStr(s, result.zTradingSessionID, pos)
-    of 295: skipValue(s, pos); parseNoQuoteEntries(s, result.zNoQuoteEntries, pos)
+    of 131: parseStr(s, result.qaQuoteReqID, pos)
+    of 117: parseStr(s, result.qaQuoteID, pos)
+    of 297: parseInt(s, result.qaQuoteAckStatus, pos)
+    of 300: parseInt(s, result.qaQuoteRejectReason, pos)
+    of 301: parseInt(s, result.qaQuoteResponseLevel, pos)
+    of 336: parseStr(s, result.qaTradingSessionID, pos)
+    of 58: parseStr(s, result.qaText, pos)
+    of 296: skipValue(s, pos); parseNoQuoteSets(s, result.qaNoQuoteSets, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtALow(s: string, result: var Fix42, pos: var int) =
+proc parseSecurityDefinitionRequest(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtALow)
-  result.msgType = mtALow
+  # result = Fix42(msgType: ("c", "SecurityDefinitionRequest"))
+  result.msgType = SecurityDefinitionRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4080,38 +4231,43 @@ proc parsemtALow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 117: parseStr(s, result.alowQuoteID, pos)
-    of 55: parseStr(s, result.alowSymbol, pos)
-    of 65: parseStr(s, result.alowSymbolSfx, pos)
-    of 48: parseStr(s, result.alowSecurityID, pos)
-    of 22: parseStr(s, result.alowIDSource, pos)
-    of 167: parseStr(s, result.alowSecurityType, pos)
-    of 200: parseStr(s, result.alowMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.alowMaturityDay, pos)
-    of 201: parseInt(s, result.alowPutOrCall, pos)
-    of 202: parseFloat(s, result.alowStrikePrice, pos)
-    of 206: parseChar(s, result.alowOptAttribute, pos)
-    of 231: parseStr(s, result.alowContractMultiplier, pos)
-    of 223: parseStr(s, result.alowCouponRate, pos)
-    of 207: parseStr(s, result.alowSecurityExchange, pos)
-    of 106: parseStr(s, result.alowIssuer, pos)
-    of 348: parseUInt(s, result.alowEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.alowEncodedIssuer, pos)
-    of 107: parseStr(s, result.alowSecurityDesc, pos)
-    of 350: parseUInt(s, result.alowEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.alowEncodedSecurityDesc, pos)
-    of 54: parseChar(s, result.alowSide, pos)
-    of 336: parseStr(s, result.alowTradingSessionID, pos)
+    of 320: parseStr(s, result.sdrSecurityReqID, pos)
+    of 321: parseInt(s, result.sdrSecurityRequestType, pos)
+    of 55: parseStr(s, result.sdrSymbol, pos)
+    of 65: parseStr(s, result.sdrSymbolSfx, pos)
+    of 48: parseStr(s, result.sdrSecurityID, pos)
+    of 22: parseStr(s, result.sdrIDSource, pos)
+    of 167: parseStr(s, result.sdrSecurityType, pos)
+    of 200: parseStr(s, result.sdrMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.sdrMaturityDay, pos)
+    of 201: parseInt(s, result.sdrPutOrCall, pos)
+    of 202: parseFloat(s, result.sdrStrikePrice, pos)
+    of 206: parseChar(s, result.sdrOptAttribute, pos)
+    of 231: parseStr(s, result.sdrContractMultiplier, pos)
+    of 223: parseStr(s, result.sdrCouponRate, pos)
+    of 207: parseStr(s, result.sdrSecurityExchange, pos)
+    of 106: parseStr(s, result.sdrIssuer, pos)
+    of 348: parseUInt(s, result.sdrEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.sdrEncodedIssuer, pos)
+    of 107: parseStr(s, result.sdrSecurityDesc, pos)
+    of 350: parseUInt(s, result.sdrEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.sdrEncodedSecurityDesc, pos)
+    of 15: parseStr(s, result.sdrCurrency, pos)
+    of 58: parseStr(s, result.sdrText, pos)
+    of 354: parseUInt(s, result.sdrEncodedTextLen, pos)
+    of 355: parseStr(s, result.sdrEncodedText, pos)
+    of 336: parseStr(s, result.sdrTradingSessionID, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.sdrNoRelatedSym, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtBLow(s: string, result: var Fix42, pos: var int) =
+proc parseSecurityDefinition(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtBLow)
-  result.msgType = mtBLow
+  # result = Fix42(msgType: ("d", "SecurityDefinition"))
+  result.msgType = SecurityDefinition
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4140,24 +4296,45 @@ proc parsemtBLow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 131: parseStr(s, result.blowQuoteReqID, pos)
-    of 117: parseStr(s, result.blowQuoteID, pos)
-    of 297: parseInt(s, result.blowQuoteAckStatus, pos)
-    of 300: parseInt(s, result.blowQuoteRejectReason, pos)
-    of 301: parseInt(s, result.blowQuoteResponseLevel, pos)
-    of 336: parseStr(s, result.blowTradingSessionID, pos)
-    of 58: parseStr(s, result.blowText, pos)
-    of 296: skipValue(s, pos); parseNoQuoteSets(s, result.blowNoQuoteSets, pos)
+    of 320: parseStr(s, result.sdSecurityReqID, pos)
+    of 322: parseStr(s, result.sdSecurityResponseID, pos)
+    of 323: parseInt(s, result.sdSecurityResponseType, pos)
+    of 393: parseInt(s, result.sdTotalNumSecurities, pos)
+    of 55: parseStr(s, result.sdSymbol, pos)
+    of 65: parseStr(s, result.sdSymbolSfx, pos)
+    of 48: parseStr(s, result.sdSecurityID, pos)
+    of 22: parseStr(s, result.sdIDSource, pos)
+    of 167: parseStr(s, result.sdSecurityType, pos)
+    of 200: parseStr(s, result.sdMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.sdMaturityDay, pos)
+    of 201: parseInt(s, result.sdPutOrCall, pos)
+    of 202: parseFloat(s, result.sdStrikePrice, pos)
+    of 206: parseChar(s, result.sdOptAttribute, pos)
+    of 231: parseStr(s, result.sdContractMultiplier, pos)
+    of 223: parseStr(s, result.sdCouponRate, pos)
+    of 207: parseStr(s, result.sdSecurityExchange, pos)
+    of 106: parseStr(s, result.sdIssuer, pos)
+    of 348: parseUInt(s, result.sdEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.sdEncodedIssuer, pos)
+    of 107: parseStr(s, result.sdSecurityDesc, pos)
+    of 350: parseUInt(s, result.sdEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.sdEncodedSecurityDesc, pos)
+    of 15: parseStr(s, result.sdCurrency, pos)
+    of 336: parseStr(s, result.sdTradingSessionID, pos)
+    of 58: parseStr(s, result.sdText, pos)
+    of 354: parseUInt(s, result.sdEncodedTextLen, pos)
+    of 355: parseStr(s, result.sdEncodedText, pos)
+    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.sdNoRelatedSym, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtCLow(s: string, result: var Fix42, pos: var int) =
+proc parseSecurityStatusRequest(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtCLow)
-  result.msgType = mtCLow
+  # result = Fix42(msgType: ("e", "SecurityStatusRequest"))
+  result.msgType = SecurityStatusRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4186,43 +4363,39 @@ proc parsemtCLow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 320: parseStr(s, result.clowSecurityReqID, pos)
-    of 321: parseInt(s, result.clowSecurityRequestType, pos)
-    of 55: parseStr(s, result.clowSymbol, pos)
-    of 65: parseStr(s, result.clowSymbolSfx, pos)
-    of 48: parseStr(s, result.clowSecurityID, pos)
-    of 22: parseStr(s, result.clowIDSource, pos)
-    of 167: parseStr(s, result.clowSecurityType, pos)
-    of 200: parseStr(s, result.clowMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.clowMaturityDay, pos)
-    of 201: parseInt(s, result.clowPutOrCall, pos)
-    of 202: parseFloat(s, result.clowStrikePrice, pos)
-    of 206: parseChar(s, result.clowOptAttribute, pos)
-    of 231: parseStr(s, result.clowContractMultiplier, pos)
-    of 223: parseStr(s, result.clowCouponRate, pos)
-    of 207: parseStr(s, result.clowSecurityExchange, pos)
-    of 106: parseStr(s, result.clowIssuer, pos)
-    of 348: parseUInt(s, result.clowEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.clowEncodedIssuer, pos)
-    of 107: parseStr(s, result.clowSecurityDesc, pos)
-    of 350: parseUInt(s, result.clowEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.clowEncodedSecurityDesc, pos)
-    of 15: parseStr(s, result.clowCurrency, pos)
-    of 58: parseStr(s, result.clowText, pos)
-    of 354: parseUInt(s, result.clowEncodedTextLen, pos)
-    of 355: parseStr(s, result.clowEncodedText, pos)
-    of 336: parseStr(s, result.clowTradingSessionID, pos)
-    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.clowNoRelatedSym, pos)
+    of 324: parseStr(s, result.ssrSecurityStatusReqID, pos)
+    of 55: parseStr(s, result.ssrSymbol, pos)
+    of 65: parseStr(s, result.ssrSymbolSfx, pos)
+    of 48: parseStr(s, result.ssrSecurityID, pos)
+    of 22: parseStr(s, result.ssrIDSource, pos)
+    of 167: parseStr(s, result.ssrSecurityType, pos)
+    of 200: parseStr(s, result.ssrMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.ssrMaturityDay, pos)
+    of 201: parseInt(s, result.ssrPutOrCall, pos)
+    of 202: parseFloat(s, result.ssrStrikePrice, pos)
+    of 206: parseChar(s, result.ssrOptAttribute, pos)
+    of 231: parseStr(s, result.ssrContractMultiplier, pos)
+    of 223: parseStr(s, result.ssrCouponRate, pos)
+    of 207: parseStr(s, result.ssrSecurityExchange, pos)
+    of 106: parseStr(s, result.ssrIssuer, pos)
+    of 348: parseUInt(s, result.ssrEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.ssrEncodedIssuer, pos)
+    of 107: parseStr(s, result.ssrSecurityDesc, pos)
+    of 350: parseUInt(s, result.ssrEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.ssrEncodedSecurityDesc, pos)
+    of 15: parseStr(s, result.ssrCurrency, pos)
+    of 263: parseChar(s, result.ssrSubscriptionRequestType, pos)
+    of 336: parseStr(s, result.ssrTradingSessionID, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtDLow(s: string, result: var Fix42, pos: var int) =
+proc parseSecurityStatus(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtDLow)
-  result.msgType = mtDLow
+  # result = Fix42(msgType: ("f", "SecurityStatus"))
+  result.msgType = SecurityStatus
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4251,45 +4424,52 @@ proc parsemtDLow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 320: parseStr(s, result.dlowSecurityReqID, pos)
-    of 322: parseStr(s, result.dlowSecurityResponseID, pos)
-    of 323: parseInt(s, result.dlowSecurityResponseType, pos)
-    of 393: parseInt(s, result.dlowTotalNumSecurities, pos)
-    of 55: parseStr(s, result.dlowSymbol, pos)
-    of 65: parseStr(s, result.dlowSymbolSfx, pos)
-    of 48: parseStr(s, result.dlowSecurityID, pos)
-    of 22: parseStr(s, result.dlowIDSource, pos)
-    of 167: parseStr(s, result.dlowSecurityType, pos)
-    of 200: parseStr(s, result.dlowMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.dlowMaturityDay, pos)
-    of 201: parseInt(s, result.dlowPutOrCall, pos)
-    of 202: parseFloat(s, result.dlowStrikePrice, pos)
-    of 206: parseChar(s, result.dlowOptAttribute, pos)
-    of 231: parseStr(s, result.dlowContractMultiplier, pos)
-    of 223: parseStr(s, result.dlowCouponRate, pos)
-    of 207: parseStr(s, result.dlowSecurityExchange, pos)
-    of 106: parseStr(s, result.dlowIssuer, pos)
-    of 348: parseUInt(s, result.dlowEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.dlowEncodedIssuer, pos)
-    of 107: parseStr(s, result.dlowSecurityDesc, pos)
-    of 350: parseUInt(s, result.dlowEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.dlowEncodedSecurityDesc, pos)
-    of 15: parseStr(s, result.dlowCurrency, pos)
-    of 336: parseStr(s, result.dlowTradingSessionID, pos)
-    of 58: parseStr(s, result.dlowText, pos)
-    of 354: parseUInt(s, result.dlowEncodedTextLen, pos)
-    of 355: parseStr(s, result.dlowEncodedText, pos)
-    of 146: skipValue(s, pos); parseNoRelatedSym(s, result.dlowNoRelatedSym, pos)
+    of 324: parseStr(s, result.ssSecurityStatusReqID, pos)
+    of 55: parseStr(s, result.ssSymbol, pos)
+    of 65: parseStr(s, result.ssSymbolSfx, pos)
+    of 48: parseStr(s, result.ssSecurityID, pos)
+    of 22: parseStr(s, result.ssIDSource, pos)
+    of 167: parseStr(s, result.ssSecurityType, pos)
+    of 200: parseStr(s, result.ssMaturityMonthYear, pos)
+    of 205: parseUInt(s, result.ssMaturityDay, pos)
+    of 201: parseInt(s, result.ssPutOrCall, pos)
+    of 202: parseFloat(s, result.ssStrikePrice, pos)
+    of 206: parseChar(s, result.ssOptAttribute, pos)
+    of 231: parseStr(s, result.ssContractMultiplier, pos)
+    of 223: parseStr(s, result.ssCouponRate, pos)
+    of 207: parseStr(s, result.ssSecurityExchange, pos)
+    of 106: parseStr(s, result.ssIssuer, pos)
+    of 348: parseUInt(s, result.ssEncodedIssuerLen, pos)
+    of 349: parseStr(s, result.ssEncodedIssuer, pos)
+    of 107: parseStr(s, result.ssSecurityDesc, pos)
+    of 350: parseUInt(s, result.ssEncodedSecurityDescLen, pos)
+    of 351: parseStr(s, result.ssEncodedSecurityDesc, pos)
+    of 15: parseStr(s, result.ssCurrency, pos)
+    of 336: parseStr(s, result.ssTradingSessionID, pos)
+    of 325: parseBool(s, result.ssUnsolicitedIndicator, pos)
+    of 326: parseInt(s, result.ssSecurityTradingStatus, pos)
+    of 291: parseChar(s, result.ssFinancialStatus, pos)
+    of 292: parseChar(s, result.ssCorporateAction, pos)
+    of 327: parseChar(s, result.ssHaltReasonChar, pos)
+    of 328: parseBool(s, result.ssInViewOfCommon, pos)
+    of 329: parseBool(s, result.ssDueToRelated, pos)
+    of 330: parseInt(s, result.ssBuyVolume, pos)
+    of 331: parseInt(s, result.ssSellVolume, pos)
+    of 332: parseFloat(s, result.ssHighPx, pos)
+    of 333: parseFloat(s, result.ssLowPx, pos)
+    of 31: parseFloat(s, result.ssLastPx, pos)
+    of 60: parseStr(s, result.ssTransactTime, pos)
+    of 334: parseInt(s, result.ssAdjustment, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtELow(s: string, result: var Fix42, pos: var int) =
+proc parseTradingSessionStatusRequest(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtELow)
-  result.msgType = mtELow
+  # result = Fix42(msgType: ("g", "TradingSessionStatusRequest"))
+  result.msgType = TradingSessionStatusRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4318,39 +4498,21 @@ proc parsemtELow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 324: parseStr(s, result.elowSecurityStatusReqID, pos)
-    of 55: parseStr(s, result.elowSymbol, pos)
-    of 65: parseStr(s, result.elowSymbolSfx, pos)
-    of 48: parseStr(s, result.elowSecurityID, pos)
-    of 22: parseStr(s, result.elowIDSource, pos)
-    of 167: parseStr(s, result.elowSecurityType, pos)
-    of 200: parseStr(s, result.elowMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.elowMaturityDay, pos)
-    of 201: parseInt(s, result.elowPutOrCall, pos)
-    of 202: parseFloat(s, result.elowStrikePrice, pos)
-    of 206: parseChar(s, result.elowOptAttribute, pos)
-    of 231: parseStr(s, result.elowContractMultiplier, pos)
-    of 223: parseStr(s, result.elowCouponRate, pos)
-    of 207: parseStr(s, result.elowSecurityExchange, pos)
-    of 106: parseStr(s, result.elowIssuer, pos)
-    of 348: parseUInt(s, result.elowEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.elowEncodedIssuer, pos)
-    of 107: parseStr(s, result.elowSecurityDesc, pos)
-    of 350: parseUInt(s, result.elowEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.elowEncodedSecurityDesc, pos)
-    of 15: parseStr(s, result.elowCurrency, pos)
-    of 263: parseChar(s, result.elowSubscriptionRequestType, pos)
-    of 336: parseStr(s, result.elowTradingSessionID, pos)
+    of 335: parseStr(s, result.tssrTradSesReqID, pos)
+    of 336: parseStr(s, result.tssrTradingSessionID, pos)
+    of 338: parseInt(s, result.tssrTradSesMethod, pos)
+    of 339: parseInt(s, result.tssrTradSesMode, pos)
+    of 263: parseChar(s, result.tssrSubscriptionRequestType, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtFLow(s: string, result: var Fix42, pos: var int) =
+proc parseTradingSessionStatus(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtFLow)
-  result.msgType = mtFLow
+  # result = Fix42(msgType: ("h", "TradingSessionStatus"))
+  result.msgType = TradingSessionStatus
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4379,52 +4541,31 @@ proc parsemtFLow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 324: parseStr(s, result.flowSecurityStatusReqID, pos)
-    of 55: parseStr(s, result.flowSymbol, pos)
-    of 65: parseStr(s, result.flowSymbolSfx, pos)
-    of 48: parseStr(s, result.flowSecurityID, pos)
-    of 22: parseStr(s, result.flowIDSource, pos)
-    of 167: parseStr(s, result.flowSecurityType, pos)
-    of 200: parseStr(s, result.flowMaturityMonthYear, pos)
-    of 205: parseUInt(s, result.flowMaturityDay, pos)
-    of 201: parseInt(s, result.flowPutOrCall, pos)
-    of 202: parseFloat(s, result.flowStrikePrice, pos)
-    of 206: parseChar(s, result.flowOptAttribute, pos)
-    of 231: parseStr(s, result.flowContractMultiplier, pos)
-    of 223: parseStr(s, result.flowCouponRate, pos)
-    of 207: parseStr(s, result.flowSecurityExchange, pos)
-    of 106: parseStr(s, result.flowIssuer, pos)
-    of 348: parseUInt(s, result.flowEncodedIssuerLen, pos)
-    of 349: parseStr(s, result.flowEncodedIssuer, pos)
-    of 107: parseStr(s, result.flowSecurityDesc, pos)
-    of 350: parseUInt(s, result.flowEncodedSecurityDescLen, pos)
-    of 351: parseStr(s, result.flowEncodedSecurityDesc, pos)
-    of 15: parseStr(s, result.flowCurrency, pos)
-    of 336: parseStr(s, result.flowTradingSessionID, pos)
-    of 325: parseBool(s, result.flowUnsolicitedIndicator, pos)
-    of 326: parseInt(s, result.flowSecurityTradingStatus, pos)
-    of 291: parseChar(s, result.flowFinancialStatus, pos)
-    of 292: parseChar(s, result.flowCorporateAction, pos)
-    of 327: parseChar(s, result.flowHaltReasonChar, pos)
-    of 328: parseBool(s, result.flowInViewOfCommon, pos)
-    of 329: parseBool(s, result.flowDueToRelated, pos)
-    of 330: parseUInt(s, result.flowBuyVolume, pos)
-    of 331: parseUInt(s, result.flowSellVolume, pos)
-    of 332: parseFloat(s, result.flowHighPx, pos)
-    of 333: parseFloat(s, result.flowLowPx, pos)
-    of 31: parseFloat(s, result.flowLastPx, pos)
-    of 60: parseStr(s, result.flowTransactTime, pos)
-    of 334: parseInt(s, result.flowAdjustment, pos)
+    of 335: parseStr(s, result.tssTradSesReqID, pos)
+    of 336: parseStr(s, result.tssTradingSessionID, pos)
+    of 338: parseInt(s, result.tssTradSesMethod, pos)
+    of 339: parseInt(s, result.tssTradSesMode, pos)
+    of 325: parseBool(s, result.tssUnsolicitedIndicator, pos)
+    of 340: parseInt(s, result.tssTradSesStatus, pos)
+    of 341: parseStr(s, result.tssTradSesStartTime, pos)
+    of 342: parseStr(s, result.tssTradSesOpenTime, pos)
+    of 343: parseStr(s, result.tssTradSesPreCloseTime, pos)
+    of 344: parseStr(s, result.tssTradSesCloseTime, pos)
+    of 345: parseStr(s, result.tssTradSesEndTime, pos)
+    of 387: parseInt(s, result.tssTotalVolumeTraded, pos)
+    of 58: parseStr(s, result.tssText, pos)
+    of 354: parseUInt(s, result.tssEncodedTextLen, pos)
+    of 355: parseStr(s, result.tssEncodedText, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtGLow(s: string, result: var Fix42, pos: var int) =
+proc parseMassQuote(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtGLow)
-  result.msgType = mtGLow
+  # result = Fix42(msgType: ("i", "MassQuote"))
+  result.msgType = MassQuote
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4453,21 +4594,22 @@ proc parsemtGLow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 335: parseStr(s, result.glowTradSesReqID, pos)
-    of 336: parseStr(s, result.glowTradingSessionID, pos)
-    of 338: parseInt(s, result.glowTradSesMethod, pos)
-    of 339: parseInt(s, result.glowTradSesMode, pos)
-    of 263: parseChar(s, result.glowSubscriptionRequestType, pos)
+    of 131: parseStr(s, result.mqQuoteReqID, pos)
+    of 117: parseStr(s, result.mqQuoteID, pos)
+    of 301: parseInt(s, result.mqQuoteResponseLevel, pos)
+    of 293: parseInt(s, result.mqDefBidSize, pos)
+    of 294: parseInt(s, result.mqDefOfferSize, pos)
+    of 296: skipValue(s, pos); parseNoQuoteSets(s, result.mqNoQuoteSets, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtHLow(s: string, result: var Fix42, pos: var int) =
+proc parseBusinessMessageReject(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtHLow)
-  result.msgType = mtHLow
+  # result = Fix42(msgType: ("j", "BusinessMessageReject"))
+  result.msgType = BusinessMessageReject
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4496,31 +4638,23 @@ proc parsemtHLow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 335: parseStr(s, result.hlowTradSesReqID, pos)
-    of 336: parseStr(s, result.hlowTradingSessionID, pos)
-    of 338: parseInt(s, result.hlowTradSesMethod, pos)
-    of 339: parseInt(s, result.hlowTradSesMode, pos)
-    of 325: parseBool(s, result.hlowUnsolicitedIndicator, pos)
-    of 340: parseInt(s, result.hlowTradSesStatus, pos)
-    of 341: parseStr(s, result.hlowTradSesStartTime, pos)
-    of 342: parseStr(s, result.hlowTradSesOpenTime, pos)
-    of 343: parseStr(s, result.hlowTradSesPreCloseTime, pos)
-    of 344: parseStr(s, result.hlowTradSesCloseTime, pos)
-    of 345: parseStr(s, result.hlowTradSesEndTime, pos)
-    of 387: parseUInt(s, result.hlowTotalVolumeTraded, pos)
-    of 58: parseStr(s, result.hlowText, pos)
-    of 354: parseUInt(s, result.hlowEncodedTextLen, pos)
-    of 355: parseStr(s, result.hlowEncodedText, pos)
+    of 45: parseInt(s, result.bmrRefSeqNum, pos)
+    of 372: parseStr(s, result.bmrRefMsgType, pos)
+    of 379: parseStr(s, result.bmrBusinessRejectRefID, pos)
+    of 380: parseInt(s, result.bmrBusinessRejectReason, pos)
+    of 58: parseStr(s, result.bmrText, pos)
+    of 354: parseUInt(s, result.bmrEncodedTextLen, pos)
+    of 355: parseStr(s, result.bmrEncodedText, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtILow(s: string, result: var Fix42, pos: var int) =
+proc parseBidRequest(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtILow)
-  result.msgType = mtILow
+  # result = Fix42(msgType: ("k", "BidRequest"))
+  result.msgType = BidRequest
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4549,22 +4683,45 @@ proc parsemtILow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 131: parseStr(s, result.ilowQuoteReqID, pos)
-    of 117: parseStr(s, result.ilowQuoteID, pos)
-    of 301: parseInt(s, result.ilowQuoteResponseLevel, pos)
-    of 293: parseUInt(s, result.ilowDefBidSize, pos)
-    of 294: parseUInt(s, result.ilowDefOfferSize, pos)
-    of 296: skipValue(s, pos); parseNoQuoteSets(s, result.ilowNoQuoteSets, pos)
+    of 390: parseStr(s, result.brBidID, pos)
+    of 391: parseStr(s, result.brClientBidID, pos)
+    of 374: parseChar(s, result.brBidRequestTransType, pos)
+    of 392: parseStr(s, result.brListName, pos)
+    of 393: parseInt(s, result.brTotalNumSecurities, pos)
+    of 394: parseInt(s, result.brBidType, pos)
+    of 395: parseInt(s, result.brNumTickets, pos)
+    of 15: parseStr(s, result.brCurrency, pos)
+    of 396: parseUInt(s, result.brSideValue1, pos)
+    of 397: parseUInt(s, result.brSideValue2, pos)
+    of 398: skipValue(s, pos); parseNoBidDescriptors(s, result.brNoBidDescriptors, pos)
+    of 420: skipValue(s, pos); parseNoBidComponents(s, result.brNoBidComponents, pos)
+    of 409: parseInt(s, result.brLiquidityIndType, pos)
+    of 410: parseStr(s, result.brWtAverageLiquidity, pos)
+    of 411: parseBool(s, result.brExchangeForPhysical, pos)
+    of 412: parseUInt(s, result.brOutMainCntryUIndex, pos)
+    of 413: parseStr(s, result.brCrossPercent, pos)
+    of 414: parseInt(s, result.brProgRptReqs, pos)
+    of 415: parseInt(s, result.brProgPeriodInterval, pos)
+    of 416: parseInt(s, result.brIncTaxInd, pos)
+    of 121: parseBool(s, result.brForexReq, pos)
+    of 417: parseInt(s, result.brNumBidders, pos)
+    of 75: parseStr(s, result.brTradeDate, pos)
+    of 418: parseChar(s, result.brTradeType, pos)
+    of 419: parseChar(s, result.brBasisPxType, pos)
+    of 443: parseStr(s, result.brStrikeTime, pos)
+    of 58: parseStr(s, result.brText, pos)
+    of 354: parseUInt(s, result.brEncodedTextLen, pos)
+    of 355: parseStr(s, result.brEncodedText, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtJLow(s: string, result: var Fix42, pos: var int) =
+proc parseBidResponse(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtJLow)
-  result.msgType = mtJLow
+  # result = Fix42(msgType: ("l", "BidResponse"))
+  result.msgType = BidResponse
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4593,23 +4750,19 @@ proc parsemtJLow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 45: parseInt(s, result.jlowRefSeqNum, pos)
-    of 372: parseStr(s, result.jlowRefMsgType, pos)
-    of 379: parseStr(s, result.jlowBusinessRejectRefID, pos)
-    of 380: parseInt(s, result.jlowBusinessRejectReason, pos)
-    of 58: parseStr(s, result.jlowText, pos)
-    of 354: parseUInt(s, result.jlowEncodedTextLen, pos)
-    of 355: parseStr(s, result.jlowEncodedText, pos)
+    of 390: parseStr(s, result.brBidID, pos)
+    of 391: parseStr(s, result.brClientBidID, pos)
+    of 420: skipValue(s, pos); parseNoBidComponents(s, result.brNoBidComponents, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
     else: skipValue(s, pos)
 
-proc parsemtKLow(s: string, result: var Fix42, pos: var int) =
+proc parseListStrikePrice(s: string, result: var Fix42, pos: var int) =
   var
     t: uint16
-  # result = Fix42(msgType: mtKLow)
-  result.msgType = mtKLow
+  # result = Fix42(msgType: ("m", "ListStrikePrice"))
+  result.msgType = ListStrikePrice
   let l = s.len
   while pos < l:
     parseTag(s, t, pos)
@@ -4638,117 +4791,9 @@ proc parsemtKLow(s: string, result: var Fix42, pos: var int) =
     of 347: parseStr(s, result.messageEncoding, pos)
     of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
     of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 390: parseStr(s, result.klowBidID, pos)
-    of 391: parseStr(s, result.klowClientBidID, pos)
-    of 374: parseChar(s, result.klowBidRequestTransType, pos)
-    of 392: parseStr(s, result.klowListName, pos)
-    of 393: parseInt(s, result.klowTotalNumSecurities, pos)
-    of 394: parseInt(s, result.klowBidType, pos)
-    of 395: parseInt(s, result.klowNumTickets, pos)
-    of 15: parseStr(s, result.klowCurrency, pos)
-    of 396: parseUInt(s, result.klowSideValue1, pos)
-    of 397: parseUInt(s, result.klowSideValue2, pos)
-    of 398: skipValue(s, pos); parseNoBidDescriptors(s, result.klowNoBidDescriptors, pos)
-    of 420: skipValue(s, pos); parseNoBidComponents(s, result.klowNoBidComponents, pos)
-    of 409: parseInt(s, result.klowLiquidityIndType, pos)
-    of 410: parseStr(s, result.klowWtAverageLiquidity, pos)
-    of 411: parseBool(s, result.klowExchangeForPhysical, pos)
-    of 412: parseUInt(s, result.klowOutMainCntryUIndex, pos)
-    of 413: parseStr(s, result.klowCrossPercent, pos)
-    of 414: parseInt(s, result.klowProgRptReqs, pos)
-    of 415: parseInt(s, result.klowProgPeriodInterval, pos)
-    of 416: parseInt(s, result.klowIncTaxInd, pos)
-    of 121: parseBool(s, result.klowForexReq, pos)
-    of 417: parseInt(s, result.klowNumBidders, pos)
-    of 75: parseStr(s, result.klowTradeDate, pos)
-    of 418: parseChar(s, result.klowTradeType, pos)
-    of 419: parseChar(s, result.klowBasisPxType, pos)
-    of 443: parseStr(s, result.klowStrikeTime, pos)
-    of 58: parseStr(s, result.klowText, pos)
-    of 354: parseUInt(s, result.klowEncodedTextLen, pos)
-    of 355: parseStr(s, result.klowEncodedText, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtLLow(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtLLow)
-  result.msgType = mtLLow
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 390: parseStr(s, result.llowBidID, pos)
-    of 391: parseStr(s, result.llowClientBidID, pos)
-    of 420: skipValue(s, pos); parseNoBidComponents(s, result.llowNoBidComponents, pos)
-    of 93: parseUInt(s, result.signatureLength, pos)
-    of 89: parseStr(s, result.signature, pos)
-    of 10: parseStr(s, result.checkSum, pos)
-    else: skipValue(s, pos)
-
-proc parsemtMLow(s: string, result: var Fix42, pos: var int) =
-  var
-    t: uint16
-  # result = Fix42(msgType: mtMLow)
-  result.msgType = mtMLow
-  let l = s.len
-  while pos < l:
-    parseTag(s, t, pos)
-    case t
-    of 49: parseStr(s, result.senderCompID, pos)
-    of 56: parseStr(s, result.targetCompID, pos)
-    of 115: parseStr(s, result.onBehalfOfCompID, pos)
-    of 128: parseStr(s, result.deliverToCompID, pos)
-    of 90: parseUInt(s, result.secureDataLen, pos)
-    of 91: parseStr(s, result.secureData, pos)
-    of 34: parseInt(s, result.msgSeqNum, pos)
-    of 50: parseStr(s, result.senderSubID, pos)
-    of 142: parseStr(s, result.senderLocationID, pos)
-    of 57: parseStr(s, result.targetSubID, pos)
-    of 143: parseStr(s, result.targetLocationID, pos)
-    of 116: parseStr(s, result.onBehalfOfSubID, pos)
-    of 144: parseStr(s, result.onBehalfOfLocationID, pos)
-    of 129: parseStr(s, result.deliverToSubID, pos)
-    of 145: parseStr(s, result.deliverToLocationID, pos)
-    of 43: parseBool(s, result.possDupFlag, pos)
-    of 97: parseBool(s, result.possResend, pos)
-    of 52: parseStr(s, result.sendingTime, pos)
-    of 122: parseStr(s, result.origSendingTime, pos)
-    of 212: parseUInt(s, result.xmlDataLen, pos)
-    of 213: parseStr(s, result.xmlData, pos)
-    of 347: parseStr(s, result.messageEncoding, pos)
-    of 369: parseInt(s, result.lastMsgSeqNumProcessed, pos)
-    of 370: parseStr(s, result.onBehalfOfSendingTime, pos)
-    of 66: parseStr(s, result.mlowListID, pos)
-    of 422: parseInt(s, result.mlowTotNoStrikes, pos)
-    of 428: skipValue(s, pos); parseNoStrikes(s, result.mlowNoStrikes, pos)
+    of 66: parseStr(s, result.lspListID, pos)
+    of 422: parseInt(s, result.lspTotNoStrikes, pos)
+    of 428: skipValue(s, pos); parseNoStrikes(s, result.lspNoStrikes, pos)
     of 93: parseUInt(s, result.signatureLength, pos)
     of 89: parseStr(s, result.signature, pos)
     of 10: parseStr(s, result.checkSum, pos)
@@ -4768,51 +4813,51 @@ proc parseFix42*(s: string): Fix42 =
     of 35:
       parseStr(s, v35, pos)
       case v35
-      of "0": parsemt0(s, result, pos)
-      of "1": parsemt1(s, result, pos)
-      of "2": parsemt2(s, result, pos)
-      of "3": parsemt3(s, result, pos)
-      of "4": parsemt4(s, result, pos)
-      of "5": parsemt5(s, result, pos)
-      of "6": parsemt6(s, result, pos)
-      of "7": parsemt7(s, result, pos)
-      of "8": parsemt8(s, result, pos)
-      of "9": parsemt9(s, result, pos)
-      of "A": parsemtA(s, result, pos)
-      of "B": parsemtB(s, result, pos)
-      of "C": parsemtC(s, result, pos)
-      of "D": parsemtD(s, result, pos)
-      of "E": parsemtE(s, result, pos)
-      of "F": parsemtF(s, result, pos)
-      of "G": parsemtG(s, result, pos)
-      of "H": parsemtH(s, result, pos)
-      of "J": parsemtJ(s, result, pos)
-      of "K": parsemtK(s, result, pos)
-      of "L": parsemtL(s, result, pos)
-      of "M": parsemtM(s, result, pos)
-      of "N": parsemtN(s, result, pos)
-      of "P": parsemtP(s, result, pos)
-      of "Q": parsemtQ(s, result, pos)
-      of "R": parsemtR(s, result, pos)
-      of "S": parsemtS(s, result, pos)
-      of "T": parsemtT(s, result, pos)
-      of "V": parsemtV(s, result, pos)
-      of "W": parsemtW(s, result, pos)
-      of "X": parsemtX(s, result, pos)
-      of "Y": parsemtY(s, result, pos)
-      of "Z": parsemtZ(s, result, pos)
-      of "a": parsemtALow(s, result, pos)
-      of "b": parsemtBLow(s, result, pos)
-      of "c": parsemtCLow(s, result, pos)
-      of "d": parsemtDLow(s, result, pos)
-      of "e": parsemtELow(s, result, pos)
-      of "f": parsemtFLow(s, result, pos)
-      of "g": parsemtGLow(s, result, pos)
-      of "h": parsemtHLow(s, result, pos)
-      of "i": parsemtILow(s, result, pos)
-      of "j": parsemtJLow(s, result, pos)
-      of "k": parsemtKLow(s, result, pos)
-      of "l": parsemtLLow(s, result, pos)
-      of "m": parsemtMLow(s, result, pos)
+      of "0": parseHeartbeat(s, result, pos)
+      of "1": parseTestRequest(s, result, pos)
+      of "2": parseResendRequest(s, result, pos)
+      of "3": parseReject(s, result, pos)
+      of "4": parseSequenceReset(s, result, pos)
+      of "5": parseLogout(s, result, pos)
+      of "6": parseIOI(s, result, pos)
+      of "7": parseAdvertisement(s, result, pos)
+      of "8": parseExecutionReport(s, result, pos)
+      of "9": parseOrderCancelReject(s, result, pos)
+      of "A": parseLogon(s, result, pos)
+      of "B": parseNews(s, result, pos)
+      of "C": parseEmail(s, result, pos)
+      of "D": parseNewOrderSingle(s, result, pos)
+      of "E": parseNewOrderList(s, result, pos)
+      of "F": parseOrderCancelRequest(s, result, pos)
+      of "G": parseOrderCancelReplaceRequest(s, result, pos)
+      of "H": parseOrderStatusRequest(s, result, pos)
+      of "J": parseAllocation(s, result, pos)
+      of "K": parseListCancelRequest(s, result, pos)
+      of "L": parseListExecute(s, result, pos)
+      of "M": parseListStatusRequest(s, result, pos)
+      of "N": parseListStatus(s, result, pos)
+      of "P": parseAllocationInstructionAck(s, result, pos)
+      of "Q": parseDontKnowTrade(s, result, pos)
+      of "R": parseQuoteRequest(s, result, pos)
+      of "S": parseQuote(s, result, pos)
+      of "T": parseSettlementInstructions(s, result, pos)
+      of "V": parseMarketDataRequest(s, result, pos)
+      of "W": parseMarketDataSnapshotFullRefresh(s, result, pos)
+      of "X": parseMarketDataIncrementalRefresh(s, result, pos)
+      of "Y": parseMarketDataRequestReject(s, result, pos)
+      of "Z": parseQuoteCancel(s, result, pos)
+      of "a": parseQuoteStatusRequest(s, result, pos)
+      of "b": parseQuoteAcknowledgement(s, result, pos)
+      of "c": parseSecurityDefinitionRequest(s, result, pos)
+      of "d": parseSecurityDefinition(s, result, pos)
+      of "e": parseSecurityStatusRequest(s, result, pos)
+      of "f": parseSecurityStatus(s, result, pos)
+      of "g": parseTradingSessionStatusRequest(s, result, pos)
+      of "h": parseTradingSessionStatus(s, result, pos)
+      of "i": parseMassQuote(s, result, pos)
+      of "j": parseBusinessMessageReject(s, result, pos)
+      of "k": parseBidRequest(s, result, pos)
+      of "l": parseBidResponse(s, result, pos)
+      of "m": parseListStrikePrice(s, result, pos)
     else: raise newException(ValueError, "unexpected header field: " & $t)
 
