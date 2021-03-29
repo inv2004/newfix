@@ -19,7 +19,7 @@ During the implementation, I was looking at the numbers of CoralFIX Parser, whic
 
 The article mentions hw: Intel i7 quad-core (4 x 3.50GHz) Ubuntu box overclocked to 4.50Ghz.
 
-My hw: i5-7500 (not overclocked / win10)
+My hw: i5-7500 (4 x 3.40GHz) (not overclocked / win10)
 
 |  Test                                    | CoralFIX  | NewFix      |
 |------------------------------------------|-----------|-------------|
