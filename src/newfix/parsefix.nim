@@ -2,12 +2,10 @@ from parseutils import parseFloat
 
 const DELIMITER = '\x01'
 
-func parseTag*(s: string, t: var uint16, pos: var int) =
+func parseTag*(s: string, t: var int, pos: var int) {.inline.} =
   t = 0
-  while true:
-    if s[pos] == '=':
-      break
-    t = t * 10 + (s[pos].byte - '0'.byte)
+  while s[pos] != '=':
+    t = t * 10 + int(s[pos].byte - '0'.byte)
     inc pos
   inc pos
 
@@ -17,9 +15,7 @@ func parseChar*(s: string, v: var char, pos: var int) =
 
 func parseStr*(s: string, v: var string, pos: var int) =
   let start = pos
-  while true:
-    if s[pos] == DELIMITER:
-      break
+  while s[pos] != DELIMITER:
     inc pos
   v = s[start..<pos]
   inc pos
@@ -29,9 +25,7 @@ func parseInt*(s: string, t: var int, pos: var int) =
     if s[pos] == '-': inc pos; -1
     else: 1
   t = 0
-  while true:
-    if s[pos] == DELIMITER:
-      break
+  while s[pos] != DELIMITER:
     t = t * 10 + (s[pos].byte - '0'.byte).int
     inc pos
   inc pos
@@ -39,9 +33,7 @@ func parseInt*(s: string, t: var int, pos: var int) =
 
 func parseUInt*(s: string, t: var uint, pos: var int) =
   t = 0
-  while true:
-    if s[pos] == DELIMITER:
-      break
+  while s[pos] != DELIMITER:
     t = t * 10 + (s[pos].byte - '0'.byte)
     inc pos
   inc pos

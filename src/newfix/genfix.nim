@@ -120,7 +120,7 @@ proc genParseGroupHead(n: string, gen: Gen, fields: Fields) =
 proc genParseGroup(n: string, gen: Gen, fields: Fields) =
   echo "proc parse", n, "(s: string, r: var seq[", n ,"""], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: """, n, """
 
     j = 0
@@ -147,7 +147,7 @@ proc genParseGroup(n: string, gen: Gen, fields: Fields) =
 proc genParseMsgType(t: (string, string), gen: Gen, name: string, header, trailer: Gen, fields: Fields) =
   echo "proc parse",t[1],"(s: string, result: var ",name,""", pos: var int) =
   var
-    t: uint16
+    t: int
   # result = """,name,"""(msgType: """, $t ,""")
   result.msgType = """, t[1], """
 
@@ -171,7 +171,7 @@ proc genParse(name: string, gen: OrderedTableRef[(string, string), Gen], fields:
   echo """
 proc parse""",name,"""*(s: string): """,name,""" =
   var
-    t: uint16
+    t: int
     v35: string
     pos = 0
   let l = s.len

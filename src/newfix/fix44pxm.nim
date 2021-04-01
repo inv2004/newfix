@@ -203,7 +203,7 @@ proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int)
 
 proc parseNoMsgTypes(s: string, r: var seq[NoMsgTypes], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoMsgTypes
     j = 0
   let l = s.len
@@ -225,7 +225,7 @@ proc parseNoMsgTypes(s: string, r: var seq[NoMsgTypes], pos: var int) =
 
 proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoRelatedSym
     j = 0
   let l = s.len
@@ -248,7 +248,7 @@ proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
 
 proc parseNoLinesOfText(s: string, r: var seq[NoLinesOfText], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoLinesOfText
     j = 0
   let l = s.len
@@ -270,7 +270,7 @@ proc parseNoLinesOfText(s: string, r: var seq[NoLinesOfText], pos: var int) =
 
 proc parseNoMDEntryTypes(s: string, r: var seq[NoMDEntryTypes], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoMDEntryTypes
     j = 0
   let l = s.len
@@ -292,7 +292,7 @@ proc parseNoMDEntryTypes(s: string, r: var seq[NoMDEntryTypes], pos: var int) =
 
 proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoMDEntries
     j = 0
   let l = s.len
@@ -322,7 +322,7 @@ proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int) =
 
 proc parseNoQuoteSets(s: string, r: var seq[NoQuoteSets], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoQuoteSets
     j = 0
   let l = s.len
@@ -345,7 +345,7 @@ proc parseNoQuoteSets(s: string, r: var seq[NoQuoteSets], pos: var int) =
 
 proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoQuoteEntries
     j = 0
   let l = s.len
@@ -377,7 +377,7 @@ proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int) =
 
 proc parseHeartbeat(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("0", "Heartbeat"))
   result.msgType = Heartbeat
   let l = s.len
@@ -397,7 +397,7 @@ proc parseHeartbeat(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseTestRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("1", "TestRequest"))
   result.msgType = TestRequest
   let l = s.len
@@ -417,7 +417,7 @@ proc parseTestRequest(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseResendRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("2", "ResendRequest"))
   result.msgType = ResendRequest
   let l = s.len
@@ -438,7 +438,7 @@ proc parseResendRequest(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseReject(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("3", "Reject"))
   result.msgType = Reject
   let l = s.len
@@ -462,7 +462,7 @@ proc parseReject(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseSequenceReset(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("4", "SequenceReset"))
   result.msgType = SequenceReset
   let l = s.len
@@ -483,7 +483,7 @@ proc parseSequenceReset(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseLogout(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("5", "Logout"))
   result.msgType = Logout
   let l = s.len
@@ -503,7 +503,7 @@ proc parseLogout(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseExecutionReport(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("8", "ExecutionReport"))
   result.msgType = ExecutionReport
   let l = s.len
@@ -547,7 +547,7 @@ proc parseExecutionReport(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseLogon(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("A", "Logon"))
   result.msgType = Logon
   let l = s.len
@@ -572,7 +572,7 @@ proc parseLogon(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseNews(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("B", "News"))
   result.msgType = News
   let l = s.len
@@ -593,7 +593,7 @@ proc parseNews(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseNewOrderSingle(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("D", "NewOrderSingle"))
   result.msgType = NewOrderSingle
   let l = s.len
@@ -628,7 +628,7 @@ proc parseNewOrderSingle(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseOrderCancelRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("F", "OrderCancelRequest"))
   result.msgType = OrderCancelRequest
   let l = s.len
@@ -657,7 +657,7 @@ proc parseOrderCancelRequest(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseOrderStatusRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("H", "OrderStatusRequest"))
   result.msgType = OrderStatusRequest
   let l = s.len
@@ -683,7 +683,7 @@ proc parseOrderStatusRequest(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseMarketDataRequest(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("V", "MarketDataRequest"))
   result.msgType = MarketDataRequest
   let l = s.len
@@ -707,7 +707,7 @@ proc parseMarketDataRequest(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseMarketDataSnapshotFullRefresh(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("W", "MarketDataSnapshotFullRefresh"))
   result.msgType = MarketDataSnapshotFullRefresh
   let l = s.len
@@ -730,7 +730,7 @@ proc parseMarketDataSnapshotFullRefresh(s: string, result: var Fix44Pxm, pos: va
 
 proc parseMarketDataRequestReject(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("Y", "MarketDataRequestReject"))
   result.msgType = MarketDataRequestReject
   let l = s.len
@@ -751,7 +751,7 @@ proc parseMarketDataRequestReject(s: string, result: var Fix44Pxm, pos: var int)
 
 proc parseMassQuoteAcknowledgement(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("b", "MassQuoteAcknowledgement"))
   result.msgType = MassQuoteAcknowledgement
   let l = s.len
@@ -774,7 +774,7 @@ proc parseMassQuoteAcknowledgement(s: string, result: var Fix44Pxm, pos: var int
 
 proc parseMassQuote(s: string, result: var Fix44Pxm, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Pxm(msgType: ("i", "MassQuote"))
   result.msgType = MassQuote
   let l = s.len
@@ -796,7 +796,7 @@ proc parseMassQuote(s: string, result: var Fix44Pxm, pos: var int) =
 
 proc parseFix44Pxm*(s: string): Fix44Pxm =
   var
-    t: uint16
+    t: int
     v35: string
     pos = 0
   let l = s.len

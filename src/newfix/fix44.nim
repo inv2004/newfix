@@ -6216,7 +6216,7 @@ proc parseNoNested2PartyIDs(s: string, r: var seq[NoNested2PartyIDs], pos: var i
 
 proc parseNoHops(s: string, r: var seq[NoHops], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoHops
     j = 0
   let l = s.len
@@ -6240,7 +6240,7 @@ proc parseNoHops(s: string, r: var seq[NoHops], pos: var int) =
 
 proc parseNoIOIQualifiers(s: string, r: var seq[NoIOIQualifiers], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoIOIQualifiers
     j = 0
   let l = s.len
@@ -6262,7 +6262,7 @@ proc parseNoIOIQualifiers(s: string, r: var seq[NoIOIQualifiers], pos: var int) 
 
 proc parseNoRoutingIDs(s: string, r: var seq[NoRoutingIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoRoutingIDs
     j = 0
   let l = s.len
@@ -6285,7 +6285,7 @@ proc parseNoRoutingIDs(s: string, r: var seq[NoRoutingIDs], pos: var int) =
 
 proc parseNoContraBrokers(s: string, r: var seq[NoContraBrokers], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoContraBrokers
     j = 0
   let l = s.len
@@ -6311,7 +6311,7 @@ proc parseNoContraBrokers(s: string, r: var seq[NoContraBrokers], pos: var int) 
 
 proc parseNoMsgTypes(s: string, r: var seq[NoMsgTypes], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoMsgTypes
     j = 0
   let l = s.len
@@ -6334,7 +6334,7 @@ proc parseNoMsgTypes(s: string, r: var seq[NoMsgTypes], pos: var int) =
 
 proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoRelatedSym
     j = 0
   let l = s.len
@@ -6464,7 +6464,7 @@ proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
 
 proc parseNoLinesOfText(s: string, r: var seq[NoLinesOfText], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoLinesOfText
     j = 0
   let l = s.len
@@ -6488,7 +6488,7 @@ proc parseNoLinesOfText(s: string, r: var seq[NoLinesOfText], pos: var int) =
 
 proc parseNoTradingSessions(s: string, r: var seq[NoTradingSessions], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoTradingSessions
     j = 0
   let l = s.len
@@ -6511,7 +6511,7 @@ proc parseNoTradingSessions(s: string, r: var seq[NoTradingSessions], pos: var i
 
 proc parseNoOrders(s: string, r: var seq[NoOrders], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoOrders
     j = 0
   let l = s.len
@@ -6692,7 +6692,7 @@ proc parseNoOrders(s: string, r: var seq[NoOrders], pos: var int) =
 
 proc parseNoExecs(s: string, r: var seq[NoExecs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoExecs
     j = 0
   let l = s.len
@@ -6719,7 +6719,7 @@ proc parseNoExecs(s: string, r: var seq[NoExecs], pos: var int) =
 
 proc parseNoSettlInst(s: string, r: var seq[NoSettlInst], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoSettlInst
     j = 0
   let l = s.len
@@ -6765,7 +6765,7 @@ proc parseNoSettlInst(s: string, r: var seq[NoSettlInst], pos: var int) =
 
 proc parseNoMDEntryTypes(s: string, r: var seq[NoMDEntryTypes], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoMDEntryTypes
     j = 0
   let l = s.len
@@ -6787,7 +6787,7 @@ proc parseNoMDEntryTypes(s: string, r: var seq[NoMDEntryTypes], pos: var int) =
 
 proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoMDEntries
     j = 0
   let l = s.len
@@ -6893,7 +6893,7 @@ proc parseNoMDEntries(s: string, r: var seq[NoMDEntries], pos: var int) =
 
 proc parseNoAltMDSource(s: string, r: var seq[NoAltMDSource], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoAltMDSource
     j = 0
   let l = s.len
@@ -6915,7 +6915,7 @@ proc parseNoAltMDSource(s: string, r: var seq[NoAltMDSource], pos: var int) =
 
 proc parseNoQuoteSets(s: string, r: var seq[NoQuoteSets], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoQuoteSets
     j = 0
   let l = s.len
@@ -6988,7 +6988,7 @@ proc parseNoQuoteSets(s: string, r: var seq[NoQuoteSets], pos: var int) =
 
 proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoQuoteEntries
     j = 0
   let l = s.len
@@ -7088,7 +7088,7 @@ proc parseNoQuoteEntries(s: string, r: var seq[NoQuoteEntries], pos: var int) =
 
 proc parseNoBidDescriptors(s: string, r: var seq[NoBidDescriptors], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoBidDescriptors
     j = 0
   let l = s.len
@@ -7120,7 +7120,7 @@ proc parseNoBidDescriptors(s: string, r: var seq[NoBidDescriptors], pos: var int
 
 proc parseNoBidComponents(s: string, r: var seq[NoBidComponents], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoBidComponents
     j = 0
   let l = s.len
@@ -7161,7 +7161,7 @@ proc parseNoBidComponents(s: string, r: var seq[NoBidComponents], pos: var int) 
 
 proc parseNoStrikes(s: string, r: var seq[NoStrikes], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoStrikes
     j = 0
   let l = s.len
@@ -7225,7 +7225,7 @@ proc parseNoStrikes(s: string, r: var seq[NoStrikes], pos: var int) =
 
 proc parseNoRegistDtls(s: string, r: var seq[NoRegistDtls], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoRegistDtls
     j = 0
   let l = s.len
@@ -7254,7 +7254,7 @@ proc parseNoRegistDtls(s: string, r: var seq[NoRegistDtls], pos: var int) =
 
 proc parseNoDistribInsts(s: string, r: var seq[NoDistribInsts], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoDistribInsts
     j = 0
   let l = s.len
@@ -7283,7 +7283,7 @@ proc parseNoDistribInsts(s: string, r: var seq[NoDistribInsts], pos: var int) =
 
 proc parseNoAffectedOrders(s: string, r: var seq[NoAffectedOrders], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoAffectedOrders
     j = 0
   let l = s.len
@@ -7307,7 +7307,7 @@ proc parseNoAffectedOrders(s: string, r: var seq[NoAffectedOrders], pos: var int
 
 proc parseNoSides(s: string, r: var seq[NoSides], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoSides
     j = 0
   let l = s.len
@@ -7408,7 +7408,7 @@ proc parseNoSides(s: string, r: var seq[NoSides], pos: var int) =
 
 proc parseNoSecurityTypes(s: string, r: var seq[NoSecurityTypes], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoSecurityTypes
     j = 0
   let l = s.len
@@ -7433,7 +7433,7 @@ proc parseNoSecurityTypes(s: string, r: var seq[NoSecurityTypes], pos: var int) 
 
 proc parseNoInstrAttrib(s: string, r: var seq[NoInstrAttrib], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoInstrAttrib
     j = 0
   let l = s.len
@@ -7456,7 +7456,7 @@ proc parseNoInstrAttrib(s: string, r: var seq[NoInstrAttrib], pos: var int) =
 
 proc parseNoNested3PartySubIDs(s: string, r: var seq[NoNested3PartySubIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoNested3PartySubIDs
     j = 0
   let l = s.len
@@ -7479,7 +7479,7 @@ proc parseNoNested3PartySubIDs(s: string, r: var seq[NoNested3PartySubIDs], pos:
 
 proc parseNoNested3PartyIDs(s: string, r: var seq[NoNested3PartyIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoNested3PartyIDs
     j = 0
   let l = s.len
@@ -7504,7 +7504,7 @@ proc parseNoNested3PartyIDs(s: string, r: var seq[NoNested3PartyIDs], pos: var i
 
 proc parseNoLegAllocs(s: string, r: var seq[NoLegAllocs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoLegAllocs
     j = 0
   let l = s.len
@@ -7531,7 +7531,7 @@ proc parseNoLegAllocs(s: string, r: var seq[NoLegAllocs], pos: var int) =
 
 proc parseNoDates(s: string, r: var seq[NoDates], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoDates
     j = 0
   let l = s.len
@@ -7554,7 +7554,7 @@ proc parseNoDates(s: string, r: var seq[NoDates], pos: var int) =
 
 proc parseNoPosAmt(s: string, r: var seq[NoPosAmt], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoPosAmt
     j = 0
   let l = s.len
@@ -7577,7 +7577,7 @@ proc parseNoPosAmt(s: string, r: var seq[NoPosAmt], pos: var int) =
 
 proc parseNoTrdRegTimestamps(s: string, r: var seq[NoTrdRegTimestamps], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoTrdRegTimestamps
     j = 0
   let l = s.len
@@ -7601,7 +7601,7 @@ proc parseNoTrdRegTimestamps(s: string, r: var seq[NoTrdRegTimestamps], pos: var
 
 proc parseNoContAmts(s: string, r: var seq[NoContAmts], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoContAmts
     j = 0
   let l = s.len
@@ -7625,7 +7625,7 @@ proc parseNoContAmts(s: string, r: var seq[NoContAmts], pos: var int) =
 
 proc parseNoAllocs(s: string, r: var seq[NoAllocs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoAllocs
     j = 0
   let l = s.len
@@ -7684,7 +7684,7 @@ proc parseNoAllocs(s: string, r: var seq[NoAllocs], pos: var int) =
 
 proc parseNoStipulations(s: string, r: var seq[NoStipulations], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoStipulations
     j = 0
   let l = s.len
@@ -7707,7 +7707,7 @@ proc parseNoStipulations(s: string, r: var seq[NoStipulations], pos: var int) =
 
 proc parseNoQuoteQualifiers(s: string, r: var seq[NoQuoteQualifiers], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoQuoteQualifiers
     j = 0
   let l = s.len
@@ -7729,7 +7729,7 @@ proc parseNoQuoteQualifiers(s: string, r: var seq[NoQuoteQualifiers], pos: var i
 
 proc parseNoPartyIDs(s: string, r: var seq[NoPartyIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoPartyIDs
     j = 0
   let l = s.len
@@ -7754,7 +7754,7 @@ proc parseNoPartyIDs(s: string, r: var seq[NoPartyIDs], pos: var int) =
 
 proc parseNoSecurityAltID(s: string, r: var seq[NoSecurityAltID], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoSecurityAltID
     j = 0
   let l = s.len
@@ -7777,7 +7777,7 @@ proc parseNoSecurityAltID(s: string, r: var seq[NoSecurityAltID], pos: var int) 
 
 proc parseNoEvents(s: string, r: var seq[NoEvents], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoEvents
     j = 0
   let l = s.len
@@ -7802,7 +7802,7 @@ proc parseNoEvents(s: string, r: var seq[NoEvents], pos: var int) =
 
 proc parseNoUnderlyings(s: string, r: var seq[NoUnderlyings], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoUnderlyings
     j = 0
   let l = s.len
@@ -7882,7 +7882,7 @@ proc parseNoUnderlyings(s: string, r: var seq[NoUnderlyings], pos: var int) =
 
 proc parseNoLegs(s: string, r: var seq[NoLegs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoLegs
     j = 0
   let l = s.len
@@ -7966,7 +7966,7 @@ proc parseNoLegs(s: string, r: var seq[NoLegs], pos: var int) =
 
 proc parseNoCapacities(s: string, r: var seq[NoCapacities], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoCapacities
     j = 0
   let l = s.len
@@ -7990,7 +7990,7 @@ proc parseNoCapacities(s: string, r: var seq[NoCapacities], pos: var int) =
 
 proc parseNoPositions(s: string, r: var seq[NoPositions], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoPositions
     j = 0
   let l = s.len
@@ -8016,7 +8016,7 @@ proc parseNoPositions(s: string, r: var seq[NoPositions], pos: var int) =
 
 proc parseNoLegStipulations(s: string, r: var seq[NoLegStipulations], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoLegStipulations
     j = 0
   let l = s.len
@@ -8039,7 +8039,7 @@ proc parseNoLegStipulations(s: string, r: var seq[NoLegStipulations], pos: var i
 
 proc parseNoMiscFees(s: string, r: var seq[NoMiscFees], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoMiscFees
     j = 0
   let l = s.len
@@ -8064,7 +8064,7 @@ proc parseNoMiscFees(s: string, r: var seq[NoMiscFees], pos: var int) =
 
 proc parseNoClearingInstructions(s: string, r: var seq[NoClearingInstructions], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoClearingInstructions
     j = 0
   let l = s.len
@@ -8086,7 +8086,7 @@ proc parseNoClearingInstructions(s: string, r: var seq[NoClearingInstructions], 
 
 proc parseNoDlvyInst(s: string, r: var seq[NoDlvyInst], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoDlvyInst
     j = 0
   let l = s.len
@@ -8110,7 +8110,7 @@ proc parseNoDlvyInst(s: string, r: var seq[NoDlvyInst], pos: var int) =
 
 proc parseNoNestedPartySubIDs(s: string, r: var seq[NoNestedPartySubIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoNestedPartySubIDs
     j = 0
   let l = s.len
@@ -8133,7 +8133,7 @@ proc parseNoNestedPartySubIDs(s: string, r: var seq[NoNestedPartySubIDs], pos: v
 
 proc parseNoNestedPartyIDs(s: string, r: var seq[NoNestedPartyIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoNestedPartyIDs
     j = 0
   let l = s.len
@@ -8158,7 +8158,7 @@ proc parseNoNestedPartyIDs(s: string, r: var seq[NoNestedPartyIDs], pos: var int
 
 proc parseNoTrades(s: string, r: var seq[NoTrades], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoTrades
     j = 0
   let l = s.len
@@ -8181,7 +8181,7 @@ proc parseNoTrades(s: string, r: var seq[NoTrades], pos: var int) =
 
 proc parseNoCollInquiryQualifier(s: string, r: var seq[NoCollInquiryQualifier], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoCollInquiryQualifier
     j = 0
   let l = s.len
@@ -8203,7 +8203,7 @@ proc parseNoCollInquiryQualifier(s: string, r: var seq[NoCollInquiryQualifier], 
 
 proc parseNoSettlPartySubIDs(s: string, r: var seq[NoSettlPartySubIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoSettlPartySubIDs
     j = 0
   let l = s.len
@@ -8226,7 +8226,7 @@ proc parseNoSettlPartySubIDs(s: string, r: var seq[NoSettlPartySubIDs], pos: var
 
 proc parseNoSettlPartyIDs(s: string, r: var seq[NoSettlPartyIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoSettlPartyIDs
     j = 0
   let l = s.len
@@ -8251,7 +8251,7 @@ proc parseNoSettlPartyIDs(s: string, r: var seq[NoSettlPartyIDs], pos: var int) 
 
 proc parseNoCompIDs(s: string, r: var seq[NoCompIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoCompIDs
     j = 0
   let l = s.len
@@ -8278,7 +8278,7 @@ proc parseNoCompIDs(s: string, r: var seq[NoCompIDs], pos: var int) =
 
 proc parseNoPartySubIDs(s: string, r: var seq[NoPartySubIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoPartySubIDs
     j = 0
   let l = s.len
@@ -8301,7 +8301,7 @@ proc parseNoPartySubIDs(s: string, r: var seq[NoPartySubIDs], pos: var int) =
 
 proc parseNoLegSecurityAltID(s: string, r: var seq[NoLegSecurityAltID], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoLegSecurityAltID
     j = 0
   let l = s.len
@@ -8324,7 +8324,7 @@ proc parseNoLegSecurityAltID(s: string, r: var seq[NoLegSecurityAltID], pos: var
 
 proc parseNoUnderlyingSecurityAltID(s: string, r: var seq[NoUnderlyingSecurityAltID], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoUnderlyingSecurityAltID
     j = 0
   let l = s.len
@@ -8347,7 +8347,7 @@ proc parseNoUnderlyingSecurityAltID(s: string, r: var seq[NoUnderlyingSecurityAl
 
 proc parseNoUnderlyingStips(s: string, r: var seq[NoUnderlyingStips], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoUnderlyingStips
     j = 0
   let l = s.len
@@ -8370,7 +8370,7 @@ proc parseNoUnderlyingStips(s: string, r: var seq[NoUnderlyingStips], pos: var i
 
 proc parseNoNested2PartySubIDs(s: string, r: var seq[NoNested2PartySubIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoNested2PartySubIDs
     j = 0
   let l = s.len
@@ -8393,7 +8393,7 @@ proc parseNoNested2PartySubIDs(s: string, r: var seq[NoNested2PartySubIDs], pos:
 
 proc parseNoNested2PartyIDs(s: string, r: var seq[NoNested2PartyIDs], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoNested2PartyIDs
     j = 0
   let l = s.len
@@ -8418,7 +8418,7 @@ proc parseNoNested2PartyIDs(s: string, r: var seq[NoNested2PartyIDs], pos: var i
 
 proc parseHeartbeat(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("0", "Heartbeat"))
   result.msgType = Heartbeat
   let l = s.len
@@ -8457,7 +8457,7 @@ proc parseHeartbeat(s: string, result: var Fix44, pos: var int) =
 
 proc parseTestRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("1", "TestRequest"))
   result.msgType = TestRequest
   let l = s.len
@@ -8496,7 +8496,7 @@ proc parseTestRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseResendRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("2", "ResendRequest"))
   result.msgType = ResendRequest
   let l = s.len
@@ -8536,7 +8536,7 @@ proc parseResendRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseReject(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("3", "Reject"))
   result.msgType = Reject
   let l = s.len
@@ -8581,7 +8581,7 @@ proc parseReject(s: string, result: var Fix44, pos: var int) =
 
 proc parseSequenceReset(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("4", "SequenceReset"))
   result.msgType = SequenceReset
   let l = s.len
@@ -8621,7 +8621,7 @@ proc parseSequenceReset(s: string, result: var Fix44, pos: var int) =
 
 proc parseLogout(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("5", "Logout"))
   result.msgType = Logout
   let l = s.len
@@ -8662,7 +8662,7 @@ proc parseLogout(s: string, result: var Fix44, pos: var int) =
 
 proc parseIOI(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("6", "IOI"))
   result.msgType = IOI
   let l = s.len
@@ -8793,7 +8793,7 @@ proc parseIOI(s: string, result: var Fix44, pos: var int) =
 
 proc parseAdvertisement(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("7", "Advertisement"))
   result.msgType = Advertisement
   let l = s.len
@@ -8893,7 +8893,7 @@ proc parseAdvertisement(s: string, result: var Fix44, pos: var int) =
 
 proc parseExecutionReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("8", "ExecutionReport"))
   result.msgType = ExecutionReport
   let l = s.len
@@ -9149,7 +9149,7 @@ proc parseExecutionReport(s: string, result: var Fix44, pos: var int) =
 
 proc parseOrderCancelReject(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("9", "OrderCancelReject"))
   result.msgType = OrderCancelReject
   let l = s.len
@@ -9208,7 +9208,7 @@ proc parseOrderCancelReject(s: string, result: var Fix44, pos: var int) =
 
 proc parseLogon(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("A", "Logon"))
   result.msgType = Logon
   let l = s.len
@@ -9257,7 +9257,7 @@ proc parseLogon(s: string, result: var Fix44, pos: var int) =
 
 proc parseNews(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("B", "News"))
   result.msgType = News
   let l = s.len
@@ -9308,7 +9308,7 @@ proc parseNews(s: string, result: var Fix44, pos: var int) =
 
 proc parseEmail(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("C", "Email"))
   result.msgType = Email
   let l = s.len
@@ -9361,7 +9361,7 @@ proc parseEmail(s: string, result: var Fix44, pos: var int) =
 
 proc parseNewOrderSingle(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("D", "NewOrderSingle"))
   result.msgType = NewOrderSingle
   let l = s.len
@@ -9555,7 +9555,7 @@ proc parseNewOrderSingle(s: string, result: var Fix44, pos: var int) =
 
 proc parseNewOrderList(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("E", "NewOrderList"))
   result.msgType = NewOrderList
   let l = s.len
@@ -9612,7 +9612,7 @@ proc parseNewOrderList(s: string, result: var Fix44, pos: var int) =
 
 proc parseOrderCancelRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("F", "OrderCancelRequest"))
   result.msgType = OrderCancelRequest
   let l = s.len
@@ -9725,7 +9725,7 @@ proc parseOrderCancelRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseOrderCancelReplaceRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("G", "OrderCancelReplaceRequest"))
   result.msgType = OrderCancelReplaceRequest
   let l = s.len
@@ -9918,7 +9918,7 @@ proc parseOrderCancelReplaceRequest(s: string, result: var Fix44, pos: var int) 
 
 proc parseOrderStatusRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("H", "OrderStatusRequest"))
   result.msgType = OrderStatusRequest
   let l = s.len
@@ -10018,7 +10018,7 @@ proc parseOrderStatusRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseAllocationInstruction(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("J", "AllocationInstruction"))
   result.msgType = AllocationInstruction
   let l = s.len
@@ -10183,7 +10183,7 @@ proc parseAllocationInstruction(s: string, result: var Fix44, pos: var int) =
 
 proc parseListCancelRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("K", "ListCancelRequest"))
   result.msgType = ListCancelRequest
   let l = s.len
@@ -10228,7 +10228,7 @@ proc parseListCancelRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseListExecute(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("L", "ListExecute"))
   result.msgType = ListExecute
   let l = s.len
@@ -10273,7 +10273,7 @@ proc parseListExecute(s: string, result: var Fix44, pos: var int) =
 
 proc parseListStatusRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("M", "ListStatusRequest"))
   result.msgType = ListStatusRequest
   let l = s.len
@@ -10315,7 +10315,7 @@ proc parseListStatusRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseListStatus(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("N", "ListStatus"))
   result.msgType = ListStatus
   let l = s.len
@@ -10365,7 +10365,7 @@ proc parseListStatus(s: string, result: var Fix44, pos: var int) =
 
 proc parseAllocationInstructionAck(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("P", "AllocationInstructionAck"))
   result.msgType = AllocationInstructionAck
   let l = s.len
@@ -10419,7 +10419,7 @@ proc parseAllocationInstructionAck(s: string, result: var Fix44, pos: var int) =
 
 proc parseDontKnowTrade(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("Q", "DontKnowTrade"))
   result.msgType = DontKnowTrade
   let l = s.len
@@ -10517,7 +10517,7 @@ proc parseDontKnowTrade(s: string, result: var Fix44, pos: var int) =
 
 proc parseQuoteRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("R", "QuoteRequest"))
   result.msgType = QuoteRequest
   let l = s.len
@@ -10563,7 +10563,7 @@ proc parseQuoteRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseQuote(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("S", "Quote"))
   result.msgType = Quote
   let l = s.len
@@ -10726,7 +10726,7 @@ proc parseQuote(s: string, result: var Fix44, pos: var int) =
 
 proc parseSettlementInstructions(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("T", "SettlementInstructions"))
   result.msgType = SettlementInstructions
   let l = s.len
@@ -10774,7 +10774,7 @@ proc parseSettlementInstructions(s: string, result: var Fix44, pos: var int) =
 
 proc parseMarketDataRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("V", "MarketDataRequest"))
   result.msgType = MarketDataRequest
   let l = s.len
@@ -10825,7 +10825,7 @@ proc parseMarketDataRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseMarketDataSnapshotFullRefresh(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("W", "MarketDataSnapshotFullRefresh"))
   result.msgType = MarketDataSnapshotFullRefresh
   let l = s.len
@@ -10915,7 +10915,7 @@ proc parseMarketDataSnapshotFullRefresh(s: string, result: var Fix44, pos: var i
 
 proc parseMarketDataIncrementalRefresh(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("X", "MarketDataIncrementalRefresh"))
   result.msgType = MarketDataIncrementalRefresh
   let l = s.len
@@ -10957,7 +10957,7 @@ proc parseMarketDataIncrementalRefresh(s: string, result: var Fix44, pos: var in
 
 proc parseMarketDataRequestReject(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("Y", "MarketDataRequestReject"))
   result.msgType = MarketDataRequestReject
   let l = s.len
@@ -11001,7 +11001,7 @@ proc parseMarketDataRequestReject(s: string, result: var Fix44, pos: var int) =
 
 proc parseQuoteCancel(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("Z", "QuoteCancel"))
   result.msgType = QuoteCancel
   let l = s.len
@@ -11050,7 +11050,7 @@ proc parseQuoteCancel(s: string, result: var Fix44, pos: var int) =
 
 proc parseQuoteStatusRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("a", "QuoteStatusRequest"))
   result.msgType = QuoteStatusRequest
   let l = s.len
@@ -11151,7 +11151,7 @@ proc parseQuoteStatusRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseMassQuoteAcknowledgement(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("b", "MassQuoteAcknowledgement"))
   result.msgType = MassQuoteAcknowledgement
   let l = s.len
@@ -11203,7 +11203,7 @@ proc parseMassQuoteAcknowledgement(s: string, result: var Fix44, pos: var int) =
 
 proc parseSecurityDefinitionRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("c", "SecurityDefinitionRequest"))
   result.msgType = SecurityDefinitionRequest
   let l = s.len
@@ -11299,7 +11299,7 @@ proc parseSecurityDefinitionRequest(s: string, result: var Fix44, pos: var int) 
 
 proc parseSecurityDefinition(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("d", "SecurityDefinition"))
   result.msgType = SecurityDefinition
   let l = s.len
@@ -11397,7 +11397,7 @@ proc parseSecurityDefinition(s: string, result: var Fix44, pos: var int) =
 
 proc parseSecurityStatusRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("e", "SecurityStatusRequest"))
   result.msgType = SecurityStatusRequest
   let l = s.len
@@ -11488,7 +11488,7 @@ proc parseSecurityStatusRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseSecurityStatus(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("f", "SecurityStatus"))
   result.msgType = SecurityStatus
   let l = s.len
@@ -11595,7 +11595,7 @@ proc parseSecurityStatus(s: string, result: var Fix44, pos: var int) =
 
 proc parseTradingSessionStatusRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("g", "TradingSessionStatusRequest"))
   result.msgType = TradingSessionStatusRequest
   let l = s.len
@@ -11639,7 +11639,7 @@ proc parseTradingSessionStatusRequest(s: string, result: var Fix44, pos: var int
 
 proc parseTradingSessionStatus(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("h", "TradingSessionStatus"))
   result.msgType = TradingSessionStatus
   let l = s.len
@@ -11694,7 +11694,7 @@ proc parseTradingSessionStatus(s: string, result: var Fix44, pos: var int) =
 
 proc parseMassQuote(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("i", "MassQuote"))
   result.msgType = MassQuote
   let l = s.len
@@ -11743,7 +11743,7 @@ proc parseMassQuote(s: string, result: var Fix44, pos: var int) =
 
 proc parseBusinessMessageReject(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("j", "BusinessMessageReject"))
   result.msgType = BusinessMessageReject
   let l = s.len
@@ -11788,7 +11788,7 @@ proc parseBusinessMessageReject(s: string, result: var Fix44, pos: var int) =
 
 proc parseBidRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("k", "BidRequest"))
   result.msgType = BidRequest
   let l = s.len
@@ -11855,7 +11855,7 @@ proc parseBidRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseBidResponse(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("l", "BidResponse"))
   result.msgType = BidResponse
   let l = s.len
@@ -11896,7 +11896,7 @@ proc parseBidResponse(s: string, result: var Fix44, pos: var int) =
 
 proc parseListStrikePrice(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("m", "ListStrikePrice"))
   result.msgType = ListStrikePrice
   let l = s.len
@@ -11939,7 +11939,7 @@ proc parseListStrikePrice(s: string, result: var Fix44, pos: var int) =
 
 proc parseXMLnonFIX(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("n", "XMLnonFIX"))
   result.msgType = XMLnonFIX
   let l = s.len
@@ -11977,7 +11977,7 @@ proc parseXMLnonFIX(s: string, result: var Fix44, pos: var int) =
 
 proc parseRegistrationInstructions(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("o", "RegistrationInstructions"))
   result.msgType = RegistrationInstructions
   let l = s.len
@@ -12027,7 +12027,7 @@ proc parseRegistrationInstructions(s: string, result: var Fix44, pos: var int) =
 
 proc parseRegistrationInstructionsResponse(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("p", "RegistrationInstructionsResponse"))
   result.msgType = RegistrationInstructionsResponse
   let l = s.len
@@ -12075,7 +12075,7 @@ proc parseRegistrationInstructionsResponse(s: string, result: var Fix44, pos: va
 
 proc parseOrderMassCancelRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("q", "OrderMassCancelRequest"))
   result.msgType = OrderMassCancelRequest
   let l = s.len
@@ -12213,7 +12213,7 @@ proc parseOrderMassCancelRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseOrderMassCancelReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("r", "OrderMassCancelReport"))
   result.msgType = OrderMassCancelReport
   let l = s.len
@@ -12357,7 +12357,7 @@ proc parseOrderMassCancelReport(s: string, result: var Fix44, pos: var int) =
 
 proc parseNewOrderCross(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("s", "NewOrderCross"))
   result.msgType = NewOrderCross
   let l = s.len
@@ -12505,7 +12505,7 @@ proc parseNewOrderCross(s: string, result: var Fix44, pos: var int) =
 
 proc parseCrossOrderCancelReplaceRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("t", "CrossOrderCancelReplaceRequest"))
   result.msgType = CrossOrderCancelReplaceRequest
   let l = s.len
@@ -12655,7 +12655,7 @@ proc parseCrossOrderCancelReplaceRequest(s: string, result: var Fix44, pos: var 
 
 proc parseCrossOrderCancelRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("u", "CrossOrderCancelRequest"))
   result.msgType = CrossOrderCancelRequest
   let l = s.len
@@ -12745,7 +12745,7 @@ proc parseCrossOrderCancelRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseSecurityTypeRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("v", "SecurityTypeRequest"))
   result.msgType = SecurityTypeRequest
   let l = s.len
@@ -12792,7 +12792,7 @@ proc parseSecurityTypeRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseSecurityTypes(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("w", "SecurityTypes"))
   result.msgType = SecurityTypes
   let l = s.len
@@ -12842,7 +12842,7 @@ proc parseSecurityTypes(s: string, result: var Fix44, pos: var int) =
 
 proc parseSecurityListRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("x", "SecurityListRequest"))
   result.msgType = SecurityListRequest
   let l = s.len
@@ -12946,7 +12946,7 @@ proc parseSecurityListRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseSecurityList(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("y", "SecurityList"))
   result.msgType = SecurityList
   let l = s.len
@@ -12990,7 +12990,7 @@ proc parseSecurityList(s: string, result: var Fix44, pos: var int) =
 
 proc parseDerivativeSecurityListRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("z", "DerivativeSecurityListRequest"))
   result.msgType = DerivativeSecurityListRequest
   let l = s.len
@@ -13085,7 +13085,7 @@ proc parseDerivativeSecurityListRequest(s: string, result: var Fix44, pos: var i
 
 proc parseDerivativeSecurityList(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AA", "DerivativeSecurityList"))
   result.msgType = DerivativeSecurityList
   let l = s.len
@@ -13176,7 +13176,7 @@ proc parseDerivativeSecurityList(s: string, result: var Fix44, pos: var int) =
 
 proc parseNewOrderMultileg(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AB", "NewOrderMultileg"))
   result.msgType = NewOrderMultileg
   let l = s.len
@@ -13345,7 +13345,7 @@ proc parseNewOrderMultileg(s: string, result: var Fix44, pos: var int) =
 
 proc parseMultilegOrderCancelReplace(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AC", "MultilegOrderCancelReplace"))
   result.msgType = MultilegOrderCancelReplace
   let l = s.len
@@ -13517,7 +13517,7 @@ proc parseMultilegOrderCancelReplace(s: string, result: var Fix44, pos: var int)
 
 proc parseTradeCaptureReportRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AD", "TradeCaptureReportRequest"))
   result.msgType = TradeCaptureReportRequest
   let l = s.len
@@ -13643,7 +13643,7 @@ proc parseTradeCaptureReportRequest(s: string, result: var Fix44, pos: var int) 
 
 proc parseTradeCaptureReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AE", "TradeCaptureReport"))
   result.msgType = TradeCaptureReport
   let l = s.len
@@ -13804,7 +13804,7 @@ proc parseTradeCaptureReport(s: string, result: var Fix44, pos: var int) =
 
 proc parseOrderMassStatusRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AF", "OrderMassStatusRequest"))
   result.msgType = OrderMassStatusRequest
   let l = s.len
@@ -13940,7 +13940,7 @@ proc parseOrderMassStatusRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseQuoteRequestReject(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AG", "QuoteRequestReject"))
   result.msgType = QuoteRequestReject
   let l = s.len
@@ -13985,7 +13985,7 @@ proc parseQuoteRequestReject(s: string, result: var Fix44, pos: var int) =
 
 proc parseRFQRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AH", "RFQRequest"))
   result.msgType = RFQRequest
   let l = s.len
@@ -14026,7 +14026,7 @@ proc parseRFQRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseQuoteStatusReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AI", "QuoteStatusReport"))
   result.msgType = QuoteStatusReport
   let l = s.len
@@ -14191,7 +14191,7 @@ proc parseQuoteStatusReport(s: string, result: var Fix44, pos: var int) =
 
 proc parseQuoteResponse(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AJ", "QuoteResponse"))
   result.msgType = QuoteResponse
   let l = s.len
@@ -14356,7 +14356,7 @@ proc parseQuoteResponse(s: string, result: var Fix44, pos: var int) =
 
 proc parseConfirmation(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AK", "Confirmation"))
   result.msgType = Confirmation
   let l = s.len
@@ -14530,7 +14530,7 @@ proc parseConfirmation(s: string, result: var Fix44, pos: var int) =
 
 proc parsePositionMaintenanceRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AL", "PositionMaintenanceRequest"))
   result.msgType = PositionMaintenanceRequest
   let l = s.len
@@ -14636,7 +14636,7 @@ proc parsePositionMaintenanceRequest(s: string, result: var Fix44, pos: var int)
 
 proc parsePositionMaintenanceReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AM", "PositionMaintenanceReport"))
   result.msgType = PositionMaintenanceReport
   let l = s.len
@@ -14743,7 +14743,7 @@ proc parsePositionMaintenanceReport(s: string, result: var Fix44, pos: var int) 
 
 proc parseRequestForPositions(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AN", "RequestForPositions"))
   result.msgType = RequestForPositions
   let l = s.len
@@ -14845,7 +14845,7 @@ proc parseRequestForPositions(s: string, result: var Fix44, pos: var int) =
 
 proc parseRequestForPositionsAck(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AO", "RequestForPositionsAck"))
   result.msgType = RequestForPositionsAck
   let l = s.len
@@ -14944,7 +14944,7 @@ proc parseRequestForPositionsAck(s: string, result: var Fix44, pos: var int) =
 
 proc parsePositionReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AP", "PositionReport"))
   result.msgType = PositionReport
   let l = s.len
@@ -15052,7 +15052,7 @@ proc parsePositionReport(s: string, result: var Fix44, pos: var int) =
 
 proc parseTradeCaptureReportRequestAck(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AQ", "TradeCaptureReportRequestAck"))
   result.msgType = TradeCaptureReportRequestAck
   let l = s.len
@@ -15147,7 +15147,7 @@ proc parseTradeCaptureReportRequestAck(s: string, result: var Fix44, pos: var in
 
 proc parseTradeCaptureReportAck(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AR", "TradeCaptureReportAck"))
   result.msgType = TradeCaptureReportAck
   let l = s.len
@@ -15264,7 +15264,7 @@ proc parseTradeCaptureReportAck(s: string, result: var Fix44, pos: var int) =
 
 proc parseAllocationReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AS", "AllocationReport"))
   result.msgType = AllocationReport
   let l = s.len
@@ -15433,7 +15433,7 @@ proc parseAllocationReport(s: string, result: var Fix44, pos: var int) =
 
 proc parseAllocationReportAck(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AT", "AllocationReportAck"))
   result.msgType = AllocationReportAck
   let l = s.len
@@ -15488,7 +15488,7 @@ proc parseAllocationReportAck(s: string, result: var Fix44, pos: var int) =
 
 proc parseConfirmationAck(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AU", "ConfirmationAck"))
   result.msgType = ConfirmationAck
   let l = s.len
@@ -15535,7 +15535,7 @@ proc parseConfirmationAck(s: string, result: var Fix44, pos: var int) =
 
 proc parseSettlementInstructionRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AV", "SettlementInstructionRequest"))
   result.msgType = SettlementInstructionRequest
   let l = s.len
@@ -15588,7 +15588,7 @@ proc parseSettlementInstructionRequest(s: string, result: var Fix44, pos: var in
 
 proc parseAssignmentReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AW", "AssignmentReport"))
   result.msgType = AssignmentReport
   let l = s.len
@@ -15695,7 +15695,7 @@ proc parseAssignmentReport(s: string, result: var Fix44, pos: var int) =
 
 proc parseCollateralRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AX", "CollateralRequest"))
   result.msgType = CollateralRequest
   let l = s.len
@@ -15833,7 +15833,7 @@ proc parseCollateralRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseCollateralAssignment(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AY", "CollateralAssignment"))
   result.msgType = CollateralAssignment
   let l = s.len
@@ -15979,7 +15979,7 @@ proc parseCollateralAssignment(s: string, result: var Fix44, pos: var int) =
 
 proc parseCollateralResponse(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("AZ", "CollateralResponse"))
   result.msgType = CollateralResponse
   let l = s.len
@@ -16116,7 +16116,7 @@ proc parseCollateralResponse(s: string, result: var Fix44, pos: var int) =
 
 proc parseCollateralReport(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("BA", "CollateralReport"))
   result.msgType = CollateralReport
   let l = s.len
@@ -16260,7 +16260,7 @@ proc parseCollateralReport(s: string, result: var Fix44, pos: var int) =
 
 proc parseCollateralInquiry(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("BB", "CollateralInquiry"))
   result.msgType = CollateralInquiry
   let l = s.len
@@ -16403,7 +16403,7 @@ proc parseCollateralInquiry(s: string, result: var Fix44, pos: var int) =
 
 proc parseNetworkCounterpartySystemStatusRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("BC", "NetworkCounterpartySystemStatusRequest"))
   result.msgType = NetworkCounterpartySystemStatusRequest
   let l = s.len
@@ -16444,7 +16444,7 @@ proc parseNetworkCounterpartySystemStatusRequest(s: string, result: var Fix44, p
 
 proc parseNetworkCounterpartySystemStatusResponse(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("BD", "NetworkCounterpartySystemStatusResponse"))
   result.msgType = NetworkCounterpartySystemStatusResponse
   let l = s.len
@@ -16487,7 +16487,7 @@ proc parseNetworkCounterpartySystemStatusResponse(s: string, result: var Fix44, 
 
 proc parseUserRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("BE", "UserRequest"))
   result.msgType = UserRequest
   let l = s.len
@@ -16532,7 +16532,7 @@ proc parseUserRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseUserResponse(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("BF", "UserResponse"))
   result.msgType = UserResponse
   let l = s.len
@@ -16574,7 +16574,7 @@ proc parseUserResponse(s: string, result: var Fix44, pos: var int) =
 
 proc parseCollateralInquiryAck(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("BG", "CollateralInquiryAck"))
   result.msgType = CollateralInquiryAck
   let l = s.len
@@ -16694,7 +16694,7 @@ proc parseCollateralInquiryAck(s: string, result: var Fix44, pos: var int) =
 
 proc parseConfirmationRequest(s: string, result: var Fix44, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44(msgType: ("BH", "ConfirmationRequest"))
   result.msgType = ConfirmationRequest
   let l = s.len
@@ -16745,7 +16745,7 @@ proc parseConfirmationRequest(s: string, result: var Fix44, pos: var int) =
 
 proc parseFix44*(s: string): Fix44 =
   var
-    t: uint16
+    t: int
     v35: string
     pos = 0
   let l = s.len

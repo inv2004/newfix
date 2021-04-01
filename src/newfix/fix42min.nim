@@ -44,7 +44,7 @@ proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int)
 
 proc parseNoTestSubgroup(s: string, r: var seq[NoTestSubgroup], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoTestSubgroup
     j = 0
   let l = s.len
@@ -67,7 +67,7 @@ proc parseNoTestSubgroup(s: string, r: var seq[NoTestSubgroup], pos: var int) =
 
 proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
   var
-    t, sep: uint16
+    t, sep: int
     v: NoRelatedSym
     j = 0
   let l = s.len
@@ -92,7 +92,7 @@ proc parseNoRelatedSym(s: string, r: var seq[NoRelatedSym], pos: var int) =
 
 proc parseSecurityStatusRequest(s: string, result: var Fix44Min, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Min(msgType: ("e", "SecurityStatusRequest"))
   result.msgType = SecurityStatusRequest
   let l = s.len
@@ -113,7 +113,7 @@ proc parseSecurityStatusRequest(s: string, result: var Fix44Min, pos: var int) =
 
 proc parseQuoteStatusRequest(s: string, result: var Fix44Min, pos: var int) =
   var
-    t: uint16
+    t: int
   # result = Fix44Min(msgType: ("a", "QuoteStatusRequest"))
   result.msgType = QuoteStatusRequest
   let l = s.len
@@ -135,7 +135,7 @@ proc parseQuoteStatusRequest(s: string, result: var Fix44Min, pos: var int) =
 
 proc parseFix44Min*(s: string): Fix44Min =
   var
-    t: uint16
+    t: int
     v35: string
     pos = 0
   let l = s.len

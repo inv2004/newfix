@@ -9,7 +9,7 @@ type
 
 func parseFix1*(s: string): Fix1 =
   result.buf = s
-  var t: uint16
+  var t: int
   let l = s.len
   var i = 0
   while i < l:
@@ -68,7 +68,7 @@ type
 
 func parseFix2*(s: string): Fix2 =
   result.buf = s
-  var t: uint16
+  var t: int
   let l = s.len
   var i = 0
   while i < l:
@@ -144,7 +144,7 @@ type
     t10*: string
 
 func parseFix3*(s: string): Fix3 =
-  var t: uint16
+  var t: int
   let l = s.len
   var i = 0
   while i < l:
@@ -174,7 +174,7 @@ type
   Fix4 = array[10000, string]
 
 func parseFix4*(s: string): Fix4 =
-  var t: uint16
+  var t: int
   var v: string
   let l = s.len
   var i = 0
