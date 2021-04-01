@@ -47,8 +47,6 @@ func parseFloat*(s: string, t: var float, pos: var int) =
   pos += parseutils.parseFloat(s, t, pos)+1
 
 func skipValue*(s: string, pos: var int) =
-  while true:
-    if s[pos] == DELIMITER:
-      break
+  while s[pos] != DELIMITER:
     inc pos
   inc pos

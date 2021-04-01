@@ -46,6 +46,7 @@ proc tag3(f: var StreamFix, tag: int): string =
   var t: int 
   var start: int
   while f.pos < l:
+    t = 0
     while f.msg[f.pos] != '=':
       t = t * 10 + int(f.msg[f.pos].byte - '0'.byte)
       inc f.pos
