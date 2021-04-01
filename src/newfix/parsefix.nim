@@ -2,7 +2,7 @@ from parseutils import parseFloat
 
 const DELIMITER = '\x01'
 
-func parseTag*(s: string, t: var int, pos: var int) {.inline.} =
+func parseTag*(s: string, t: var int, pos: var int) =
   t = 0
   while s[pos] != '=':
     t = t * 10 + int(s[pos].byte - '0'.byte)
