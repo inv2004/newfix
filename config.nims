@@ -1,4 +1,4 @@
-switch("gc", "arc")
+switch("gc", "refc")
 switch("opt", "speed")
 switch("passC", "-flto")
 switch("passL", "-flto")
