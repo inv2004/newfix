@@ -1,7 +1,5 @@
 import strutils
 import criterion
-import parsefix
-import strscans
 
 type
   StreamFix = object
