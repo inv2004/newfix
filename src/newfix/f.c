@@ -157,7 +157,7 @@ int main() {
   }
   stop = clock();
   elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-  printf("%d: %f\n", result, elapsed / 1000.0);
+  printf("%d: %s\n", result, elapsed / 1000.0);
 
   exit(EXIT_SUCCESS);
 }
