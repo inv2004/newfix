@@ -4,7 +4,7 @@
 #include <string.h>
 #include <sys/time.h>
 
-typedef struct f{
+typedef struct f {
   char* msg;
   char* pos;
   char* last;
@@ -40,9 +40,8 @@ char* ftag(FS fs, char* tag) {
       result[len] = '\0';
       fs->pos = next;
       return result;
-    } else {
-      fs->pos = 1 + memchr(fs->pos, '\x01', 1000);
-    }
+    } else
+     	fs->pos = 1 + memchr(fs->pos, '\x01', 1000);
   }
   result = malloc(1);
   result[0] = '\0';
@@ -52,10 +51,9 @@ char* ftag(FS fs, char* tag) {
 int bench(char * buf) {
   FS f = finit(buf);
   int result;
-  for(int i = 0; i < 20; i++) {
-    // printf("%s\n", ftag(f, "190="));
-    result += ftag(f, "190=")[0];
-  }
+  for(int i = 0; i < 20; i++)
+  	result += ftag(f, "190=")[0];
+
   return result;
 }
 
@@ -64,8 +62,8 @@ int main() {
   FILE * fp;
   fp = fopen("../../tests/test1.fix", "r");
   if (fp == NULL) { exit(EXIT_FAILURE); }
-  while ((fgets(line, 2000, fp))) {
-  }
+  while ((fgets(line, 2000, fp)))
+  ;
   fclose(fp);
   // printf("%s", line);
 
