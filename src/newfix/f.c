@@ -21,7 +21,6 @@ FS finit(char* msg) {
   return result;
 }
 
-
 FS ffree(FS fs) {
   free(fs);
 }
@@ -48,13 +47,45 @@ char* ftag(FS fs, char* tag) {
   result[0] = '\0';
   return result;
 }
+char* ftag2(FS fs, int tag) {
+  char* result;
+  int t;
+  while(fs->pos < fs->last) {
+    while(*(fs->pos) != '=') {
+      t = t * 10 + (*(fs->pos) - '0');
+      fs->pos += 1;
+    }
+    fs->pos += 1;
+    if(t == tag) {
+      char * start = fs->pos;
+      while(*(fs->pos) != '\1') {
+        fs->pos += 1;
+      }
+      int len = fs->pos - start;
+      result = malloc(len + 1);
+      memcpy(result, start, len);
+      result[len] = '\0';
+      return result;
+    } else {
+      t = 0;
+      while(*(fs->pos) != '\1') {
+        fs->pos += 1;
+      }
+      fs->pos += 1;
+    }
+  }
+  result = malloc(1);
+  result[0] = '\0';
+  return result;
+}
 
 int bench(char * buf) {
   FS f = finit(buf);
   int result;
   for(int i = 0; i < 20; i++) {
-    // printf("%s\n", ftag(f, "190="));
-    result += ftag(f, "190=")[0];
+    // printf("%s\n", ftag2(f, 190));
+    // result += ftag(f, "190=")[0];
+    result += ftag2(f, 190)[0];
   }
   return result;
 }
