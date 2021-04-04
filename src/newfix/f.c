@@ -8,8 +8,10 @@ typedef struct f{
 } *FS;
 
 FS finit(char* msg) {
-  FS result = malloc(sizeof(FS));
-  result->msg = msg;
+  FS result = malloc(sizeof(struct f));
+  int len = strlen(msg);
+  result->msg = malloc(len + 1);
+  memcpy(result->msg, msg, len+1);
   result->pos = msg;
   result->last = msg+strlen(msg);
   return result;

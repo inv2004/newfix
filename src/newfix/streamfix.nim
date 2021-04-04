@@ -101,11 +101,12 @@ benchmark cfg:
     for i in 1..20:
       result += f.tag3("190=").len
 
-  # proc benchFix1() {.measure.} =
-  #   blackBox fix1()
 
-  # proc benchFix2() {.measure.} =
-  #   blackBox fix2()
+  proc benchFix1() {.measure.} =
+    blackBox fix1()
+
+  proc benchFix2() {.measure.} =
+    blackBox fix2()
 
   proc benchFix3() {.measure.} =
     blackBox fix3()
