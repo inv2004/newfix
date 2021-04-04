@@ -100,7 +100,7 @@ benchmark cfg:
     var f = initFix3(s4)
     for i in 1..20:
       result += f.tag3("190=").len
-
+    c_free(f.c)
 
   proc benchFix1() {.measure.} =
     blackBox fix1()
