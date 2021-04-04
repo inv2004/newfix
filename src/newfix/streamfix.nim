@@ -1,3 +1,5 @@
+{.compile: "f.c".}
+
 import criterion
 
 type
@@ -60,6 +62,25 @@ proc tag2(f: var StreamFix2, tag: string): string =
       f.pos = c_memchr(f.pos, '\x01', cast[csize_t](1000))
       f.pos = cast[pointer](cast[uint](f.pos) + 1u)
 
+type
+  CFS = ptr object
+  FS = object
+    c: CFS
+
+proc c_init(msg: cstring): CFS {.importc: "finit".}
+proc c_tag(fs: CFS, tag: cstring): cstring {.importc: "ftag".}
+proc c_free(fs: CFS) {.importc: "ffree".}
+
+proc initFix3(msg: string): FS =
+  FS(c: c_init(msg))
+
+proc tag3(fs: FS, tag: cstring): cstring =
+  c_tag(fs.c, tag)
+
+# proc `=destroy`*(x: var FS) =
+#   if x.c != nil:
+#     c_free(x.c)
+
 var cfg = newDefaultConfig()
 
 benchmark cfg:
@@ -75,17 +96,26 @@ benchmark cfg:
     for i in 1..20:
       result += f.tag2("190=").len
 
-  proc benchFix1() {.measure.} =
-    blackBox fix1()
+  proc fix3(): int =
+    var f = initFix3(s4)
+    for i in 1..20:
+      result += f.tag3("190=").len
 
-  proc benchFix2() {.measure.} =
-    blackBox fix2()
+  # proc benchFix1() {.measure.} =
+  #   blackBox fix1()
+
+  # proc benchFix2() {.measure.} =
+  #   blackBox fix2()
+
+  proc benchFix3() {.measure.} =
+    blackBox fix3()
 
 proc main() =
   let s = readLines("tests/test1.fix", 5)
   var f1 = initFix(s[4])
   var f2 = initFix2(s[4])
-  for i in 1..20:
-    echo f1.tag1(190), " == ", f2.tag2("190=")
+  var f3 = c_init(s[4])
+  for i in 1..30:
+    echo f1.tag1(190), " == ", f2.tag2("190="), " == ", c_tag(f3, "190=")
 
 # main()
