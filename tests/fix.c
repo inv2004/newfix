@@ -126,35 +126,35 @@ int bench3(char * buf) {
   return result;
 }
 
-int main() {
-  char line[2000];
-  FILE * fp;
-  fp = fopen("../../tests/test1.fix", "r");
-  if (fp == NULL) { exit(EXIT_FAILURE); }
-  while ((fgets(line, 2000, fp)))
-  ;
-  fclose(fp);
-  // printf("%s", line);
+// int main() {
+//   char line[2000];
+//   FILE * fp;
+//   fp = fopen("../../tests/test1.fix", "r");
+//   if (fp == NULL) { exit(EXIT_FAILURE); }
+//   while ((fgets(line, 2000, fp)))
+//   ;
+//   fclose(fp);
+//   // printf("%s", line);
 
-  // struct timespec start, end;
-  // clock_gettime(CLOCK_MONOTONIC_RAW, &start);
-  int result = 0;
-  clock_t start = clock();
-  for(int i = 0; i < 1000; i++) {
-    result += bench1(line);
-  }
-  clock_t stop = clock();
-  double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-  printf("%d: %f\n", result, elapsed / 1000.0);
+//   // struct timespec start, end;
+//   // clock_gettime(CLOCK_MONOTONIC_RAW, &start);
+//   int result = 0;
+//   clock_t start = clock();
+//   for(int i = 0; i < 1000; i++) {
+//     result += bench1(line);
+//   }
+//   clock_t stop = clock();
+//   double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+//   printf("%d: %f\n", result, elapsed);
 
-  result = 0;
-  start = clock();
-  for(int i = 0; i < 1000; i++) {
-    result += bench3(line);
-  }
-  stop = clock();
-  elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-  printf("%d: %f\n", result, elapsed / 1000.0);
+//   result = 0;
+//   start = clock();
+//   for(int i = 0; i < 1000; i++) {
+//     result += bench3(line);
+//   }
+//   stop = clock();
+//   elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+//   printf("%d: %f\n", result, elapsed);
 
-  exit(EXIT_SUCCESS);
-}
+//   exit(EXIT_SUCCESS);
+// }
