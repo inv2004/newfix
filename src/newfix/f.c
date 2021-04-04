@@ -113,19 +113,16 @@ char* ftag2(FS fs, int tag) {
 int bench1(char * buf) {
   int result;
   FS f = finit(buf);
-  for(int i = 0; i < 20; i++) {
+  for(int i = 0; i < 20; i++)
     result += ftag1(f, 190)[0];
-  }
   return result;
 }
 
 int bench3(char * buf) {
   int result;
-
+  FS f = finit(buf);
   for(int i = 0; i < 20; i++)
-  	result += ftag(f, "190=")[0];
-  
-
+  	result += ftag3(f, "190=")[0];
   return result;
 }
 
@@ -157,7 +154,7 @@ int main() {
   }
   stop = clock();
   elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-  printf("%d: %c\n", result, elapsed / 1000.0);
+  printf("%d: %f\n", result, elapsed / 1000.0);
 
   exit(EXIT_SUCCESS);
 }
