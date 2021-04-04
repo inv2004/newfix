@@ -111,6 +111,7 @@ benchmark cfg:
   proc benchFix3() {.measure.} =
     blackBox fix3()
 
+
 proc main() =
   let s = readLines("tests/test1.fix", 5)
   var f1 = initFix(s[4])
