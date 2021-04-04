@@ -21,12 +21,43 @@ FS finit(char* msg) {
   return result;
 }
 
-
 FS ffree(FS fs) {
   free(fs);
 }
 
-char* ftag(FS fs, char* tag) {
+char* ftag1(FS fs, int tag) {
+  char* result;
+  int t;
+  while(fs->pos < fs->last) {
+    while(*(fs->pos) != '=') {
+      t = t * 10 + (*(fs->pos) - '0');
+      fs->pos += 1;
+    }
+    fs->pos += 1;
+    if(t == tag) {
+      char * start = fs->pos;
+      while(*(fs->pos) != '\1') {
+        fs->pos += 1;
+      }
+      int len = fs->pos - start;
+      result = malloc(len + 1);
+      memcpy(result, start, len);
+      result[len] = '\0';
+      return result;
+    } else {
+      t = 0;
+      while(*(fs->pos) != '\1') {
+        fs->pos += 1;
+      }
+      fs->pos += 1;
+    }
+  }
+  result = malloc(1);
+  result[0] = '\0';
+  return result;
+}
+
+char* ftag3(FS fs, char* tag) {
   char* result;
   int tlen = strlen(tag);
 
@@ -48,11 +79,21 @@ char* ftag(FS fs, char* tag) {
   return result;
 }
 
-int bench(char * buf) {
-  FS f = finit(buf);
+int bench1(char * buf) {
   int result;
+  FS f = finit(buf);
+  for(int i = 0; i < 20; i++) {
+    result += ftag1(f, 190)[0];
+  }
+  return result;
+}
+
+int bench3(char * buf) {
+  int result;
+
   for(int i = 0; i < 20; i++)
   	result += ftag(f, "190=")[0];
+  
 
   return result;
 }
@@ -69,18 +110,22 @@ int main() {
 
   // struct timespec start, end;
   // clock_gettime(CLOCK_MONOTONIC_RAW, &start);
+  int result = 0;
   clock_t start = clock();
-
-  int result;
   for(int i = 0; i < 1000; i++) {
-    result += bench(line);
+    result += bench1(line);
   }
-  // clock_gettime(CLOCK_MONOTONIC_RAW, &end);
   clock_t stop = clock();
   double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+  printf("%d: %f\n", result, elapsed / 1000.0);
 
-  // unsigned long delta = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000; 
-  // delta /= 200;
+  result = 0;
+  start = clock();
+  for(int i = 0; i < 1000; i++) {
+    result += bench3(line);
+  }
+  stop = clock();
+  elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
   printf("%d: %f\n", result, elapsed / 1000.0);
 
   exit(EXIT_SUCCESS);
