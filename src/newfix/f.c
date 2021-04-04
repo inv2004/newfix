@@ -78,6 +78,37 @@ char* ftag3(FS fs, char* tag) {
   result[0] = '\0';
   return result;
 }
+char* ftag2(FS fs, int tag) {
+  char* result;
+  int t;
+  while(fs->pos < fs->last) {
+    while(*(fs->pos) != '=') {
+      t = t * 10 + (*(fs->pos) - '0');
+      fs->pos += 1;
+    }
+    fs->pos += 1;
+    if(t == tag) {
+      char * start = fs->pos;
+      while(*(fs->pos) != '\1') {
+        fs->pos += 1;
+      }
+      int len = fs->pos - start;
+      result = malloc(len + 1);
+      memcpy(result, start, len);
+      result[len] = '\0';
+      return result;
+    } else {
+      t = 0;
+      while(*(fs->pos) != '\1') {
+        fs->pos += 1;
+      }
+      fs->pos += 1;
+    }
+  }
+  result = malloc(1);
+  result[0] = '\0';
+  return result;
+}
 
 int bench1(char * buf) {
   int result;
