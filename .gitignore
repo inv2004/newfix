@@ -6,3 +6,4 @@ perf.data
 tests/bench1
 tests/test1
 genfix
+.vscode/
