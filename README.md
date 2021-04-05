@@ -15,7 +15,7 @@ echo fix
 
 ## Benchmarks
 
-During the implementation, I was looking at the benchmark's numbers of CoralFIX Parser, which were mentioned line one of the fastest FIX parsers: http://www.coralblocks.com/index.php/coralfix-performance-numbers/ .
+During the implementation, I was looking at the benchmark's numbers of CoralFIX Parser, which were mentioned like one of the fastest FIX parsers: http://www.coralblocks.com/index.php/coralfix-performance-numbers/ .
 
 The article mentions hw: Intel i7 quad-core (4 x 3.50GHz) Ubuntu box overclocked to 4.50Ghz.
 
