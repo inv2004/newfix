@@ -21,12 +21,11 @@ The article mentions hw: Intel i7 quad-core (4 x 3.50GHz) Ubuntu box overclocked
 
 My hw: i5-7500 (4 x 3.40GHz) (not overclocked / win10)
 
-|  Test                                    | CoralFIX  | NewFix      |
-|------------------------------------------|-----------|-------------|
-| Simple                                   | 481.55 ns | 315.7449 ns |
-| Repeating groups                         | 1132 ns   | 581.9442 ns |
-| Repeating groups inside repeating groups | 1932 ns   | 1045.8 ns   |
-
+| Test | CoralFIX | NewFix |
+|-|-|-|
+| Simple | 481.55 ns | 315.7449 ns |
+| Repeating groups | 1132 ns | 581.9442 ns |
+| Repeating groups inside repeating groups | 1932 ns | 1045.8 ns |
 
 The examples of the CoralFIX is quite minimal. Please find much heavier benchmarks on MassQuote messages:
 - 314-byte msg with 8 subgroup updates: 1570.5 ns
@@ -34,16 +33,13 @@ The examples of the CoralFIX is quite minimal. Please find much heavier benchmar
 
 ## Optimization:
 
-To optimize parsing speed it is better to remove unused fields from full specification like it have been done for ``spec/MINIMAL.xml' and PrimeXM specification in 'scpe/FIX44PXM.xml' already
+To optimize parsing speed it is better to remove unused fields from full specification like it have been done for 'spec/MINIMAL.xml' and PrimeXM specification in 'scpe/FIX44PXM.xml' already
 
 ```bash
 $ nim c src/newfix/genfix.nim
 $ src/newfix/genfix spec/FIX44MY.xml > fix44my.xml
 ```
 
-Structure name from the top tags attributes: ``<fix type='FIX' major='4' minor='4' servicepack='min'>`` => ``Fix44Min``
+Structure name from the top tags attributes: `<fix type='FIX' major='4' minor='4' servicepack='min'>` => `Fix44Min`
 
 If you know that you can optimize some types: for example hex or int instead of string - it possible to optimize separate fields manually in the generated module.
-
-
-
