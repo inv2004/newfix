@@ -21,16 +21,21 @@ The article mentions hw: Intel i7 quad-core (4 x 3.50GHz) Ubuntu box overclocked
 
 My hw: i5-7500 (4 x 3.40GHz) (not overclocked / win10)
 
-|  Test                                    | CoralFIX  | NewFix      |
-|------------------------------------------|-----------|-------------|
-| Simple                                   | 481.55 ns | 315.7449 ns |
-| Repeating groups                         | 1132 ns   | 581.9442 ns |
-| Repeating groups inside repeating groups | 1932 ns   | 1045.8 ns   |
+|  Test                                    | CoralFIX  | NewFix      | StreamFix   |
+|------------------------------------------|-----------|-------------|-------------|
+| Simple                                   | 481.55 ns | 315.7449 ns | 397.2781 ns |
+| Repeating groups                         | 1132 ns   | 581.9442 ns | 502.9431 ns |
+| Repeating groups inside repeating groups | 1932 ns   | 1045.8 ns   | 820.1095 ns |
+| MassQuote with 1x8 subgroups (314b) *    |           | 1570.5 ns   | 335.1315 ns |
+| MassQuote with 5x6 subgroups (1010b) *   |           | 6616.0 ns   | 1312.4 ns   |
 
+* MassQuote: StreamFix extracts MsgType, QuoteID, Bid/OfferSize and BidOfferSpotPrice (to build a book)
 
-The examples of the CoralFIX is quite minimal. Please find much heavier benchmarks on MassQuote messages:
-- 314-byte msg with 8 subgroup updates: 1570.5 ns
-- 1010-byte msg with 30 subgroup updates: 6616 ns
+## StreamFix
+
+https://github.com/inv2004/streamfix
+
+Fix parser implementation without static garanties, but suitable to process streaming data from low-latency adapters without waiting for full message (not FPGA yet)
 
 ## Optimization:
 
